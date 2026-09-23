@@ -1,0 +1,599 @@
+{
+  "protocol": {
+    "main_repository": "https://github.com/duchangchen11/paper_one",
+    "stage_a_seeds_requested": [
+      42,
+      123,
+      2024
+    ],
+    "stage_a_runs_completed": {
+      "none": [
+        "123"
+      ],
+      "always": [
+        "123"
+      ],
+      "uncertainty": [
+        "123"
+      ]
+    },
+    "stage_b_runs_completed": {
+      "none": [],
+      "always": [],
+      "uncertainty": []
+    },
+    "frozen_backbone": true,
+    "ambiguous_training_supervision": false,
+    "trajectory_unit": "pixel"
+  },
+  "frozen_transformer_baseline": {
+    "sample_count": 18331,
+    "trajectory_ade_normalized": 0.007278519682586193,
+    "trajectory_fde_normalized": 0.012502647936344147,
+    "trajectory_ade_pixel": 11.058475494384766,
+    "trajectory_fde_pixel": 19.593114852905273,
+    "seed": 123,
+    "split": "test",
+    "checkpoint": "checkpoints/trajectory_transformer_scene_15x15_seed123.pt",
+    "baseline_type": "pretrained SceneTrajectoryTransformer, frozen and unmodified",
+    "coordinate_unit": "pixel",
+    "reference": {
+      "ade_pixel": 11.0584754944,
+      "fde_pixel": 19.5931129456
+    },
+    "difference_from_reference": {
+      "ade_pixel": -1.5234036254696548e-11,
+      "fde_pixel": 1.9073052719420502e-06
+    },
+    "within_0_01_pixel_tolerance": true
+  },
+  "seed_matched_test_baseline": {
+    "42": {
+      "loss": 2.512567927028355e-05,
+      "trajectory_ade_normalized": 0.007355143316090107,
+      "trajectory_fde_normalized": 0.012683128006756306,
+      "trajectory_ade_pixel": 11.160493850708008,
+      "trajectory_fde_pixel": 19.780908584594727
+    },
+    "123": {
+      "loss": 2.4488382051536105e-05,
+      "trajectory_ade_normalized": 0.00727852014824748,
+      "trajectory_fde_normalized": 0.012502647936344147,
+      "trajectory_ade_pixel": 11.058475494384766,
+      "trajectory_fde_pixel": 19.59311294555664
+    },
+    "2024": {
+      "loss": 2.377712849200782e-05,
+      "trajectory_ade_normalized": 0.007168937474489212,
+      "trajectory_fde_normalized": 0.012251606211066246,
+      "trajectory_ade_pixel": 10.813265800476074,
+      "trajectory_fde_pixel": 19.003450393676758
+    }
+  },
+  "stage_a": {
+    "none": {
+      "123": {
+        "stage": "A",
+        "seed": 123,
+        "gate_mode": "none",
+        "trajectory_residual_enabled": false,
+        "trajectory_backbone_frozen": true,
+        "checkpoint": "checkpoints/residual_social_stageA_none_seed123.pt",
+        "checkpoint_selected": true,
+        "best_epoch": 5,
+        "best_validation_intent_auc": 0.7826385117156855,
+        "val_trajectory_ade_constraint_pixel": 10.434043550491333,
+        "test": {
+          "intent_accuracy": 0.8704926081501282,
+          "intent_balanced_accuracy": 0.51623353390419,
+          "intent_f1": 0.9303689798791577,
+          "intent_brier": 0.09565396318345433,
+          "intent_auc": 0.8089023755963283,
+          "prior_intent_auc": 0.7997203634755622,
+          "loss": 0.4744985700596583,
+          "intent_loss": 0.31326465152997013,
+          "prior_intent_loss": 0.3224678331672394,
+          "trajectory_loss": 0.0,
+          "residual_regularization": 0.0,
+          "trajectory_ade_normalized": 0.007278519682586193,
+          "trajectory_fde_normalized": 0.012502647936344147,
+          "trajectory_ade_pixel": 11.05847454071045,
+          "trajectory_fde_pixel": 19.593114852905273,
+          "gate_mean": 0.0,
+          "gate_std": 0.0,
+          "gate_distribution": {
+            "mean": 0.0,
+            "std": 0.0,
+            "p10": 0.0,
+            "p25": 0.0,
+            "median": 0.0,
+            "p75": 0.0,
+            "p90": 0.0
+          },
+          "entropy_mean": 0.5432776808738708,
+          "entropy_std": 0.27152585983276367
+        }
+      }
+    },
+    "always": {
+      "123": {
+        "stage": "A",
+        "seed": 123,
+        "gate_mode": "always",
+        "trajectory_residual_enabled": false,
+        "trajectory_backbone_frozen": true,
+        "checkpoint": "checkpoints/residual_social_stageA_always_seed123.pt",
+        "checkpoint_selected": true,
+        "best_epoch": 7,
+        "best_validation_intent_auc": 0.782115955386582,
+        "val_trajectory_ade_constraint_pixel": 10.434043550491333,
+        "test": {
+          "intent_accuracy": 0.8525448693470078,
+          "intent_balanced_accuracy": 0.7182244171546701,
+          "intent_f1": 0.9140786420420229,
+          "intent_brier": 0.1160137094136263,
+          "intent_auc": 0.789119131900881,
+          "prior_intent_auc": 0.7987298972493346,
+          "loss": 0.5776705823757015,
+          "intent_loss": 0.3735207014619462,
+          "prior_intent_loss": 0.4082997595384009,
+          "trajectory_loss": 0.0,
+          "residual_regularization": 0.0,
+          "trajectory_ade_normalized": 0.007278519682586193,
+          "trajectory_fde_normalized": 0.012502647936344147,
+          "trajectory_ade_pixel": 11.05847454071045,
+          "trajectory_fde_pixel": 19.593114852905273,
+          "gate_mean": 1.0,
+          "gate_std": 0.0,
+          "gate_distribution": {
+            "mean": 1.0,
+            "std": 0.0,
+            "p10": 1.0,
+            "p25": 1.0,
+            "median": 1.0,
+            "p75": 1.0,
+            "p90": 1.0
+          },
+          "entropy_mean": 0.6893668174743652,
+          "entropy_std": 0.2606535851955414
+        }
+      }
+    },
+    "uncertainty": {
+      "123": {
+        "stage": "A",
+        "seed": 123,
+        "gate_mode": "uncertainty",
+        "trajectory_residual_enabled": false,
+        "trajectory_backbone_frozen": true,
+        "checkpoint": "checkpoints/residual_social_stageA_uncertainty_seed123.pt",
+        "checkpoint_selected": true,
+        "best_epoch": 6,
+        "best_validation_intent_auc": 0.8204209801565748,
+        "val_trajectory_ade_constraint_pixel": 10.434043550491333,
+        "test": {
+          "intent_accuracy": 0.8839124979542851,
+          "intent_balanced_accuracy": 0.646526765279371,
+          "intent_f1": 0.9355307804168687,
+          "intent_brier": 0.09839509373176084,
+          "intent_auc": 0.736576900730204,
+          "prior_intent_auc": 0.7948425893509836,
+          "loss": 0.5151251902147671,
+          "intent_loss": 0.3449144406324127,
+          "prior_intent_loss": 0.34042150598001275,
+          "trajectory_loss": 0.0,
+          "residual_regularization": 0.0,
+          "trajectory_ade_normalized": 0.007278519682586193,
+          "trajectory_fde_normalized": 0.012502647936344147,
+          "trajectory_ade_pixel": 11.05847454071045,
+          "trajectory_fde_pixel": 19.593114852905273,
+          "gate_mean": 0.5844274163246155,
+          "gate_std": 0.25718408823013306,
+          "gate_distribution": {
+            "mean": 0.5844273786880265,
+            "std": 0.25718410310642714,
+            "p10": 0.19868560135364532,
+            "p25": 0.3720271587371826,
+            "median": 0.6223289370536804,
+            "p75": 0.8321014940738678,
+            "p90": 0.9079540967941284
+          },
+          "entropy_mean": 0.6085549592971802,
+          "entropy_std": 0.2618159353733063
+        }
+      }
+    }
+  },
+  "stage_a_aggregates": {
+    "none": {
+      "completed_seeds": [
+        123
+      ],
+      "metrics": {
+        "intent_auc": {
+          "mean": 0.8089023755963283,
+          "std_sample": null,
+          "n": 1
+        },
+        "intent_balanced_accuracy": {
+          "mean": 0.51623353390419,
+          "std_sample": null,
+          "n": 1
+        },
+        "intent_f1": {
+          "mean": 0.9303689798791577,
+          "std_sample": null,
+          "n": 1
+        },
+        "intent_brier": {
+          "mean": 0.09565396318345433,
+          "std_sample": null,
+          "n": 1
+        },
+        "trajectory_ade_pixel": {
+          "mean": 11.05847454071045,
+          "std_sample": null,
+          "n": 1
+        },
+        "trajectory_fde_pixel": {
+          "mean": 19.593114852905273,
+          "std_sample": null,
+          "n": 1
+        },
+        "gate_mean": {
+          "mean": 0.0,
+          "std_sample": null,
+          "n": 1
+        },
+        "gate_std": {
+          "mean": 0.0,
+          "std_sample": null,
+          "n": 1
+        },
+        "entropy_mean": {
+          "mean": 0.5432776808738708,
+          "std_sample": null,
+          "n": 1
+        },
+        "entropy_std": {
+          "mean": 0.27152585983276367,
+          "std_sample": null,
+          "n": 1
+        }
+      }
+    },
+    "always": {
+      "completed_seeds": [
+        123
+      ],
+      "metrics": {
+        "intent_auc": {
+          "mean": 0.789119131900881,
+          "std_sample": null,
+          "n": 1
+        },
+        "intent_balanced_accuracy": {
+          "mean": 0.7182244171546701,
+          "std_sample": null,
+          "n": 1
+        },
+        "intent_f1": {
+          "mean": 0.9140786420420229,
+          "std_sample": null,
+          "n": 1
+        },
+        "intent_brier": {
+          "mean": 0.1160137094136263,
+          "std_sample": null,
+          "n": 1
+        },
+        "trajectory_ade_pixel": {
+          "mean": 11.05847454071045,
+          "std_sample": null,
+          "n": 1
+        },
+        "trajectory_fde_pixel": {
+          "mean": 19.593114852905273,
+          "std_sample": null,
+          "n": 1
+        },
+        "gate_mean": {
+          "mean": 1.0,
+          "std_sample": null,
+          "n": 1
+        },
+        "gate_std": {
+          "mean": 0.0,
+          "std_sample": null,
+          "n": 1
+        },
+        "entropy_mean": {
+          "mean": 0.6893668174743652,
+          "std_sample": null,
+          "n": 1
+        },
+        "entropy_std": {
+          "mean": 0.2606535851955414,
+          "std_sample": null,
+          "n": 1
+        }
+      }
+    },
+    "uncertainty": {
+      "completed_seeds": [
+        123
+      ],
+      "metrics": {
+        "intent_auc": {
+          "mean": 0.736576900730204,
+          "std_sample": null,
+          "n": 1
+        },
+        "intent_balanced_accuracy": {
+          "mean": 0.646526765279371,
+          "std_sample": null,
+          "n": 1
+        },
+        "intent_f1": {
+          "mean": 0.9355307804168687,
+          "std_sample": null,
+          "n": 1
+        },
+        "intent_brier": {
+          "mean": 0.09839509373176084,
+          "std_sample": null,
+          "n": 1
+        },
+        "trajectory_ade_pixel": {
+          "mean": 11.05847454071045,
+          "std_sample": null,
+          "n": 1
+        },
+        "trajectory_fde_pixel": {
+          "mean": 19.593114852905273,
+          "std_sample": null,
+          "n": 1
+        },
+        "gate_mean": {
+          "mean": 0.5844274163246155,
+          "std_sample": null,
+          "n": 1
+        },
+        "gate_std": {
+          "mean": 0.25718408823013306,
+          "std_sample": null,
+          "n": 1
+        },
+        "entropy_mean": {
+          "mean": 0.6085549592971802,
+          "std_sample": null,
+          "n": 1
+        },
+        "entropy_std": {
+          "mean": 0.2618159353733063,
+          "std_sample": null,
+          "n": 1
+        }
+      }
+    }
+  },
+  "stage_b": {
+    "none": {},
+    "always": {},
+    "uncertainty": {}
+  },
+  "stage_b_aggregates": {
+    "none": {
+      "completed_seeds": [],
+      "metrics": {
+        "intent_auc": null,
+        "intent_balanced_accuracy": null,
+        "intent_f1": null,
+        "intent_brier": null,
+        "trajectory_ade_pixel": null,
+        "trajectory_fde_pixel": null,
+        "gate_mean": null,
+        "gate_std": null,
+        "entropy_mean": null,
+        "entropy_std": null
+      }
+    },
+    "always": {
+      "completed_seeds": [],
+      "metrics": {
+        "intent_auc": null,
+        "intent_balanced_accuracy": null,
+        "intent_f1": null,
+        "intent_brier": null,
+        "trajectory_ade_pixel": null,
+        "trajectory_fde_pixel": null,
+        "gate_mean": null,
+        "gate_std": null,
+        "entropy_mean": null,
+        "entropy_std": null
+      }
+    },
+    "uncertainty": {
+      "completed_seeds": [],
+      "metrics": {
+        "intent_auc": null,
+        "intent_balanced_accuracy": null,
+        "intent_f1": null,
+        "intent_brier": null,
+        "trajectory_ade_pixel": null,
+        "trajectory_fde_pixel": null,
+        "gate_mean": null,
+        "gate_std": null,
+        "entropy_mean": null,
+        "entropy_std": null
+      }
+    }
+  },
+  "uncertainty_diagnostic": {
+    "interpretation": "diagnostic proxy / ambiguous annotation subset only; crossing=-1 is not uncertainty ground truth",
+    "clean_sample_count": 18331,
+    "ambiguous_sample_count": 5165,
+    "entropy_auroc_ambiguous_vs_clean": 0.4564822691769501,
+    "gate_auroc_ambiguous_vs_clean": 0.45648225861501446,
+    "clean_entropy": {
+      "mean": 0.608554928454347,
+      "std": 0.2618159418534811,
+      "p10": 0.244474858045578,
+      "p25": 0.41729919612407684,
+      "median": 0.6202787160873413,
+      "p75": 0.8387695252895355,
+      "p90": 0.9753448963165283
+    },
+    "ambiguous_entropy": {
+      "mean": 0.5716463750280577,
+      "std": 0.22173253543015162,
+      "p10": 0.21600030064582826,
+      "p25": 0.4173852801322937,
+      "median": 0.6001234650611877,
+      "p75": 0.7395663857460022,
+      "p90": 0.8236718058586121
+    },
+    "clean_gate": {
+      "mean": 0.5844273786880265,
+      "std": 0.25718410310642714,
+      "p10": 0.19868560135364532,
+      "p25": 0.3720271587371826,
+      "median": 0.6223289370536804,
+      "p75": 0.8321014940738678,
+      "p90": 0.9079540967941284
+    },
+    "ambiguous_gate": {
+      "mean": 0.5562653637419942,
+      "std": 0.2307050092177243,
+      "p10": 0.17682101726531982,
+      "p25": 0.3721284866333008,
+      "median": 0.598175048828125,
+      "p75": 0.7503783106803894,
+      "p90": 0.8212009310722351
+    },
+    "seed": 123,
+    "stage": "A",
+    "coordinate_unit": "pixel"
+  },
+  "uncertainty_stratified": {
+    "stratification_source": "normalized prior entropy from the seed-matched uncertainty-gate model on the clean test split",
+    "tercile_cutpoints": {
+      "low_to_medium": 0.4832247197628021,
+      "medium_to_high": 0.7497923374176025
+    },
+    "strata": {
+      "low": {
+        "sample_count": 6111,
+        "uncertainty_entropy_range": [
+          0.0009974399581551552,
+          0.4832247197628021
+        ],
+        "models": {
+          "none": {
+            "sample_count": 6111,
+            "positive_count": 5908,
+            "negative_count": 203,
+            "brier": 0.031114176288691394,
+            "auc": 0.7930826031998025,
+            "ade_pixel": 14.691618919372559,
+            "fde_pixel": 26.9051513671875
+          },
+          "always": {
+            "sample_count": 6111,
+            "positive_count": 5908,
+            "negative_count": 203,
+            "brier": 0.03458258822317055,
+            "auc": 0.8431854111149282,
+            "ade_pixel": 14.691618919372559,
+            "fde_pixel": 26.9051513671875
+          },
+          "uncertainty": {
+            "sample_count": 6111,
+            "positive_count": 5908,
+            "negative_count": 203,
+            "brier": 0.034779909071838686,
+            "auc": 0.8698199985992108,
+            "ade_pixel": 14.691618919372559,
+            "fde_pixel": 26.9051513671875
+          }
+        }
+      },
+      "medium": {
+        "sample_count": 6110,
+        "uncertainty_entropy_range": [
+          0.483253538608551,
+          0.7497923374176025
+        ],
+        "models": {
+          "none": {
+            "sample_count": 6110,
+            "positive_count": 5857,
+            "negative_count": 253,
+            "brier": 0.04306246318542258,
+            "auc": 0.6259035335576968,
+            "ade_pixel": 9.869626998901367,
+            "fde_pixel": 17.132278442382812
+          },
+          "always": {
+            "sample_count": 6110,
+            "positive_count": 5857,
+            "negative_count": 253,
+            "brier": 0.09594714609137463,
+            "auc": 0.330349617126495,
+            "ade_pixel": 9.869626998901367,
+            "fde_pixel": 17.132278442382812
+          },
+          "uncertainty": {
+            "sample_count": 6110,
+            "positive_count": 5857,
+            "negative_count": 253,
+            "brier": 0.07511668324764044,
+            "auc": 0.3068913181821556,
+            "ade_pixel": 9.869626998901367,
+            "fde_pixel": 17.132278442382812
+          }
+        }
+      },
+      "high": {
+        "sample_count": 6110,
+        "uncertainty_entropy_range": [
+          0.7498422861099243,
+          1.0
+        ],
+        "models": {
+          "none": {
+            "sample_count": 6110,
+            "positive_count": 4244,
+            "negative_count": 1866,
+            "brier": 0.2127958133847458,
+            "auc": 0.5833107303369084,
+            "ade_pixel": 8.613584518432617,
+            "fde_pixel": 14.740716934204102
+          },
+          "always": {
+            "sample_count": 6110,
+            "positive_count": 4244,
+            "negative_count": 1866,
+            "brier": 0.2175247229407797,
+            "auc": 0.6998310710133112,
+            "ade_pixel": 8.613584518432617,
+            "fde_pixel": 14.740716934204102
+          },
+          "uncertainty": {
+            "sample_count": 6110,
+            "positive_count": 4244,
+            "negative_count": 1866,
+            "brier": 0.18529910113593173,
+            "auc": 0.7162917978650649,
+            "ade_pixel": 8.613584518432617,
+            "fde_pixel": 14.740716934204102
+          }
+        }
+      }
+    },
+    "seed": 123,
+    "stage": "A",
+    "coordinate_unit": "pixel"
+  },
+  "decision": "Stage A seed123 test AUC: none=0.8089, always=0.7891, uncertainty=0.7366. The predefined stop condition fired: uncertainty did not exceed no-social and always-social did not outperform no-social. Therefore no multi-seed Stage A expansion or Stage B run was started."
+}

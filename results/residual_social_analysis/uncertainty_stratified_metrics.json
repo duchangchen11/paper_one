@@ -1,0 +1,120 @@
+{
+  "stratification_source": "normalized prior entropy from the seed-matched uncertainty-gate model on the clean test split",
+  "tercile_cutpoints": {
+    "low_to_medium": 0.4832247197628021,
+    "medium_to_high": 0.7497923374176025
+  },
+  "strata": {
+    "low": {
+      "sample_count": 6111,
+      "uncertainty_entropy_range": [
+        0.0009974399581551552,
+        0.4832247197628021
+      ],
+      "models": {
+        "none": {
+          "sample_count": 6111,
+          "positive_count": 5908,
+          "negative_count": 203,
+          "brier": 0.031114176288691394,
+          "auc": 0.7930826031998025,
+          "ade_pixel": 14.691618919372559,
+          "fde_pixel": 26.9051513671875
+        },
+        "always": {
+          "sample_count": 6111,
+          "positive_count": 5908,
+          "negative_count": 203,
+          "brier": 0.03458258822317055,
+          "auc": 0.8431854111149282,
+          "ade_pixel": 14.691618919372559,
+          "fde_pixel": 26.9051513671875
+        },
+        "uncertainty": {
+          "sample_count": 6111,
+          "positive_count": 5908,
+          "negative_count": 203,
+          "brier": 0.034779909071838686,
+          "auc": 0.8698199985992108,
+          "ade_pixel": 14.691618919372559,
+          "fde_pixel": 26.9051513671875
+        }
+      }
+    },
+    "medium": {
+      "sample_count": 6110,
+      "uncertainty_entropy_range": [
+        0.483253538608551,
+        0.7497923374176025
+      ],
+      "models": {
+        "none": {
+          "sample_count": 6110,
+          "positive_count": 5857,
+          "negative_count": 253,
+          "brier": 0.04306246318542258,
+          "auc": 0.6259035335576968,
+          "ade_pixel": 9.869626998901367,
+          "fde_pixel": 17.132278442382812
+        },
+        "always": {
+          "sample_count": 6110,
+          "positive_count": 5857,
+          "negative_count": 253,
+          "brier": 0.09594714609137463,
+          "auc": 0.330349617126495,
+          "ade_pixel": 9.869626998901367,
+          "fde_pixel": 17.132278442382812
+        },
+        "uncertainty": {
+          "sample_count": 6110,
+          "positive_count": 5857,
+          "negative_count": 253,
+          "brier": 0.07511668324764044,
+          "auc": 0.3068913181821556,
+          "ade_pixel": 9.869626998901367,
+          "fde_pixel": 17.132278442382812
+        }
+      }
+    },
+    "high": {
+      "sample_count": 6110,
+      "uncertainty_entropy_range": [
+        0.7498422861099243,
+        1.0
+      ],
+      "models": {
+        "none": {
+          "sample_count": 6110,
+          "positive_count": 4244,
+          "negative_count": 1866,
+          "brier": 0.2127958133847458,
+          "auc": 0.5833107303369084,
+          "ade_pixel": 8.613584518432617,
+          "fde_pixel": 14.740716934204102
+        },
+        "always": {
+          "sample_count": 6110,
+          "positive_count": 4244,
+          "negative_count": 1866,
+          "brier": 0.2175247229407797,
+          "auc": 0.6998310710133112,
+          "ade_pixel": 8.613584518432617,
+          "fde_pixel": 14.740716934204102
+        },
+        "uncertainty": {
+          "sample_count": 6110,
+          "positive_count": 4244,
+          "negative_count": 1866,
+          "brier": 0.18529910113593173,
+          "auc": 0.7162917978650649,
+          "ade_pixel": 8.613584518432617,
+          "fde_pixel": 14.740716934204102
+        }
+      }
+    }
+  },
+  "seed": 123,
+  "stage": "A",
+  "coordinate_unit": "pixel"
+}

@@ -1,0 +1,21 @@
+{
+  "sample_count": 18331,
+  "trajectory_ade_normalized": 0.007278519682586193,
+  "trajectory_fde_normalized": 0.012502647936344147,
+  "trajectory_ade_pixel": 11.058475494384766,
+  "trajectory_fde_pixel": 19.593114852905273,
+  "seed": 123,
+  "split": "test",
+  "checkpoint": "checkpoints/trajectory_transformer_scene_15x15_seed123.pt",
+  "baseline_type": "pretrained SceneTrajectoryTransformer, frozen and unmodified",
+  "coordinate_unit": "pixel",
+  "reference": {
+    "ade_pixel": 11.0584754944,
+    "fde_pixel": 19.5931129456
+  },
+  "difference_from_reference": {
+    "ade_pixel": -1.5234036254696548e-11,
+    "fde_pixel": 1.9073052719420502e-06
+  },
+  "within_0_01_pixel_tolerance": true
+}
