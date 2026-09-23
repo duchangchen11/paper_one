@@ -1,0 +1,217 @@
+{
+  "protocol": {
+    "dataset": "JAAD clean 15x15 processed sequences; existing official split",
+    "real_scene_results_reused": true,
+    "zero_scene_retrained": true,
+    "checkpoint_selection": "lowest validation pixel ADE",
+    "seeds": [
+      42,
+      123,
+      2024
+    ],
+    "paired_delta_definition": "zero-scene minus real-scene; positive favors real-scene"
+  },
+  "per_seed": {
+    "42": {
+      "real_scene": {
+        "validation": {
+          "trajectory_ade_pixel": 10.191262245178223,
+          "trajectory_fde_pixel": 18.30415916442871,
+          "trajectory_ade_normalized": 0.006954638287425041,
+          "trajectory_fde_normalized": 0.011755865067243576
+        },
+        "test": {
+          "trajectory_ade_pixel": 11.160493850708008,
+          "trajectory_fde_pixel": 19.780908584594727,
+          "trajectory_ade_normalized": 0.007355143316090107,
+          "trajectory_fde_normalized": 0.012683128006756306
+        },
+        "checkpoint": "checkpoints/trajectory_transformer_scene_15x15_seed42.pt",
+        "parameter_count": 700574
+      },
+      "zero_scene": {
+        "validation": {
+          "trajectory_ade_pixel": 9.483920097351074,
+          "trajectory_fde_pixel": 17.491180419921875,
+          "trajectory_ade_normalized": 0.006629021372646093,
+          "trajectory_fde_normalized": 0.011409715749323368
+        },
+        "test": {
+          "trajectory_ade_pixel": 10.512284278869629,
+          "trajectory_fde_pixel": 19.023361206054688,
+          "trajectory_ade_normalized": 0.007000453304499388,
+          "trajectory_fde_normalized": 0.012186745181679726
+        },
+        "checkpoint": "checkpoints/trajectory_transformer_zero_scene_15x15_seed42.pt",
+        "scene_mode": "zero",
+        "parameter_count": 700574,
+        "same_parameter_shapes_as_real": true
+      },
+      "test_paired_delta_zero_minus_real": {
+        "trajectory_ade_pixel": -0.6482095718383789,
+        "trajectory_fde_pixel": -0.7575473785400391,
+        "trajectory_ade_normalized": -0.0003546900115907192,
+        "trajectory_fde_normalized": -0.00049638282507658
+      }
+    },
+    "123": {
+      "real_scene": {
+        "validation": {
+          "trajectory_ade_pixel": 9.93718433380127,
+          "trajectory_fde_pixel": 17.70682144165039,
+          "trajectory_ade_normalized": 0.006857322063297033,
+          "trajectory_fde_normalized": 0.01154685765504837
+        },
+        "test": {
+          "trajectory_ade_pixel": 11.058475494384766,
+          "trajectory_fde_pixel": 19.59311294555664,
+          "trajectory_ade_normalized": 0.00727852014824748,
+          "trajectory_fde_normalized": 0.012502647936344147
+        },
+        "checkpoint": "checkpoints/trajectory_transformer_scene_15x15_seed123.pt",
+        "parameter_count": 700574
+      },
+      "zero_scene": {
+        "validation": {
+          "trajectory_ade_pixel": 9.826213836669922,
+          "trajectory_fde_pixel": 18.0510196685791,
+          "trajectory_ade_normalized": 0.006798728369176388,
+          "trajectory_fde_normalized": 0.011880162172019482
+        },
+        "test": {
+          "trajectory_ade_pixel": 10.907906532287598,
+          "trajectory_fde_pixel": 19.391801834106445,
+          "trajectory_ade_normalized": 0.0071725486777722836,
+          "trajectory_fde_normalized": 0.012394113466143608
+        },
+        "checkpoint": "checkpoints/trajectory_transformer_zero_scene_15x15_seed123.pt",
+        "scene_mode": "zero",
+        "parameter_count": 700574,
+        "same_parameter_shapes_as_real": true
+      },
+      "test_paired_delta_zero_minus_real": {
+        "trajectory_ade_pixel": -0.15056896209716797,
+        "trajectory_fde_pixel": -0.2013111114501953,
+        "trajectory_ade_normalized": -0.00010597147047519684,
+        "trajectory_fde_normalized": -0.00010853447020053864
+      }
+    },
+    "2024": {
+      "real_scene": {
+        "validation": {
+          "trajectory_ade_pixel": 10.251533508300781,
+          "trajectory_fde_pixel": 17.75859832763672,
+          "trajectory_ade_normalized": 0.007026651408523321,
+          "trajectory_fde_normalized": 0.011572758667171001
+        },
+        "test": {
+          "trajectory_ade_pixel": 10.813265800476074,
+          "trajectory_fde_pixel": 19.003450393676758,
+          "trajectory_ade_normalized": 0.007168937474489212,
+          "trajectory_fde_normalized": 0.012251606211066246
+        },
+        "checkpoint": "checkpoints/trajectory_transformer_scene_15x15_seed2024.pt",
+        "parameter_count": 700574
+      },
+      "zero_scene": {
+        "validation": {
+          "trajectory_ade_pixel": 9.60318374633789,
+          "trajectory_fde_pixel": 17.285106658935547,
+          "trajectory_ade_normalized": 0.006690403446555138,
+          "trajectory_fde_normalized": 0.011291689239442348
+        },
+        "test": {
+          "trajectory_ade_pixel": 10.63132381439209,
+          "trajectory_fde_pixel": 19.364967346191406,
+          "trajectory_ade_normalized": 0.007046511396765709,
+          "trajectory_fde_normalized": 0.012359901331365108
+        },
+        "checkpoint": "checkpoints/trajectory_transformer_zero_scene_15x15_seed2024.pt",
+        "scene_mode": "zero",
+        "parameter_count": 700574,
+        "same_parameter_shapes_as_real": true
+      },
+      "test_paired_delta_zero_minus_real": {
+        "trajectory_ade_pixel": -0.18194198608398438,
+        "trajectory_fde_pixel": 0.36151695251464844,
+        "trajectory_ade_normalized": -0.0001224260777235031,
+        "trajectory_fde_normalized": 0.00010829512029886246
+      }
+    }
+  },
+  "aggregate_mean_sample_std": {
+    "trajectory_ade_pixel": {
+      "real_scene": {
+        "mean": 11.01074504852295,
+        "sample_std": 0.178467017439059,
+        "n": 3
+      },
+      "zero_scene": {
+        "mean": 10.68383820851644,
+        "sample_std": 0.20297182819929335,
+        "n": 3
+      },
+      "paired_zero_minus_real": {
+        "mean": -0.32690684000651044,
+        "sample_std": 0.27869813557052286,
+        "n": 3
+      }
+    },
+    "trajectory_fde_pixel": {
+      "real_scene": {
+        "mean": 19.459157307942707,
+        "sample_std": 0.4056703024535769,
+        "n": 3
+      },
+      "zero_scene": {
+        "mean": 19.260043462117512,
+        "sample_std": 0.2054115142504365,
+        "n": 3
+      },
+      "paired_zero_minus_real": {
+        "mean": -0.1991138458251953,
+        "sample_std": 0.5595354012409661,
+        "n": 3
+      }
+    },
+    "trajectory_ade_normalized": {
+      "real_scene": {
+        "mean": 0.0072675336462755995,
+        "sample_std": 9.358782656284948e-05,
+        "n": 3
+      },
+      "zero_scene": {
+        "mean": 0.007073171126345794,
+        "sample_std": 8.90913029506627e-05,
+        "n": 3
+      },
+      "paired_zero_minus_real": {
+        "mean": -0.00019436251992980638,
+        "sample_std": 0.00013909121813268464,
+        "n": 3
+      }
+    },
+    "trajectory_fde_normalized": {
+      "real_scene": {
+        "mean": 0.012479127384722233,
+        "sample_std": 0.0002167202743177083,
+        "n": 3
+      },
+      "zero_scene": {
+        "mean": 0.01231358665972948,
+        "sample_std": 0.00011117188474119899,
+        "n": 3
+      },
+      "paired_zero_minus_real": {
+        "mean": -0.00016554072499275208,
+        "sample_std": 0.0003063431723083489,
+        "n": 3
+      }
+    }
+  },
+  "real_scene_better_seed_count": {
+    "ade_pixel": "0/3",
+    "fde_pixel": "1/3"
+  },
+  "conclusion": "No stable trajectory benefit from real scene input is supported: real-scene ADE is lower in 0/3 seeds and FDE is lower in 1/3; zero-scene has lower ADE in 3/3."
+}

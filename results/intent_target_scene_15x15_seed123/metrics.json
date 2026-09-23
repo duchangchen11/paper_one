@@ -1,0 +1,132 @@
+{
+  "seed": 123,
+  "scene_mode": "target_scene",
+  "training_source": "reused fixed_base_intent_seed123; protocol and checkpoint audited",
+  "device": "cuda",
+  "trajectory_checkpoint": "checkpoints/trajectory_transformer_scene_15x15_seed123.pt",
+  "trajectory_checkpoint_sha256": "cc29da66624a0118d754b7b5b07d5af01af4e9b6b8969b06a3b362cc6024771a",
+  "trajectory_backbone_state_sha256": "6132fef605302a9f588f053d9d9be175652e85c736fc808463e9a5e597536d95",
+  "intent_checkpoint": "checkpoints/fixed_base_intent_seed123.pt",
+  "intent_checkpoint_sha256": "256fdfc9455f3c4a3282e10348179fc22e453a219b877fc2fc26bcf8fb00298d",
+  "trajectory_backbone_frozen": true,
+  "trainable_parameter_names": [
+    "base_fusion.0.weight",
+    "base_fusion.0.bias",
+    "base_head.weight",
+    "base_head.bias"
+  ],
+  "architecture": {
+    "intent_head": "base_fusion(2*d_model->d_model)+GELU+Dropout+base_head(d_model->1)",
+    "d_model": 128,
+    "classifier_input_dim": 256,
+    "total_parameter_count": 733599,
+    "intent_head_parameter_count": 33025
+  },
+  "dataset_sha256": {
+    "train": "6da2d1d40a918a218a7d054407d95f2791e2338a760b4836f2ca6d06c59ea19a",
+    "val": "fb78bb5edcd18d74a15744cfd8ae728c8600b485d4028bed8ee2c9c2d4c5f66c",
+    "test": "23658152706d460493fa6146f6b401648a509cc8708ab5eb6c0892e300de1935"
+  },
+  "optimizer": {
+    "name": "AdamW",
+    "learning_rate": 0.001,
+    "weight_decay": 0.0001,
+    "batch_size": 256,
+    "epochs_max": 20,
+    "patience": 5,
+    "checkpoint_selection": "highest validation AUC",
+    "metadata_source": "reused checkpoint metadata"
+  },
+  "best_epoch": 5,
+  "best_validation_auc_raw": 0.7990805203070053,
+  "class_counts": {
+    "negative": 1112,
+    "positive": 23444
+  },
+  "sampling": {
+    "method": "inverse-frequency WeightedRandomSampler",
+    "replacement": true,
+    "num_samples": 24556,
+    "seed": 123
+  },
+  "ambiguous_supervision_used": false,
+  "trajectory_loss_used": false,
+  "social_loss_used": false,
+  "history": [],
+  "validation_calibration_candidates": {
+    "temperature": {
+      "method": "temperature",
+      "temperature": 0.7746827295928528,
+      "bias": 0.0,
+      "validation": {
+        "auc": 0.7990805203070054,
+        "brier": 0.09285829218606971,
+        "ece_10": 0.08699805710323222,
+        "balanced_accuracy": 0.5,
+        "f1": 0.936668011294877
+      }
+    },
+    "temperature_bias": {
+      "method": "temperature+bias",
+      "temperature": 0.7150983864598545,
+      "bias": -0.17448725645749277,
+      "validation": {
+        "auc": 0.7990805203070054,
+        "brier": 0.09235794897094327,
+        "ece_10": 0.07374530396506936,
+        "balanced_accuracy": 0.4933247200689061,
+        "f1": 0.9299776740409986
+      }
+    }
+  },
+  "selected_calibration": {
+    "method": "temperature+bias",
+    "temperature": 0.7150983864598545,
+    "bias": -0.17448725645749277,
+    "validation": {
+      "auc": 0.7990805203070054,
+      "brier": 0.09235794897094327,
+      "ece_10": 0.07374530396506936,
+      "balanced_accuracy": 0.4933247200689061,
+      "f1": 0.9299776740409986
+    }
+  },
+  "calibration_selection_rule": "minimum validation Brier; tie-break by validation ECE, then temperature-only",
+  "selected_threshold": 0.8386172783754343,
+  "threshold_selection": {
+    "split": "validation",
+    "objective": "maximum balanced accuracy",
+    "validation_balanced_accuracy": 0.8293421550716766,
+    "tie_break": "threshold nearest 0.5"
+  },
+  "validation_selected_calibration_metrics": {
+    "auc": 0.7990805203070054,
+    "brier": 0.09235794897094327,
+    "ece_10": 0.07374530396506936,
+    "balanced_accuracy": 0.8293421550716766,
+    "f1": 0.8927238805970149
+  },
+  "test": {
+    "auc": 0.8169698526060573,
+    "brier": 0.09548997749785555,
+    "ece_10": 0.02226664670685395,
+    "balanced_accuracy": 0.7494669234559006,
+    "f1": 0.8626154527793872,
+    "selected_threshold": 0.8386172783754343,
+    "balanced_accuracy_threshold_0_5": 0.5218271386858243,
+    "f1_threshold_0_5": 0.9289897295547512,
+    "trajectory": {
+      "ade_pixel": 11.05847454071045,
+      "fde_pixel": 19.593114852905273,
+      "ade_normalized": 0.007278519682586193,
+      "fde_normalized": 0.012502647936344147
+    }
+  },
+  "scene_permutation_diagnostic": {
+    "seed": 9124,
+    "real_scene_auc": 0.8169698526060573,
+    "shuffled_scene_auc": 0.6341652996761242,
+    "zero_scene_auc": 0.6987859273172621,
+    "note": "permutation changes only the scene embeddings at intent readout; target and labels stay fixed"
+  }
+}

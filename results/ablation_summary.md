@@ -1,3 +1,18 @@
+# Current validated findings
+
+- **15×15 SceneTrajectoryTransformer:** real-scene baseline across seeds 42/123/2024: Test ADE `11.01 ± 0.18 px`, FDE `19.46 ± 0.41 px` (sample standard deviation).
+- **Fixed-base intent seed 123:** historical single-seed pilot Test AUC `0.817`; this is not yet a multi-seed finding.
+- **GRU social-residual route:** stopped. Fixed-base, natural-sampling, and visibility-controlled experiments have not established a reliable incremental gain.
+- **Older 8×12 social experiments:** historical/exploratory only; do not use as final evidence.
+- **Old tensor-dimension-bug results:** invalid for final conclusions; retain only for audit history.
+- **Controlled 15×15 static-scene ablation is complete:** no stable scene benefit is supported by the three-seed results. For trajectory prediction, zero-scene ADE is lower in 3/3 seeds (real `11.01 ± 0.18 px`; zero `10.68 ± 0.20 px`; paired Δ zero−real `−0.33 ± 0.28 px`); FDE favors real scene in only 1/3 seeds (paired Δ `−0.20 ± 0.56 px`).
+- **Intent readout ablation:** target+scene AUC is higher in 1/3 seeds; target-only `0.694 ± 0.021`, target+scene `0.701 ± 0.101`, paired Δ `+0.008 ± 0.081`. Brier improves in 1/3 seeds and the mean paired ΔBrier is `+0.006` (higher is worse). Treat the small mean AUC difference as seed-dependent, not a validated stable gain.
+- **Current main conclusion:** the video-level static scene feature has not shown reliable incremental value for either trajectory prediction or intent discrimination under this protocol. See the paired, per-seed reports in `results/scene_ablation_15x15/`.
+
+All content below is a **HISTORICAL / SUPERSEDED experiment log** unless explicitly revalidated by the controlled 15×15 scene-ablation reports. In particular, older claims that social interaction is effective or that a previous scene-social route is the current best model are not current conclusions.
+
+## Historical experiment log (HISTORICAL / SUPERSEDED)
+
 # JAAD 第一轮输入与门控消融记录
 
 ## 新版主实验：干净标签（crossing=0/1）
@@ -180,7 +195,7 @@ MC Dropout 没有实质改善模糊样本识别，说明当前问题不是简单
 
 门控机制的正式对照实验已预留：`gate_mode=none` 表示不使用邻居，`gate_mode=always` 表示始终使用邻居，`gate_mode=uncertainty` 表示由目标意图熵控制邻居贡献。
 
-## 当前结论
+## 历史结论（HISTORICAL / SUPERSEDED；不可作为当前论文结论）
 
 1. 只使用目标历史运动时，意图分类接近随机，且 F1 受到类别比例影响，不能单独作为主要判断依据。
 2. 加入邻居轨迹和社会交互门控后，相对特征版本的 AUC 和 balanced accuracy 提升，说明社会信息具有有效性。

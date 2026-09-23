@@ -1,0 +1,78 @@
+{
+  "purpose": "inference diagnostic only; not the formally retrained zero-scene trajectory baseline",
+  "scene_modes": "same real-scene trained checkpoint evaluated with real scene features and torch.zeros_like(scene_feat)",
+  "seeds": {
+    "42": {
+      "checkpoint": "/home/lrj/ped_intent_project/checkpoints/trajectory_transformer_scene_15x15_seed42.pt",
+      "checkpoint_sha256": "0dd7b14e12c94f002c603938fe9ab838fa18a5233bae2a3a04bb669fe019e0dd",
+      "real_scene_test": {
+        "loss": 2.512567927028355e-05,
+        "trajectory_ade_normalized": 0.007355143316090107,
+        "trajectory_fde_normalized": 0.012683128006756306,
+        "trajectory_ade_pixel": 11.160493850708008,
+        "trajectory_fde_pixel": 19.780908584594727
+      },
+      "zero_scene_input_test": {
+        "loss": 0.00016086610025658509,
+        "trajectory_ade_normalized": 0.02261589840054512,
+        "trajectory_fde_normalized": 0.013706721365451813,
+        "trajectory_ade_pixel": 37.92521286010742,
+        "trajectory_fde_pixel": 20.85348892211914
+      },
+      "zero_minus_real": {
+        "trajectory_ade_pixel": 26.764719009399414,
+        "trajectory_fde_pixel": 1.072580337524414,
+        "trajectory_ade_normalized": 0.015260755084455013,
+        "trajectory_fde_normalized": 0.001023593358695507
+      }
+    },
+    "123": {
+      "checkpoint": "/home/lrj/ped_intent_project/checkpoints/trajectory_transformer_scene_15x15_seed123.pt",
+      "checkpoint_sha256": "cc29da66624a0118d754b7b5b07d5af01af4e9b6b8969b06a3b362cc6024771a",
+      "real_scene_test": {
+        "loss": 2.4488382051536105e-05,
+        "trajectory_ade_normalized": 0.00727852014824748,
+        "trajectory_fde_normalized": 0.012502647936344147,
+        "trajectory_ade_pixel": 11.058475494384766,
+        "trajectory_fde_pixel": 19.59311294555664
+      },
+      "zero_scene_input_test": {
+        "loss": 0.00012650979513695784,
+        "trajectory_ade_normalized": 0.019833289086818695,
+        "trajectory_fde_normalized": 0.016855131834745407,
+        "trajectory_ade_pixel": 31.220144271850586,
+        "trajectory_fde_pixel": 28.31354331970215
+      },
+      "zero_minus_real": {
+        "trajectory_ade_pixel": 20.16166877746582,
+        "trajectory_fde_pixel": 8.720430374145508,
+        "trajectory_ade_normalized": 0.012554768938571215,
+        "trajectory_fde_normalized": 0.00435248389840126
+      }
+    },
+    "2024": {
+      "checkpoint": "/home/lrj/ped_intent_project/checkpoints/trajectory_transformer_scene_15x15_seed2024.pt",
+      "checkpoint_sha256": "b14d2b424e3f24fea1d5b7af49024dcef7f87458b9a557daee21d5ac785be75a",
+      "real_scene_test": {
+        "loss": 2.377712849200782e-05,
+        "trajectory_ade_normalized": 0.007168937474489212,
+        "trajectory_fde_normalized": 0.012251606211066246,
+        "trajectory_ade_pixel": 10.813265800476074,
+        "trajectory_fde_pixel": 19.003450393676758
+      },
+      "zero_scene_input_test": {
+        "loss": 0.0006371940884851289,
+        "trajectory_ade_normalized": 0.04438261687755585,
+        "trajectory_fde_normalized": 0.06722768396139145,
+        "trajectory_ade_pixel": 66.55728912353516,
+        "trajectory_fde_pixel": 107.24425506591797
+      },
+      "zero_minus_real": {
+        "trajectory_ade_pixel": 55.74402332305908,
+        "trajectory_fde_pixel": 88.24080467224121,
+        "trajectory_ade_normalized": 0.037213679403066635,
+        "trajectory_fde_normalized": 0.0549760777503252
+      }
+    }
+  }
+}

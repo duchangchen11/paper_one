@@ -1,0 +1,68 @@
+{
+  "paired_seed_checks": {
+    "42": {
+      "same_trajectory_checkpoint_sha256": true,
+      "same_trajectory_backbone_state_sha256": true,
+      "same_dataset_sha256": true,
+      "same_class_counts": true,
+      "same_sampling": true,
+      "same_optimizer_hyperparameters": true,
+      "same_classifier_architecture_and_parameter_count": true,
+      "no_ambiguous_or_extra_loss": true,
+      "same_future_prediction": {
+        "same_frozen_backbone_state_sha256": true,
+        "future_pred_bitwise_equal": true,
+        "future_pred_max_abs_difference": 0.0
+      }
+    },
+    "123": {
+      "same_trajectory_checkpoint_sha256": true,
+      "same_trajectory_backbone_state_sha256": true,
+      "same_dataset_sha256": true,
+      "same_class_counts": true,
+      "same_sampling": true,
+      "same_optimizer_hyperparameters": true,
+      "same_classifier_architecture_and_parameter_count": true,
+      "no_ambiguous_or_extra_loss": true,
+      "same_future_prediction": {
+        "same_frozen_backbone_state_sha256": true,
+        "future_pred_bitwise_equal": true,
+        "future_pred_max_abs_difference": 0.0
+      }
+    },
+    "2024": {
+      "same_trajectory_checkpoint_sha256": true,
+      "same_trajectory_backbone_state_sha256": true,
+      "same_dataset_sha256": true,
+      "same_class_counts": true,
+      "same_sampling": true,
+      "same_optimizer_hyperparameters": true,
+      "same_classifier_architecture_and_parameter_count": true,
+      "no_ambiguous_or_extra_loss": true,
+      "same_future_prediction": {
+        "same_frozen_backbone_state_sha256": true,
+        "future_pred_bitwise_equal": true,
+        "future_pred_max_abs_difference": 0.0
+      }
+    }
+  },
+  "seed123_historical_checkpoint_compatibility": {
+    "checkpoint_optimizer_metadata_checks": {
+      "seed": true,
+      "epochs": true,
+      "batch_size": true,
+      "learning_rate": true,
+      "weight_decay": true,
+      "patience": true,
+      "class_counts": true,
+      "data_root": true,
+      "trajectory_checkpoint": true
+    },
+    "all_checkpoint_metadata_checks_pass": true,
+    "trainer_source_uses_inverse_frequency_weighted_sampler": true,
+    "historical_result_best_validation_auc": 0.7990805203070053,
+    "historical_result_ambiguous_supervision_used": false
+  },
+  "all_protocol_checks_pass": true,
+  "note": "Seed 123 target+scene reuses the historical pilot after checking its saved seed/optimizer metadata, matching clean class counts and trajectory checkpoint, and confirming that its recorded trainer implements inverse-frequency WeightedRandomSampler."
+}

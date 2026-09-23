@@ -1,0 +1,23 @@
+{
+  "42": {
+    "seed": 9124,
+    "real_scene_auc": 0.6313209828300177,
+    "shuffled_scene_auc": 0.6147200845088806,
+    "zero_scene_auc": 0.685497079081647,
+    "note": "permutation changes only the scene embeddings at intent readout; target and labels stay fixed"
+  },
+  "123": {
+    "seed": 9124,
+    "real_scene_auc": 0.8169698526060573,
+    "shuffled_scene_auc": 0.6341652996761242,
+    "zero_scene_auc": 0.6987859273172621,
+    "note": "permutation changes only the scene embeddings at intent readout; target and labels stay fixed"
+  },
+  "2024": {
+    "seed": 9124,
+    "real_scene_auc": 0.6552726666616092,
+    "shuffled_scene_auc": 0.5967013117997957,
+    "zero_scene_auc": 0.6751863952065292,
+    "note": "permutation changes only the scene embeddings at intent readout; target and labels stay fixed"
+  }
+}

@@ -1,0 +1,463 @@
+{
+  "protocol": {
+    "dataset": "JAAD clean 15x15; existing official split",
+    "backbone": "same frozen real-scene SceneTrajectoryTransformer checkpoint per paired seed",
+    "classifier_difference": "only scene_context is real for target_scene and zero for target_only",
+    "ambiguous_labels_used": false,
+    "weighted_sampler": "inverse-frequency WeightedRandomSampler, replacement=True",
+    "seeds": [
+      42,
+      123,
+      2024
+    ]
+  },
+  "per_seed": {
+    "42": {
+      "target_only": {
+        "auc": 0.6817354541472662,
+        "brier": 0.10624689844233139,
+        "ece_10": 0.022700780341988885,
+        "balanced_accuracy": 0.6121188883363358,
+        "f1": 0.6918037900647275,
+        "selected_threshold": 0.8761323260055284
+      },
+      "target_scene": {
+        "auc": 0.6313209828300177,
+        "brier": 0.12650882929144652,
+        "ece_10": 0.11768582425784843,
+        "balanced_accuracy": 0.5078960483522161,
+        "f1": 0.9201919658727338,
+        "selected_threshold": 0.6388801468293452
+      },
+      "threshold_0_5": {
+        "target_only": {
+          "balanced_accuracy": 0.5,
+          "f1": 0.9323820617355854
+        },
+        "target_scene": {
+          "balanced_accuracy": 0.5008067302151153,
+          "f1": 0.9239235998705082
+        }
+      },
+      "paired_delta_target_scene_minus_target_only": {
+        "auc": -0.05041447131724852,
+        "brier": 0.020261930849115137,
+        "ece_10": 0.09498504391585955,
+        "balanced_accuracy": -0.10422283998411963,
+        "f1": 0.2283881758080063
+      },
+      "calibration": {
+        "target_only": {
+          "selected": {
+            "method": "temperature+bias",
+            "temperature": 0.832338561689922,
+            "bias": 2.172277134836546,
+            "validation": {
+              "auc": 0.6079373700466872,
+              "brier": 0.10304928251835274,
+              "ece_10": 0.007474677881174159,
+              "balanced_accuracy": 0.5,
+              "f1": 0.936668011294877
+            }
+          },
+          "candidates": {
+            "temperature": {
+              "method": "temperature",
+              "temperature": 3.535321752884882,
+              "bias": 0.0,
+              "validation": {
+                "auc": 0.6079373700466872,
+                "brier": 0.24810753161665114,
+                "ece_10": 0.3811879915969992,
+                "balanced_accuracy": 0.5925679048920051,
+                "f1": 0.5238981998758535
+              }
+            },
+            "temperature_bias": {
+              "method": "temperature+bias",
+              "temperature": 0.832338561689922,
+              "bias": 2.172277134836546,
+              "validation": {
+                "auc": 0.6079373700466872,
+                "brier": 0.10304928251835274,
+                "ece_10": 0.007474677881174159,
+                "balanced_accuracy": 0.5,
+                "f1": 0.936668011294877
+              }
+            }
+          }
+        },
+        "target_scene": {
+          "selected": {
+            "method": "temperature+bias",
+            "temperature": 0.7205842688319111,
+            "bias": 1.7589556745162023,
+            "validation": {
+              "auc": 0.9157340202000253,
+              "brier": 0.05752178120882701,
+              "ece_10": 0.03375481412717504,
+              "balanced_accuracy": 0.7959973008114024,
+              "f1": 0.9617346938775511
+            }
+          },
+          "candidates": {
+            "temperature": {
+              "method": "temperature",
+              "temperature": 0.8021647988297926,
+              "bias": 0.0,
+              "validation": {
+                "auc": 0.9157340202000253,
+                "brier": 0.10126276645870493,
+                "ece_10": 0.14020058041063838,
+                "balanced_accuracy": 0.8546607635631485,
+                "f1": 0.9158279963403476
+              }
+            },
+            "temperature_bias": {
+              "method": "temperature+bias",
+              "temperature": 0.7205842688319111,
+              "bias": 1.7589556745162023,
+              "validation": {
+                "auc": 0.9157340202000253,
+                "brier": 0.05752178120882701,
+                "ece_10": 0.03375481412717504,
+                "balanced_accuracy": 0.7959973008114024,
+                "f1": 0.9617346938775511
+              }
+            }
+          }
+        }
+      }
+    },
+    "123": {
+      "target_only": {
+        "auc": 0.7173496938549155,
+        "brier": 0.10446590137872169,
+        "ece_10": 0.022823138574736557,
+        "balanced_accuracy": 0.6659785040165553,
+        "f1": 0.778137622357265,
+        "selected_threshold": 0.8593224028900242
+      },
+      "target_scene": {
+        "auc": 0.8169698526060573,
+        "brier": 0.09548997749785555,
+        "ece_10": 0.02226664670685395,
+        "balanced_accuracy": 0.7494669234559006,
+        "f1": 0.8626154527793872,
+        "selected_threshold": 0.8386172783754343
+      },
+      "threshold_0_5": {
+        "target_only": {
+          "balanced_accuracy": 0.5,
+          "f1": 0.9323820617355854
+        },
+        "target_scene": {
+          "balanced_accuracy": 0.5218271386858243,
+          "f1": 0.9289897295547512
+        }
+      },
+      "paired_delta_target_scene_minus_target_only": {
+        "auc": 0.09962015875114172,
+        "brier": -0.00897592388086614,
+        "ece_10": -0.0005564918678826053,
+        "balanced_accuracy": 0.08348841943934526,
+        "f1": 0.0844778304221222
+      },
+      "calibration": {
+        "target_only": {
+          "selected": {
+            "method": "temperature+bias",
+            "temperature": 0.9401587430609966,
+            "bias": 2.2382156763732777,
+            "validation": {
+              "auc": 0.6753217630309912,
+              "brier": 0.10191411188710275,
+              "ece_10": 0.03224604553603539,
+              "balanced_accuracy": 0.5,
+              "f1": 0.936668011294877
+            }
+          },
+          "candidates": {
+            "temperature": {
+              "method": "temperature",
+              "temperature": 3.4420786648656585,
+              "bias": 0.0,
+              "validation": {
+                "auc": 0.6753217630309912,
+                "brier": 0.24564084264407557,
+                "ece_10": 0.37870041113881214,
+                "balanced_accuracy": 0.6145207568700385,
+                "f1": 0.5382716049382716
+              }
+            },
+            "temperature_bias": {
+              "method": "temperature+bias",
+              "temperature": 0.9401587430609966,
+              "bias": 2.2382156763732777,
+              "validation": {
+                "auc": 0.6753217630309912,
+                "brier": 0.10191411188710275,
+                "ece_10": 0.03224604553603539,
+                "balanced_accuracy": 0.5,
+                "f1": 0.936668011294877
+              }
+            }
+          }
+        },
+        "target_scene": {
+          "selected": {
+            "method": "temperature+bias",
+            "temperature": 0.7150983864598545,
+            "bias": -0.17448725645749277,
+            "validation": {
+              "auc": 0.7990805203070054,
+              "brier": 0.09235794897094327,
+              "ece_10": 0.07374530396506936,
+              "balanced_accuracy": 0.4933247200689061,
+              "f1": 0.9299776740409986
+            }
+          },
+          "candidates": {
+            "temperature": {
+              "method": "temperature",
+              "temperature": 0.7746827295928528,
+              "bias": 0.0,
+              "validation": {
+                "auc": 0.7990805203070054,
+                "brier": 0.09285829218606971,
+                "ece_10": 0.08699805710323222,
+                "balanced_accuracy": 0.5,
+                "f1": 0.936668011294877
+              }
+            },
+            "temperature_bias": {
+              "method": "temperature+bias",
+              "temperature": 0.7150983864598545,
+              "bias": -0.17448725645749277,
+              "validation": {
+                "auc": 0.7990805203070054,
+                "brier": 0.09235794897094327,
+                "ece_10": 0.07374530396506936,
+                "balanced_accuracy": 0.4933247200689061,
+                "f1": 0.9299776740409986
+              }
+            }
+          }
+        }
+      }
+    },
+    "2024": {
+      "target_only": {
+        "auc": 0.6816494237280074,
+        "brier": 0.10672049186247128,
+        "ece_10": 0.03420859409988982,
+        "balanced_accuracy": 0.640681364148687,
+        "f1": 0.7209942638623327,
+        "selected_threshold": 0.8704348753952409
+      },
+      "target_scene": {
+        "auc": 0.6552726666616092,
+        "brier": 0.11393537225561887,
+        "ece_10": 0.09415534403374695,
+        "balanced_accuracy": 0.5826233402625751,
+        "f1": 0.8586210262584193,
+        "selected_threshold": 0.8878869320636044
+      },
+      "threshold_0_5": {
+        "target_only": {
+          "balanced_accuracy": 0.5,
+          "f1": 0.9323820617355854
+        },
+        "target_scene": {
+          "balanced_accuracy": 0.5756729270879015,
+          "f1": 0.9293846935421212
+        }
+      },
+      "paired_delta_target_scene_minus_target_only": {
+        "auc": -0.026376757066398193,
+        "brier": 0.007214880393147591,
+        "ece_10": 0.05994674993385713,
+        "balanced_accuracy": -0.05805802388611192,
+        "f1": 0.13762676239608662
+      },
+      "calibration": {
+        "target_only": {
+          "selected": {
+            "method": "temperature+bias",
+            "temperature": 0.962606144723739,
+            "bias": 2.095431205508788,
+            "validation": {
+              "auc": 0.6520913225475513,
+              "brier": 0.10273682731024328,
+              "ece_10": 0.03055857850487449,
+              "balanced_accuracy": 0.5,
+              "f1": 0.936668011294877
+            }
+          },
+          "candidates": {
+            "temperature": {
+              "method": "temperature",
+              "temperature": 1.8853402658334912,
+              "bias": 0.0,
+              "validation": {
+                "auc": 0.6520913225475513,
+                "brier": 0.24069550580219848,
+                "ece_10": 0.36921446720268525,
+                "balanced_accuracy": 0.6154438025642293,
+                "f1": 0.591674047829938
+              }
+            },
+            "temperature_bias": {
+              "method": "temperature+bias",
+              "temperature": 0.962606144723739,
+              "bias": 2.095431205508788,
+              "validation": {
+                "auc": 0.6520913225475513,
+                "brier": 0.10273682731024328,
+                "ece_10": 0.03055857850487449,
+                "balanced_accuracy": 0.5,
+                "f1": 0.936668011294877
+              }
+            }
+          }
+        },
+        "target_scene": {
+          "selected": {
+            "method": "temperature+bias",
+            "temperature": 0.585456089227279,
+            "bias": 1.6346253166651763,
+            "validation": {
+              "auc": 0.9090998864365774,
+              "brier": 0.08245512877790509,
+              "ece_10": 0.06593430795881897,
+              "balanced_accuracy": 0.5153516351487023,
+              "f1": 0.922316093138265
+            }
+          },
+          "candidates": {
+            "temperature": {
+              "method": "temperature",
+              "temperature": 0.576690719750416,
+              "bias": 0.0,
+              "validation": {
+                "auc": 0.9090998864365774,
+                "brier": 0.11218597469610277,
+                "ece_10": 0.15436707523454504,
+                "balanced_accuracy": 0.8841735380766635,
+                "f1": 0.9040711277491811
+              }
+            },
+            "temperature_bias": {
+              "method": "temperature+bias",
+              "temperature": 0.585456089227279,
+              "bias": 1.6346253166651763,
+              "validation": {
+                "auc": 0.9090998864365774,
+                "brier": 0.08245512877790509,
+                "ece_10": 0.06593430795881897,
+                "balanced_accuracy": 0.5153516351487023,
+                "f1": 0.922316093138265
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "aggregate_mean_sample_std": {
+    "target_only": {
+      "auc": {
+        "mean": 0.6935781905767296,
+        "sample_std": 0.020586770664357698,
+        "n": 3
+      },
+      "brier": {
+        "mean": 0.10581109722784145,
+        "sample_std": 0.0011887962761830645,
+        "n": 3
+      },
+      "ece_10": {
+        "mean": 0.026577504338871755,
+        "sample_std": 0.006609000763339066,
+        "n": 3
+      },
+      "balanced_accuracy": {
+        "mean": 0.6395929188338594,
+        "sample_std": 0.026946300028162794,
+        "n": 3
+      },
+      "f1": {
+        "mean": 0.730311892094775,
+        "sample_std": 0.04391464785794719,
+        "n": 3
+      }
+    },
+    "target_scene": {
+      "auc": {
+        "mean": 0.7011878340325614,
+        "sample_std": 0.10098280872657057,
+        "n": 3
+      },
+      "brier": {
+        "mean": 0.11197805968164032,
+        "sample_std": 0.015601781822355464,
+        "n": 3
+      },
+      "ece_10": {
+        "mean": 0.07803593833281644,
+        "sample_std": 0.049709971748537994,
+        "n": 3
+      },
+      "balanced_accuracy": {
+        "mean": 0.6133287706902306,
+        "sample_std": 0.123677966986447,
+        "n": 3
+      },
+      "f1": {
+        "mean": 0.8804761483035134,
+        "sample_std": 0.03445284436300647,
+        "n": 3
+      }
+    },
+    "paired_delta_target_scene_minus_target_only": {
+      "auc": {
+        "mean": 0.007609643455831668,
+        "sample_std": 0.0805847635740327,
+        "n": 3
+      },
+      "brier": {
+        "mean": 0.006166962453798862,
+        "sample_std": 0.01464706920542737,
+        "n": 3
+      },
+      "ece_10": {
+        "mean": 0.051458433993944695,
+        "sample_std": 0.04833306213763876,
+        "n": 3
+      },
+      "balanced_accuracy": {
+        "mean": -0.026264148143628763,
+        "sample_std": 0.09781112988628737,
+        "n": 3
+      },
+      "f1": {
+        "mean": 0.15016425620873838,
+        "sample_std": 0.07276976323032681,
+        "n": 3
+      }
+    }
+  },
+  "scene_auc_better_seed_count": "1/3",
+  "scene_brier_better_seed_count": "1/3",
+  "mean_paired_delta_auc": {
+    "mean": 0.007609643455831668,
+    "sample_std": 0.0805847635740327,
+    "n": 3
+  },
+  "mean_paired_delta_brier": {
+    "mean": 0.006166962453798862,
+    "sample_std": 0.01464706920542737,
+    "n": 3
+  },
+  "conclusion": "No stable intent benefit is supported: target+scene AUC is higher in 1/3 seeds and Brier improves in 1/3; the mean AUC difference is small relative to seed variability."
+}
