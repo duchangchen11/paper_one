@@ -1,0 +1,64 @@
+{
+  "seed": 123,
+  "permutation_seed": 9124,
+  "method": "permute complete neighbor tensor and mask across clean test samples; keep each target, scene, and label fixed",
+  "models": {
+    "none": {
+      "real_neighbor": {
+        "auc": 0.8169698391553976,
+        "balanced_accuracy": 0.5148905393386332,
+        "f1": 0.9290182373498576,
+        "brier": 0.09534225529526034,
+        "ece_10": 0.02176986888110371
+      },
+      "shuffled_neighbor": {
+        "auc": 0.8169698391553976,
+        "balanced_accuracy": 0.5148905393386332,
+        "f1": 0.9290182373498576,
+        "brier": 0.09534225529526034,
+        "ece_10": 0.02176986888110371
+      },
+      "auc_delta_shuffled_minus_real": 0.0,
+      "brier_delta_shuffled_minus_real": 0.0,
+      "base_logit_identical_to_unshuffled": true
+    },
+    "always": {
+      "real_neighbor": {
+        "auc": 0.7943973321638792,
+        "balanced_accuracy": 0.5645362785543382,
+        "f1": 0.9223744292237442,
+        "brier": 0.10041626547321324,
+        "ece_10": 0.04254527585991966
+      },
+      "shuffled_neighbor": {
+        "auc": 0.8107521103143479,
+        "balanced_accuracy": 0.5704406339263621,
+        "f1": 0.9230214096704354,
+        "brier": 0.09877848649867223,
+        "ece_10": 0.03988782120091742
+      },
+      "auc_delta_shuffled_minus_real": 0.016354778150468707,
+      "brier_delta_shuffled_minus_real": -0.0016377789745410098,
+      "base_logit_identical_to_unshuffled": true
+    },
+    "uncertainty": {
+      "real_neighbor": {
+        "auc": 0.8063616804909856,
+        "balanced_accuracy": 0.6382531703608365,
+        "f1": 0.9195402298850575,
+        "brier": 0.10371191443776502,
+        "ece_10": 0.058301020441478744
+      },
+      "shuffled_neighbor": {
+        "auc": 0.8075991142794409,
+        "balanced_accuracy": 0.6000079547201297,
+        "f1": 0.91400883218842,
+        "brier": 0.10627085155180746,
+        "ece_10": 0.04286597874136488
+      },
+      "auc_delta_shuffled_minus_real": 0.001237433788455311,
+      "brier_delta_shuffled_minus_real": 0.0025589371140424394,
+      "base_logit_identical_to_unshuffled": true
+    }
+  }
+}
