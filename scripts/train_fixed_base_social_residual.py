@@ -29,6 +29,7 @@ from train_fixed_base_intent import (
     set_seed,
 )
 from src.models.fixed_base_social_residual import FixedBaseIntentModel, FixedBaseSocialResidual
+from src.models.fixed_base_social_residual_visible import FixedBaseSocialResidualVisible
 
 
 def distribution(values: np.ndarray) -> dict[str, float]:
@@ -42,6 +43,22 @@ def distribution(values: np.ndarray) -> dict[str, float]:
         "median": float(quantiles[2]),
         "p75": float(quantiles[3]),
         "p90": float(quantiles[4]),
+    }
+
+
+def paired_bce_improvement(
+    labels: np.ndarray, base_logits: np.ndarray, final_logits: np.ndarray
+) -> dict[str, float]:
+    def bce(logits: np.ndarray) -> np.ndarray:
+        return np.maximum(logits, 0.0) - logits * labels + np.log1p(np.exp(-np.abs(logits)))
+
+    improvement = bce(base_logits) - bce(final_logits)
+    return {
+        "mean": float(improvement.mean()),
+        "median": float(np.median(improvement)),
+        "helped_ratio": float((improvement > 0).mean()),
+        "hurt_ratio": float((improvement < 0).mean()),
+        "unchanged_ratio": float((improvement == 0).mean()),
     }
 
 
@@ -92,12 +109,16 @@ def collect(model, loader, device, optimizer=None, residual_reg_weight=0.0):
         if torch.any((label < 0) | (label > 1)):
             raise ValueError("Clean intent data must contain only binary labels")
         target = torch.cat([batch["target_obs"], batch["target_abs_obs"]], dim=-1).to(device)
-        output = model(
+        inputs = (
             target,
             batch["scene_feat"].to(device),
             batch["neighbor_obs"].to(device),
             batch["neighbor_mask"].to(device),
         )
+        if isinstance(model, FixedBaseSocialResidualVisible):
+            output = model(*inputs, batch["neighbor_visible_mask"].to(device))
+        else:
+            output = model(*inputs)
         bce = criterion(output["final_logit"], label)
         residual_reg = output["delta_logit"].square().mean()
         loss = bce + residual_reg_weight * residual_reg
@@ -146,6 +167,8 @@ def collect(model, loader, device, optimizer=None, residual_reg_weight=0.0):
             "bce_loss": total_bce / total_count,
             "residual_regularization": total_reg / total_count,
             "base_auc": classification_metrics(y, base_probability)["auc"],
+            "base_brier": classification_metrics(y, base_probability)["brier"],
+            "paired_bce_improvement": paired_bce_improvement(y, base_logit, logits),
             "trajectory_ade_pixel": float(pixel_error.mean()),
             "trajectory_fde_pixel": float(pixel_error[:, -1].mean()),
             "gate_distribution": distribution(gate),
@@ -166,6 +189,8 @@ def main() -> None:
     parser.add_argument("--output-root", type=Path, required=True)
     parser.add_argument("--checkpoint", type=Path, required=True)
     parser.add_argument("--gate-mode", choices=("always", "uncertainty"), required=True)
+    parser.add_argument("--sampling", choices=("balanced", "natural"), default="balanced")
+    parser.add_argument("--visibility-aware", action="store_true")
     parser.add_argument("--seed", type=int, default=123)
     parser.add_argument("--epochs", type=int, default=12)
     parser.add_argument("--batch-size", type=int, default=256)
@@ -187,32 +212,56 @@ def main() -> None:
     labels = train_set.dataset.intent_label.to(torch.int64)
     if torch.any((labels < 0) | (labels > 1)):
         raise ValueError("Clean training labels must be binary; ambiguous supervision is prohibited")
-    counts = torch.bincount(labels, minlength=2).float()
-    weights = torch.where(labels == 0, 1.0 / counts[0], 1.0 / counts[1])
-    sampler = WeightedRandomSampler(
-        weights.double(), len(train_set), replacement=True,
-        generator=torch.Generator().manual_seed(args.seed),
-    )
+    sampler = None
+    shuffle = args.sampling == "natural"
+    if args.sampling == "balanced":
+        counts = torch.bincount(labels, minlength=2).float()
+        weights = torch.where(labels == 0, 1.0 / counts[0], 1.0 / counts[1])
+        sampler = WeightedRandomSampler(
+            weights.double(), len(train_set), replacement=True,
+            generator=torch.Generator().manual_seed(args.seed),
+        )
     pin = device.type == "cuda"
-    train_loader = DataLoader(train_set, batch_size=args.batch_size, sampler=sampler, num_workers=0, pin_memory=pin)
+    train_loader = DataLoader(
+        train_set,
+        batch_size=args.batch_size,
+        sampler=sampler,
+        shuffle=shuffle,
+        num_workers=0,
+        pin_memory=pin,
+    )
     val_loader = DataLoader(val_set, batch_size=args.batch_size, shuffle=False, num_workers=0, pin_memory=pin)
     test_loader = DataLoader(test_set, batch_size=args.batch_size, shuffle=False, num_workers=0, pin_memory=pin)
 
     base_model = load_base_model(args.base_checkpoint, train_set, device)
-    model = FixedBaseSocialResidual(
-        base_model,
-        gate_mode=args.gate_mode,
-        social_scale=args.social_scale,
+    model_class = FixedBaseSocialResidualVisible if args.visibility_aware else FixedBaseSocialResidual
+    model = model_class(
+        base_model, gate_mode=args.gate_mode, social_scale=args.social_scale
     ).to(device)
     if not model.all_base_parameters_frozen:
         raise RuntimeError("Trajectory Transformer and base intent classifier must both be frozen")
     trainable = [parameter for parameter in model.parameters() if parameter.requires_grad]
     optimizer = torch.optim.AdamW(trainable, lr=args.learning_rate, weight_decay=args.weight_decay)
     scheduler = torch.optim.lr_scheduler.ReduceLROnPlateau(optimizer, mode="max", factor=0.5, patience=1)
-    best_auc = -float("inf")
+    # Epoch 0 is the nested-model baseline: zero-init residual means exactly no social update.
+    with torch.no_grad():
+        epoch0_val = collect(model, val_loader, device)
+    best_auc = float(epoch0_val["auc"])
     best_epoch = 0
     stale = 0
-    history = []
+    history = [{"epoch": 0, "train": None, "val": epoch0_val}]
+    torch.save(
+        {
+            "model": model.state_dict(),
+            "args": vars(args),
+            "base_checkpoint": str(args.base_checkpoint),
+            "best_validation_auc": best_auc,
+            "selected_epoch": 0,
+            "base_temperature": float(model.base_model.temperature.detach().item()),
+        },
+        args.checkpoint,
+    )
+    print(json.dumps({"epoch": 0, "learning_rate": args.learning_rate, "train": None, "val": epoch0_val}, ensure_ascii=False))
     for epoch in range(1, args.epochs + 1):
         train_metrics = collect(
             model, train_loader, device, optimizer, args.residual_reg_weight
@@ -238,6 +287,7 @@ def main() -> None:
                     "args": vars(args),
                     "base_checkpoint": str(args.base_checkpoint),
                     "best_validation_auc": best_auc,
+                    "selected_epoch": epoch,
                     # .cpu() would move this registered buffer off the active device.
                     "base_temperature": float(model.base_model.temperature.detach().item()),
                 },
@@ -260,8 +310,14 @@ def main() -> None:
         "base_checkpoint": str(args.base_checkpoint),
         "base_temperature": float(model.base_model.temperature.detach().item()),
         "trajectory_and_base_classifier_frozen": model.all_base_parameters_frozen,
+        "sampling_mode": args.sampling,
+        "visibility_aware": args.visibility_aware,
+        "epoch0_validation": epoch0_val,
+        "epoch0_validation_auc": epoch0_val["auc"],
         "best_epoch": best_epoch,
+        "selected_epoch": best_epoch,
         "best_validation_auc": best_auc,
+        "social_improvement_detected": bool(best_auc > epoch0_val["auc"]),
         "ambiguous_supervision_used": False,
         "training_protocol": {
             "epochs_requested": args.epochs,
@@ -269,7 +325,11 @@ def main() -> None:
             "learning_rate": args.learning_rate,
             "residual_reg_weight": args.residual_reg_weight,
             "social_scale": args.social_scale,
-            "sampling": "inverse-frequency weighted random sampler",
+            "sampling": (
+                "inverse-frequency weighted random sampler"
+                if args.sampling == "balanced"
+                else "natural training distribution with shuffle=True and no class weights"
+            ),
             "trajectory_loss": False,
         },
         "history": history,
