@@ -1,0 +1,123 @@
+{
+  "device": "cuda",
+  "seed": 2024,
+  "gate_mode": "uncertainty",
+  "best_epoch": 2,
+  "best_score": 1.0320205306002916,
+  "history": [
+    {
+      "epoch": 1,
+      "learning_rate": 0.001,
+      "train_loss": 0.36030873327213925,
+      "val": {
+        "intent_accuracy": 0.8945936756205373,
+        "intent_balanced_accuracy": 0.8025868663553716,
+        "intent_f1": 0.9391679748822606,
+        "intent_brier": 0.08407457811458348,
+        "intent_auc": 0.8355652393080759,
+        "loss": 0.4415641755564851,
+        "trajectory_ade_normalized": 0.014328536577522755,
+        "trajectory_fde_normalized": 0.02547096274793148,
+        "gate_mean": 0.4560636579990387,
+        "entropy_mean": 0.26291289925575256
+      }
+    },
+    {
+      "epoch": 2,
+      "learning_rate": 0.001,
+      "train_loss": 0.1686422397194289,
+      "val": {
+        "intent_accuracy": 0.8996939816388984,
+        "intent_balanced_accuracy": 0.8054803848738901,
+        "intent_f1": 0.942281353942477,
+        "intent_brier": 0.07705908145155248,
+        "intent_auc": 0.8449881053450777,
+        "loss": 0.4375518296637206,
+        "trajectory_ade_normalized": 0.014238455332815647,
+        "trajectory_fde_normalized": 0.025361062958836555,
+        "gate_mean": 0.6692435145378113,
+        "entropy_mean": 0.1706225425004959
+      }
+    },
+    {
+      "epoch": 3,
+      "learning_rate": 0.001,
+      "train_loss": 0.11730970778923727,
+      "val": {
+        "intent_accuracy": 0.9003740224413465,
+        "intent_balanced_accuracy": 0.805866187343026,
+        "intent_f1": 0.9426950909446509,
+        "intent_brier": 0.0776033617214973,
+        "intent_auc": 0.8389622908486327,
+        "loss": 0.5048525819731626,
+        "trajectory_ade_normalized": 0.013635117560625076,
+        "trajectory_fde_normalized": 0.024216126650571823,
+        "gate_mean": 0.7320255637168884,
+        "entropy_mean": 0.1172405257821083
+      }
+    },
+    {
+      "epoch": 4,
+      "learning_rate": 0.0005,
+      "train_loss": 0.06685067276778855,
+      "val": {
+        "intent_accuracy": 0.9064943896633798,
+        "intent_balanced_accuracy": 0.7399116523400191,
+        "intent_f1": 0.9475491131031852,
+        "intent_brier": 0.06815495789375758,
+        "intent_auc": 0.815322769641657,
+        "loss": 0.8280902066347511,
+        "trajectory_ade_normalized": 0.013539360836148262,
+        "trajectory_fde_normalized": 0.02403416484594345,
+        "gate_mean": 0.6665716767311096,
+        "entropy_mean": 0.13717250525951385
+      }
+    },
+    {
+      "epoch": 5,
+      "learning_rate": 0.0005,
+      "train_loss": 0.0345861259564016,
+      "val": {
+        "intent_accuracy": 0.9085345120707242,
+        "intent_balanced_accuracy": 0.7968584182319856,
+        "intent_f1": 0.9478581120372165,
+        "intent_brier": 0.07846501642083509,
+        "intent_auc": 0.8093080096572218,
+        "loss": 0.9342263905430926,
+        "trajectory_ade_normalized": 0.01330573856830597,
+        "trajectory_fde_normalized": 0.02381422184407711,
+        "gate_mean": 0.6036497950553894,
+        "entropy_mean": 0.11618951708078384
+      }
+    },
+    {
+      "epoch": 6,
+      "learning_rate": 0.00025,
+      "train_loss": 0.0290204853389396,
+      "val": {
+        "intent_accuracy": 0.9177150629037742,
+        "intent_balanced_accuracy": 0.8045462786090771,
+        "intent_f1": 0.953299884214589,
+        "intent_brier": 0.08001834667383985,
+        "intent_auc": 0.8068235080830592,
+        "loss": 1.0138448742489068,
+        "trajectory_ade_normalized": 0.013489199802279472,
+        "trajectory_fde_normalized": 0.024308521300554276,
+        "gate_mean": 0.608016312122345,
+        "entropy_mean": 0.11915981024503708
+      }
+    }
+  ],
+  "test": {
+    "intent_accuracy": 0.8754435947418403,
+    "intent_balanced_accuracy": 0.6031865015373885,
+    "intent_f1": 0.9313536444273043,
+    "intent_brier": 0.09670045668482671,
+    "intent_auc": 0.7807668664791725,
+    "loss": 0.6015314744924053,
+    "trajectory_ade_normalized": 0.015835359692573547,
+    "trajectory_fde_normalized": 0.02733439952135086,
+    "gate_mean": 0.6980471611022949,
+    "entropy_mean": 0.20055082440376282
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "gate_mode": "uncertainty",
+  "seed": 42,
+  "protocol": {
+    "data_root": "data/processed/jaad_sequences_scene_v4",
+    "ambiguous_root": "data/processed/jaad_ambiguous_scene_v4",
+    "epochs": 6,
+    "batch_size": 256,
+    "hidden_dim": 128,
+    "learning_rate": 0.001,
+    "traj_weight": 1.0,
+    "prior_weight": 0.5,
+    "ambiguous_weight": 0.2
+  },
+  "legacy_test": {
+    "intent_auc": 0.7634520823268052,
+    "trajectory_ade_normalized": 0.014627879485487938,
+    "gate_mean": 0.21645155549049377
+  },
+  "neighborfix_smoke_test": {
+    "intent_auc": 0.747045806497026,
+    "trajectory_ade_normalized": 0.014465196058154106,
+    "gate_mean": 0.7719769477844238,
+    "intent_balanced_accuracy": 0.6332150696064222,
+    "intent_f1": 0.9298050139275766,
+    "intent_brier": 0.1111659482332087,
+    "trajectory_fde_normalized": 0.026407655328512192,
+    "entropy_mean": 0.0976104661822319,
+    "best_epoch": 6
+  }
+}

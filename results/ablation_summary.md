@@ -116,7 +116,23 @@ MC Dropout 没有实质改善模糊样本识别，说明当前问题不是简单
 
 对 `relative_abs + always-social` 主模型进行验证集温度+偏置校准后，三个种子的 Test AUC 为 `0.6833±0.0046`（不变），Brier 为 `0.1076±0.0007`，ECE-10 为 `0.0224±0.0065`。因此该模型目前具备较好的意图排序和概率可靠性，适合作为后续正式结果图与论文主表的起点。
 
-### 加入场景视觉信息后的模型
+### 修正邻居维度后的场景社会交互正式结果
+
+检查数据构造器后确认，`neighbor_obs` 实际存储顺序为 `[B, N, T, F]`。修正前，`SceneSocialGate` 和 `UncertaintySocialGate` 将邻居数与观测时间维解释反了；由于当时 `N=T=8`，形状仍能运行，但喂给邻居 GRU 的序列语义错误。现已修正这两个模型、增加非方形维度回归测试，并在相同数据划分、训练设置和三个随机种子下重跑 `none`、`always`、`uncertainty`。数据审计、逐种子指标和完整统计见 [`results/neighbor_dimension_fix/summary.md`](neighbor_dimension_fix/summary.md) 与 [`summary.json`](neighbor_dimension_fix/summary.json)。
+
+| 门控模式 | Test AUC | balanced accuracy | F1 | Brier | ADE（归一化） | FDE（归一化） |
+|---|---:|---:|---:|---:|---:|---:|
+| Scene + no-social | 0.7606±0.0196 | 0.6046±0.0507 | 0.9224±0.0080 | 0.1104±0.0106 | 0.0149±0.0001 | 0.0272±0.0003 |
+| Scene + always-social | 0.7405±0.0329 | 0.6028±0.0645 | 0.9257±0.0065 | 0.1106±0.0101 | 0.0153±0.0003 | 0.0271±0.0003 |
+| Scene + uncertainty gate | **0.7674±0.0179** | 0.6022±0.0315 | **0.9278±0.0049** | **0.1045±0.0073** | 0.0152±0.0007 | **0.0270±0.0005** |
+
+不确定性门控的平均 AUC 比 no-social 高 0.0068，但仅在 3 个种子中的 1 个种子上高于 no-social；always-social 平均 AUC 比 no-social 低 0.0201。故当前结果尚不能证明社会交互稳定提升意图预测，也不能声称不确定性门控可靠优于 no-social。它相对 always-social 的 AUC 在 3/3 个种子上更高，可作为后续复验线索。轨迹指标与意图指标应分别报告，且三种门控的归一化 ADE/FDE 数值接近。
+
+### 历史场景社会交互结果（LEGACY；不可用于最终结论）
+
+> **LEGACY / INVALID FOR FINAL CONCLUSION:** 旧 scene-social 实验中的 `neighbor_obs` 存储顺序是 `[B, N, T, F]`，但两个社会模型把邻居维与时间维解释反了。旧实验 `obs_len=max_neighbors=8`，因此转置后形状仍可通过后续计算，未触发 shape exception。以下旧数值仅保留为历史审计记录，不再作为正式论文结论；正式结论以后续 neighborfix 重跑结果为准。
+
+以下旧表格、基于旧表格的场景收益解释，以及旧 uncertainty 检查点的像素误差均为修正前结果，仅为审计历史保留，不应引用为本项目最终实验结论。
 
 从每个视频的代表性首帧提取冻结 ResNet-18 的 512 维场景 embedding，并与目标轨迹、邻居轨迹共同输入模型。clean 与 ambiguous 数据均无缺失场景特征。
 

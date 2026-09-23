@@ -54,10 +54,42 @@ class UncertaintySocialGate(nn.Module):
         neighbor_mask: torch.Tensor,
         neighbor_visible_mask: torch.Tensor,
     ) -> dict[str, torch.Tensor]:
+        if neighbor_obs.ndim != 4:
+            raise ValueError(
+                "neighbor_obs must follow [B, N, T, F] with 4 dimensions; "
+                f"got shape {tuple(neighbor_obs.shape)}"
+            )
+        if neighbor_mask.ndim != 2:
+            raise ValueError(
+                "neighbor_mask must follow [B, N] with 2 dimensions; "
+                f"got shape {tuple(neighbor_mask.shape)}"
+            )
+        if neighbor_visible_mask.ndim != 3:
+            raise ValueError(
+                "neighbor_visible_mask must follow [B, N, T] with 3 dimensions; "
+                f"got shape {tuple(neighbor_visible_mask.shape)}"
+            )
+        batch_size, max_neighbors, obs_len, feature_dim = neighbor_obs.shape
+        if tuple(neighbor_mask.shape) != (batch_size, max_neighbors):
+            raise ValueError(
+                "neighbor_mask shape must match neighbor_obs [B, N]: "
+                f"expected {(batch_size, max_neighbors)}, got {tuple(neighbor_mask.shape)}"
+            )
+        expected_visible_shape = (batch_size, max_neighbors, obs_len)
+        if tuple(neighbor_visible_mask.shape) != expected_visible_shape:
+            raise ValueError(
+                "neighbor_visible_mask shape must match neighbor_obs [B, N, T]: "
+                f"expected {expected_visible_shape}, got {tuple(neighbor_visible_mask.shape)}"
+            )
+        if target_obs.ndim != 3 or tuple(target_obs.shape[:2]) != (batch_size, obs_len):
+            raise ValueError(
+                "target_obs must share neighbor_obs batch and time axes [B, T]: "
+                f"expected {(batch_size, obs_len)}, got {tuple(target_obs.shape[:2])}"
+            )
+
         _, target_hidden = self.target_encoder(target_obs)
         target_context = target_hidden[-1]
-        batch_size, obs_len, max_neighbors, feature_dim = neighbor_obs.shape
-        neighbor_input = neighbor_obs.permute(0, 2, 1, 3).reshape(
+        neighbor_input = neighbor_obs.reshape(
             batch_size * max_neighbors, obs_len, feature_dim
         )
         _, neighbor_hidden = self.neighbor_encoder(neighbor_input)

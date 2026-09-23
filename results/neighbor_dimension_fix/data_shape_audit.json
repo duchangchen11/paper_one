@@ -1,0 +1,147 @@
+{
+  "data_root": "data/processed/jaad_sequences_scene_v4",
+  "neighbor_obs_layout": "[batch, neighbor, time, feature]",
+  "splits": {
+    "train": {
+      "sample_count": 26772,
+      "positive_count": 25443,
+      "negative_count": 1329,
+      "other_label_count": 0,
+      "average_valid_neighbors": 2.1530704498291016,
+      "no_neighbor_sample_ratio": 0.17944120723143583,
+      "shapes": {
+        "target_obs": [
+          26772,
+          8,
+          4
+        ],
+        "target_abs_obs": [
+          26772,
+          8,
+          4
+        ],
+        "neighbor_obs": [
+          26772,
+          8,
+          8,
+          4
+        ],
+        "neighbor_mask": [
+          26772,
+          8
+        ],
+        "neighbor_visible_mask": [
+          26772,
+          8,
+          8
+        ],
+        "future_gt": [
+          26772,
+          12,
+          2
+        ],
+        "scene_feat": [
+          26772,
+          512
+        ],
+        "intent_label": [
+          26772
+        ]
+      }
+    },
+    "val": {
+      "sample_count": 2941,
+      "positive_count": 2592,
+      "negative_count": 349,
+      "other_label_count": 0,
+      "average_valid_neighbors": 1.9850391149520874,
+      "no_neighbor_sample_ratio": 0.22203332199931997,
+      "shapes": {
+        "target_obs": [
+          2941,
+          8,
+          4
+        ],
+        "target_abs_obs": [
+          2941,
+          8,
+          4
+        ],
+        "neighbor_obs": [
+          2941,
+          8,
+          8,
+          4
+        ],
+        "neighbor_mask": [
+          2941,
+          8
+        ],
+        "neighbor_visible_mask": [
+          2941,
+          8,
+          8
+        ],
+        "future_gt": [
+          2941,
+          12,
+          2
+        ],
+        "scene_feat": [
+          2941,
+          512
+        ],
+        "intent_label": [
+          2941
+        ]
+      }
+    },
+    "test": {
+      "sample_count": 20007,
+      "positive_count": 17424,
+      "negative_count": 2583,
+      "other_label_count": 0,
+      "average_valid_neighbors": 2.324986219406128,
+      "no_neighbor_sample_ratio": 0.198180636777128,
+      "shapes": {
+        "target_obs": [
+          20007,
+          8,
+          4
+        ],
+        "target_abs_obs": [
+          20007,
+          8,
+          4
+        ],
+        "neighbor_obs": [
+          20007,
+          8,
+          8,
+          4
+        ],
+        "neighbor_mask": [
+          20007,
+          8
+        ],
+        "neighbor_visible_mask": [
+          20007,
+          8,
+          8
+        ],
+        "future_gt": [
+          20007,
+          12,
+          2
+        ],
+        "scene_feat": [
+          20007,
+          512
+        ],
+        "intent_label": [
+          20007
+        ]
+      }
+    }
+  }
+}
