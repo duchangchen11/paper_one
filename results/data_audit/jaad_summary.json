@@ -1,0 +1,29 @@
+{
+  "data_root": "/media/lrj/54926A1D926A0438/ped_intent_project/data/raw/JAAD",
+  "attribute_records": 686,
+  "behavior_tracks": 686,
+  "tracks_missing_attributes": 0,
+  "crossing_counts": {
+    "-1": 100,
+    "0": 91,
+    "1": 495
+  },
+  "mapped_intent_counts": {
+    "non_crossing_or_no_clear_intent": 191,
+    "crossing": 495
+  },
+  "intersection_counts": {
+    "no": 162,
+    "yes": 524
+  },
+  "tracks_with_video": 686,
+  "tracks_without_video": 0,
+  "track_length_frames": {
+    "min": 11,
+    "max": 930,
+    "mean": 193.44
+  },
+  "records_with_decision_point": 455,
+  "records_with_crossing_point": 417,
+  "csv_path": "/home/lrj/ped_intent_project/results/data_audit/jaad_target_records.csv"
+}

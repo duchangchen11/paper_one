@@ -1,0 +1,22 @@
+# Dataset files and derived samples
+/data/
+
+# Local model checkpoints
+/checkpoints/
+
+# Generated plots include frames from the JAAD pedestrian dataset
+/figures/
+
+# Python cache and local environments
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Local editor and OS files
+.DS_Store
+.idea/
+.vscode/
+
+# Dataset audit rows contain per-sample metadata
+/results/data_audit/jaad_target_records.csv

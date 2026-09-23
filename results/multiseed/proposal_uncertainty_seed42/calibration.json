@@ -1,0 +1,36 @@
+{
+  "checkpoint": "checkpoints/multiseed_proposal_uncertainty_seed42.pt",
+  "device": "cuda",
+  "target_features": "relative",
+  "gate_mode": "uncertainty",
+  "calibration_fit_on": "validation",
+  "temperature": 20.0,
+  "bias": 2.006439208984375,
+  "validation_raw": {
+    "intent_accuracy": 0.6973818429105746,
+    "intent_balanced_accuracy": 0.4650671893239945,
+    "intent_f1": 0.8176229508196722,
+    "intent_auc": 0.6010083925855176,
+    "intent_brier": 0.2599422257530405,
+    "intent_ece_10": 0.3880596080632164,
+    "probability_mean": 0.4932732582092285
+  },
+  "test_raw": {
+    "intent_accuracy": 0.7603838656470235,
+    "intent_balanced_accuracy": 0.5814801883260863,
+    "intent_f1": 0.8567330105791644,
+    "intent_auc": 0.6338277297488311,
+    "intent_brier": 0.24954414034809638,
+    "intent_ece_10": 0.37374902807856486,
+    "probability_mean": 0.49734604358673096
+  },
+  "test_affine_calibrated": {
+    "intent_accuracy": 0.8708951866846604,
+    "intent_balanced_accuracy": 0.5,
+    "intent_f1": 0.9309930271699928,
+    "intent_auc": 0.6338009445455861,
+    "intent_brier": 0.1124288179349931,
+    "intent_ece_10": 0.010507186629243437,
+    "probability_mean": 0.8814023733139038
+  }
+}

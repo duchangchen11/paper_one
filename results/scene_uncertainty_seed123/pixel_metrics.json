@@ -1,0 +1,13 @@
+{
+  "checkpoint": "checkpoints/scene_uncertainty_seed123.pt",
+  "split": "test",
+  "device": "cuda",
+  "num_samples": 20007,
+  "coordinate_unit": "pixel",
+  "trajectory_ade_pixel": 27.61566925048828,
+  "trajectory_fde_pixel": 50.0031852722168,
+  "trajectory_ade_pixel_median": 19.85747718811035,
+  "trajectory_fde_pixel_median": 34.68863296508789,
+  "trajectory_ade_normalized": 0.015349706634879112,
+  "trajectory_fde_normalized": 0.027280006557703018
+}

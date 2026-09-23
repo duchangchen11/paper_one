@@ -1,0 +1,36 @@
+{
+  "checkpoint": "checkpoints/scene_always_seed2024.pt",
+  "device": "cuda",
+  "target_features": "relative_abs",
+  "gate_mode": "always",
+  "calibration_fit_on": "validation",
+  "temperature": 2.117981195449829,
+  "bias": 0.5884050726890564,
+  "validation_raw": {
+    "intent_accuracy": 0.9013940836450187,
+    "intent_balanced_accuracy": 0.8064448910467297,
+    "intent_f1": 0.9433150899139953,
+    "intent_auc": 0.8645159008100746,
+    "intent_brier": 0.07300604830158322,
+    "intent_ece_10": 0.07849762671579924,
+    "probability_mean": 0.8702186942100525
+  },
+  "test_raw": {
+    "intent_accuracy": 0.8800919678112661,
+    "intent_balanced_accuracy": 0.6385009422703436,
+    "intent_f1": 0.9333592599794439,
+    "intent_auc": 0.7661695417377236,
+    "intent_brier": 0.10440927355780243,
+    "intent_ece_10": 0.104134808958974,
+    "probability_mean": 0.9143584966659546
+  },
+  "test_affine_calibrated": {
+    "intent_accuracy": 0.8571499975008747,
+    "intent_balanced_accuracy": 0.5085963171467606,
+    "intent_f1": 0.9226647905617491,
+    "intent_auc": 0.7661698305868667,
+    "intent_brier": 0.0990425196367636,
+    "intent_ece_10": 0.07255132478332864,
+    "probability_mean": 0.906341552734375
+  }
+}
