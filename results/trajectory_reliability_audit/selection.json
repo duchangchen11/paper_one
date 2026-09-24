@@ -1,0 +1,27 @@
+{
+  "selected_score": "u_mean",
+  "label": "Mean trajectory spread",
+  "split_used": "validation only",
+  "selection_rule": "maximize Spearman(U,ADE); scores within 0.01 rho tie; among them prefer higher validation High-ADE AUROC (within 0.01 tie), then prefer simpler U_mean",
+  "rho_tie_tolerance": 0.01,
+  "validation_spearman_ade": {
+    "u_mean": 0.27410225264869725,
+    "u_endpoint": 0.11032891292981502,
+    "u_pairwise": 0.2825383144480034,
+    "u_endpoint_pairwise": 0.11560287668367823
+  },
+  "validation_high_ade_auroc": {
+    "u_mean": 0.7166116813294232,
+    "u_endpoint": 0.6627125740325456,
+    "u_pairwise": 0.7191848513598988,
+    "u_endpoint_pairwise": 0.6621384624230924
+  },
+  "correlation_tied_candidates": [
+    "u_mean",
+    "u_pairwise"
+  ],
+  "high_ade_tied_candidates": [
+    "u_mean",
+    "u_pairwise"
+  ]
+}

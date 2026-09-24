@@ -1,0 +1,83 @@
+{
+  "selected_score": "u_mean",
+  "tertile_cutpoints_from_validation": {
+    "q33": 1.3747695540388303,
+    "q67": 1.5637611313918574
+  },
+  "validation_bins": [
+    {
+      "bin": "low",
+      "sample_count": 879,
+      "mean_uncertainty": 1.2954381417925587,
+      "mean_ade": 7.268477840136789,
+      "median_ade": 6.533964543543459,
+      "mean_fde": 12.43664180847175,
+      "median_fde": 11.2535723885089
+    },
+    {
+      "bin": "medium",
+      "sample_count": 878,
+      "mean_uncertainty": 1.471009888304683,
+      "mean_ade": 9.378267038480134,
+      "median_ade": 8.163201642109822,
+      "mean_fde": 17.393835708222674,
+      "median_fde": 14.328846607805406
+    },
+    {
+      "bin": "high",
+      "sample_count": 879,
+      "mean_uncertainty": 1.9858105674779851,
+      "mean_ade": 11.682536974858326,
+      "median_ade": 9.205142260186852,
+      "mean_fde": 22.596050499460574,
+      "median_fde": 16.75822628910604
+    }
+  ],
+  "test_bins_using_fixed_validation_cutpoints": [
+    {
+      "bin": "low",
+      "sample_count": 4545,
+      "mean_uncertainty": 1.3020546284904753,
+      "mean_ade": 7.242978853183665,
+      "median_ade": 6.242731997142439,
+      "mean_fde": 12.557026280914565,
+      "median_fde": 10.703514898193513
+    },
+    {
+      "bin": "medium",
+      "sample_count": 4765,
+      "mean_uncertainty": 1.459527910338191,
+      "mean_ade": 8.196256772548061,
+      "median_ade": 6.988102803760413,
+      "mean_fde": 14.760004761538324,
+      "median_fde": 12.226650702680436
+    },
+    {
+      "bin": "high",
+      "sample_count": 9021,
+      "mean_uncertainty": 2.325695941399106,
+      "mean_ade": 13.301658065208294,
+      "median_ade": 10.962082250326638,
+      "mean_fde": 24.71226541406701,
+      "median_fde": 19.716557005633852
+    }
+  ],
+  "test_error_monotonic_low_to_high": {
+    "ade": true,
+    "fde": true
+  },
+  "decile_cutpoints_from_validation": [
+    1.1567365048793568,
+    1.2713425328296695,
+    1.3113835067307178,
+    1.3578700513229964,
+    1.4166605299313555,
+    1.4731958924151716,
+    1.5244115666569225,
+    1.5817724259998274,
+    1.6727539928363186,
+    1.9525146234711093,
+    4.788023744272672
+  ],
+  "decile_boundary_note": "Duplicate quantile cutpoints are retained; searchsorted assigns tied values consistently, so some bins can be empty."
+}

@@ -1,0 +1,276 @@
+{
+  "validation": [
+    {
+      "horizon": 1,
+      "mean_ensemble_point_error_pixel": 1.5827452748671176,
+      "mean_disagreement_pixel": 0.7471183607922176,
+      "spearman_disagreement_vs_point_error": {
+        "rho": 0.04792175643462913,
+        "p_value": 0.013868748224183146
+      }
+    },
+    {
+      "horizon": 2,
+      "mean_ensemble_point_error_pixel": 2.818192079685056,
+      "mean_disagreement_pixel": 1.7255733677028235,
+      "spearman_disagreement_vs_point_error": {
+        "rho": 0.012637180487641345,
+        "p_value": 0.5166382324587572
+      }
+    },
+    {
+      "horizon": 3,
+      "mean_ensemble_point_error_pixel": 3.9968964623178094,
+      "mean_disagreement_pixel": 1.9056726958737582,
+      "spearman_disagreement_vs_point_error": {
+        "rho": 0.00431123936761577,
+        "p_value": 0.8249027214896804
+      }
+    },
+    {
+      "horizon": 4,
+      "mean_ensemble_point_error_pixel": 5.027767736829949,
+      "mean_disagreement_pixel": 1.0260518648424812,
+      "spearman_disagreement_vs_point_error": {
+        "rho": 0.07880946339706987,
+        "p_value": 5.108281889157691e-05
+      }
+    },
+    {
+      "horizon": 5,
+      "mean_ensemble_point_error_pixel": 6.178997728743102,
+      "mean_disagreement_pixel": 1.8852017319462373,
+      "spearman_disagreement_vs_point_error": {
+        "rho": -0.090295322856679,
+        "p_value": 3.430041241903053e-06
+      }
+    },
+    {
+      "horizon": 6,
+      "mean_ensemble_point_error_pixel": 7.267332076035208,
+      "mean_disagreement_pixel": 1.4225236454776737,
+      "spearman_disagreement_vs_point_error": {
+        "rho": 0.22600421127427012,
+        "p_value": 7.032549777173725e-32
+      }
+    },
+    {
+      "horizon": 7,
+      "mean_ensemble_point_error_pixel": 8.4921993663535,
+      "mean_disagreement_pixel": 1.3328371662287488,
+      "spearman_disagreement_vs_point_error": {
+        "rho": 0.021094661975365737,
+        "p_value": 0.27896438102091536
+      }
+    },
+    {
+      "horizon": 8,
+      "mean_ensemble_point_error_pixel": 9.492445749432312,
+      "mean_disagreement_pixel": 1.1593550032241637,
+      "spearman_disagreement_vs_point_error": {
+        "rho": 0.07039910666521,
+        "p_value": 0.0002978022334082781
+      }
+    },
+    {
+      "horizon": 9,
+      "mean_ensemble_point_error_pixel": 10.395811370547147,
+      "mean_disagreement_pixel": 1.3442745096615154,
+      "spearman_disagreement_vs_point_error": {
+        "rho": 0.20488450266379615,
+        "p_value": 2.2290169196102702e-26
+      }
+    },
+    {
+      "horizon": 10,
+      "mean_ensemble_point_error_pixel": 11.56876888040891,
+      "mean_disagreement_pixel": 1.4159216486387298,
+      "spearman_disagreement_vs_point_error": {
+        "rho": 0.29295294380299325,
+        "p_value": 2.517283579534435e-53
+      }
+    },
+    {
+      "horizon": 11,
+      "mean_ensemble_point_error_pixel": 12.603286761570098,
+      "mean_disagreement_pixel": 1.535602620599235,
+      "spearman_disagreement_vs_point_error": {
+        "rho": 0.05874579246585489,
+        "p_value": 0.0025503618623399977
+      }
+    },
+    {
+      "horizon": 12,
+      "mean_ensemble_point_error_pixel": 13.714588726863095,
+      "mean_disagreement_pixel": 2.0044454755991916,
+      "spearman_disagreement_vs_point_error": {
+        "rho": 0.2679229771878386,
+        "p_value": 1.4323953541428264e-44
+      }
+    },
+    {
+      "horizon": 13,
+      "mean_ensemble_point_error_pixel": 14.892016259575946,
+      "mean_disagreement_pixel": 1.578216286119046,
+      "spearman_disagreement_vs_point_error": {
+        "rho": 0.1958365056423213,
+        "p_value": 3.3724406156742044e-24
+      }
+    },
+    {
+      "horizon": 14,
+      "mean_ensemble_point_error_pixel": 16.140189365162993,
+      "mean_disagreement_pixel": 2.6857224476107997,
+      "spearman_disagreement_vs_point_error": {
+        "rho": -0.004146093399570578,
+        "p_value": 0.8315074270761417
+      }
+    },
+    {
+      "horizon": 15,
+      "mean_ensemble_point_error_pixel": 17.47554032264492,
+      "mean_disagreement_pixel": 1.993419617528899,
+      "spearman_disagreement_vs_point_error": {
+        "rho": 0.17772933593885168,
+        "p_value": 3.7872220853624165e-20
+      }
+    }
+  ],
+  "test": [
+    {
+      "horizon": 1,
+      "mean_ensemble_point_error_pixel": 1.8239417357678587,
+      "mean_disagreement_pixel": 0.7806188337163993,
+      "spearman_disagreement_vs_point_error": {
+        "rho": 0.22380677345717276,
+        "p_value": 7.81911887206407e-207
+      }
+    },
+    {
+      "horizon": 2,
+      "mean_ensemble_point_error_pixel": 3.234991014779072,
+      "mean_disagreement_pixel": 1.72374762166306,
+      "spearman_disagreement_vs_point_error": {
+        "rho": 0.10206290496156763,
+        "p_value": 1.2074154044854404e-43
+      }
+    },
+    {
+      "horizon": 3,
+      "mean_ensemble_point_error_pixel": 4.566397288086279,
+      "mean_disagreement_pixel": 2.2341239374300415,
+      "spearman_disagreement_vs_point_error": {
+        "rho": 0.08727309234452803,
+        "p_value": 2.486999361375844e-32
+      }
+    },
+    {
+      "horizon": 4,
+      "mean_ensemble_point_error_pixel": 5.687221207836221,
+      "mean_disagreement_pixel": 1.4562492588681475,
+      "spearman_disagreement_vs_point_error": {
+        "rho": 0.19652553845058612,
+        "p_value": 5.115376471852401e-159
+      }
+    },
+    {
+      "horizon": 5,
+      "mean_ensemble_point_error_pixel": 7.144398434288682,
+      "mean_disagreement_pixel": 1.7634071634136717,
+      "spearman_disagreement_vs_point_error": {
+        "rho": -0.13536140881514525,
+        "p_value": 1.0843309143791993e-75
+      }
+    },
+    {
+      "horizon": 6,
+      "mean_ensemble_point_error_pixel": 8.154178272481843,
+      "mean_disagreement_pixel": 1.4844798137851742,
+      "spearman_disagreement_vs_point_error": {
+        "rho": 0.25084172135894756,
+        "p_value": 5.143159134746286e-261
+      }
+    },
+    {
+      "horizon": 7,
+      "mean_ensemble_point_error_pixel": 9.489803535575566,
+      "mean_disagreement_pixel": 1.613489837873641,
+      "spearman_disagreement_vs_point_error": {
+        "rho": 0.27149743723243674,
+        "p_value": 3.848315340876799e-307
+      }
+    },
+    {
+      "horizon": 8,
+      "mean_ensemble_point_error_pixel": 10.798707579622642,
+      "mean_disagreement_pixel": 1.399289409458262,
+      "spearman_disagreement_vs_point_error": {
+        "rho": 0.2651988172265277,
+        "p_value": 1.2420945476583013e-292
+      }
+    },
+    {
+      "horizon": 9,
+      "mean_ensemble_point_error_pixel": 11.685486911107727,
+      "mean_disagreement_pixel": 1.4212820776713926,
+      "spearman_disagreement_vs_point_error": {
+        "rho": 0.22908275760588387,
+        "p_value": 7.224133348018238e-217
+      }
+    },
+    {
+      "horizon": 10,
+      "mean_ensemble_point_error_pixel": 12.60965226250768,
+      "mean_disagreement_pixel": 1.6163514341418064,
+      "spearman_disagreement_vs_point_error": {
+        "rho": 0.3118732914286103,
+        "p_value": 0.0
+      }
+    },
+    {
+      "horizon": 11,
+      "mean_ensemble_point_error_pixel": 13.832283628727783,
+      "mean_disagreement_pixel": 2.1725054803177257,
+      "spearman_disagreement_vs_point_error": {
+        "rho": 0.24880639143290115,
+        "p_value": 1.0758415087473182e-256
+      }
+    },
+    {
+      "horizon": 12,
+      "mean_ensemble_point_error_pixel": 14.894910438913989,
+      "mean_disagreement_pixel": 2.3770747929458316,
+      "spearman_disagreement_vs_point_error": {
+        "rho": 0.3353652721110404,
+        "p_value": 0.0
+      }
+    },
+    {
+      "horizon": 13,
+      "mean_ensemble_point_error_pixel": 16.296967231415664,
+      "mean_disagreement_pixel": 1.8619848491556472,
+      "spearman_disagreement_vs_point_error": {
+        "rho": 0.3172277950899411,
+        "p_value": 0.0
+      }
+    },
+    {
+      "horizon": 14,
+      "mean_ensemble_point_error_pixel": 17.754926794143145,
+      "mean_disagreement_pixel": 3.4172759336645564,
+      "spearman_disagreement_vs_point_error": {
+        "rho": 0.2754865756357102,
+        "p_value": 0.0
+      }
+    },
+    {
+      "horizon": 15,
+      "mean_ensemble_point_error_pixel": 19.11147528426083,
+      "mean_disagreement_pixel": 2.3792203141282555,
+      "spearman_disagreement_vs_point_error": {
+        "rho": 0.32304577355705033,
+        "p_value": 0.0
+      }
+    }
+  ]
+}

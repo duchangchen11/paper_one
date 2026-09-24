@@ -1,0 +1,13 @@
+{
+  "decision": "Promising",
+  "primary_score": "u_mean",
+  "test_spearman_ade": 0.4275888235864215,
+  "test_high_ade_auroc": 0.7397696065235979,
+  "test_high_to_low_ade_ratio": 1.8364899766843203,
+  "test_ade_risk_curve_monotonic": true,
+  "test_bins_monotonic_ade_fde": {
+    "ade": true,
+    "fde": true
+  },
+  "criteria_note": "Promising requires rho>=0.30, fixed-validation High-ADE AUROC>=0.65, high-bin mean ADE >=1.10x low-bin ADE, and non-increasing ADE risk as coverage declines. Stop requires rho<0.15, AUROC within 0.05 of 0.5, and no ADE risk reduction; otherwise weak/inconclusive."
+}

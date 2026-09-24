@@ -1,0 +1,6 @@
+{
+  "high_ade_pixel_threshold": 13.214974497172895,
+  "high_fde_pixel_threshold": 24.455201836404747,
+  "quantile": 0.8,
+  "method": "linear validation percentile; fixed pixel threshold for test primary metrics"
+}

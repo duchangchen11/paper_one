@@ -1,0 +1,239 @@
+{
+  "selected_score_order": "ascending uncertainty; lowest uncertainty retained first",
+  "coverage_levels": [
+    1.0,
+    0.9,
+    0.8,
+    0.7,
+    0.6,
+    0.5,
+    0.4,
+    0.3,
+    0.2
+  ],
+  "sample_count_rule": "floor(N*nominal_coverage), at least one sample",
+  "random_reference": {
+    "ranking": "uniform random permutation",
+    "seed": 9124,
+    "repetitions": 100
+  },
+  "oracle_reference": {
+    "ranking": "sort by true ensemble ADE ascending",
+    "upper_bound_only": true
+  },
+  "rows": [
+    {
+      "nominal_coverage": 1.0,
+      "retained_samples": 18331,
+      "actual_coverage": 1.0,
+      "selected": {
+        "ade": 10.472356107967666,
+        "fde": 19.111475284260834
+      },
+      "random_100_mean_sample_std": {
+        "ade": {
+          "mean": 10.472356107967668,
+          "sample_std": 2.7426388062414207e-15
+        },
+        "fde": {
+          "mean": 19.111475284260834,
+          "sample_std": 3.406146372534396e-15
+        }
+      },
+      "oracle_by_true_ade": {
+        "ade": 10.472356107967666,
+        "fde": 19.11147528426083
+      }
+    },
+    {
+      "nominal_coverage": 0.9,
+      "retained_samples": 16497,
+      "actual_coverage": 0.8999509028421799,
+      "selected": {
+        "ade": 9.536681984628792,
+        "fde": 17.37603264050093
+      },
+      "random_100_mean_sample_std": {
+        "ade": {
+          "mean": 10.47556335800109,
+          "sample_std": 0.01738661665369532
+        },
+        "fde": {
+          "mean": 19.118817514665242,
+          "sample_std": 0.037119335829471856
+        }
+      },
+      "oracle_by_true_ade": {
+        "ade": 8.46995167228448,
+        "fde": 15.229977286936451
+      }
+    },
+    {
+      "nominal_coverage": 0.8,
+      "retained_samples": 14664,
+      "actual_coverage": 0.7999563580819377,
+      "selected": {
+        "ade": 8.880768391838744,
+        "fde": 16.213340430160947
+      },
+      "random_100_mean_sample_std": {
+        "ade": {
+          "mean": 10.473966485286754,
+          "sample_std": 0.028441715838465033
+        },
+        "fde": {
+          "mean": 19.1184918507125,
+          "sample_std": 0.0574432882295353
+        }
+      },
+      "oracle_by_true_ade": {
+        "ade": 7.408345280098512,
+        "fde": 13.268675515103526
+      }
+    },
+    {
+      "nominal_coverage": 0.7,
+      "retained_samples": 12831,
+      "actual_coverage": 0.6999618133216955,
+      "selected": {
+        "ade": 8.404765694900913,
+        "fde": 15.240978582989829
+      },
+      "random_100_mean_sample_std": {
+        "ade": {
+          "mean": 10.478180969280483,
+          "sample_std": 0.03439510049986518
+        },
+        "fde": {
+          "mean": 19.127212013336198,
+          "sample_std": 0.07543051003847785
+        }
+      },
+      "oracle_by_true_ade": {
+        "ade": 6.5781058194843816,
+        "fde": 11.805822485975925
+      }
+    },
+    {
+      "nominal_coverage": 0.6,
+      "retained_samples": 10998,
+      "actual_coverage": 0.5999672685614533,
+      "selected": {
+        "ade": 8.021987935175055,
+        "fde": 14.38782263210976
+      },
+      "random_100_mean_sample_std": {
+        "ade": {
+          "mean": 10.476394578121065,
+          "sample_std": 0.04530592968326986
+        },
+        "fde": {
+          "mean": 19.121067300411266,
+          "sample_std": 0.10150093663748194
+        }
+      },
+      "oracle_by_true_ade": {
+        "ade": 5.856987380651598,
+        "fde": 10.509595822213436
+      }
+    },
+    {
+      "nominal_coverage": 0.5,
+      "retained_samples": 9165,
+      "actual_coverage": 0.49997272380121105,
+      "selected": {
+        "ade": 7.7040840357442075,
+        "fde": 13.619014554599719
+      },
+      "random_100_mean_sample_std": {
+        "ade": {
+          "mean": 10.476563206211127,
+          "sample_std": 0.0637548273031168
+        },
+        "fde": {
+          "mean": 19.129227914766467,
+          "sample_std": 0.13938843397747044
+        }
+      },
+      "oracle_by_true_ade": {
+        "ade": 5.190594139420882,
+        "fde": 9.324060193208384
+      }
+    },
+    {
+      "nominal_coverage": 0.4,
+      "retained_samples": 7332,
+      "actual_coverage": 0.39997817904096883,
+      "selected": {
+        "ade": 7.433481019812628,
+        "fde": 12.94956033031641
+      },
+      "random_100_mean_sample_std": {
+        "ade": {
+          "mean": 10.474376608816643,
+          "sample_std": 0.07687985866418542
+        },
+        "fde": {
+          "mean": 19.120105065272103,
+          "sample_std": 0.15777711468159605
+        }
+      },
+      "oracle_by_true_ade": {
+        "ade": 4.567374469385917,
+        "fde": 8.237701948715175
+      }
+    },
+    {
+      "nominal_coverage": 0.3,
+      "retained_samples": 5499,
+      "actual_coverage": 0.29998363428072666,
+      "selected": {
+        "ade": 7.32066377319097,
+        "fde": 12.698290633907435
+      },
+      "random_100_mean_sample_std": {
+        "ade": {
+          "mean": 10.480656043617875,
+          "sample_std": 0.08944398460813245
+        },
+        "fde": {
+          "mean": 19.131736070904754,
+          "sample_std": 0.19502774945329562
+        }
+      },
+      "oracle_by_true_ade": {
+        "ade": 3.9581633782248753,
+        "fde": 7.201214292918268
+      }
+    },
+    {
+      "nominal_coverage": 0.2,
+      "retained_samples": 3666,
+      "actual_coverage": 0.19998908952048441,
+      "selected": {
+        "ade": 7.247081766305174,
+        "fde": 12.581219866732244
+      },
+      "random_100_mean_sample_std": {
+        "ade": {
+          "mean": 10.475810427827025,
+          "sample_std": 0.12886099287429675
+        },
+        "fde": {
+          "mean": 19.116126556410272,
+          "sample_std": 0.27103921282142523
+        }
+      },
+      "oracle_by_true_ade": {
+        "ade": 3.3257147920670103,
+        "fde": 6.058503381496467
+      }
+    }
+  ],
+  "selected_curve_monotonic_improvement": {
+    "ade": true,
+    "fde": true
+  },
+  "selected_ade_reduction_100_to_20": 3.2252743416624927,
+  "selected_fde_reduction_100_to_20": 6.53025541752859
+}

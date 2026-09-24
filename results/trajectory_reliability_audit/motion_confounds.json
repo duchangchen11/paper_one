@@ -1,0 +1,45 @@
+{
+  "observed_motion_definition": "pixel displacement between first and last of 15 observed target centers, from target_abs_obs[...,0:2]",
+  "slow_medium_fast_cutpoints_from_validation_pixel": {
+    "q33": 22.338302612304684,
+    "q67": 52.04325612386067
+  },
+  "test_strata": [
+    {
+      "stratum": "slow",
+      "sample_count": 5813,
+      "observed_motion_mean_pixel": 12.677909851074219,
+      "spearman_selected_uncertainty_vs_ade": {
+        "rho": 0.159594629459292,
+        "p_value": 1.8108352213451108e-34
+      }
+    },
+    {
+      "stratum": "medium",
+      "sample_count": 5908,
+      "observed_motion_mean_pixel": 35.494171142578125,
+      "spearman_selected_uncertainty_vs_ade": {
+        "rho": 0.12142862471164864,
+        "p_value": 7.523946738036739e-21
+      }
+    },
+    {
+      "stratum": "fast",
+      "sample_count": 6610,
+      "observed_motion_mean_pixel": 102.06451416015625,
+      "spearman_selected_uncertainty_vs_ade": {
+        "rho": 0.40078130107951493,
+        "p_value": 1.3748277017027364e-253
+      }
+    }
+  ],
+  "selected_score_global_test_spearman_vs_observed_motion": {
+    "rho": 0.638972329402842,
+    "p_value": 0.0
+  },
+  "selected_score_global_test_spearman_vs_gt_future_endpoint_displacement_diagnostic_only": {
+    "rho": 0.5991130500610367,
+    "p_value": 0.0
+  },
+  "gt_future_displacement_note": "Uses future ground truth only for post-hoc diagnostic; never a model input or selection feature."
+}
