@@ -1,0 +1,32 @@
+{
+  "42": {
+    "path": "/home/lrj/ped_intent_project/checkpoints/trajectory_transformer_zero_scene_15x15_seed42.pt",
+    "sha256_before": "46a70ab491168aa7d221eb3b2cb851572c44c2f0ddb78cdbac760869780b1dca",
+    "scene_mode": "zero",
+    "seed": 42,
+    "model_eval": true,
+    "parameter_count": 700574,
+    "sha256_after": "46a70ab491168aa7d221eb3b2cb851572c44c2f0ddb78cdbac760869780b1dca",
+    "unchanged": true
+  },
+  "123": {
+    "path": "/home/lrj/ped_intent_project/checkpoints/trajectory_transformer_zero_scene_15x15_seed123.pt",
+    "sha256_before": "01636b673d96c126671103ba329654d9e9da175daa36eb8c4a55696f8e310163",
+    "scene_mode": "zero",
+    "seed": 123,
+    "model_eval": true,
+    "parameter_count": 700574,
+    "sha256_after": "01636b673d96c126671103ba329654d9e9da175daa36eb8c4a55696f8e310163",
+    "unchanged": true
+  },
+  "2024": {
+    "path": "/home/lrj/ped_intent_project/checkpoints/trajectory_transformer_zero_scene_15x15_seed2024.pt",
+    "sha256_before": "67fe318f8d801e6f063d7c42d15ed60003f38a4e66fc65bea5cb29bf76154868",
+    "scene_mode": "zero",
+    "seed": 2024,
+    "model_eval": true,
+    "parameter_count": 700574,
+    "sha256_after": "67fe318f8d801e6f063d7c42d15ed60003f38a4e66fc65bea5cb29bf76154868",
+    "unchanged": true
+  }
+}

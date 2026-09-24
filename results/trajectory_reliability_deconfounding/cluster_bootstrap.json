@@ -1,0 +1,93 @@
+{
+  "primary_video_cluster_bootstrap": {
+    "cluster_level": "video_scene_id",
+    "cluster_count": 97,
+    "sample_count": 18331,
+    "repetitions": 1000,
+    "seed": 9124,
+    "method": "resample the same number of clusters with replacement; include all samples for every draw, including repeated clusters",
+    "metrics": {
+      "raw_u_mean": {
+        "spearman_vs_ade": {
+          "lower_95": 0.3206289021954019,
+          "median": 0.42147800594731843,
+          "upper_95": 0.501365238080465,
+          "valid_replicates": 1000
+        },
+        "high_ade_auroc": {
+          "lower_95": 0.6975999585385887,
+          "median": 0.7371780948298137,
+          "upper_95": 0.7685260044360368,
+          "valid_replicates": 1000
+        }
+      },
+      "adjusted_u_mean": {
+        "spearman_vs_ade": {
+          "lower_95": 0.11671764267844764,
+          "median": 0.2208014131170436,
+          "upper_95": 0.31164512546183293,
+          "valid_replicates": 1000
+        },
+        "high_ade_auroc": {
+          "lower_95": 0.5690482818505262,
+          "median": 0.6213937891598106,
+          "upper_95": 0.661937364412532,
+          "valid_replicates": 1000
+        }
+      },
+      "motion_only": {
+        "spearman_vs_ade": {
+          "lower_95": 0.352818997727262,
+          "median": 0.44442736152278883,
+          "upper_95": 0.5347622364705326,
+          "valid_replicates": 1000
+        },
+        "high_ade_auroc": {
+          "lower_95": 0.7111715645985885,
+          "median": 0.7539759306482441,
+          "upper_95": 0.7944659618113143,
+          "valid_replicates": 1000
+        }
+      }
+    }
+  },
+  "secondary_track_cluster_bootstrap": {
+    "cluster_level": "(scene_id, target_id) pedestrian track",
+    "cluster_count": 207,
+    "sample_count": 18331,
+    "repetitions": 1000,
+    "seed": 9124,
+    "method": "resample the same number of clusters with replacement; include all samples for every draw, including repeated clusters",
+    "metrics": {
+      "raw_u_mean": {
+        "spearman_vs_ade": {
+          "lower_95": 0.3610811668916801,
+          "median": 0.42752258744964544,
+          "upper_95": 0.48308892277450627,
+          "valid_replicates": 1000
+        },
+        "high_ade_auroc": {
+          "lower_95": 0.7073631117733663,
+          "median": 0.7387790881908233,
+          "upper_95": 0.7719107762954348,
+          "valid_replicates": 1000
+        }
+      },
+      "adjusted_u_mean": {
+        "spearman_vs_ade": {
+          "lower_95": 0.1534989486609575,
+          "median": 0.22606876420924443,
+          "upper_95": 0.2956296963819212,
+          "valid_replicates": 1000
+        },
+        "high_ade_auroc": {
+          "lower_95": 0.5844538912951368,
+          "median": 0.6233738481075994,
+          "upper_95": 0.662957537628195,
+          "valid_replicates": 1000
+        }
+      }
+    }
+  },
+  "high_ade_threshold_pixel": 13.214974497172895
+}

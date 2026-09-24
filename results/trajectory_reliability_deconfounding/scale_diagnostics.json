@@ -1,0 +1,87 @@
+{
+  "pixel_scale_by_image_dimensions": {
+    "validation": {
+      "image_size_unique_width_height_pairs": [
+        [
+          1920,
+          1080
+        ]
+      ],
+      "width_unique_count": 1,
+      "height_unique_count": 1,
+      "width_vs_raw_u_spearman": {
+        "rho": null,
+        "p_value": null
+      },
+      "width_vs_ade_spearman": {
+        "rho": null,
+        "p_value": null
+      },
+      "height_vs_raw_u_spearman": {
+        "rho": null,
+        "p_value": null
+      },
+      "height_vs_ade_spearman": {
+        "rho": null,
+        "p_value": null
+      },
+      "interpretation": "Correlation is undefined when width/height are constant; report the observed resolution distribution rather than treating null as evidence of zero association."
+    },
+    "test": {
+      "image_size_unique_width_height_pairs": [
+        [
+          1920,
+          1080
+        ]
+      ],
+      "width_unique_count": 1,
+      "height_unique_count": 1,
+      "width_vs_raw_u_spearman": {
+        "rho": null,
+        "p_value": null
+      },
+      "width_vs_ade_spearman": {
+        "rho": null,
+        "p_value": null
+      },
+      "height_vs_raw_u_spearman": {
+        "rho": null,
+        "p_value": null
+      },
+      "height_vs_ade_spearman": {
+        "rho": null,
+        "p_value": null
+      },
+      "interpretation": "Correlation is undefined when width/height are constant; report the observed resolution distribution rather than treating null as evidence of zero association."
+    }
+  },
+  "normalized_coordinate_sanity_check": {
+    "validation": {
+      "spearman_u_mean_normalized_vs_ade_normalized": {
+        "rho": 0.22073407101406345,
+        "p_value": 1.881732995148393e-30
+      },
+      "spearman_u_mean_normalized_vs_fde_normalized": {
+        "rho": 0.24001036759042468,
+        "p_value": 7.473880940497739e-36
+      },
+      "mean_u_mean_normalized": 0.0009951150228832016,
+      "mean_ade_normalized": 0.006592077158828139,
+      "mean_fde_normalized": 0.011443810920470374
+    },
+    "test": {
+      "spearman_u_mean_normalized_vs_ade_normalized": {
+        "rho": 0.3937386870779999,
+        "p_value": 0.0
+      },
+      "spearman_u_mean_normalized_vs_fde_normalized": {
+        "rho": 0.38636058632783654,
+        "p_value": 0.0
+      },
+      "mean_u_mean_normalized": 0.0011437975624156254,
+      "mean_ade_normalized": 0.006942598786302575,
+      "mean_fde_normalized": 0.012219643275797425
+    }
+  },
+  "normalized_u_definition": "mean across 15 steps of the three normalized-coordinate predictions' mean 2D Euclidean distance from their normalized ensemble mean"
+}

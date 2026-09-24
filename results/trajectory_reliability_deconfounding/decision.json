@@ -1,0 +1,31 @@
+{
+  "decision": "GO",
+  "inputs": {
+    "partial_spearman_ade_test": 0.20384027521326448,
+    "adjusted_rho_ade_test": 0.228989713681273,
+    "adjusted_high_ade_auroc_test": 0.6249402695640003,
+    "motion_high_ade_auroc_test": 0.7553377572590837,
+    "adjusted_video_cluster_rho_ade_ci_lower": 0.11671764267844764,
+    "adjusted_stratified_ade_reduction_100_to_20": 1.0006775789468971,
+    "adjusted_stratified_fde_reduction_100_to_20": 1.9746129887357675,
+    "adjusted_within_motion_permutation_ade_p_at_80": 0.009900990099009901
+  },
+  "go_conditions": {
+    "partial_spearman_ade_at_least_0_20": true,
+    "adjusted_spearman_ade_at_least_0_20": true,
+    "video_cluster_ci_lower_above_0_10": true,
+    "adjusted_high_ade_auroc_at_least_0_65_or_plus_0_03_vs_motion": false,
+    "adjusted_stratified_ade_and_fde_improve_100_to_20": true,
+    "adjusted_stratified_ade_beats_within_motion_random_at_80_p_le_0_05": true
+  },
+  "go_conditions_met": 5,
+  "go_conditions_total": 6,
+  "stop_conditions": {
+    "partial_spearman_ade_below_0_10": false,
+    "adjusted_high_ade_auroc_within_0_01_of_motion": true,
+    "no_adjusted_stratified_ade_or_fde_improvement": false,
+    "no_within_motion_permutation_evidence_p_above_0_10": false
+  },
+  "rule": "GO requires a majority of the six evidence checks (at least four); STOP requires all four null-pattern checks; otherwise WEAK. This operationalizes the task's instruction to satisfy most GO criteria without tuning a model on test.",
+  "next_stage_authorization": "No reliability-gated intention model was started. Only GO would support considering it in a later explicitly authorized task."
+}

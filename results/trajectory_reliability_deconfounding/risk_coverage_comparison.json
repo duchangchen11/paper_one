@@ -1,0 +1,2033 @@
+{
+  "global": {
+    "ranking_direction": "ascending score; retain lowest values first",
+    "motion_only_direction": "low observed motion is treated as lower risk and retained first",
+    "random_reference": {
+      "repetitions": 100,
+      "seed": 9124
+    },
+    "oracle_reference": "ranks by true ADE; upper bound only, not deployable",
+    "coverage_sample_rule": "floor(N*coverage), with all samples at 100% and at least one otherwise",
+    "curves": {
+      "raw_u_mean": [
+        {
+          "nominal_coverage": 1.0,
+          "retained_samples": 18331,
+          "actual_coverage": 1.0,
+          "ade": 10.472356107967666,
+          "fde": 19.111475284260834
+        },
+        {
+          "nominal_coverage": 0.9,
+          "retained_samples": 16497,
+          "actual_coverage": 0.8999509028421799,
+          "ade": 9.536681984628792,
+          "fde": 17.37603264050093
+        },
+        {
+          "nominal_coverage": 0.8,
+          "retained_samples": 14664,
+          "actual_coverage": 0.7999563580819377,
+          "ade": 8.880768391838744,
+          "fde": 16.213340430160947
+        },
+        {
+          "nominal_coverage": 0.7,
+          "retained_samples": 12831,
+          "actual_coverage": 0.6999618133216955,
+          "ade": 8.404765694900913,
+          "fde": 15.240978582989829
+        },
+        {
+          "nominal_coverage": 0.6,
+          "retained_samples": 10998,
+          "actual_coverage": 0.5999672685614533,
+          "ade": 8.021987935175055,
+          "fde": 14.38782263210976
+        },
+        {
+          "nominal_coverage": 0.5,
+          "retained_samples": 9165,
+          "actual_coverage": 0.49997272380121105,
+          "ade": 7.7040840357442075,
+          "fde": 13.619014554599719
+        },
+        {
+          "nominal_coverage": 0.4,
+          "retained_samples": 7332,
+          "actual_coverage": 0.39997817904096883,
+          "ade": 7.433481019812628,
+          "fde": 12.94956033031641
+        },
+        {
+          "nominal_coverage": 0.3,
+          "retained_samples": 5499,
+          "actual_coverage": 0.29998363428072666,
+          "ade": 7.32066377319097,
+          "fde": 12.698290633907435
+        },
+        {
+          "nominal_coverage": 0.2,
+          "retained_samples": 3666,
+          "actual_coverage": 0.19998908952048441,
+          "ade": 7.247081766305174,
+          "fde": 12.581219866732244
+        }
+      ],
+      "adjusted_u_mean": [
+        {
+          "nominal_coverage": 1.0,
+          "retained_samples": 18331,
+          "actual_coverage": 1.0,
+          "ade": 10.472356107967666,
+          "fde": 19.11147528426083
+        },
+        {
+          "nominal_coverage": 0.9,
+          "retained_samples": 16497,
+          "actual_coverage": 0.8999509028421799,
+          "ade": 9.914887050874801,
+          "fde": 18.05697686251572
+        },
+        {
+          "nominal_coverage": 0.8,
+          "retained_samples": 14664,
+          "actual_coverage": 0.7999563580819377,
+          "ade": 9.489820930172577,
+          "fde": 17.23078892153053
+        },
+        {
+          "nominal_coverage": 0.7,
+          "retained_samples": 12831,
+          "actual_coverage": 0.6999618133216955,
+          "ade": 9.119672574241912,
+          "fde": 16.485015960028427
+        },
+        {
+          "nominal_coverage": 0.6,
+          "retained_samples": 10998,
+          "actual_coverage": 0.5999672685614533,
+          "ade": 8.971861246079095,
+          "fde": 16.233633250214346
+        },
+        {
+          "nominal_coverage": 0.5,
+          "retained_samples": 9165,
+          "actual_coverage": 0.49997272380121105,
+          "ade": 8.91164782618467,
+          "fde": 16.141442315888277
+        },
+        {
+          "nominal_coverage": 0.4,
+          "retained_samples": 7332,
+          "actual_coverage": 0.39997817904096883,
+          "ade": 8.94755425183891,
+          "fde": 16.287564825412012
+        },
+        {
+          "nominal_coverage": 0.3,
+          "retained_samples": 5499,
+          "actual_coverage": 0.29998363428072666,
+          "ade": 9.127761637032323,
+          "fde": 16.72135833596087
+        },
+        {
+          "nominal_coverage": 0.2,
+          "retained_samples": 3666,
+          "actual_coverage": 0.19998908952048441,
+          "ade": 9.378836425980058,
+          "fde": 17.154900060541703
+        }
+      ],
+      "motion_only": [
+        {
+          "nominal_coverage": 1.0,
+          "retained_samples": 18331,
+          "actual_coverage": 1.0,
+          "ade": 10.472356107967665,
+          "fde": 19.11147528426083
+        },
+        {
+          "nominal_coverage": 0.9,
+          "retained_samples": 16497,
+          "actual_coverage": 0.8999509028421799,
+          "ade": 9.352863157992532,
+          "fde": 17.0143886640587
+        },
+        {
+          "nominal_coverage": 0.8,
+          "retained_samples": 14664,
+          "actual_coverage": 0.7999563580819377,
+          "ade": 8.662650983540168,
+          "fde": 15.782654971753127
+        },
+        {
+          "nominal_coverage": 0.7,
+          "retained_samples": 12831,
+          "actual_coverage": 0.6999618133216955,
+          "ade": 8.283148283404817,
+          "fde": 15.082076448236373
+        },
+        {
+          "nominal_coverage": 0.6,
+          "retained_samples": 10998,
+          "actual_coverage": 0.5999672685614533,
+          "ade": 8.020890840703537,
+          "fde": 14.558292103985673
+        },
+        {
+          "nominal_coverage": 0.5,
+          "retained_samples": 9165,
+          "actual_coverage": 0.49997272380121105,
+          "ade": 7.808676580399673,
+          "fde": 14.095182053962002
+        },
+        {
+          "nominal_coverage": 0.4,
+          "retained_samples": 7332,
+          "actual_coverage": 0.39997817904096883,
+          "ade": 7.602005182230167,
+          "fde": 13.638379352687728
+        },
+        {
+          "nominal_coverage": 0.3,
+          "retained_samples": 5499,
+          "actual_coverage": 0.29998363428072666,
+          "ade": 7.333990489283728,
+          "fde": 13.07413411444503
+        },
+        {
+          "nominal_coverage": 0.2,
+          "retained_samples": 3666,
+          "actual_coverage": 0.19998908952048441,
+          "ade": 7.162543453571152,
+          "fde": 12.786459872409019
+        }
+      ],
+      "random_global": [
+        {
+          "nominal_coverage": 1.0,
+          "retained_samples": 18331,
+          "actual_coverage": 1.0,
+          "ade_mean_sample_std": {
+            "mean": 10.472356107967668,
+            "sample_std": 2.7426388062414207e-15
+          },
+          "fde_mean_sample_std": {
+            "mean": 19.111475284260834,
+            "sample_std": 3.406146372534396e-15
+          }
+        },
+        {
+          "nominal_coverage": 0.9,
+          "retained_samples": 16497,
+          "actual_coverage": 0.8999509028421799,
+          "ade_mean_sample_std": {
+            "mean": 10.47556335800109,
+            "sample_std": 0.01738661665369532
+          },
+          "fde_mean_sample_std": {
+            "mean": 19.118817514665242,
+            "sample_std": 0.037119335829471856
+          }
+        },
+        {
+          "nominal_coverage": 0.8,
+          "retained_samples": 14664,
+          "actual_coverage": 0.7999563580819377,
+          "ade_mean_sample_std": {
+            "mean": 10.473966485286754,
+            "sample_std": 0.028441715838465033
+          },
+          "fde_mean_sample_std": {
+            "mean": 19.1184918507125,
+            "sample_std": 0.0574432882295353
+          }
+        },
+        {
+          "nominal_coverage": 0.7,
+          "retained_samples": 12831,
+          "actual_coverage": 0.6999618133216955,
+          "ade_mean_sample_std": {
+            "mean": 10.478180969280483,
+            "sample_std": 0.03439510049986518
+          },
+          "fde_mean_sample_std": {
+            "mean": 19.127212013336198,
+            "sample_std": 0.07543051003847785
+          }
+        },
+        {
+          "nominal_coverage": 0.6,
+          "retained_samples": 10998,
+          "actual_coverage": 0.5999672685614533,
+          "ade_mean_sample_std": {
+            "mean": 10.476394578121065,
+            "sample_std": 0.04530592968326986
+          },
+          "fde_mean_sample_std": {
+            "mean": 19.121067300411266,
+            "sample_std": 0.10150093663748194
+          }
+        },
+        {
+          "nominal_coverage": 0.5,
+          "retained_samples": 9165,
+          "actual_coverage": 0.49997272380121105,
+          "ade_mean_sample_std": {
+            "mean": 10.476563206211127,
+            "sample_std": 0.0637548273031168
+          },
+          "fde_mean_sample_std": {
+            "mean": 19.129227914766467,
+            "sample_std": 0.13938843397747044
+          }
+        },
+        {
+          "nominal_coverage": 0.4,
+          "retained_samples": 7332,
+          "actual_coverage": 0.39997817904096883,
+          "ade_mean_sample_std": {
+            "mean": 10.474376608816643,
+            "sample_std": 0.07687985866418542
+          },
+          "fde_mean_sample_std": {
+            "mean": 19.120105065272103,
+            "sample_std": 0.15777711468159605
+          }
+        },
+        {
+          "nominal_coverage": 0.3,
+          "retained_samples": 5499,
+          "actual_coverage": 0.29998363428072666,
+          "ade_mean_sample_std": {
+            "mean": 10.480656043617875,
+            "sample_std": 0.08944398460813245
+          },
+          "fde_mean_sample_std": {
+            "mean": 19.131736070904754,
+            "sample_std": 0.19502774945329562
+          }
+        },
+        {
+          "nominal_coverage": 0.2,
+          "retained_samples": 3666,
+          "actual_coverage": 0.19998908952048441,
+          "ade_mean_sample_std": {
+            "mean": 10.475810427827025,
+            "sample_std": 0.12886099287429675
+          },
+          "fde_mean_sample_std": {
+            "mean": 19.116126556410272,
+            "sample_std": 0.27103921282142523
+          }
+        }
+      ],
+      "oracle_by_true_ade": [
+        {
+          "nominal_coverage": 1.0,
+          "retained_samples": 18331,
+          "actual_coverage": 1.0,
+          "ade": 10.472356107967666,
+          "fde": 19.11147528426083
+        },
+        {
+          "nominal_coverage": 0.9,
+          "retained_samples": 16497,
+          "actual_coverage": 0.8999509028421799,
+          "ade": 8.46995167228448,
+          "fde": 15.229977286936451
+        },
+        {
+          "nominal_coverage": 0.8,
+          "retained_samples": 14664,
+          "actual_coverage": 0.7999563580819377,
+          "ade": 7.408345280098512,
+          "fde": 13.268675515103526
+        },
+        {
+          "nominal_coverage": 0.7,
+          "retained_samples": 12831,
+          "actual_coverage": 0.6999618133216955,
+          "ade": 6.5781058194843816,
+          "fde": 11.805822485975925
+        },
+        {
+          "nominal_coverage": 0.6,
+          "retained_samples": 10998,
+          "actual_coverage": 0.5999672685614533,
+          "ade": 5.856987380651598,
+          "fde": 10.509595822213436
+        },
+        {
+          "nominal_coverage": 0.5,
+          "retained_samples": 9165,
+          "actual_coverage": 0.49997272380121105,
+          "ade": 5.190594139420882,
+          "fde": 9.324060193208384
+        },
+        {
+          "nominal_coverage": 0.4,
+          "retained_samples": 7332,
+          "actual_coverage": 0.39997817904096883,
+          "ade": 4.567374469385917,
+          "fde": 8.237701948715175
+        },
+        {
+          "nominal_coverage": 0.3,
+          "retained_samples": 5499,
+          "actual_coverage": 0.29998363428072666,
+          "ade": 3.9581633782248753,
+          "fde": 7.201214292918268
+        },
+        {
+          "nominal_coverage": 0.2,
+          "retained_samples": 3666,
+          "actual_coverage": 0.19998908952048441,
+          "ade": 3.3257147920670103,
+          "fde": 6.058503381496467
+        }
+      ]
+    },
+    "monotonic_reduction": {
+      "raw_u_mean": {
+        "ade": true,
+        "fde": true
+      },
+      "adjusted_u_mean": {
+        "ade": false,
+        "fde": false
+      },
+      "motion_only": {
+        "ade": true,
+        "fde": true
+      },
+      "oracle_by_true_ade": {
+        "ade": true,
+        "fde": true
+      }
+    }
+  },
+  "motion_stratified": {
+    "strata_definition": "validation motion deciles, cutpoints frozen for test",
+    "ranking_method": "within each motion decile independently retain the lowest score fraction, then pool retained samples",
+    "curves": {
+      "raw_u_mean_within_motion_deciles": [
+        {
+          "nominal_coverage": 1.0,
+          "retained_samples": 18331,
+          "actual_coverage": 1.0,
+          "ade": 10.472356107967665,
+          "fde": 19.11147528426083,
+          "retained_per_motion_decile": {
+            "0": 1355,
+            "1": 1819,
+            "2": 2007,
+            "3": 1581,
+            "4": 1431,
+            "5": 2275,
+            "6": 1617,
+            "7": 1797,
+            "8": 1558,
+            "9": 2891
+          }
+        },
+        {
+          "nominal_coverage": 0.9,
+          "retained_samples": 16493,
+          "actual_coverage": 0.8997326932518684,
+          "ade": 10.181663943281947,
+          "fde": 18.459099261487204,
+          "retained_per_motion_decile": {
+            "0": 1219,
+            "1": 1637,
+            "2": 1806,
+            "3": 1422,
+            "4": 1287,
+            "5": 2047,
+            "6": 1455,
+            "7": 1617,
+            "8": 1402,
+            "9": 2601
+          }
+        },
+        {
+          "nominal_coverage": 0.8,
+          "retained_samples": 14660,
+          "actual_coverage": 0.7997381484916262,
+          "ade": 9.99225439060583,
+          "fde": 18.023379820772497,
+          "retained_per_motion_decile": {
+            "0": 1084,
+            "1": 1455,
+            "2": 1605,
+            "3": 1264,
+            "4": 1144,
+            "5": 1820,
+            "6": 1293,
+            "7": 1437,
+            "8": 1246,
+            "9": 2312
+          }
+        },
+        {
+          "nominal_coverage": 0.7,
+          "retained_samples": 12825,
+          "actual_coverage": 0.6996344989362282,
+          "ade": 9.832782310130343,
+          "fde": 17.69495679642006,
+          "retained_per_motion_decile": {
+            "0": 948,
+            "1": 1273,
+            "2": 1404,
+            "3": 1106,
+            "4": 1001,
+            "5": 1592,
+            "6": 1131,
+            "7": 1257,
+            "8": 1090,
+            "9": 2023
+          }
+        },
+        {
+          "nominal_coverage": 0.6,
+          "retained_samples": 10995,
+          "actual_coverage": 0.5998036113687196,
+          "ade": 9.74536503517244,
+          "fde": 17.511373270295387,
+          "retained_per_motion_decile": {
+            "0": 813,
+            "1": 1091,
+            "2": 1204,
+            "3": 948,
+            "4": 858,
+            "5": 1365,
+            "6": 970,
+            "7": 1078,
+            "8": 934,
+            "9": 1734
+          }
+        },
+        {
+          "nominal_coverage": 0.5,
+          "retained_samples": 9161,
+          "actual_coverage": 0.49975451421089956,
+          "ade": 9.637373876108017,
+          "fde": 17.318810290593024,
+          "retained_per_motion_decile": {
+            "0": 677,
+            "1": 909,
+            "2": 1003,
+            "3": 790,
+            "4": 715,
+            "5": 1137,
+            "6": 808,
+            "7": 898,
+            "8": 779,
+            "9": 1445
+          }
+        },
+        {
+          "nominal_coverage": 0.4,
+          "retained_samples": 7328,
+          "actual_coverage": 0.39975996945065734,
+          "ade": 9.566576819027953,
+          "fde": 17.20982009246932,
+          "retained_per_motion_decile": {
+            "0": 542,
+            "1": 727,
+            "2": 802,
+            "3": 632,
+            "4": 572,
+            "5": 910,
+            "6": 646,
+            "7": 718,
+            "8": 623,
+            "9": 1156
+          }
+        },
+        {
+          "nominal_coverage": 0.3,
+          "retained_samples": 5496,
+          "actual_coverage": 0.299819977087993,
+          "ade": 9.514375129952622,
+          "fde": 17.060641207124984,
+          "retained_per_motion_decile": {
+            "0": 406,
+            "1": 545,
+            "2": 602,
+            "3": 474,
+            "4": 429,
+            "5": 682,
+            "6": 485,
+            "7": 539,
+            "8": 467,
+            "9": 867
+          }
+        },
+        {
+          "nominal_coverage": 0.2,
+          "retained_samples": 3663,
+          "actual_coverage": 0.1998254323277508,
+          "ade": 9.273276077445749,
+          "fde": 16.642021850681928,
+          "retained_per_motion_decile": {
+            "0": 271,
+            "1": 363,
+            "2": 401,
+            "3": 316,
+            "4": 286,
+            "5": 455,
+            "6": 323,
+            "7": 359,
+            "8": 311,
+            "9": 578
+          }
+        }
+      ],
+      "adjusted_u_mean_within_motion_deciles": [
+        {
+          "nominal_coverage": 1.0,
+          "retained_samples": 18331,
+          "actual_coverage": 1.0,
+          "ade": 10.472356107967666,
+          "fde": 19.11147528426083,
+          "retained_per_motion_decile": {
+            "0": 1355,
+            "1": 1819,
+            "2": 2007,
+            "3": 1581,
+            "4": 1431,
+            "5": 2275,
+            "6": 1617,
+            "7": 1797,
+            "8": 1558,
+            "9": 2891
+          }
+        },
+        {
+          "nominal_coverage": 0.9,
+          "retained_samples": 16493,
+          "actual_coverage": 0.8997326932518684,
+          "ade": 10.185568091782235,
+          "fde": 18.51012443992976,
+          "retained_per_motion_decile": {
+            "0": 1219,
+            "1": 1637,
+            "2": 1806,
+            "3": 1422,
+            "4": 1287,
+            "5": 2047,
+            "6": 1455,
+            "7": 1617,
+            "8": 1402,
+            "9": 2601
+          }
+        },
+        {
+          "nominal_coverage": 0.8,
+          "retained_samples": 14660,
+          "actual_coverage": 0.7997381484916262,
+          "ade": 10.035105097030089,
+          "fde": 18.16615275316236,
+          "retained_per_motion_decile": {
+            "0": 1084,
+            "1": 1455,
+            "2": 1605,
+            "3": 1264,
+            "4": 1144,
+            "5": 1820,
+            "6": 1293,
+            "7": 1437,
+            "8": 1246,
+            "9": 2312
+          }
+        },
+        {
+          "nominal_coverage": 0.7,
+          "retained_samples": 12825,
+          "actual_coverage": 0.6996344989362282,
+          "ade": 9.915895705327982,
+          "fde": 17.919816698883157,
+          "retained_per_motion_decile": {
+            "0": 948,
+            "1": 1273,
+            "2": 1404,
+            "3": 1106,
+            "4": 1001,
+            "5": 1592,
+            "6": 1131,
+            "7": 1257,
+            "8": 1090,
+            "9": 2023
+          }
+        },
+        {
+          "nominal_coverage": 0.6,
+          "retained_samples": 10995,
+          "actual_coverage": 0.5998036113687196,
+          "ade": 9.807679556007143,
+          "fde": 17.707532164595666,
+          "retained_per_motion_decile": {
+            "0": 813,
+            "1": 1091,
+            "2": 1204,
+            "3": 948,
+            "4": 858,
+            "5": 1365,
+            "6": 970,
+            "7": 1078,
+            "8": 934,
+            "9": 1734
+          }
+        },
+        {
+          "nominal_coverage": 0.5,
+          "retained_samples": 9161,
+          "actual_coverage": 0.49975451421089956,
+          "ade": 9.735534833196768,
+          "fde": 17.57583638155562,
+          "retained_per_motion_decile": {
+            "0": 677,
+            "1": 909,
+            "2": 1003,
+            "3": 790,
+            "4": 715,
+            "5": 1137,
+            "6": 808,
+            "7": 898,
+            "8": 779,
+            "9": 1445
+          }
+        },
+        {
+          "nominal_coverage": 0.4,
+          "retained_samples": 7328,
+          "actual_coverage": 0.39975996945065734,
+          "ade": 9.717913312784201,
+          "fde": 17.56949200548259,
+          "retained_per_motion_decile": {
+            "0": 542,
+            "1": 727,
+            "2": 802,
+            "3": 632,
+            "4": 572,
+            "5": 910,
+            "6": 646,
+            "7": 718,
+            "8": 623,
+            "9": 1156
+          }
+        },
+        {
+          "nominal_coverage": 0.3,
+          "retained_samples": 5496,
+          "actual_coverage": 0.299819977087993,
+          "ade": 9.70257885570213,
+          "fde": 17.55886852450558,
+          "retained_per_motion_decile": {
+            "0": 406,
+            "1": 545,
+            "2": 602,
+            "3": 474,
+            "4": 429,
+            "5": 682,
+            "6": 485,
+            "7": 539,
+            "8": 467,
+            "9": 867
+          }
+        },
+        {
+          "nominal_coverage": 0.2,
+          "retained_samples": 3663,
+          "actual_coverage": 0.1998254323277508,
+          "ade": 9.47167852902077,
+          "fde": 17.136862295525063,
+          "retained_per_motion_decile": {
+            "0": 271,
+            "1": 363,
+            "2": 401,
+            "3": 316,
+            "4": 286,
+            "5": 455,
+            "6": 323,
+            "7": 359,
+            "8": 311,
+            "9": 578
+          }
+        }
+      ]
+    },
+    "within_motion_permutation": {
+      "method": "permute raw u_mean independently within each validation-defined motion decile; fixed motion, ADE, and FDE",
+      "repetitions": 100,
+      "seed": 9124,
+      "lower_tail_p_interpretation": "small values mean observed stratified risk is lower than the within-motion random ranking",
+      "rows": [
+        {
+          "nominal_coverage": 1.0,
+          "randomized_within_motion_mean_sample_std": {
+            "ade": {
+              "mean": 10.472356107967668,
+              "sample_std": 2.5871538911361083e-15
+            },
+            "fde": {
+              "mean": 19.111475284260834,
+              "sample_std": 3.2529819763906252e-15
+            }
+          },
+          "raw_u_mean": {
+            "ade": 10.472356107967665,
+            "fde": 19.11147528426083
+          },
+          "raw_u_mean_empirical_lower_tail_p": {
+            "ade": 0.3564356435643564,
+            "fde": 0.8316831683168316
+          },
+          "adjusted_u_mean": {
+            "ade": 10.472356107967666,
+            "fde": 19.11147528426083
+          },
+          "adjusted_u_mean_empirical_lower_tail_p": {
+            "ade": 1.0,
+            "fde": 0.8316831683168316
+          }
+        },
+        {
+          "nominal_coverage": 0.9,
+          "randomized_within_motion_mean_sample_std": {
+            "ade": {
+              "mean": 10.471822637065227,
+              "sample_std": 0.017059033017089355
+            },
+            "fde": {
+              "mean": 19.11020235178708,
+              "sample_std": 0.036919313805467605
+            }
+          },
+          "raw_u_mean": {
+            "ade": 10.181663943281947,
+            "fde": 18.459099261487204
+          },
+          "raw_u_mean_empirical_lower_tail_p": {
+            "ade": 0.009900990099009901,
+            "fde": 0.009900990099009901
+          },
+          "adjusted_u_mean": {
+            "ade": 10.185568091782235,
+            "fde": 18.51012443992976
+          },
+          "adjusted_u_mean_empirical_lower_tail_p": {
+            "ade": 0.009900990099009901,
+            "fde": 0.009900990099009901
+          }
+        },
+        {
+          "nominal_coverage": 0.8,
+          "randomized_within_motion_mean_sample_std": {
+            "ade": {
+              "mean": 10.472574622674806,
+              "sample_std": 0.02776767164679875
+            },
+            "fde": {
+              "mean": 19.11079292813789,
+              "sample_std": 0.05812343331386958
+            }
+          },
+          "raw_u_mean": {
+            "ade": 9.99225439060583,
+            "fde": 18.023379820772497
+          },
+          "raw_u_mean_empirical_lower_tail_p": {
+            "ade": 0.009900990099009901,
+            "fde": 0.009900990099009901
+          },
+          "adjusted_u_mean": {
+            "ade": 10.035105097030089,
+            "fde": 18.16615275316236
+          },
+          "adjusted_u_mean_empirical_lower_tail_p": {
+            "ade": 0.009900990099009901,
+            "fde": 0.009900990099009901
+          }
+        },
+        {
+          "nominal_coverage": 0.7,
+          "randomized_within_motion_mean_sample_std": {
+            "ade": {
+              "mean": 10.47489213949822,
+              "sample_std": 0.03135919428417207
+            },
+            "fde": {
+              "mean": 19.116380283312647,
+              "sample_std": 0.07064706231199028
+            }
+          },
+          "raw_u_mean": {
+            "ade": 9.832782310130343,
+            "fde": 17.69495679642006
+          },
+          "raw_u_mean_empirical_lower_tail_p": {
+            "ade": 0.009900990099009901,
+            "fde": 0.009900990099009901
+          },
+          "adjusted_u_mean": {
+            "ade": 9.915895705327982,
+            "fde": 17.919816698883157
+          },
+          "adjusted_u_mean_empirical_lower_tail_p": {
+            "ade": 0.009900990099009901,
+            "fde": 0.009900990099009901
+          }
+        },
+        {
+          "nominal_coverage": 0.6,
+          "randomized_within_motion_mean_sample_std": {
+            "ade": {
+              "mean": 10.475161978391181,
+              "sample_std": 0.03906894163783265
+            },
+            "fde": {
+              "mean": 19.11654302609489,
+              "sample_std": 0.09078120305856036
+            }
+          },
+          "raw_u_mean": {
+            "ade": 9.74536503517244,
+            "fde": 17.511373270295387
+          },
+          "raw_u_mean_empirical_lower_tail_p": {
+            "ade": 0.009900990099009901,
+            "fde": 0.009900990099009901
+          },
+          "adjusted_u_mean": {
+            "ade": 9.807679556007143,
+            "fde": 17.707532164595666
+          },
+          "adjusted_u_mean_empirical_lower_tail_p": {
+            "ade": 0.009900990099009901,
+            "fde": 0.009900990099009901
+          }
+        },
+        {
+          "nominal_coverage": 0.5,
+          "randomized_within_motion_mean_sample_std": {
+            "ade": {
+              "mean": 10.47516846918288,
+              "sample_std": 0.04888771948409444
+            },
+            "fde": {
+              "mean": 19.11653776076945,
+              "sample_std": 0.11175331101006238
+            }
+          },
+          "raw_u_mean": {
+            "ade": 9.637373876108017,
+            "fde": 17.318810290593024
+          },
+          "raw_u_mean_empirical_lower_tail_p": {
+            "ade": 0.009900990099009901,
+            "fde": 0.009900990099009901
+          },
+          "adjusted_u_mean": {
+            "ade": 9.735534833196768,
+            "fde": 17.57583638155562
+          },
+          "adjusted_u_mean_empirical_lower_tail_p": {
+            "ade": 0.009900990099009901,
+            "fde": 0.009900990099009901
+          }
+        },
+        {
+          "nominal_coverage": 0.4,
+          "randomized_within_motion_mean_sample_std": {
+            "ade": {
+              "mean": 10.482844786505186,
+              "sample_std": 0.058830990319824646
+            },
+            "fde": {
+              "mean": 19.136024228852726,
+              "sample_std": 0.13689634213893664
+            }
+          },
+          "raw_u_mean": {
+            "ade": 9.566576819027953,
+            "fde": 17.20982009246932
+          },
+          "raw_u_mean_empirical_lower_tail_p": {
+            "ade": 0.009900990099009901,
+            "fde": 0.009900990099009901
+          },
+          "adjusted_u_mean": {
+            "ade": 9.717913312784201,
+            "fde": 17.56949200548259
+          },
+          "adjusted_u_mean_empirical_lower_tail_p": {
+            "ade": 0.009900990099009901,
+            "fde": 0.009900990099009901
+          }
+        },
+        {
+          "nominal_coverage": 0.3,
+          "randomized_within_motion_mean_sample_std": {
+            "ade": {
+              "mean": 10.490647664928362,
+              "sample_std": 0.07788236848658293
+            },
+            "fde": {
+              "mean": 19.145214268673794,
+              "sample_std": 0.17164923400000048
+            }
+          },
+          "raw_u_mean": {
+            "ade": 9.514375129952622,
+            "fde": 17.060641207124984
+          },
+          "raw_u_mean_empirical_lower_tail_p": {
+            "ade": 0.009900990099009901,
+            "fde": 0.009900990099009901
+          },
+          "adjusted_u_mean": {
+            "ade": 9.70257885570213,
+            "fde": 17.55886852450558
+          },
+          "adjusted_u_mean_empirical_lower_tail_p": {
+            "ade": 0.009900990099009901,
+            "fde": 0.009900990099009901
+          }
+        },
+        {
+          "nominal_coverage": 0.2,
+          "randomized_within_motion_mean_sample_std": {
+            "ade": {
+              "mean": 10.494305294436565,
+              "sample_std": 0.10931775494540741
+            },
+            "fde": {
+              "mean": 19.147908641676228,
+              "sample_std": 0.22683130854854197
+            }
+          },
+          "raw_u_mean": {
+            "ade": 9.273276077445749,
+            "fde": 16.642021850681928
+          },
+          "raw_u_mean_empirical_lower_tail_p": {
+            "ade": 0.009900990099009901,
+            "fde": 0.009900990099009901
+          },
+          "adjusted_u_mean": {
+            "ade": 9.47167852902077,
+            "fde": 17.136862295525063
+          },
+          "adjusted_u_mean_empirical_lower_tail_p": {
+            "ade": 0.009900990099009901,
+            "fde": 0.009900990099009901
+          }
+        }
+      ]
+    }
+  },
+  "comparison_rows": [
+    {
+      "nominal_coverage": 1.0,
+      "raw_u_mean": {
+        "nominal_coverage": 1.0,
+        "retained_samples": 18331,
+        "actual_coverage": 1.0,
+        "ade": 10.472356107967666,
+        "fde": 19.111475284260834
+      },
+      "adjusted_u_mean": {
+        "nominal_coverage": 1.0,
+        "retained_samples": 18331,
+        "actual_coverage": 1.0,
+        "ade": 10.472356107967666,
+        "fde": 19.11147528426083
+      },
+      "motion_only": {
+        "nominal_coverage": 1.0,
+        "retained_samples": 18331,
+        "actual_coverage": 1.0,
+        "ade": 10.472356107967665,
+        "fde": 19.11147528426083
+      },
+      "random_global": {
+        "nominal_coverage": 1.0,
+        "retained_samples": 18331,
+        "actual_coverage": 1.0,
+        "ade_mean_sample_std": {
+          "mean": 10.472356107967668,
+          "sample_std": 2.7426388062414207e-15
+        },
+        "fde_mean_sample_std": {
+          "mean": 19.111475284260834,
+          "sample_std": 3.406146372534396e-15
+        }
+      },
+      "oracle_by_true_ade": {
+        "nominal_coverage": 1.0,
+        "retained_samples": 18331,
+        "actual_coverage": 1.0,
+        "ade": 10.472356107967666,
+        "fde": 19.11147528426083
+      },
+      "raw_u_mean_within_motion_deciles": {
+        "nominal_coverage": 1.0,
+        "retained_samples": 18331,
+        "actual_coverage": 1.0,
+        "ade": 10.472356107967665,
+        "fde": 19.11147528426083,
+        "retained_per_motion_decile": {
+          "0": 1355,
+          "1": 1819,
+          "2": 2007,
+          "3": 1581,
+          "4": 1431,
+          "5": 2275,
+          "6": 1617,
+          "7": 1797,
+          "8": 1558,
+          "9": 2891
+        }
+      },
+      "adjusted_u_mean_within_motion_deciles": {
+        "nominal_coverage": 1.0,
+        "retained_samples": 18331,
+        "actual_coverage": 1.0,
+        "ade": 10.472356107967666,
+        "fde": 19.11147528426083,
+        "retained_per_motion_decile": {
+          "0": 1355,
+          "1": 1819,
+          "2": 2007,
+          "3": 1581,
+          "4": 1431,
+          "5": 2275,
+          "6": 1617,
+          "7": 1797,
+          "8": 1558,
+          "9": 2891
+        }
+      },
+      "within_motion_permutation_reference": {
+        "nominal_coverage": 1.0,
+        "randomized_within_motion_mean_sample_std": {
+          "ade": {
+            "mean": 10.472356107967668,
+            "sample_std": 2.5871538911361083e-15
+          },
+          "fde": {
+            "mean": 19.111475284260834,
+            "sample_std": 3.2529819763906252e-15
+          }
+        },
+        "raw_u_mean": {
+          "ade": 10.472356107967665,
+          "fde": 19.11147528426083
+        },
+        "raw_u_mean_empirical_lower_tail_p": {
+          "ade": 0.3564356435643564,
+          "fde": 0.8316831683168316
+        },
+        "adjusted_u_mean": {
+          "ade": 10.472356107967666,
+          "fde": 19.11147528426083
+        },
+        "adjusted_u_mean_empirical_lower_tail_p": {
+          "ade": 1.0,
+          "fde": 0.8316831683168316
+        }
+      }
+    },
+    {
+      "nominal_coverage": 0.9,
+      "raw_u_mean": {
+        "nominal_coverage": 0.9,
+        "retained_samples": 16497,
+        "actual_coverage": 0.8999509028421799,
+        "ade": 9.536681984628792,
+        "fde": 17.37603264050093
+      },
+      "adjusted_u_mean": {
+        "nominal_coverage": 0.9,
+        "retained_samples": 16497,
+        "actual_coverage": 0.8999509028421799,
+        "ade": 9.914887050874801,
+        "fde": 18.05697686251572
+      },
+      "motion_only": {
+        "nominal_coverage": 0.9,
+        "retained_samples": 16497,
+        "actual_coverage": 0.8999509028421799,
+        "ade": 9.352863157992532,
+        "fde": 17.0143886640587
+      },
+      "random_global": {
+        "nominal_coverage": 0.9,
+        "retained_samples": 16497,
+        "actual_coverage": 0.8999509028421799,
+        "ade_mean_sample_std": {
+          "mean": 10.47556335800109,
+          "sample_std": 0.01738661665369532
+        },
+        "fde_mean_sample_std": {
+          "mean": 19.118817514665242,
+          "sample_std": 0.037119335829471856
+        }
+      },
+      "oracle_by_true_ade": {
+        "nominal_coverage": 0.9,
+        "retained_samples": 16497,
+        "actual_coverage": 0.8999509028421799,
+        "ade": 8.46995167228448,
+        "fde": 15.229977286936451
+      },
+      "raw_u_mean_within_motion_deciles": {
+        "nominal_coverage": 0.9,
+        "retained_samples": 16493,
+        "actual_coverage": 0.8997326932518684,
+        "ade": 10.181663943281947,
+        "fde": 18.459099261487204,
+        "retained_per_motion_decile": {
+          "0": 1219,
+          "1": 1637,
+          "2": 1806,
+          "3": 1422,
+          "4": 1287,
+          "5": 2047,
+          "6": 1455,
+          "7": 1617,
+          "8": 1402,
+          "9": 2601
+        }
+      },
+      "adjusted_u_mean_within_motion_deciles": {
+        "nominal_coverage": 0.9,
+        "retained_samples": 16493,
+        "actual_coverage": 0.8997326932518684,
+        "ade": 10.185568091782235,
+        "fde": 18.51012443992976,
+        "retained_per_motion_decile": {
+          "0": 1219,
+          "1": 1637,
+          "2": 1806,
+          "3": 1422,
+          "4": 1287,
+          "5": 2047,
+          "6": 1455,
+          "7": 1617,
+          "8": 1402,
+          "9": 2601
+        }
+      },
+      "within_motion_permutation_reference": {
+        "nominal_coverage": 0.9,
+        "randomized_within_motion_mean_sample_std": {
+          "ade": {
+            "mean": 10.471822637065227,
+            "sample_std": 0.017059033017089355
+          },
+          "fde": {
+            "mean": 19.11020235178708,
+            "sample_std": 0.036919313805467605
+          }
+        },
+        "raw_u_mean": {
+          "ade": 10.181663943281947,
+          "fde": 18.459099261487204
+        },
+        "raw_u_mean_empirical_lower_tail_p": {
+          "ade": 0.009900990099009901,
+          "fde": 0.009900990099009901
+        },
+        "adjusted_u_mean": {
+          "ade": 10.185568091782235,
+          "fde": 18.51012443992976
+        },
+        "adjusted_u_mean_empirical_lower_tail_p": {
+          "ade": 0.009900990099009901,
+          "fde": 0.009900990099009901
+        }
+      }
+    },
+    {
+      "nominal_coverage": 0.8,
+      "raw_u_mean": {
+        "nominal_coverage": 0.8,
+        "retained_samples": 14664,
+        "actual_coverage": 0.7999563580819377,
+        "ade": 8.880768391838744,
+        "fde": 16.213340430160947
+      },
+      "adjusted_u_mean": {
+        "nominal_coverage": 0.8,
+        "retained_samples": 14664,
+        "actual_coverage": 0.7999563580819377,
+        "ade": 9.489820930172577,
+        "fde": 17.23078892153053
+      },
+      "motion_only": {
+        "nominal_coverage": 0.8,
+        "retained_samples": 14664,
+        "actual_coverage": 0.7999563580819377,
+        "ade": 8.662650983540168,
+        "fde": 15.782654971753127
+      },
+      "random_global": {
+        "nominal_coverage": 0.8,
+        "retained_samples": 14664,
+        "actual_coverage": 0.7999563580819377,
+        "ade_mean_sample_std": {
+          "mean": 10.473966485286754,
+          "sample_std": 0.028441715838465033
+        },
+        "fde_mean_sample_std": {
+          "mean": 19.1184918507125,
+          "sample_std": 0.0574432882295353
+        }
+      },
+      "oracle_by_true_ade": {
+        "nominal_coverage": 0.8,
+        "retained_samples": 14664,
+        "actual_coverage": 0.7999563580819377,
+        "ade": 7.408345280098512,
+        "fde": 13.268675515103526
+      },
+      "raw_u_mean_within_motion_deciles": {
+        "nominal_coverage": 0.8,
+        "retained_samples": 14660,
+        "actual_coverage": 0.7997381484916262,
+        "ade": 9.99225439060583,
+        "fde": 18.023379820772497,
+        "retained_per_motion_decile": {
+          "0": 1084,
+          "1": 1455,
+          "2": 1605,
+          "3": 1264,
+          "4": 1144,
+          "5": 1820,
+          "6": 1293,
+          "7": 1437,
+          "8": 1246,
+          "9": 2312
+        }
+      },
+      "adjusted_u_mean_within_motion_deciles": {
+        "nominal_coverage": 0.8,
+        "retained_samples": 14660,
+        "actual_coverage": 0.7997381484916262,
+        "ade": 10.035105097030089,
+        "fde": 18.16615275316236,
+        "retained_per_motion_decile": {
+          "0": 1084,
+          "1": 1455,
+          "2": 1605,
+          "3": 1264,
+          "4": 1144,
+          "5": 1820,
+          "6": 1293,
+          "7": 1437,
+          "8": 1246,
+          "9": 2312
+        }
+      },
+      "within_motion_permutation_reference": {
+        "nominal_coverage": 0.8,
+        "randomized_within_motion_mean_sample_std": {
+          "ade": {
+            "mean": 10.472574622674806,
+            "sample_std": 0.02776767164679875
+          },
+          "fde": {
+            "mean": 19.11079292813789,
+            "sample_std": 0.05812343331386958
+          }
+        },
+        "raw_u_mean": {
+          "ade": 9.99225439060583,
+          "fde": 18.023379820772497
+        },
+        "raw_u_mean_empirical_lower_tail_p": {
+          "ade": 0.009900990099009901,
+          "fde": 0.009900990099009901
+        },
+        "adjusted_u_mean": {
+          "ade": 10.035105097030089,
+          "fde": 18.16615275316236
+        },
+        "adjusted_u_mean_empirical_lower_tail_p": {
+          "ade": 0.009900990099009901,
+          "fde": 0.009900990099009901
+        }
+      }
+    },
+    {
+      "nominal_coverage": 0.7,
+      "raw_u_mean": {
+        "nominal_coverage": 0.7,
+        "retained_samples": 12831,
+        "actual_coverage": 0.6999618133216955,
+        "ade": 8.404765694900913,
+        "fde": 15.240978582989829
+      },
+      "adjusted_u_mean": {
+        "nominal_coverage": 0.7,
+        "retained_samples": 12831,
+        "actual_coverage": 0.6999618133216955,
+        "ade": 9.119672574241912,
+        "fde": 16.485015960028427
+      },
+      "motion_only": {
+        "nominal_coverage": 0.7,
+        "retained_samples": 12831,
+        "actual_coverage": 0.6999618133216955,
+        "ade": 8.283148283404817,
+        "fde": 15.082076448236373
+      },
+      "random_global": {
+        "nominal_coverage": 0.7,
+        "retained_samples": 12831,
+        "actual_coverage": 0.6999618133216955,
+        "ade_mean_sample_std": {
+          "mean": 10.478180969280483,
+          "sample_std": 0.03439510049986518
+        },
+        "fde_mean_sample_std": {
+          "mean": 19.127212013336198,
+          "sample_std": 0.07543051003847785
+        }
+      },
+      "oracle_by_true_ade": {
+        "nominal_coverage": 0.7,
+        "retained_samples": 12831,
+        "actual_coverage": 0.6999618133216955,
+        "ade": 6.5781058194843816,
+        "fde": 11.805822485975925
+      },
+      "raw_u_mean_within_motion_deciles": {
+        "nominal_coverage": 0.7,
+        "retained_samples": 12825,
+        "actual_coverage": 0.6996344989362282,
+        "ade": 9.832782310130343,
+        "fde": 17.69495679642006,
+        "retained_per_motion_decile": {
+          "0": 948,
+          "1": 1273,
+          "2": 1404,
+          "3": 1106,
+          "4": 1001,
+          "5": 1592,
+          "6": 1131,
+          "7": 1257,
+          "8": 1090,
+          "9": 2023
+        }
+      },
+      "adjusted_u_mean_within_motion_deciles": {
+        "nominal_coverage": 0.7,
+        "retained_samples": 12825,
+        "actual_coverage": 0.6996344989362282,
+        "ade": 9.915895705327982,
+        "fde": 17.919816698883157,
+        "retained_per_motion_decile": {
+          "0": 948,
+          "1": 1273,
+          "2": 1404,
+          "3": 1106,
+          "4": 1001,
+          "5": 1592,
+          "6": 1131,
+          "7": 1257,
+          "8": 1090,
+          "9": 2023
+        }
+      },
+      "within_motion_permutation_reference": {
+        "nominal_coverage": 0.7,
+        "randomized_within_motion_mean_sample_std": {
+          "ade": {
+            "mean": 10.47489213949822,
+            "sample_std": 0.03135919428417207
+          },
+          "fde": {
+            "mean": 19.116380283312647,
+            "sample_std": 0.07064706231199028
+          }
+        },
+        "raw_u_mean": {
+          "ade": 9.832782310130343,
+          "fde": 17.69495679642006
+        },
+        "raw_u_mean_empirical_lower_tail_p": {
+          "ade": 0.009900990099009901,
+          "fde": 0.009900990099009901
+        },
+        "adjusted_u_mean": {
+          "ade": 9.915895705327982,
+          "fde": 17.919816698883157
+        },
+        "adjusted_u_mean_empirical_lower_tail_p": {
+          "ade": 0.009900990099009901,
+          "fde": 0.009900990099009901
+        }
+      }
+    },
+    {
+      "nominal_coverage": 0.6,
+      "raw_u_mean": {
+        "nominal_coverage": 0.6,
+        "retained_samples": 10998,
+        "actual_coverage": 0.5999672685614533,
+        "ade": 8.021987935175055,
+        "fde": 14.38782263210976
+      },
+      "adjusted_u_mean": {
+        "nominal_coverage": 0.6,
+        "retained_samples": 10998,
+        "actual_coverage": 0.5999672685614533,
+        "ade": 8.971861246079095,
+        "fde": 16.233633250214346
+      },
+      "motion_only": {
+        "nominal_coverage": 0.6,
+        "retained_samples": 10998,
+        "actual_coverage": 0.5999672685614533,
+        "ade": 8.020890840703537,
+        "fde": 14.558292103985673
+      },
+      "random_global": {
+        "nominal_coverage": 0.6,
+        "retained_samples": 10998,
+        "actual_coverage": 0.5999672685614533,
+        "ade_mean_sample_std": {
+          "mean": 10.476394578121065,
+          "sample_std": 0.04530592968326986
+        },
+        "fde_mean_sample_std": {
+          "mean": 19.121067300411266,
+          "sample_std": 0.10150093663748194
+        }
+      },
+      "oracle_by_true_ade": {
+        "nominal_coverage": 0.6,
+        "retained_samples": 10998,
+        "actual_coverage": 0.5999672685614533,
+        "ade": 5.856987380651598,
+        "fde": 10.509595822213436
+      },
+      "raw_u_mean_within_motion_deciles": {
+        "nominal_coverage": 0.6,
+        "retained_samples": 10995,
+        "actual_coverage": 0.5998036113687196,
+        "ade": 9.74536503517244,
+        "fde": 17.511373270295387,
+        "retained_per_motion_decile": {
+          "0": 813,
+          "1": 1091,
+          "2": 1204,
+          "3": 948,
+          "4": 858,
+          "5": 1365,
+          "6": 970,
+          "7": 1078,
+          "8": 934,
+          "9": 1734
+        }
+      },
+      "adjusted_u_mean_within_motion_deciles": {
+        "nominal_coverage": 0.6,
+        "retained_samples": 10995,
+        "actual_coverage": 0.5998036113687196,
+        "ade": 9.807679556007143,
+        "fde": 17.707532164595666,
+        "retained_per_motion_decile": {
+          "0": 813,
+          "1": 1091,
+          "2": 1204,
+          "3": 948,
+          "4": 858,
+          "5": 1365,
+          "6": 970,
+          "7": 1078,
+          "8": 934,
+          "9": 1734
+        }
+      },
+      "within_motion_permutation_reference": {
+        "nominal_coverage": 0.6,
+        "randomized_within_motion_mean_sample_std": {
+          "ade": {
+            "mean": 10.475161978391181,
+            "sample_std": 0.03906894163783265
+          },
+          "fde": {
+            "mean": 19.11654302609489,
+            "sample_std": 0.09078120305856036
+          }
+        },
+        "raw_u_mean": {
+          "ade": 9.74536503517244,
+          "fde": 17.511373270295387
+        },
+        "raw_u_mean_empirical_lower_tail_p": {
+          "ade": 0.009900990099009901,
+          "fde": 0.009900990099009901
+        },
+        "adjusted_u_mean": {
+          "ade": 9.807679556007143,
+          "fde": 17.707532164595666
+        },
+        "adjusted_u_mean_empirical_lower_tail_p": {
+          "ade": 0.009900990099009901,
+          "fde": 0.009900990099009901
+        }
+      }
+    },
+    {
+      "nominal_coverage": 0.5,
+      "raw_u_mean": {
+        "nominal_coverage": 0.5,
+        "retained_samples": 9165,
+        "actual_coverage": 0.49997272380121105,
+        "ade": 7.7040840357442075,
+        "fde": 13.619014554599719
+      },
+      "adjusted_u_mean": {
+        "nominal_coverage": 0.5,
+        "retained_samples": 9165,
+        "actual_coverage": 0.49997272380121105,
+        "ade": 8.91164782618467,
+        "fde": 16.141442315888277
+      },
+      "motion_only": {
+        "nominal_coverage": 0.5,
+        "retained_samples": 9165,
+        "actual_coverage": 0.49997272380121105,
+        "ade": 7.808676580399673,
+        "fde": 14.095182053962002
+      },
+      "random_global": {
+        "nominal_coverage": 0.5,
+        "retained_samples": 9165,
+        "actual_coverage": 0.49997272380121105,
+        "ade_mean_sample_std": {
+          "mean": 10.476563206211127,
+          "sample_std": 0.0637548273031168
+        },
+        "fde_mean_sample_std": {
+          "mean": 19.129227914766467,
+          "sample_std": 0.13938843397747044
+        }
+      },
+      "oracle_by_true_ade": {
+        "nominal_coverage": 0.5,
+        "retained_samples": 9165,
+        "actual_coverage": 0.49997272380121105,
+        "ade": 5.190594139420882,
+        "fde": 9.324060193208384
+      },
+      "raw_u_mean_within_motion_deciles": {
+        "nominal_coverage": 0.5,
+        "retained_samples": 9161,
+        "actual_coverage": 0.49975451421089956,
+        "ade": 9.637373876108017,
+        "fde": 17.318810290593024,
+        "retained_per_motion_decile": {
+          "0": 677,
+          "1": 909,
+          "2": 1003,
+          "3": 790,
+          "4": 715,
+          "5": 1137,
+          "6": 808,
+          "7": 898,
+          "8": 779,
+          "9": 1445
+        }
+      },
+      "adjusted_u_mean_within_motion_deciles": {
+        "nominal_coverage": 0.5,
+        "retained_samples": 9161,
+        "actual_coverage": 0.49975451421089956,
+        "ade": 9.735534833196768,
+        "fde": 17.57583638155562,
+        "retained_per_motion_decile": {
+          "0": 677,
+          "1": 909,
+          "2": 1003,
+          "3": 790,
+          "4": 715,
+          "5": 1137,
+          "6": 808,
+          "7": 898,
+          "8": 779,
+          "9": 1445
+        }
+      },
+      "within_motion_permutation_reference": {
+        "nominal_coverage": 0.5,
+        "randomized_within_motion_mean_sample_std": {
+          "ade": {
+            "mean": 10.47516846918288,
+            "sample_std": 0.04888771948409444
+          },
+          "fde": {
+            "mean": 19.11653776076945,
+            "sample_std": 0.11175331101006238
+          }
+        },
+        "raw_u_mean": {
+          "ade": 9.637373876108017,
+          "fde": 17.318810290593024
+        },
+        "raw_u_mean_empirical_lower_tail_p": {
+          "ade": 0.009900990099009901,
+          "fde": 0.009900990099009901
+        },
+        "adjusted_u_mean": {
+          "ade": 9.735534833196768,
+          "fde": 17.57583638155562
+        },
+        "adjusted_u_mean_empirical_lower_tail_p": {
+          "ade": 0.009900990099009901,
+          "fde": 0.009900990099009901
+        }
+      }
+    },
+    {
+      "nominal_coverage": 0.4,
+      "raw_u_mean": {
+        "nominal_coverage": 0.4,
+        "retained_samples": 7332,
+        "actual_coverage": 0.39997817904096883,
+        "ade": 7.433481019812628,
+        "fde": 12.94956033031641
+      },
+      "adjusted_u_mean": {
+        "nominal_coverage": 0.4,
+        "retained_samples": 7332,
+        "actual_coverage": 0.39997817904096883,
+        "ade": 8.94755425183891,
+        "fde": 16.287564825412012
+      },
+      "motion_only": {
+        "nominal_coverage": 0.4,
+        "retained_samples": 7332,
+        "actual_coverage": 0.39997817904096883,
+        "ade": 7.602005182230167,
+        "fde": 13.638379352687728
+      },
+      "random_global": {
+        "nominal_coverage": 0.4,
+        "retained_samples": 7332,
+        "actual_coverage": 0.39997817904096883,
+        "ade_mean_sample_std": {
+          "mean": 10.474376608816643,
+          "sample_std": 0.07687985866418542
+        },
+        "fde_mean_sample_std": {
+          "mean": 19.120105065272103,
+          "sample_std": 0.15777711468159605
+        }
+      },
+      "oracle_by_true_ade": {
+        "nominal_coverage": 0.4,
+        "retained_samples": 7332,
+        "actual_coverage": 0.39997817904096883,
+        "ade": 4.567374469385917,
+        "fde": 8.237701948715175
+      },
+      "raw_u_mean_within_motion_deciles": {
+        "nominal_coverage": 0.4,
+        "retained_samples": 7328,
+        "actual_coverage": 0.39975996945065734,
+        "ade": 9.566576819027953,
+        "fde": 17.20982009246932,
+        "retained_per_motion_decile": {
+          "0": 542,
+          "1": 727,
+          "2": 802,
+          "3": 632,
+          "4": 572,
+          "5": 910,
+          "6": 646,
+          "7": 718,
+          "8": 623,
+          "9": 1156
+        }
+      },
+      "adjusted_u_mean_within_motion_deciles": {
+        "nominal_coverage": 0.4,
+        "retained_samples": 7328,
+        "actual_coverage": 0.39975996945065734,
+        "ade": 9.717913312784201,
+        "fde": 17.56949200548259,
+        "retained_per_motion_decile": {
+          "0": 542,
+          "1": 727,
+          "2": 802,
+          "3": 632,
+          "4": 572,
+          "5": 910,
+          "6": 646,
+          "7": 718,
+          "8": 623,
+          "9": 1156
+        }
+      },
+      "within_motion_permutation_reference": {
+        "nominal_coverage": 0.4,
+        "randomized_within_motion_mean_sample_std": {
+          "ade": {
+            "mean": 10.482844786505186,
+            "sample_std": 0.058830990319824646
+          },
+          "fde": {
+            "mean": 19.136024228852726,
+            "sample_std": 0.13689634213893664
+          }
+        },
+        "raw_u_mean": {
+          "ade": 9.566576819027953,
+          "fde": 17.20982009246932
+        },
+        "raw_u_mean_empirical_lower_tail_p": {
+          "ade": 0.009900990099009901,
+          "fde": 0.009900990099009901
+        },
+        "adjusted_u_mean": {
+          "ade": 9.717913312784201,
+          "fde": 17.56949200548259
+        },
+        "adjusted_u_mean_empirical_lower_tail_p": {
+          "ade": 0.009900990099009901,
+          "fde": 0.009900990099009901
+        }
+      }
+    },
+    {
+      "nominal_coverage": 0.3,
+      "raw_u_mean": {
+        "nominal_coverage": 0.3,
+        "retained_samples": 5499,
+        "actual_coverage": 0.29998363428072666,
+        "ade": 7.32066377319097,
+        "fde": 12.698290633907435
+      },
+      "adjusted_u_mean": {
+        "nominal_coverage": 0.3,
+        "retained_samples": 5499,
+        "actual_coverage": 0.29998363428072666,
+        "ade": 9.127761637032323,
+        "fde": 16.72135833596087
+      },
+      "motion_only": {
+        "nominal_coverage": 0.3,
+        "retained_samples": 5499,
+        "actual_coverage": 0.29998363428072666,
+        "ade": 7.333990489283728,
+        "fde": 13.07413411444503
+      },
+      "random_global": {
+        "nominal_coverage": 0.3,
+        "retained_samples": 5499,
+        "actual_coverage": 0.29998363428072666,
+        "ade_mean_sample_std": {
+          "mean": 10.480656043617875,
+          "sample_std": 0.08944398460813245
+        },
+        "fde_mean_sample_std": {
+          "mean": 19.131736070904754,
+          "sample_std": 0.19502774945329562
+        }
+      },
+      "oracle_by_true_ade": {
+        "nominal_coverage": 0.3,
+        "retained_samples": 5499,
+        "actual_coverage": 0.29998363428072666,
+        "ade": 3.9581633782248753,
+        "fde": 7.201214292918268
+      },
+      "raw_u_mean_within_motion_deciles": {
+        "nominal_coverage": 0.3,
+        "retained_samples": 5496,
+        "actual_coverage": 0.299819977087993,
+        "ade": 9.514375129952622,
+        "fde": 17.060641207124984,
+        "retained_per_motion_decile": {
+          "0": 406,
+          "1": 545,
+          "2": 602,
+          "3": 474,
+          "4": 429,
+          "5": 682,
+          "6": 485,
+          "7": 539,
+          "8": 467,
+          "9": 867
+        }
+      },
+      "adjusted_u_mean_within_motion_deciles": {
+        "nominal_coverage": 0.3,
+        "retained_samples": 5496,
+        "actual_coverage": 0.299819977087993,
+        "ade": 9.70257885570213,
+        "fde": 17.55886852450558,
+        "retained_per_motion_decile": {
+          "0": 406,
+          "1": 545,
+          "2": 602,
+          "3": 474,
+          "4": 429,
+          "5": 682,
+          "6": 485,
+          "7": 539,
+          "8": 467,
+          "9": 867
+        }
+      },
+      "within_motion_permutation_reference": {
+        "nominal_coverage": 0.3,
+        "randomized_within_motion_mean_sample_std": {
+          "ade": {
+            "mean": 10.490647664928362,
+            "sample_std": 0.07788236848658293
+          },
+          "fde": {
+            "mean": 19.145214268673794,
+            "sample_std": 0.17164923400000048
+          }
+        },
+        "raw_u_mean": {
+          "ade": 9.514375129952622,
+          "fde": 17.060641207124984
+        },
+        "raw_u_mean_empirical_lower_tail_p": {
+          "ade": 0.009900990099009901,
+          "fde": 0.009900990099009901
+        },
+        "adjusted_u_mean": {
+          "ade": 9.70257885570213,
+          "fde": 17.55886852450558
+        },
+        "adjusted_u_mean_empirical_lower_tail_p": {
+          "ade": 0.009900990099009901,
+          "fde": 0.009900990099009901
+        }
+      }
+    },
+    {
+      "nominal_coverage": 0.2,
+      "raw_u_mean": {
+        "nominal_coverage": 0.2,
+        "retained_samples": 3666,
+        "actual_coverage": 0.19998908952048441,
+        "ade": 7.247081766305174,
+        "fde": 12.581219866732244
+      },
+      "adjusted_u_mean": {
+        "nominal_coverage": 0.2,
+        "retained_samples": 3666,
+        "actual_coverage": 0.19998908952048441,
+        "ade": 9.378836425980058,
+        "fde": 17.154900060541703
+      },
+      "motion_only": {
+        "nominal_coverage": 0.2,
+        "retained_samples": 3666,
+        "actual_coverage": 0.19998908952048441,
+        "ade": 7.162543453571152,
+        "fde": 12.786459872409019
+      },
+      "random_global": {
+        "nominal_coverage": 0.2,
+        "retained_samples": 3666,
+        "actual_coverage": 0.19998908952048441,
+        "ade_mean_sample_std": {
+          "mean": 10.475810427827025,
+          "sample_std": 0.12886099287429675
+        },
+        "fde_mean_sample_std": {
+          "mean": 19.116126556410272,
+          "sample_std": 0.27103921282142523
+        }
+      },
+      "oracle_by_true_ade": {
+        "nominal_coverage": 0.2,
+        "retained_samples": 3666,
+        "actual_coverage": 0.19998908952048441,
+        "ade": 3.3257147920670103,
+        "fde": 6.058503381496467
+      },
+      "raw_u_mean_within_motion_deciles": {
+        "nominal_coverage": 0.2,
+        "retained_samples": 3663,
+        "actual_coverage": 0.1998254323277508,
+        "ade": 9.273276077445749,
+        "fde": 16.642021850681928,
+        "retained_per_motion_decile": {
+          "0": 271,
+          "1": 363,
+          "2": 401,
+          "3": 316,
+          "4": 286,
+          "5": 455,
+          "6": 323,
+          "7": 359,
+          "8": 311,
+          "9": 578
+        }
+      },
+      "adjusted_u_mean_within_motion_deciles": {
+        "nominal_coverage": 0.2,
+        "retained_samples": 3663,
+        "actual_coverage": 0.1998254323277508,
+        "ade": 9.47167852902077,
+        "fde": 17.136862295525063,
+        "retained_per_motion_decile": {
+          "0": 271,
+          "1": 363,
+          "2": 401,
+          "3": 316,
+          "4": 286,
+          "5": 455,
+          "6": 323,
+          "7": 359,
+          "8": 311,
+          "9": 578
+        }
+      },
+      "within_motion_permutation_reference": {
+        "nominal_coverage": 0.2,
+        "randomized_within_motion_mean_sample_std": {
+          "ade": {
+            "mean": 10.494305294436565,
+            "sample_std": 0.10931775494540741
+          },
+          "fde": {
+            "mean": 19.147908641676228,
+            "sample_std": 0.22683130854854197
+          }
+        },
+        "raw_u_mean": {
+          "ade": 9.273276077445749,
+          "fde": 16.642021850681928
+        },
+        "raw_u_mean_empirical_lower_tail_p": {
+          "ade": 0.009900990099009901,
+          "fde": 0.009900990099009901
+        },
+        "adjusted_u_mean": {
+          "ade": 9.47167852902077,
+          "fde": 17.136862295525063
+        },
+        "adjusted_u_mean_empirical_lower_tail_p": {
+          "ade": 0.009900990099009901,
+          "fde": 0.009900990099009901
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "method": "rank-transform and linear residualization on ranked observed motion, then Pearson correlation",
+  "split_results": {
+    "validation": {
+      "u_mean_vs_ade_given_observed_motion": 0.04835789108527087,
+      "u_mean_vs_fde_given_observed_motion": 0.061601422527217016,
+      "method": "rank-transform each variable; regress ranked U and ranked error separately on intercept + ranked observed motion; Pearson correlation of residuals"
+    },
+    "test": {
+      "u_mean_vs_ade_given_observed_motion": 0.20384027521326448,
+      "u_mean_vs_fde_given_observed_motion": 0.1911121490335889,
+      "method": "rank-transform each variable; regress ranked U and ranked error separately on intercept + ranked observed motion; Pearson correlation of residuals"
+    }
+  }
+}

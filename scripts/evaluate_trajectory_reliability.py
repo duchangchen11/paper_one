@@ -156,11 +156,18 @@ def prediction_diagnostics(
     point_error = np.linalg.norm(mean_pred_px - gt_px, axis=-1)
     ade = point_error.mean(axis=1)
     fde = point_error[:, -1]
+    ensemble_norm = pred.mean(axis=0)
+    point_error_norm = np.linalg.norm(ensemble_norm - gt, axis=-1)
+    ade_norm = point_error_norm.mean(axis=1)
+    fde_norm = point_error_norm[:, -1]
 
     centered = pred_px - mean_pred_px[None, ...]
     spread_by_horizon = np.linalg.norm(centered, axis=-1).mean(axis=0)
     u_mean = spread_by_horizon.mean(axis=1)
     u_endpoint = spread_by_horizon[:, -1]
+    centered_norm = pred - ensemble_norm[None, ...]
+    normalized_spread_by_horizon = np.linalg.norm(centered_norm, axis=-1).mean(axis=0)
+    u_mean_normalized = normalized_spread_by_horizon.mean(axis=1)
 
     pairs = ((0, 1), (0, 2), (1, 2))
     pairwise_by_horizon = np.stack(
@@ -180,23 +187,23 @@ def prediction_diagnostics(
             "fde_normalized": float(errors_norm[:, -1].mean()),
         }
 
-    ensemble_norm = pred.mean(axis=0)
-    ensemble_errors_norm = np.linalg.norm(ensemble_norm - gt, axis=-1)
     return {
         "individual_model_performance": individual,
         "ensemble_mean_performance": {
             "ade_pixel": float(ade.mean()),
             "fde_pixel": float(fde.mean()),
-            "ade_normalized": float(ensemble_errors_norm.mean()),
-            "fde_normalized": float(ensemble_errors_norm[:, -1].mean()),
+            "ade_normalized": float(ade_norm.mean()),
+            "fde_normalized": float(fde_norm.mean()),
         },
         "sample_errors": {"ade_pixel": ade, "fde_pixel": fde},
+        "sample_errors_normalized": {"ade_normalized": ade_norm, "fde_normalized": fde_norm},
         "scores": {
             "u_mean": u_mean,
             "u_endpoint": u_endpoint,
             "u_pairwise": u_pairwise,
             "u_endpoint_pairwise": u_endpoint_pairwise,
         },
+        "scores_normalized": {"u_mean": u_mean_normalized},
         "spread_by_horizon": spread_by_horizon,
         "point_error_by_horizon": point_error,
         "ensemble_prediction_pixel": mean_pred_px,

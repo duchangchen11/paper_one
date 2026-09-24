@@ -1,0 +1,12 @@
+{
+  "b0": 1.1742834299517069,
+  "b1": -0.27236335919193194,
+  "b2": 0.0552373844810387,
+  "fit_split": "validation",
+  "target": "log1p(u_mean)",
+  "predictor": "log1p(observed_motion_magnitude_pixel)",
+  "degree": 2,
+  "fit_sample_count": 2636,
+  "future_gt_not_used": true,
+  "trajectory_error_not_used": true
+}

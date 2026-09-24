@@ -1,0 +1,94 @@
+{
+  "scientific_question": "Does zero-scene ensemble u_mean retain forecast-error ranking signal after controlling observed motion magnitude?",
+  "primary_score": "u_mean",
+  "u_mean_definition": "per future step, mean of the three models' 2D pixel distances from the ensemble mean; averaged across 15 future steps",
+  "motion_definition": "pixel displacement between first and last observed target centers across 15 observation frames; observation only",
+  "no_training": true,
+  "no_intention_or_scene_input": true,
+  "no_future_gt_in_deployable_score_or_adjustment": true,
+  "high_error_thresholds": {
+    "high_ade_pixel_threshold": 13.214974497172895,
+    "high_fde_pixel_threshold": 24.455201836404747,
+    "source": "previous validation-only 80th percentile thresholds; reused unchanged",
+    "validation_quantile": 0.8,
+    "test_percentile_used_for_primary_labels": false
+  },
+  "motion_decile_test_counts": [
+    1355,
+    1819,
+    2007,
+    1581,
+    1431,
+    2275,
+    1617,
+    1797,
+    1558,
+    2891
+  ],
+  "data_alignment": {
+    "validation": {
+      "sample_count": 2636,
+      "shared_dataloader_all_three_models": true,
+      "shuffle": false,
+      "scene_input_all_zeros": true,
+      "sample_order_sha256": "6c36ff00cc2a939f327b3a6a019202f3812849fb11b2d25a3bf9d699b8adc145",
+      "historical_audit_reproduction": {
+        "matches_previous_audit_within_1e-5": true,
+        "metrics": {
+          "ensemble_ade_pixel": {
+            "current": 9.443118544069144,
+            "previous_audit": 9.443118544069144,
+            "absolute_difference": 0.0
+          },
+          "ensemble_fde_pixel": {
+            "current": 17.47554032264492,
+            "previous_audit": 17.47554032264492,
+            "absolute_difference": 0.0
+          },
+          "u_mean_average_pixel": {
+            "current": 1.5841290961230348,
+            "previous_audit": 1.5841290961230348,
+            "absolute_difference": 0.0
+          },
+          "u_mean_motion_spearman": {
+            "current": 0.5843564198937521,
+            "previous_audit": 0.5843564198937521,
+            "absolute_difference": 0.0
+          }
+        }
+      }
+    },
+    "test": {
+      "sample_count": 18331,
+      "shared_dataloader_all_three_models": true,
+      "shuffle": false,
+      "scene_input_all_zeros": true,
+      "sample_order_sha256": "42f1a371cba9954ddafc8e77a74517c2e38a711da9ffccd419abb5e4e67bf839",
+      "historical_audit_reproduction": {
+        "matches_previous_audit_within_1e-5": true,
+        "metrics": {
+          "ensemble_ade_pixel": {
+            "current": 10.472356107967666,
+            "previous_audit": 10.472356107967666,
+            "absolute_difference": 0.0
+          },
+          "ensemble_fde_pixel": {
+            "current": 19.11147528426083,
+            "previous_audit": 19.11147528426083,
+            "absolute_difference": 0.0
+          },
+          "u_mean_average_pixel": {
+            "current": 1.8467400505489078,
+            "previous_audit": 1.8467400505489078,
+            "absolute_difference": 0.0
+          },
+          "u_mean_motion_spearman": {
+            "current": 0.638972329402842,
+            "previous_audit": 0.638972329402842,
+            "absolute_difference": 0.0
+          }
+        }
+      }
+    }
+  }
+}
