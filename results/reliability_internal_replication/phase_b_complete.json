@@ -1,0 +1,21 @@
+{
+  "phase": "PHASE B complete",
+  "completed_at_utc": "2026-09-24T15:13:32.925953+00:00",
+  "split_manifest_sha256": "41270ddb5ec35f777f37956377e4e530381935d1ae44bccc0c74b9c058aaa0ea",
+  "checkpoint_selection_split": "internal_val only",
+  "holdout_evaluated": false,
+  "checkpoints": {
+    "42": {
+      "path": "/home/lrj/ped_intent_project/checkpoints/trajectory_zero_scene_internal_seed42.pt",
+      "sha256": "0f9efd94e0412c6710299d7f0d323deb7a37c0ea4588014e6ff18422f2512f9e"
+    },
+    "123": {
+      "path": "/home/lrj/ped_intent_project/checkpoints/trajectory_zero_scene_internal_seed123.pt",
+      "sha256": "cf9c84f5e806c3ca99e75a8a6fc34d3649794389dc1859780a99a7a405cb91d3"
+    },
+    "2024": {
+      "path": "/home/lrj/ped_intent_project/checkpoints/trajectory_zero_scene_internal_seed2024.pt",
+      "sha256": "0f74da9131a5f2b4f97d71411149e3b5677e118584c305f24266d80b53fe6190"
+    }
+  }
+}

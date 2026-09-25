@@ -1,0 +1,12 @@
+{
+  "phase": "PHASE D holdout access started",
+  "started_at_utc": "2026-09-24T15:20:45.840449+00:00",
+  "protocol_sha256": "777b9131e163176bc0eaa7eca4997784ddb32a1ea8195a1c1eae842d29b7675b",
+  "checkpoint_sha256": {
+    "42": "0f9efd94e0412c6710299d7f0d323deb7a37c0ea4588014e6ff18422f2512f9e",
+    "123": "cf9c84f5e806c3ca99e75a8a6fc34d3649794389dc1859780a99a7a405cb91d3",
+    "2024": "0f74da9131a5f2b4f97d71411149e3b5677e118584c305f24266d80b53fe6190"
+  },
+  "holdout_evaluated_after_protocol_frozen": true,
+  "rerun_forbidden": true
+}

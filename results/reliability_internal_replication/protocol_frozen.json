@@ -1,0 +1,285 @@
+{
+  "phase": "PHASE C; protocol frozen before holdout evaluation",
+  "frozen_at_utc": "2026-09-24T15:18:13.617166+00:00",
+  "split_manifest_sha256": "41270ddb5ec35f777f37956377e4e530381935d1ae44bccc0c74b9c058aaa0ea",
+  "train_npz_sha256": "6da2d1d40a918a218a7d054407d95f2791e2338a760b4836f2ca6d06c59ea19a",
+  "checkpoint_sha256": {
+    "42": "0f9efd94e0412c6710299d7f0d323deb7a37c0ea4588014e6ff18422f2512f9e",
+    "123": "cf9c84f5e806c3ca99e75a8a6fc34d3649794389dc1859780a99a7a405cb91d3",
+    "2024": "0f74da9131a5f2b4f97d71411149e3b5677e118584c305f24266d80b53fe6190"
+  },
+  "model_seeds": [
+    42,
+    123,
+    2024
+  ],
+  "model_config": {
+    "input_dim": 8,
+    "d_model": 128,
+    "num_layers": 3,
+    "nhead": 4,
+    "pred_len": 15,
+    "dropout": 0.1,
+    "max_obs_len": 15,
+    "learning_rate": 0.001,
+    "weight_decay": 0.0001,
+    "batch_size": 512,
+    "epochs": 20,
+    "gradient_clip_norm": 5.0,
+    "loss": "SmoothL1Loss on normalized future coordinates",
+    "optimizer": "AdamW",
+    "scheduler": "ReduceLROnPlateau(mode=min,factor=0.5,patience=2), driven by internal_val pixel ADE"
+  },
+  "scene_mode": "zero",
+  "primary_score": "u_mean",
+  "primary_score_definition": "mean across 15 future steps of the three models' average 2D pixel distance from their per-step ensemble mean",
+  "secondary_scores_fixed": [
+    "motion_only",
+    "adjusted_u_mean"
+  ],
+  "high_error_thresholds": {
+    "high_ade_pixel_threshold": 14.960247728473131,
+    "high_fde_pixel_threshold": 26.810941923553397,
+    "source_split": "internal_val",
+    "quantile": 0.8,
+    "label_rule": "error >= frozen threshold",
+    "holdout_top20_used_for_primary_label": false
+  },
+  "motion_adjustment": {
+    "b0": 1.425159516871413,
+    "b1": -0.26737580192935345,
+    "b2": 0.0574144343900067,
+    "fit_split": "internal_val",
+    "target": "log1p(u_mean)",
+    "predictor": "log1p(observed_motion_magnitude_pixel)",
+    "degree": 2,
+    "fit_sample_count": 4028,
+    "ADE_or_FDE_used": false,
+    "future_gt_used": false,
+    "holdout_used": false
+  },
+  "motion_stratification_cutpoints": {
+    "fit_split": "internal_val",
+    "slow_medium_fast_q33_q67_pixel": [
+      18.248287200927734,
+      58.66926066080728
+    ],
+    "motion_decile_pixel_boundaries": [
+      0.0,
+      6.082762718200684,
+      11.510870361328125,
+      16.509844207763674,
+      21.546457672119146,
+      34.08445358276367,
+      50.522274017333984,
+      63.19750747680664,
+      91.9157211303711,
+      136.42577362060555,
+      306.6178283691406
+    ],
+    "adjusted_u_tertile_q33_q67": [
+      -0.06309032434333636,
+      0.025675294487693158
+    ]
+  },
+  "permutation": {
+    "within_each_motion_decile": true,
+    "repetitions": 500,
+    "seed": 9124
+  },
+  "video_cluster_bootstrap": {
+    "cluster": "scene_id",
+    "repetitions": 2000,
+    "seed": 9124
+  },
+  "track_cluster_bootstrap": {
+    "cluster": "(scene_id,target_id)",
+    "repetitions": 1000,
+    "seed": 9124
+  },
+  "risk_coverage_levels": [
+    1.0,
+    0.9,
+    0.8,
+    0.7,
+    0.6,
+    0.5,
+    0.4,
+    0.3,
+    0.2
+  ],
+  "success_criteria": {
+    "version": "internal replication criteria v1",
+    "decision_source_split": "internal_holdout only",
+    "replicated_conditions": {
+      "partial_spearman_u_ade_given_motion_at_least_0_15": "holdout partial rho >= 0.15",
+      "adjusted_u_ade_spearman_at_least_0_15": "holdout adjusted-U vs ADE rho >= 0.15",
+      "adjusted_video_cluster_ci_lower_above_zero": "video-cluster bootstrap adjusted-U rho 95% lower bound > 0",
+      "adjusted_stratified_20pct_ade_at_least_5pct_better_than_within_motion_random": "adjusted-U motion-decile stratified 20% ADE <= 0.95 * 500-permutation within-motion random ADE mean",
+      "at_least_two_motion_tertiles_have_raw_or_adjusted_rho_above_0_10": "among slow/medium/fast, at least two strata have raw or adjusted U vs ADE rho > 0.10"
+    },
+    "decision_rule": "REPLICATED if at least 4/5 conditions pass and adjusted video-cluster CI lower bound > 0; PARTIAL if 2-3 pass or cluster CI is too wide/crosses zero; NOT_REPLICATED if <=1 pass"
+  },
+  "official_validation_test_used": false,
+  "holdout_evaluated_after_protocol_frozen": false,
+  "internal_val_reliability_summary": {
+    "split": "internal_val",
+    "sample_count": 4028,
+    "individual_model_performance": {
+      "42": {
+        "ade_pixel": 10.979906998267136,
+        "fde_pixel": 20.34204038742188,
+        "ade_normalized": 0.007387785189615406,
+        "fde_normalized": 0.013031489352047197
+      },
+      "123": {
+        "ade_pixel": 11.242395263131986,
+        "fde_pixel": 19.916892871033014,
+        "ade_normalized": 0.007481202444400356,
+        "fde_normalized": 0.012739778253631841
+      },
+      "2024": {
+        "ade_pixel": 10.922285032998511,
+        "fde_pixel": 19.510162595499885,
+        "ade_normalized": 0.0074440582102770925,
+        "fde_normalized": 0.01286787573808388
+      }
+    },
+    "ensemble_mean_performance": {
+      "ade_pixel": 10.608508907358694,
+      "fde_pixel": 19.459793165101306,
+      "ade_normalized": 0.007180957056774458,
+      "fde_normalized": 0.012609320051141555
+    },
+    "fixed_high_error_thresholds_pixel": {
+      "high_ade_pixel_threshold": 14.960247728473131,
+      "high_fde_pixel_threshold": 26.810941923553397,
+      "source_split": "internal_val",
+      "quantile": 0.8,
+      "label_rule": "error >= frozen threshold",
+      "holdout_top20_used_for_primary_label": false
+    },
+    "metrics": {
+      "raw_u_mean": {
+        "spearman_vs_ade": {
+          "rho": 0.5599774977146308,
+          "p_value": 0.0
+        },
+        "spearman_vs_fde": {
+          "rho": 0.46634744772894393,
+          "p_value": 1.0883726648937661e-216
+        },
+        "high_ade": {
+          "auroc": 0.7616152444499893,
+          "auprc": 0.41892497705021825,
+          "positive_count": 806,
+          "sample_count": 4028
+        },
+        "high_fde": {
+          "auroc": 0.7677790562094041,
+          "auprc": 0.426997312937484,
+          "positive_count": 806,
+          "sample_count": 4028
+        }
+      },
+      "motion_only": {
+        "spearman_vs_ade": {
+          "rho": 0.532384298952002,
+          "p_value": 1.0112856037632165e-293
+        },
+        "spearman_vs_fde": {
+          "rho": 0.45970922984879914,
+          "p_value": 7.656274473132274e-210
+        },
+        "high_ade": {
+          "auroc": 0.7708521054844717,
+          "auprc": 0.4187874170860352,
+          "positive_count": 806,
+          "sample_count": 4028
+        },
+        "high_fde": {
+          "auroc": 0.7706553348335651,
+          "auprc": 0.4135571203240895,
+          "positive_count": 806,
+          "sample_count": 4028
+        }
+      },
+      "adjusted_u_mean": {
+        "spearman_vs_ade": {
+          "rho": 0.18767283628348935,
+          "p_value": 2.9945443711924282e-33
+        },
+        "spearman_vs_fde": {
+          "rho": 0.14136392731336928,
+          "p_value": 1.9796101158809637e-19
+        },
+        "high_ade": {
+          "auroc": 0.5708378193961181,
+          "auprc": 0.2723651483248918,
+          "positive_count": 806,
+          "sample_count": 4028
+        },
+        "high_fde": {
+          "auroc": 0.585582910911799,
+          "auprc": 0.2824442437357216,
+          "positive_count": 806,
+          "sample_count": 4028
+        }
+      }
+    },
+    "partial_spearman_raw_u_given_motion": {
+      "u_mean_vs_ade": 0.34028300177985515,
+      "u_mean_vs_fde": 0.2550788151700688
+    },
+    "raw_and_adjusted_u_vs_motion_spearman": {
+      "raw_u_mean": {
+        "rho": 0.6329441492395881,
+        "p_value": 0.0
+      },
+      "adjusted_u_mean": {
+        "rho": -0.08893858727103932,
+        "p_value": 1.5668462773588597e-08
+      }
+    },
+    "normalized_space_sanity": {
+      "u_mean_normalized_vs_ade_normalized": {
+        "rho": 0.5626517472972502,
+        "p_value": 0.0
+      },
+      "u_mean_normalized_vs_fde_normalized": {
+        "rho": 0.49340073607615403,
+        "p_value": 3.256153432032751e-246
+      },
+      "mean_u_mean_normalized": 0.0016196159927114916,
+      "mean_ade_normalized": 0.007180957056774458,
+      "mean_fde_normalized": 0.012609320051141555
+    },
+    "validation_only_cutpoints": {
+      "fit_split": "internal_val",
+      "slow_medium_fast_q33_q67_pixel": [
+        18.248287200927734,
+        58.66926066080728
+      ],
+      "motion_decile_pixel_boundaries": [
+        0.0,
+        6.082762718200684,
+        11.510870361328125,
+        16.509844207763674,
+        21.546457672119146,
+        34.08445358276367,
+        50.522274017333984,
+        63.19750747680664,
+        91.9157211303711,
+        136.42577362060555,
+        306.6178283691406
+      ],
+      "adjusted_u_tertile_q33_q67": [
+        -0.06309032434333636,
+        0.025675294487693158
+      ]
+    },
+    "score_selection": "fixed by protocol: raw_u_mean, motion_only, adjusted_u_mean; no score reselected",
+    "primary_score": "u_mean"
+  },
+  "protocol_sha256": "777b9131e163176bc0eaa7eca4997784ddb32a1ea8195a1c1eae842d29b7675b"
+}

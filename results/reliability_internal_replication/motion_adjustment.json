@@ -1,0 +1,13 @@
+{
+  "b0": 1.425159516871413,
+  "b1": -0.26737580192935345,
+  "b2": 0.0574144343900067,
+  "fit_split": "internal_val",
+  "target": "log1p(u_mean)",
+  "predictor": "log1p(observed_motion_magnitude_pixel)",
+  "degree": 2,
+  "fit_sample_count": 4028,
+  "ADE_or_FDE_used": false,
+  "future_gt_used": false,
+  "holdout_used": false
+}
