@@ -67,6 +67,14 @@ MODEL_CONFIG = {
 RESULT_ROOT = PROJECT_ROOT / "results/reliability_internal_replication"
 CHECKPOINT_ROOT = PROJECT_ROOT / "checkpoints"
 TRAIN_PATH = PROJECT_ROOT / "data/processed/jaad_sequences_scene_15x15/train.npz"
+EXPECTED_MANIFEST_SHA256 = "41270ddb5ec35f777f37956377e4e530381935d1ae44bccc0c74b9c058aaa0ea"
+EXPECTED_PROTOCOL_SHA256 = "777b9131e163176bc0eaa7eca4997784ddb32a1ea8195a1c1eae842d29b7675b"
+EXPECTED_TRAIN_NPZ_SHA256 = "6da2d1d40a918a218a7d054407d95f2791e2338a760b4836f2ca6d06c59ea19a"
+EXPECTED_CHECKPOINT_SHA256 = {
+    "42": "0f9efd94e0412c6710299d7f0d323deb7a37c0ea4588014e6ff18422f2512f9e",
+    "123": "cf9c84f5e806c3ca99e75a8a6fc34d3649794389dc1859780a99a7a405cb91d3",
+    "2024": "0f74da9131a5f2b4f97d71411149e3b5677e118584c305f24266d80b53fe6190",
+}
 
 
 def utc_now() -> str:
@@ -88,10 +96,31 @@ def canonical_sha256(value: dict[str, Any], exclude: tuple[str, ...] = ()) -> st
 
 
 def write_json(path: Path, value: Any) -> None:
+    """Atomically replace one JSON artifact after it has been fully serialized."""
     path.parent.mkdir(parents=True, exist_ok=True)
     temporary = path.with_name(path.name + ".tmp")
     temporary.write_text(json.dumps(value, ensure_ascii=False, indent=2, allow_nan=False) + "\n", encoding="utf-8")
     os.replace(temporary, path)
+
+
+def ordered_sample_metadata_sha256(
+    scene_ids: np.ndarray, target_ids: np.ndarray, obs_end_frame: np.ndarray
+) -> dict[str, Any]:
+    scenes = np.asarray(scene_ids).astype(str).reshape(-1)
+    targets = np.asarray(target_ids).astype(str).reshape(-1)
+    frames = np.asarray(obs_end_frame).reshape(-1)
+    if not (len(scenes) == len(targets) == len(frames)):
+        raise ValueError("scene_id, target_id, and obs_end_frame must have matching lengths")
+    rows = [
+        {"scene_id": scene, "target_id": target, "obs_end_frame": int(frame)}
+        for scene, target, frame in zip(scenes, targets, frames)
+    ]
+    canonical = json.dumps(rows, ensure_ascii=False, separators=(",", ":")).encode("utf-8")
+    return {
+        "sample_count": len(rows),
+        "sha256": hashlib.sha256(canonical).hexdigest(),
+        "rows": rows,
+    }
 
 
 def read_json(path: Path) -> dict[str, Any]:
@@ -249,6 +278,7 @@ class TrainArchiveDataset(Dataset):
             self.future_gt = torch.from_numpy(archive["future_gt"].astype(np.float32))
             self.image_size = torch.from_numpy(archive["image_size"].astype(np.float32))
             self.scene_feat = torch.from_numpy(archive["scene_feat"].astype(np.float32))
+            self.obs_end_frame = archive["obs_end_frame"].copy()
 
     def __len__(self) -> int:
         return len(self.scene_ids)
@@ -573,6 +603,9 @@ def infer_subset(
     return {
         "split": split_name,
         "sample_count": len(subset),
+        "sample_order": ordered_sample_metadata_sha256(
+            subset.scene_ids, base.target_ids[subset.indices], base.obs_end_frame[subset.indices]
+        ),
         "scene_ids": subset.scene_ids.copy(),
         "target_ids": base.target_ids[subset.indices].copy(),
         "image_size": image_size,
@@ -792,6 +825,183 @@ def load_and_verify_frozen_protocol(result_root: Path, train_path: Path) -> dict
     return protocol
 
 
+def validate_recovery_hashes(
+    protocol_sha256: str,
+    manifest_sha256: str,
+    train_npz_sha256: str,
+    checkpoint_sha256: dict[str, str],
+) -> None:
+    """Require the exact protocol, split, data archive, and model artifacts frozen earlier."""
+    if protocol_sha256 != EXPECTED_PROTOCOL_SHA256:
+        raise RuntimeError("Frozen protocol SHA256 differs from the authorized recovery protocol")
+    if manifest_sha256 != EXPECTED_MANIFEST_SHA256:
+        raise RuntimeError("Split manifest SHA256 differs from the frozen manifest")
+    if train_npz_sha256 != EXPECTED_TRAIN_NPZ_SHA256:
+        raise RuntimeError("train.npz SHA256 differs from the frozen archive")
+    if checkpoint_sha256 != EXPECTED_CHECKPOINT_SHA256:
+        raise RuntimeError("Checkpoint SHA256 values differ from the three frozen models")
+
+
+def holdout_output_presence(result_root: Path) -> dict[str, bool]:
+    return {
+        "internal_holdout_reliability_exists": (result_root / "internal_holdout_reliability.json").is_file(),
+        "decision_exists": (result_root / "decision.json").is_file(),
+        "cluster_bootstrap_exists": (result_root / "cluster_bootstrap.json").is_file(),
+        "risk_coverage_exists": (result_root / "risk_coverage.json").is_file(),
+    }
+
+
+def validate_holdout_access_state(
+    access_record: dict[str, Any] | None,
+    final_outputs_present: dict[str, bool],
+    recovery_requested: bool,
+) -> None:
+    """Enforce normal one-shot execution and the narrowly scoped crash-recovery path."""
+    if not recovery_requested:
+        if access_record is not None or any(final_outputs_present.values()):
+            raise RuntimeError("Holdout was already started; use explicit --recover-holdout only for an incomplete run")
+        return
+
+    if access_record is None:
+        raise RuntimeError("Crash recovery requires the original holdout_access_record.json")
+    phase = str(access_record.get("phase", "")).lower()
+    status = str(access_record.get("status", "")).lower()
+    if status == "completed" or "completed" in phase:
+        raise RuntimeError("Completed holdout evaluation is immutable; recovery is permanently refused")
+    started = (
+        status in ("started", "running")
+        or "access started" in phase
+        or "evaluation started" in phase
+        or "evaluation running" in phase
+    )
+    if not started:
+        raise RuntimeError("Access record does not prove that an interrupted holdout evaluation had started")
+    if final_outputs_present.get("decision_exists", False):
+        if all(final_outputs_present.values()):
+            return  # Caller may finalize the audit record without rereading holdout.
+        raise RuntimeError("decision.json exists with incomplete outputs; refusing a second holdout evaluation")
+
+
+def frozen_recovery_parameters(protocol: dict[str, Any]) -> tuple[dict[str, Any], dict[str, Any], dict[str, Any]]:
+    """Return the already-frozen thresholds, adjustment, and motion cutpoints verbatim."""
+    return (
+        protocol["high_error_thresholds"],
+        protocol["motion_adjustment"],
+        protocol["motion_stratification_cutpoints"],
+    )
+
+
+def verify_frozen_holdout_metadata(train_path: Path, manifest: dict[str, Any]) -> None:
+    """Verify the manifest's fixed 21-video/3277-sample holdout using IDs only."""
+    holdout = manifest["splits"]["internal_holdout"]
+    if holdout["video_count"] != 21 or holdout["sample_count"] != 3277:
+        raise RuntimeError("Frozen internal_holdout must remain exactly 21 videos / 3277 samples")
+    expected_ids = set(holdout["scene_ids"])
+    with np.load(train_path, allow_pickle=False) as archive:
+        scene_ids = archive["scene_id"].astype(str)
+    actual_ids = set(scene_ids.tolist())
+    sample_count = int(np.isin(scene_ids, list(expected_ids)).sum())
+    if actual_ids.intersection(expected_ids) != expected_ids or sample_count != 3277:
+        raise RuntimeError("Frozen holdout IDs/sample count no longer match train.npz metadata")
+
+
+def begin_holdout_recovery(
+    result_root: Path,
+    access_record: dict[str, Any],
+    protocol_sha256: str,
+    manifest_sha256: str,
+    train_npz_sha256: str,
+    checkpoint_sha256: dict[str, str],
+    final_outputs_present: dict[str, bool],
+) -> tuple[dict[str, Any], dict[str, Any]]:
+    """Persist an auditable recovery attempt before re-entering frozen PHASE D."""
+    now = utc_now()
+    audit_path = result_root / "holdout_recovery_audit.json"
+    reason = "Explicit user authorization to re-execute the exact frozen PHASE D after interrupted computation."
+    if audit_path.exists():
+        audit = read_json(audit_path)
+        for key, value in (
+            ("protocol_sha256", protocol_sha256),
+            ("manifest_sha256", manifest_sha256),
+            ("train_npz_sha256", train_npz_sha256),
+            ("checkpoint_sha256", checkpoint_sha256),
+        ):
+            if audit.get(key) != value:
+                raise RuntimeError(f"Existing recovery audit {key} does not match current frozen artifacts")
+    else:
+        audit = {
+            "existing_access_record": access_record,
+            "protocol_sha256": protocol_sha256,
+            "manifest_sha256": manifest_sha256,
+            "train_npz_sha256": train_npz_sha256,
+            "checkpoint_sha256": checkpoint_sha256,
+            "final_outputs_present_before_recovery": final_outputs_present,
+            "recovery_authorized": True,
+            "recovery_authorization_reason": reason,
+            "recovery_reason": "interrupted computation after holdout access marker was written",
+            "protocol_changed": False,
+            "checkpoint_changed": False,
+            "split_changed": False,
+            "threshold_changed": False,
+            "adjustment_changed": False,
+            "score_changed": False,
+            "decision_rule_changed": False,
+            "recovery_attempts": [],
+        }
+    attempt = {
+        "attempt": len(audit["recovery_attempts"]) + 1,
+        "started_at_utc": now,
+        "status": "running",
+        "final_outputs_present_before_attempt": final_outputs_present,
+    }
+    audit["recovery_attempts"].append(attempt)
+    audit["status"] = "running"
+    audit["recovery_authorized"] = True
+    audit["last_recovery_started_at_utc"] = now
+    write_json(audit_path, audit)
+
+    updated_access = dict(access_record)
+    updated_access.setdefault("initial_started_at_utc", access_record.get("started_at_utc"))
+    updated_access.update({
+        "phase": "PHASE D holdout evaluation running after crash recovery",
+        "status": "running",
+        "recovered_after_interruption": True,
+        "recovery_started_at_utc": now,
+        "protocol_sha256": protocol_sha256,
+        "checkpoint_sha256": checkpoint_sha256,
+        "holdout_evaluated_after_protocol_frozen": True,
+    })
+    write_json(result_root / "holdout_access_record.json", updated_access)
+    return audit, updated_access
+
+
+def finish_holdout_recovery(
+    result_root: Path,
+    audit: dict[str, Any],
+    access_record: dict[str, Any],
+    error: str | None = None,
+) -> None:
+    """Persist either a completed attempt or an interrupted state that can be resumed."""
+    attempt = audit["recovery_attempts"][-1]
+    if error is None:
+        now = utc_now()
+        attempt.update({"status": "completed", "completed_at_utc": now})
+        audit.update({"status": "completed", "completed_at_utc": now})
+        access_record.update({
+            "phase": "PHASE D holdout evaluation completed after crash recovery",
+            "status": "completed",
+            "recovered_after_interruption": True,
+            "completed_at_utc": now,
+            "rerun_forbidden": True,
+        })
+    else:
+        attempt.update({"status": "interrupted", "error": error, "interrupted_at_utc": utc_now()})
+        audit.update({"status": "interrupted", "last_error": error})
+        access_record.update({"status": "running", "last_recovery_error": error})
+    write_json(result_root / "holdout_recovery_audit.json", audit)
+    write_json(result_root / "holdout_access_record.json", access_record)
+
+
 def _stratified_metrics(
     result: dict[str, Any],
     adjusted: np.ndarray,
@@ -899,157 +1109,225 @@ def _decision_from_holdout(
     }
 
 
-def evaluate_holdout_once(args: argparse.Namespace) -> None:
+def evaluate_holdout_once(args: argparse.Namespace, recover_holdout: bool = False) -> None:
     manifest = load_manifest(args.result_root, args.train_path)
     protocol = load_and_verify_frozen_protocol(args.result_root, args.train_path)
-    if not (args.result_root / "phase_b_complete.json").is_file():
+    phase_b_path = args.result_root / "phase_b_complete.json"
+    if not phase_b_path.is_file():
         raise RuntimeError("Cannot evaluate holdout before all three training runs complete")
-    access_path = args.result_root / "holdout_access_record.json"
-    output_path = args.result_root / "internal_holdout_reliability.json"
-    if access_path.exists() or output_path.exists():
-        raise RuntimeError("Holdout evaluation already started; the one-time holdout guard prevents rerunning")
-    phase_b = read_json(args.result_root / "phase_b_complete.json")
+    phase_b = read_json(phase_b_path)
+
     current_checkpoint_hashes = {str(seed): sha256_file(checkpoint_path(seed)) for seed in SEEDS}
-    frozen_hashes = protocol["checkpoint_sha256"]
-    if current_checkpoint_hashes != frozen_hashes or current_checkpoint_hashes != {
+    train_hash = sha256_file(args.train_path)
+    validate_recovery_hashes(
+        protocol["protocol_sha256"], manifest["manifest_sha256"], train_hash, current_checkpoint_hashes
+    )
+    if current_checkpoint_hashes != protocol["checkpoint_sha256"] or current_checkpoint_hashes != {
         seed: value["sha256"] for seed, value in phase_b["checkpoints"].items()
     }:
-        raise RuntimeError("A checkpoint changed after PHASE C freeze; holdout evaluation is blocked")
-    if protocol["train_npz_sha256"] != sha256_file(args.train_path):
+        raise RuntimeError("A checkpoint differs from PHASE B/PHASE C; holdout evaluation is blocked")
+    if protocol["train_npz_sha256"] != train_hash:
         raise RuntimeError("train.npz changed after protocol freeze")
+    verify_frozen_holdout_metadata(args.train_path, manifest)
 
-    # Write the one-shot access marker before opening holdout samples.
-    write_json(access_path, {
-        "phase": "PHASE D holdout access started",
-        "started_at_utc": utc_now(),
-        "protocol_sha256": protocol["protocol_sha256"],
-        "checkpoint_sha256": current_checkpoint_hashes,
-        "holdout_evaluated_after_protocol_frozen": True,
-        "rerun_forbidden": True,
-    })
-    print(json.dumps({"phase": "PHASE D", "status": "holdout access started once", "protocol_sha256": protocol["protocol_sha256"]}), flush=True)
+    access_path = args.result_root / "holdout_access_record.json"
+    access_record = read_json(access_path) if access_path.exists() else None
+    final_outputs_present = holdout_output_presence(args.result_root)
+    validate_holdout_access_state(access_record, final_outputs_present, recover_holdout)
 
-    base = TrainArchiveDataset(args.train_path)
-    holdout_info = manifest["splits"]["internal_holdout"]
-    holdout_indices = indices_for_split(base.scene_ids, holdout_info["scene_ids"])
-    if not set(base.scene_ids[holdout_indices].tolist()).issubset(set(holdout_info["scene_ids"])):
-        raise RuntimeError("Holdout subset includes out-of-holdout scene_id")
-    device = torch.device(args.device or ("cuda" if torch.cuda.is_available() else "cpu"))
-    models, hashes = _load_frozen_models(base, device, manifest["manifest_sha256"])
-    if hashes != frozen_hashes:
-        raise RuntimeError("Checkpoint hashes changed while preparing the holdout models")
-    result = infer_subset(
-        "internal_holdout", base, holdout_indices, holdout_info["scene_ids"], models, device
-    )
-    thresholds = protocol["high_error_thresholds"]
-    adjustment = protocol["motion_adjustment"]
-    adjusted = apply_motion_adjustment(result["motion"], result["u_mean"], adjustment)
-    report = _reliability_summary(result, adjusted, thresholds)
-    val_cutpoints = protocol["motion_stratification_cutpoints"]
-    report["motion_stratified_metrics"] = _stratified_metrics(
-        result, adjusted, thresholds, val_cutpoints
-    )
-    report["gt_future_endpoint_displacement_diagnostic_only"] = {
-        "raw_u_mean": _simple_corr(result["u_mean"], result["future_endpoint_displacement_diagnostic_only"]),
-        "adjusted_u_mean": _simple_corr(adjusted, result["future_endpoint_displacement_diagnostic_only"]),
-        "note": "post-hoc only; not used in score, adjustment, threshold, or decision",
-    }
+    # If a prior process atomically wrote every final artifact and crashed before
+    # updating the access record, finalize the audit without reading holdout again.
+    if recover_holdout and final_outputs_present["decision_exists"]:
+        required = all(final_outputs_present.values())
+        report = read_json(args.result_root / "internal_holdout_reliability.json") if required else {}
+        decision = read_json(args.result_root / "decision.json")
+        if not required or report.get("protocol_sha256") != protocol["protocol_sha256"]:
+            raise RuntimeError("Final decision/output state is incomplete or tied to another frozen protocol")
+        if decision.get("protocol_sha256") != protocol["protocol_sha256"]:
+            raise RuntimeError("Existing decision does not match the frozen protocol")
+        now = utc_now()
+        access_record.update({
+            "phase": "PHASE D holdout evaluation completed after crash recovery",
+            "status": "completed",
+            "recovered_after_interruption": True,
+            "completed_at_utc": now,
+            "rerun_forbidden": True,
+        })
+        write_json(access_path, access_record)
+        audit_path = args.result_root / "holdout_recovery_audit.json"
+        if audit_path.exists():
+            audit = read_json(audit_path)
+            audit.update({"status": "completed", "completed_at_utc": now, "finalized_without_rerun": True})
+            write_json(audit_path, audit)
+        print(json.dumps({"phase": "PHASE D recovery", "status": "already-computed outputs finalized without holdout reread"}, indent=2))
+        return
 
-    global_risk = global_risk_curves(
-        {"raw_u_mean": result["u_mean"], "adjusted_u_mean": adjusted, "motion_only": result["motion"]},
-        result["ade"], result["fde"], seed=BOOTSTRAP_SEED,
-    )
-    motion_deciles = assign_quantile_strata(
-        result["motion"], np.asarray(val_cutpoints["motion_decile_pixel_boundaries"])
-    )
-    stratified = {
-        "raw_u_mean": stratified_risk_curve(result["u_mean"], motion_deciles, result["ade"], result["fde"]),
-        "adjusted_u_mean": stratified_risk_curve(adjusted, motion_deciles, result["ade"], result["fde"]),
-    }
-    permutation = within_motion_permutation_test(
-        result["u_mean"], adjusted, motion_deciles, result["ade"], result["fde"],
-        repetitions=protocol["permutation"]["repetitions"], seed=protocol["permutation"]["seed"],
-    )
-    video_bootstrap = cluster_bootstrap_metrics(
-        result["scene_ids"],
-        {"raw_u_mean": result["u_mean"], "adjusted_u_mean": adjusted, "motion_only": result["motion"]},
-        result["ade"], result["ade"] >= thresholds["high_ade_pixel_threshold"],
-        repetitions=protocol["video_cluster_bootstrap"]["repetitions"],
-        seed=protocol["video_cluster_bootstrap"]["seed"],
-    )
-    video_bootstrap["cluster_level"] = "scene_id video"
-    track_ids = np.char.add(np.char.add(result["scene_ids"].astype(str), "::"), result["target_ids"].astype(str))
-    track_bootstrap = cluster_bootstrap_metrics(
-        track_ids,
-        {"raw_u_mean": result["u_mean"], "adjusted_u_mean": adjusted},
-        result["ade"], result["ade"] >= thresholds["high_ade_pixel_threshold"],
-        repetitions=protocol["track_cluster_bootstrap"]["repetitions"],
-        seed=protocol["track_cluster_bootstrap"]["seed"],
-    )
-    track_bootstrap["cluster_level"] = "(scene_id,target_id) pedestrian track; secondary only"
-
-    report["primary_score"] = PRIMARY_SCORE
-    report["split_manifest_sha256"] = manifest["manifest_sha256"]
-    report["protocol_sha256"] = protocol["protocol_sha256"]
-    report["holdout_evaluated_after_protocol_frozen"] = True
-    report["official_validation_test_used"] = False
-    report["high_error_threshold_source"] = "internal_val frozen pixel 80th percentile"
-    report["motion_adjustment_source"] = "internal_val frozen coefficients; no refit on holdout"
-    report["shared_ordered_inference"] = True
-    report["ensemble_risk_coverage_global"] = global_risk
-    report["ensemble_risk_coverage_motion_stratified"] = {
-        "strata": "internal_val motion deciles frozen before holdout",
-        "curves": stratified,
-        "within_motion_permutation": permutation,
-    }
-    report["normalized_space_sanity"] = {
-        "u_mean_normalized_vs_ade_normalized": _simple_corr(result["u_mean_normalized"], result["ade_normalized"]),
-        "u_mean_normalized_vs_fde_normalized": _simple_corr(result["u_mean_normalized"], result["fde_normalized"]),
-        "mean_u_mean_normalized": float(np.mean(result["u_mean_normalized"])),
-        "mean_ade_normalized": float(np.mean(result["ade_normalized"])),
-        "mean_fde_normalized": float(np.mean(result["fde_normalized"])),
-    }
-    decision = _decision_from_holdout(report, stratified["adjusted_u_mean"], permutation, video_bootstrap)
-    report["decision"] = decision
-
-    # Only after all holdout diagnostics and decision are complete do we write/augment run outputs.
-    write_json(output_path, report)
-    write_json(args.result_root / "risk_coverage.json", {
-        "global": global_risk,
-        "motion_stratified": report["ensemble_risk_coverage_motion_stratified"],
-        "fixed_motion_deciles_from_internal_val": val_cutpoints["motion_decile_pixel_boundaries"],
-    })
-    write_json(args.result_root / "cluster_bootstrap.json", {
-        "video_level_primary": video_bootstrap,
-        "track_level_secondary": track_bootstrap,
-        "high_ade_threshold_pixel": thresholds["high_ade_pixel_threshold"],
-    })
-    write_json(args.result_root / "decision.json", decision)
-    access_record = read_json(access_path)
-    access_record["phase"] = "PHASE D holdout evaluation completed once"
-    access_record["completed_at_utc"] = utc_now()
-    access_record["status"] = "completed"
-    write_json(access_path, access_record)
-
-    for seed in SEEDS:
-        metrics_path = output_dir(seed) / "metrics.json"
-        metrics = read_json(metrics_path)
-        per_model = report["individual_model_performance"][str(seed)]
-        metrics["internal_holdout"] = {
-            "trajectory_ade_pixel": per_model["ade_pixel"],
-            "trajectory_fde_pixel": per_model["fde_pixel"],
-            "trajectory_ade_normalized": per_model["ade_normalized"],
-            "trajectory_fde_normalized": per_model["fde_normalized"],
-            "evaluated_after_all_checkpoints_and_protocol_frozen": True,
+    recovery_audit = None
+    if recover_holdout:
+        if access_record is None:
+            raise RuntimeError("Crash recovery requires the original holdout access record")
+        recovery_audit, access_record = begin_holdout_recovery(
+            args.result_root,
+            access_record,
+            protocol["protocol_sha256"],
+            manifest["manifest_sha256"],
+            train_hash,
+            current_checkpoint_hashes,
+            final_outputs_present,
+        )
+    else:
+        access_record = {
+            "phase": "PHASE D holdout access started",
+            "status": "started",
+            "started_at_utc": utc_now(),
+            "protocol_sha256": protocol["protocol_sha256"],
+            "checkpoint_sha256": current_checkpoint_hashes,
+            "holdout_evaluated_after_protocol_frozen": True,
+            "rerun_forbidden": True,
         }
-        write_json(metrics_path, metrics)
+        write_json(access_path, access_record)
+
     print(json.dumps({
-        "phase": "PHASE D complete",
-        "decision": decision["decision"],
-        "holdout_ensemble": report["ensemble_mean_performance"],
-        "partial_spearman": report["partial_spearman_raw_u_given_motion"],
-        "results": str(output_path),
-    }, ensure_ascii=False, indent=2), flush=True)
+        "phase": "PHASE D",
+        "status": "crash recovery started" if recover_holdout else "holdout access started once",
+        "protocol_sha256": protocol["protocol_sha256"],
+        "manifest_sha256": manifest["manifest_sha256"],
+    }), flush=True)
+
+    try:
+        base = TrainArchiveDataset(args.train_path)
+        holdout_info = manifest["splits"]["internal_holdout"]
+        holdout_indices = indices_for_split(base.scene_ids, holdout_info["scene_ids"])
+        if len(holdout_indices) != 3277 or set(base.scene_ids[holdout_indices].tolist()) != set(holdout_info["scene_ids"]):
+            raise RuntimeError("Holdout rows/videos differ from the frozen manifest")
+        device = torch.device(args.device or ("cuda" if torch.cuda.is_available() else "cpu"))
+        models, hashes = _load_frozen_models(base, device, manifest["manifest_sha256"])
+        if hashes != current_checkpoint_hashes:
+            raise RuntimeError("Checkpoint hashes changed while preparing the holdout models")
+        result = infer_subset(
+            "internal_holdout", base, holdout_indices, holdout_info["scene_ids"], models, device
+        )
+        thresholds, adjustment, val_cutpoints = frozen_recovery_parameters(protocol)
+        adjusted = apply_motion_adjustment(result["motion"], result["u_mean"], adjustment)
+        report = _reliability_summary(result, adjusted, thresholds)
+        report["motion_stratified_metrics"] = _stratified_metrics(result, adjusted, thresholds, val_cutpoints)
+        report["gt_future_endpoint_displacement_diagnostic_only"] = {
+            "raw_u_mean": _simple_corr(result["u_mean"], result["future_endpoint_displacement_diagnostic_only"]),
+            "adjusted_u_mean": _simple_corr(adjusted, result["future_endpoint_displacement_diagnostic_only"]),
+            "note": "post-hoc only; not used in score, adjustment, threshold, or decision",
+        }
+
+        global_risk = global_risk_curves(
+            {"raw_u_mean": result["u_mean"], "adjusted_u_mean": adjusted, "motion_only": result["motion"]},
+            result["ade"], result["fde"], seed=protocol["permutation"]["seed"],
+        )
+        motion_deciles = assign_quantile_strata(
+            result["motion"], np.asarray(val_cutpoints["motion_decile_pixel_boundaries"])
+        )
+        stratified = {
+            "raw_u_mean": stratified_risk_curve(result["u_mean"], motion_deciles, result["ade"], result["fde"]),
+            "adjusted_u_mean": stratified_risk_curve(adjusted, motion_deciles, result["ade"], result["fde"]),
+        }
+        permutation = within_motion_permutation_test(
+            result["u_mean"], adjusted, motion_deciles, result["ade"], result["fde"],
+            repetitions=protocol["permutation"]["repetitions"], seed=protocol["permutation"]["seed"],
+        )
+        video_bootstrap = cluster_bootstrap_metrics(
+            result["scene_ids"],
+            {"raw_u_mean": result["u_mean"], "adjusted_u_mean": adjusted, "motion_only": result["motion"]},
+            result["ade"], result["ade"] >= thresholds["high_ade_pixel_threshold"],
+            repetitions=protocol["video_cluster_bootstrap"]["repetitions"],
+            seed=protocol["video_cluster_bootstrap"]["seed"],
+        )
+        video_bootstrap["cluster_level"] = "scene_id video"
+        track_ids = np.char.add(np.char.add(result["scene_ids"].astype(str), "::"), result["target_ids"].astype(str))
+        track_bootstrap = cluster_bootstrap_metrics(
+            track_ids,
+            {"raw_u_mean": result["u_mean"], "adjusted_u_mean": adjusted},
+            result["ade"], result["ade"] >= thresholds["high_ade_pixel_threshold"],
+            repetitions=protocol["track_cluster_bootstrap"]["repetitions"],
+            seed=protocol["track_cluster_bootstrap"]["seed"],
+        )
+        track_bootstrap["cluster_level"] = "(scene_id,target_id) pedestrian track; secondary only"
+
+        report["sample_order"] = result["sample_order"]
+        report["primary_score"] = protocol["primary_score"]
+        report["split_manifest_sha256"] = manifest["manifest_sha256"]
+        report["protocol_sha256"] = protocol["protocol_sha256"]
+        report["holdout_evaluated_after_protocol_frozen"] = True
+        report["official_validation_test_used"] = False
+        report["high_error_threshold_source"] = "internal_val frozen pixel 80th percentile"
+        report["motion_adjustment_source"] = "internal_val frozen coefficients; no refit on holdout"
+        report["shared_ordered_inference"] = True
+        report["ensemble_risk_coverage_global"] = global_risk
+        report["ensemble_risk_coverage_motion_stratified"] = {
+            "strata": "internal_val motion deciles frozen before holdout",
+            "curves": stratified,
+            "within_motion_permutation": permutation,
+        }
+        report["normalized_space_sanity"] = {
+            "u_mean_normalized_vs_ade_normalized": _simple_corr(result["u_mean_normalized"], result["ade_normalized"]),
+            "u_mean_normalized_vs_fde_normalized": _simple_corr(result["u_mean_normalized"], result["fde_normalized"]),
+            "mean_u_mean_normalized": float(np.mean(result["u_mean_normalized"])),
+            "mean_ade_normalized": float(np.mean(result["ade_normalized"])),
+            "mean_fde_normalized": float(np.mean(result["fde_normalized"])),
+        }
+        decision = _decision_from_holdout(report, stratified, permutation, video_bootstrap)
+        decision["protocol_sha256"] = protocol["protocol_sha256"]
+        report["decision"] = decision
+
+        # Every file is atomically replaced; decision.json is the final completion sentinel.
+        write_json(args.result_root / "internal_holdout_reliability.json", report)
+        write_json(args.result_root / "risk_coverage.json", {
+            "global": global_risk,
+            "motion_stratified": report["ensemble_risk_coverage_motion_stratified"],
+            "fixed_motion_deciles_from_internal_val": val_cutpoints["motion_decile_pixel_boundaries"],
+        })
+        write_json(args.result_root / "cluster_bootstrap.json", {
+            "video_level_primary": video_bootstrap,
+            "track_level_secondary": track_bootstrap,
+            "high_ade_threshold_pixel": thresholds["high_ade_pixel_threshold"],
+        })
+        for seed in SEEDS:
+            metrics_path = output_dir(seed) / "metrics.json"
+            metrics = read_json(metrics_path)
+            per_model = report["individual_model_performance"][str(seed)]
+            metrics["internal_holdout"] = {
+                "trajectory_ade_pixel": per_model["ade_pixel"],
+                "trajectory_fde_pixel": per_model["fde_pixel"],
+                "trajectory_ade_normalized": per_model["ade_normalized"],
+                "trajectory_fde_normalized": per_model["fde_normalized"],
+                "evaluated_after_all_checkpoints_and_protocol_frozen": True,
+            }
+            write_json(metrics_path, metrics)
+        write_json(args.result_root / "decision.json", decision)
+
+        if recover_holdout:
+            finish_holdout_recovery(args.result_root, recovery_audit, access_record)
+        else:
+            access_record.update({
+                "phase": "PHASE D holdout evaluation completed once",
+                "completed_at_utc": utc_now(),
+                "status": "completed",
+                "rerun_forbidden": True,
+            })
+            write_json(access_path, access_record)
+        print(json.dumps({
+            "phase": "PHASE D complete",
+            "decision": decision["decision"],
+            "holdout_ensemble": report["ensemble_mean_performance"],
+            "partial_spearman": report["partial_spearman_raw_u_given_motion"],
+            "sample_order_sha256": result["sample_order"]["sha256"],
+            "results": str(args.result_root / "internal_holdout_reliability.json"),
+        }, ensure_ascii=False, indent=2), flush=True)
+    except Exception as exc:
+        error = f"{type(exc).__name__}: {exc}"
+        if recover_holdout:
+            finish_holdout_recovery(args.result_root, recovery_audit, access_record, error=error)
+        else:
+            access_record.update({"status": "running", "last_error": error})
+            write_json(access_path, access_record)
+        raise
 
 
 def main() -> None:
@@ -1058,7 +1336,10 @@ def main() -> None:
     parser.add_argument("--train-path", type=Path, default=TRAIN_PATH)
     parser.add_argument("--result-root", type=Path, default=RESULT_ROOT)
     parser.add_argument("--device", default=None)
+    parser.add_argument("--recover-holdout", action="store_true", help="resume only an interrupted frozen PHASE D")
     args = parser.parse_args()
+    if args.recover_holdout and args.phase != "evaluate-holdout":
+        parser.error("--recover-holdout is only valid with evaluate-holdout")
     if args.phase == "prepare":
         manifest = prepare_manifest(args.train_path, args.result_root)
         print(json.dumps({
@@ -1074,7 +1355,7 @@ def main() -> None:
     elif args.phase == "freeze":
         freeze_protocol(args)
     else:
-        evaluate_holdout_once(args)
+        evaluate_holdout_once(args, recover_holdout=args.recover_holdout)
 
 
 if __name__ == "__main__":

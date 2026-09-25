@@ -37,7 +37,10 @@ def rho(value: dict[str, Any] | float | None) -> str:
 def build_summary() -> tuple[dict[str, Any], str]:
     access = read_json(RESULT_ROOT / "holdout_access_record.json")
     if access.get("status") != "completed" or access.get("holdout_evaluated_after_protocol_frozen") is not True:
-        raise RuntimeError("Summary is blocked until the one-time holdout evaluation is completed")
+        raise RuntimeError("Summary is blocked until the frozen holdout evaluation/recovery is completed")
+    recovery_audit = read_json(RESULT_ROOT / "holdout_recovery_audit.json")
+    if recovery_audit.get("status") != "completed" or recovery_audit.get("recovery_authorized") is not True:
+        raise RuntimeError("Recovery audit is not recorded as completed and authorized")
     holdout = read_json(RESULT_ROOT / "internal_holdout_reliability.json")
     decision = read_json(RESULT_ROOT / "decision.json")
     if decision.get("decision_source_split") != "internal_holdout only":
@@ -189,6 +192,7 @@ def build_summary() -> tuple[dict[str, Any], str]:
         "motion_adjustment": adjustment,
         "risk_coverage": risk,
         "cluster_bootstrap": cluster,
+        "holdout_recovery_audit": recovery_audit,
         "previous_official_test_posthoc_comparison": old_comparison,
         "protocol_audit": {
             "official_val_test_used_for_training_or_model_selection": False,
@@ -196,7 +200,9 @@ def build_summary() -> tuple[dict[str, Any], str]:
             "official_val_test_used_for_decision": False,
             "decision_was_determined_from_internal_holdout_only": True,
             "holdout_evaluated_after_protocol_frozen": access["holdout_evaluated_after_protocol_frozen"],
-            "holdout_access_count": 1,
+            "initial_holdout_attempt_count": 1,
+            "recovery_attempt_count": len(recovery_audit["recovery_attempts"]),
+            "total_holdout_computation_attempts": 1 + len(recovery_audit["recovery_attempts"]),
         },
     }
 
@@ -209,19 +215,26 @@ def build_summary() -> tuple[dict[str, Any], str]:
         "train_holdout": len(train_ids & hold_ids),
         "val_holdout": len(val_ids & hold_ids),
     }
+    criterion_rows = [
+        f"| {name} | {passed} |"
+        for name, passed in decision["conditions"].items()
+    ]
     md = [
         "# Independent internal-video replication of motion-controlled trajectory reliability",
         "",
         "## Protocol and blind holdout",
         "",
-        "Only `data/processed/jaad_sequences_scene_15x15/train.npz` was used to create the internal split, train models, select checkpoints, fit motion adjustment, set high-error thresholds, and make the decision. Official `val.npz` and `test.npz` were not opened by the experiment. The holdout was evaluated once after all three checkpoints and the protocol were frozen.",
+        "Only `data/processed/jaad_sequences_scene_15x15/train.npz` was used to create the internal split, train models, select checkpoints, fit motion adjustment, set high-error thresholds, and make the decision. Official `val.npz` and `test.npz` were not opened by the experiment. The initial frozen PHASE D computation was interrupted; one explicitly authorized recovery re-executed the same frozen evaluation without changing models or protocol.",
         f"Manifest seed `{manifest['random_seed']}`; train.npz SHA256 `{manifest['train_npz_sha256']}`; canonical manifest SHA256 `{manifest['manifest_sha256']}`.",
+        f"Frozen protocol SHA256 `{protocol['protocol_sha256']}`; recovery status `{recovery_audit['status']}`; authorized recovery attempts `{len(recovery_audit['recovery_attempts'])}`.",
+        "Frozen checkpoint SHA256 values: " + "; ".join(f"seed {seed} `{value}`" for seed, value in protocol["checkpoint_sha256"].items()) + ".",
         "",
         "| Internal split | Videos | Samples | Unique target IDs |",
         "|---|---:|---:|---:|",
         *split_rows,
         f"Scene overlap counts: `{overlaps}`. All pairwise overlaps are zero: `{all(value == 0 for value in overlaps.values())}`.",
         f"`holdout_evaluated_after_protocol_frozen`: `{access['holdout_evaluated_after_protocol_frozen']}`; one-time access record status: `{access['status']}`.",
+        f"Shared ordered inference sample metadata SHA256: `{holdout['sample_order']['sha256']}` for `{holdout['sample_order']['sample_count']}` rows (ordered scene_id, target_id, obs_end_frame recorded in holdout JSON).",
         "",
         "## Frozen trajectory ensemble",
         "",
@@ -308,6 +321,10 @@ def build_summary() -> tuple[dict[str, Any], str]:
         "",
         decision["rule"],
         f"Frozen criteria passed: `{decision['conditions_passed']}/{decision['conditions_total']}`. Decision source: `{decision['decision_source_split']}`. Official validation/test were not used for the decision: `{not decision['official_validation_test_used_in_decision']}`.",
+        "",
+        "| Frozen replication condition | Passed |",
+        "|---|---:|",
+        *criterion_rows,
         "",
         "No intention classifier or reliability gate was trained. The experiment stops here as instructed.",
     ]

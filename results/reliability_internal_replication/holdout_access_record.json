@@ -1,5 +1,5 @@
 {
-  "phase": "PHASE D holdout access started",
+  "phase": "PHASE D holdout evaluation completed after crash recovery",
   "started_at_utc": "2026-09-24T15:20:45.840449+00:00",
   "protocol_sha256": "777b9131e163176bc0eaa7eca4997784ddb32a1ea8195a1c1eae842d29b7675b",
   "checkpoint_sha256": {
@@ -8,5 +8,10 @@
     "2024": "0f74da9131a5f2b4f97d71411149e3b5677e118584c305f24266d80b53fe6190"
   },
   "holdout_evaluated_after_protocol_frozen": true,
-  "rerun_forbidden": true
+  "rerun_forbidden": true,
+  "initial_started_at_utc": "2026-09-24T15:20:45.840449+00:00",
+  "status": "completed",
+  "recovered_after_interruption": true,
+  "recovery_started_at_utc": "2026-09-25T14:44:48.542148+00:00",
+  "completed_at_utc": "2026-09-25T14:45:14.488330+00:00"
 }

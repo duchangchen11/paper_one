@@ -379,5 +379,12 @@
         "trajectory_fde_pixel": 20.342039108276367
       }
     }
-  ]
+  ],
+  "internal_holdout": {
+    "trajectory_ade_pixel": 10.319763685724652,
+    "trajectory_fde_pixel": 19.217370088484657,
+    "trajectory_ade_normalized": 0.006834457520652939,
+    "trajectory_fde_normalized": 0.012022387461609047,
+    "evaluated_after_all_checkpoints_and_protocol_frozen": true
+  }
 }

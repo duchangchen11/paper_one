@@ -1,0 +1,55 @@
+{
+  "existing_access_record": {
+    "phase": "PHASE D holdout access started",
+    "started_at_utc": "2026-09-24T15:20:45.840449+00:00",
+    "protocol_sha256": "777b9131e163176bc0eaa7eca4997784ddb32a1ea8195a1c1eae842d29b7675b",
+    "checkpoint_sha256": {
+      "42": "0f9efd94e0412c6710299d7f0d323deb7a37c0ea4588014e6ff18422f2512f9e",
+      "123": "cf9c84f5e806c3ca99e75a8a6fc34d3649794389dc1859780a99a7a405cb91d3",
+      "2024": "0f74da9131a5f2b4f97d71411149e3b5677e118584c305f24266d80b53fe6190"
+    },
+    "holdout_evaluated_after_protocol_frozen": true,
+    "rerun_forbidden": true
+  },
+  "protocol_sha256": "777b9131e163176bc0eaa7eca4997784ddb32a1ea8195a1c1eae842d29b7675b",
+  "manifest_sha256": "41270ddb5ec35f777f37956377e4e530381935d1ae44bccc0c74b9c058aaa0ea",
+  "train_npz_sha256": "6da2d1d40a918a218a7d054407d95f2791e2338a760b4836f2ca6d06c59ea19a",
+  "checkpoint_sha256": {
+    "42": "0f9efd94e0412c6710299d7f0d323deb7a37c0ea4588014e6ff18422f2512f9e",
+    "123": "cf9c84f5e806c3ca99e75a8a6fc34d3649794389dc1859780a99a7a405cb91d3",
+    "2024": "0f74da9131a5f2b4f97d71411149e3b5677e118584c305f24266d80b53fe6190"
+  },
+  "final_outputs_present_before_recovery": {
+    "internal_holdout_reliability_exists": false,
+    "decision_exists": false,
+    "cluster_bootstrap_exists": false,
+    "risk_coverage_exists": false
+  },
+  "recovery_authorized": true,
+  "recovery_authorization_reason": "Explicit user authorization to re-execute the exact frozen PHASE D after interrupted computation.",
+  "recovery_reason": "interrupted computation after holdout access marker was written",
+  "protocol_changed": false,
+  "checkpoint_changed": false,
+  "split_changed": false,
+  "threshold_changed": false,
+  "adjustment_changed": false,
+  "score_changed": false,
+  "decision_rule_changed": false,
+  "recovery_attempts": [
+    {
+      "attempt": 1,
+      "started_at_utc": "2026-09-25T14:44:48.542148+00:00",
+      "status": "completed",
+      "final_outputs_present_before_attempt": {
+        "internal_holdout_reliability_exists": false,
+        "decision_exists": false,
+        "cluster_bootstrap_exists": false,
+        "risk_coverage_exists": false
+      },
+      "completed_at_utc": "2026-09-25T14:45:14.488330+00:00"
+    }
+  ],
+  "status": "completed",
+  "last_recovery_started_at_utc": "2026-09-25T14:44:48.542148+00:00",
+  "completed_at_utc": "2026-09-25T14:45:14.488330+00:00"
+}

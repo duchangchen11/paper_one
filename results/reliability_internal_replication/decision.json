@@ -1,0 +1,27 @@
+{
+  "decision": "REPLICATED",
+  "decision_source_split": "internal_holdout only",
+  "official_validation_test_used_in_decision": false,
+  "conditions": {
+    "partial_spearman_u_ade_given_motion_ge_0_15": true,
+    "adjusted_u_ade_spearman_ge_0_15": true,
+    "video_cluster_adjusted_rho_ci_lower_gt_0": true,
+    "adjusted_stratified_20pct_ade_at_least_5pct_better_than_permutation_mean": true,
+    "at_least_two_motion_tertiles_raw_or_adjusted_rho_gt_0_10": true
+  },
+  "conditions_passed": 5,
+  "conditions_total": 5,
+  "inputs": {
+    "partial_spearman_u_ade_given_motion": 0.2922671614497297,
+    "partial_spearman_u_fde_given_motion": 0.24532013497066255,
+    "adjusted_u_vs_ade_rho": 0.1727207432274065,
+    "adjusted_video_cluster_rho_ci_lower": 0.029070833814835263,
+    "adjusted_stratified_20pct_ade": 9.301161323816412,
+    "within_motion_random_20pct_ade_mean": 9.998383008976402,
+    "adjusted_stratified_20pct_relative_ade_gain": 0.06973344435135506,
+    "tertiles_with_raw_or_adjusted_rho_gt_0_10": 3
+  },
+  "rule": "REPLICATED requires at least 4/5 frozen criteria and adjusted video-cluster rho CI lower bound > 0; PARTIAL for 2-3 criteria or insufficient cluster certainty; NOT_REPLICATED for <=1 criterion.",
+  "holdout_evaluated_after_protocol_frozen": true,
+  "protocol_sha256": "777b9131e163176bc0eaa7eca4997784ddb32a1ea8195a1c1eae842d29b7675b"
+}
