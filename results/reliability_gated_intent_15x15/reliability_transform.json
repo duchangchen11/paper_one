@@ -1,0 +1,36 @@
+{
+  "adjusted_u_cdf": {
+    "reference_sha256": "1bbebe57d864a8baf7c798a5eb5adae6f5c7b4e84f48f8e415876984eef86922",
+    "sample_count": 24556,
+    "source": "official_train_oof_adjusted_u"
+  },
+  "cdf_formula": "1 - (count(train_reference <= score) + 0.5) / (N + 1)",
+  "fit_source": "official_train_oof_only",
+  "motion_cdf": {
+    "reference_sha256": "91fd06a88bc02d4ec996ecd6abd79651efb0946a90e1da41af565b4bc8597c09",
+    "sample_count": 24556,
+    "source": "official_train_oof_log1p_motion"
+  },
+  "polynomial": {
+    "b0": 1.6033213630961112,
+    "b1": -0.41989980605522786,
+    "b2": 0.08050920235539792,
+    "degree": 2,
+    "fit_motion_sha256": "06362dcb396c22107379ad9929852845de58f66bbd1adecc3d9be95ae53a9093",
+    "fit_sample_count": 24556,
+    "fit_split": "official_train_oof_only",
+    "fit_u_mean_sha256": "d65e7541a772cffe21c750d94a8674459179629cfdec05d5f29e26c5ecd3d3e1",
+    "future_gt_used": false,
+    "intent_label_used": false,
+    "predictor": "log1p(observed_motion_pixel)",
+    "target": "log1p(u_mean_pixel)",
+    "trajectory_error_used": false
+  },
+  "raw_u_cdf_secondary": {
+    "reference_sha256": "48031853eeeea7948c5a335e26f8473a7e842cdfe6aab6da1a1f9da39f1a4de4",
+    "sample_count": 24556,
+    "source": "official_train_oof_raw_u_secondary"
+  },
+  "transform_sha256": "33e1113b018434a94fb724cc135b0ef75873d4961c03e86ba346be0c96b23850",
+  "validation_or_test_refit": false
+}

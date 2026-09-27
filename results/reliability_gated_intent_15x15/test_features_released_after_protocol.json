@@ -1,0 +1,16 @@
+{
+  "crossing_label_counts": {
+    "0": 2322,
+    "1": 16009
+  },
+  "intent_label_counts": {
+    "0": 2322,
+    "1": 16009
+  },
+  "protocol_sha256": "d4535b05241c7ed60eeac30e113ff04b80ebf8af78f79e80464b0e36fde4f4b9",
+  "released_labeled_feature_cache_sha256": "d3e77f33978e657bcdf5b66bfa0d3efb21948a29342dc556b67373bdeecb69a6",
+  "sample_count": 18331,
+  "source_test_npz_sha256": "23658152706d460493fa6146f6b401648a509cc8708ab5eb6c0892e300de1935",
+  "test_intent_labels_read_after_protocol_freeze": true,
+  "unlabeled_feature_cache_sha256": "54b1c6de657d0fe908051582ffe8764088cef06c32b8585c1fe7f5d56ca46ab1"
+}

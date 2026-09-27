@@ -3,6 +3,7 @@
 
 # Local model checkpoints
 /checkpoints/
+/results/reliability_gated_intent_15x15/cache/
 
 # Generated plots include frames from the JAAD pedestrian dataset
 /figures/

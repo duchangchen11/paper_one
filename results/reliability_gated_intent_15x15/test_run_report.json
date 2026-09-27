@@ -1,0 +1,113 @@
+{
+  "all_commands_passed": true,
+  "environment": {
+    "pytest_plugin_autoload_disabled": true,
+    "python": "/home/lrj/anaconda3/envs/ped_intent/bin/python"
+  },
+  "errors": 0,
+  "failed": 0,
+  "full_suite": {
+    "errors": 0,
+    "exit_code": 0,
+    "failed": 0,
+    "passed": 78,
+    "skipped": 0,
+    "target": "tests",
+    "xfailed": 0,
+    "xpassed": 0
+  },
+  "passed": 78,
+  "runs": [
+    {
+      "command": [
+        "/home/lrj/anaconda3/envs/ped_intent/bin/python",
+        "-m",
+        "pytest",
+        "tests/test_trajectory_reliability.py",
+        "-q"
+      ],
+      "errors": 0,
+      "exit_code": 0,
+      "failed": 0,
+      "output_tail": ".....                                                                    [100%]\n5 passed in 1.68s",
+      "passed": 5,
+      "skipped": 0,
+      "target": "tests/test_trajectory_reliability.py",
+      "xfailed": 0,
+      "xpassed": 0
+    },
+    {
+      "command": [
+        "/home/lrj/anaconda3/envs/ped_intent/bin/python",
+        "-m",
+        "pytest",
+        "tests/test_trajectory_reliability_deconfounding.py",
+        "-q"
+      ],
+      "errors": 0,
+      "exit_code": 0,
+      "failed": 0,
+      "output_tail": "........                                                                 [100%]\n8 passed in 1.66s",
+      "passed": 8,
+      "skipped": 0,
+      "target": "tests/test_trajectory_reliability_deconfounding.py",
+      "xfailed": 0,
+      "xpassed": 0
+    },
+    {
+      "command": [
+        "/home/lrj/anaconda3/envs/ped_intent/bin/python",
+        "-m",
+        "pytest",
+        "tests/test_reliability_internal_replication.py",
+        "-q"
+      ],
+      "errors": 0,
+      "exit_code": 0,
+      "failed": 0,
+      "output_tail": "....................                                                     [100%]\n20 passed in 1.75s",
+      "passed": 20,
+      "skipped": 0,
+      "target": "tests/test_reliability_internal_replication.py",
+      "xfailed": 0,
+      "xpassed": 0
+    },
+    {
+      "command": [
+        "/home/lrj/anaconda3/envs/ped_intent/bin/python",
+        "-m",
+        "pytest",
+        "tests/test_reliability_gated_intent.py",
+        "-q"
+      ],
+      "errors": 0,
+      "exit_code": 0,
+      "failed": 0,
+      "output_tail": ".............                                                            [100%]\n13 passed in 2.73s",
+      "passed": 13,
+      "skipped": 0,
+      "target": "tests/test_reliability_gated_intent.py",
+      "xfailed": 0,
+      "xpassed": 0
+    },
+    {
+      "command": [
+        "/home/lrj/anaconda3/envs/ped_intent/bin/python",
+        "-m",
+        "pytest",
+        "tests",
+        "-q"
+      ],
+      "errors": 0,
+      "exit_code": 0,
+      "failed": 0,
+      "output_tail": "........................................................................ [ 92%]\n......                                                                   [100%]\n=============================== warnings summary ===============================\ntests/test_fixed_base_social_residual.py: 8 warnings\ntests/test_fixed_base_social_residual_visible.py: 7 warnings\ntests/test_residual_social_joint.py: 7 warnings\ntests/test_scene_ablation.py: 5 warnings\n  /home/lrj/anaconda3/envs/ped_intent/lib/python3.10/site-packages/torch/nn/modules/transformer.py:379: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True\n    warnings.warn(\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n78 passed, 27 warnings in 2.98s",
+      "passed": 78,
+      "skipped": 0,
+      "target": "tests",
+      "xfailed": 0,
+      "xpassed": 0
+    }
+  ],
+  "skipped": 0
+}

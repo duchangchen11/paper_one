@@ -1,0 +1,1356 @@
+{
+  "D_negligible_residual_warning": {
+    "123": false,
+    "2024": false,
+    "42": false
+  },
+  "motion_gate_test": {
+    "max": 0.999857485294342,
+    "mean": 0.5059893915383503,
+    "min": 0.0007533493335358799,
+    "q10": 0.1278454214334488,
+    "q50": 0.5017102956771851,
+    "q90": 0.9029808044433594,
+    "std": 0.28604073894269855
+  },
+  "motion_gate_validation": {
+    "max": 0.9992873668670654,
+    "mean": 0.5411644253409178,
+    "min": 0.01924094930291176,
+    "q10": 0.17316854745149612,
+    "q50": 0.5562772154808044,
+    "q90": 0.9284725487232208,
+    "std": 0.27479492332731936
+  },
+  "protocol_sha256": "d4535b05241c7ed60eeac30e113ff04b80ebf8af78f79e80464b0e36fde4f4b9",
+  "reliability_gate_test": {
+    "max": 0.9999796152114868,
+    "mean": 0.8311183299302795,
+    "min": 0.0009569572866894305,
+    "q10": 0.38113367557525635,
+    "q50": 0.9498106241226196,
+    "q90": 0.9930569529533386,
+    "std": 0.24591087811553453
+  },
+  "reliability_gate_validation": {
+    "max": 0.9998167753219604,
+    "mean": 0.912926851838194,
+    "min": 0.04693162813782692,
+    "q10": 0.7512725591659546,
+    "q50": 0.9711487293243408,
+    "q90": 0.9968440532684326,
+    "std": 0.16308419879381358
+  },
+  "test": {
+    "gate_by_crossing_label": {
+      "motion": {
+        "0": {
+          "max": 0.9987172484397888,
+          "mean": 0.5695580814168512,
+          "min": 0.04978213831782341,
+          "q10": 0.21509548574686052,
+          "q50": 0.5847415924072266,
+          "q90": 0.922926265001297,
+          "std": 0.2609027600331225
+        },
+        "1": {
+          "max": 0.999857485294342,
+          "mean": 0.49676917179333946,
+          "min": 0.0007533493335358799,
+          "q10": 0.11689131706953049,
+          "q50": 0.48794642090797424,
+          "q90": 0.8994380235671997,
+          "std": 0.2883442115467788
+        },
+        "overall": {
+          "max": 0.999857485294342,
+          "mean": 0.5059893915383503,
+          "min": 0.0007533493335358799,
+          "q10": 0.1278454214334488,
+          "q50": 0.5017102956771851,
+          "q90": 0.9029808044433594,
+          "std": 0.28604073894269855
+        }
+      },
+      "reliability": {
+        "0": {
+          "max": 0.9998167753219604,
+          "mean": 0.9137263042558688,
+          "min": 0.15533249080181122,
+          "q10": 0.8179297268390656,
+          "q50": 0.9668322801589966,
+          "q90": 0.990239042043686,
+          "std": 0.1624480451659266
+        },
+        "1": {
+          "max": 0.9999796152114868,
+          "mean": 0.8191365873864592,
+          "min": 0.0009569572866894305,
+          "q10": 0.3594942390918732,
+          "q50": 0.9456163048744202,
+          "q90": 0.9934641718864441,
+          "std": 0.2535395332218418
+        },
+        "overall": {
+          "max": 0.9999796152114868,
+          "mean": 0.8311183299302795,
+          "min": 0.0009569572866894305,
+          "q10": 0.38113367557525635,
+          "q50": 0.9498106241226196,
+          "q90": 0.9930569529533386,
+          "std": 0.24591087811553453
+        }
+      }
+    },
+    "residuals": {
+      "B_always_future": {
+        "123": {
+          "absolute_delta_logit": {
+            "mean_absolute": 4.345213790558499,
+            "median_absolute": 0.022252820432186127,
+            "q90_absolute": 24.62468910217285
+          },
+          "absolute_gate_times_delta_logit": {
+            "mean_absolute": 4.345213790558499,
+            "median_absolute": 0.022252820432186127,
+            "q90_absolute": 24.62468910217285
+          },
+          "by_reliability_tertile": {
+            "high_uncertainty": {
+              "absolute_delta_logit": {
+                "mean_absolute": 14.39477483988715,
+                "median_absolute": 13.150214672088623,
+                "q90_absolute": 31.244247436523438
+              },
+              "absolute_gate_times_delta_logit": {
+                "mean_absolute": 14.39477483988715,
+                "median_absolute": 13.150214672088623,
+                "q90_absolute": 31.244247436523438
+              },
+              "sample_count": 1516
+            },
+            "low_uncertainty": {
+              "absolute_delta_logit": {
+                "mean_absolute": 2.663267574661442,
+                "median_absolute": 0.022064335644245148,
+                "q90_absolute": 7.150568819046054
+              },
+              "absolute_gate_times_delta_logit": {
+                "mean_absolute": 2.663267574661442,
+                "median_absolute": 0.022064335644245148,
+                "q90_absolute": 7.150568819046054
+              },
+              "sample_count": 15018
+            },
+            "medium_uncertainty": {
+              "absolute_delta_logit": {
+                "mean_absolute": 9.923585365160482,
+                "median_absolute": 0.4326668977737427,
+                "q90_absolute": 28.91066246032715
+              },
+              "absolute_gate_times_delta_logit": {
+                "mean_absolute": 9.923585365160482,
+                "median_absolute": 0.4326668977737427,
+                "q90_absolute": 28.91066246032715
+              },
+              "sample_count": 1797
+            }
+          }
+        },
+        "2024": {
+          "absolute_delta_logit": {
+            "mean_absolute": 0.5320747665947932,
+            "median_absolute": 0.3011998236179352,
+            "q90_absolute": 1.577806830406189
+          },
+          "absolute_gate_times_delta_logit": {
+            "mean_absolute": 0.5320747665947932,
+            "median_absolute": 0.3011998236179352,
+            "q90_absolute": 1.577806830406189
+          },
+          "by_reliability_tertile": {
+            "high_uncertainty": {
+              "absolute_delta_logit": {
+                "mean_absolute": 1.1325590900123355,
+                "median_absolute": 1.052937626838684,
+                "q90_absolute": 2.31832218170166
+              },
+              "absolute_gate_times_delta_logit": {
+                "mean_absolute": 1.1325590900123355,
+                "median_absolute": 1.052937626838684,
+                "q90_absolute": 2.31832218170166
+              },
+              "sample_count": 1516
+            },
+            "low_uncertainty": {
+              "absolute_delta_logit": {
+                "mean_absolute": 0.4321157823074031,
+                "median_absolute": 0.2962280362844467,
+                "q90_absolute": 1.046762084960938
+              },
+              "absolute_gate_times_delta_logit": {
+                "mean_absolute": 0.4321157823074031,
+                "median_absolute": 0.2962280362844467,
+                "q90_absolute": 1.046762084960938
+              },
+              "sample_count": 15018
+            },
+            "medium_uncertainty": {
+              "absolute_delta_logit": {
+                "mean_absolute": 0.8608726473555226,
+                "median_absolute": 0.3222467005252838,
+                "q90_absolute": 2.080379390716553
+              },
+              "absolute_gate_times_delta_logit": {
+                "mean_absolute": 0.8608726473555226,
+                "median_absolute": 0.3222467005252838,
+                "q90_absolute": 2.080379390716553
+              },
+              "sample_count": 1797
+            }
+          }
+        },
+        "42": {
+          "absolute_delta_logit": {
+            "mean_absolute": 0.9067228630581007,
+            "median_absolute": 0.09758292138576508,
+            "q90_absolute": 3.7845823764801025
+          },
+          "absolute_gate_times_delta_logit": {
+            "mean_absolute": 0.9067228630581007,
+            "median_absolute": 0.09758292138576508,
+            "q90_absolute": 3.7845823764801025
+          },
+          "by_reliability_tertile": {
+            "high_uncertainty": {
+              "absolute_delta_logit": {
+                "mean_absolute": 2.333986431152909,
+                "median_absolute": 1.9957022666931152,
+                "q90_absolute": 5.108884334564209
+              },
+              "absolute_gate_times_delta_logit": {
+                "mean_absolute": 2.333986431152909,
+                "median_absolute": 1.9957022666931152,
+                "q90_absolute": 5.108884334564209
+              },
+              "sample_count": 1516
+            },
+            "low_uncertainty": {
+              "absolute_delta_logit": {
+                "mean_absolute": 0.6560998186096375,
+                "median_absolute": 0.07530167326331139,
+                "q90_absolute": 2.210378432273866
+              },
+              "absolute_gate_times_delta_logit": {
+                "mean_absolute": 0.6560998186096375,
+                "median_absolute": 0.07530167326331139,
+                "q90_absolute": 2.210378432273866
+              },
+              "sample_count": 15018
+            },
+            "medium_uncertainty": {
+              "absolute_delta_logit": {
+                "mean_absolute": 1.797165440851807,
+                "median_absolute": 0.6581677198410034,
+                "q90_absolute": 4.829096412658691
+              },
+              "absolute_gate_times_delta_logit": {
+                "mean_absolute": 1.797165440851807,
+                "median_absolute": 0.6581677198410034,
+                "q90_absolute": 4.829096412658691
+              },
+              "sample_count": 1797
+            }
+          }
+        },
+        "mean_across_seeds": {
+          "absolute_delta_logit": {
+            "mean_absolute": {
+              "mean": 1.928003806737131,
+              "n": 3,
+              "sample_std": 2.101729853825217
+            },
+            "median_absolute": {
+              "mean": 0.14034518847862879,
+              "n": 3,
+              "sample_std": 0.1443063278646111
+            },
+            "q90_absolute": {
+              "mean": 9.99569276968638,
+              "n": 3,
+              "sample_std": 12.71704033372602
+            }
+          },
+          "absolute_gate_times_delta_logit": {
+            "mean_absolute": {
+              "mean": 1.928003806737131,
+              "n": 3,
+              "sample_std": 2.101729853825217
+            },
+            "median_absolute": {
+              "mean": 0.14034518847862879,
+              "n": 3,
+              "sample_std": 0.1443063278646111
+            },
+            "q90_absolute": {
+              "mean": 9.99569276968638,
+              "n": 3,
+              "sample_std": 12.71704033372602
+            }
+          }
+        }
+      },
+      "C_motion_gate": {
+        "123": {
+          "absolute_delta_logit": {
+            "mean_absolute": 2.0328540745228416,
+            "median_absolute": 0.12897562980651855,
+            "q90_absolute": 11.965880393981934
+          },
+          "absolute_gate_times_delta_logit": {
+            "mean_absolute": 0.6860688851635098,
+            "median_absolute": 0.07761012017726898,
+            "q90_absolute": 1.5580888986587524
+          },
+          "by_reliability_tertile": {
+            "high_uncertainty": {
+              "absolute_delta_logit": {
+                "mean_absolute": 6.594207304774349,
+                "median_absolute": 6.745098829269409,
+                "q90_absolute": 13.344429016113281
+              },
+              "absolute_gate_times_delta_logit": {
+                "mean_absolute": 3.004285284009464,
+                "median_absolute": 0.5664933919906616,
+                "q90_absolute": 10.028738975524902
+              },
+              "sample_count": 1516
+            },
+            "low_uncertainty": {
+              "absolute_delta_logit": {
+                "mean_absolute": 1.2619887941793144,
+                "median_absolute": 0.12422146275639534,
+                "q90_absolute": 3.2661009073257454
+              },
+              "absolute_gate_times_delta_logit": {
+                "mean_absolute": 0.3263691154260572,
+                "median_absolute": 0.07228270173072815,
+                "q90_absolute": 0.5815073370933533
+              },
+              "sample_count": 15018
+            },
+            "medium_uncertainty": {
+              "absolute_delta_logit": {
+                "mean_absolute": 4.627090737370812,
+                "median_absolute": 0.2680934965610504,
+                "q90_absolute": 13.19095230102539
+              },
+              "absolute_gate_times_delta_logit": {
+                "mean_absolute": 1.736461250921216,
+                "median_absolute": 0.11845555901527405,
+                "q90_absolute": 7.2055238723754895
+              },
+              "sample_count": 1797
+            }
+          }
+        },
+        "2024": {
+          "absolute_delta_logit": {
+            "mean_absolute": 1.0478906143103293,
+            "median_absolute": 0.5998064279556274,
+            "q90_absolute": 3.0784168243408203
+          },
+          "absolute_gate_times_delta_logit": {
+            "mean_absolute": 0.4396437825705372,
+            "median_absolute": 0.32902124524116516,
+            "q90_absolute": 0.6793427467346191
+          },
+          "by_reliability_tertile": {
+            "high_uncertainty": {
+              "absolute_delta_logit": {
+                "mean_absolute": 2.18977416413013,
+                "median_absolute": 1.9694640040397644,
+                "q90_absolute": 4.4331371784210205
+              },
+              "absolute_gate_times_delta_logit": {
+                "mean_absolute": 0.981946240858602,
+                "median_absolute": 0.45628154277801514,
+                "q90_absolute": 2.8363372087478638
+              },
+              "sample_count": 1516
+            },
+            "low_uncertainty": {
+              "absolute_delta_logit": {
+                "mean_absolute": 0.8574479680622729,
+                "median_absolute": 0.5958307087421417,
+                "q90_absolute": 1.9847571372985853
+              },
+              "absolute_gate_times_delta_logit": {
+                "mean_absolute": 0.35966097353403176,
+                "median_absolute": 0.3214418739080429,
+                "q90_absolute": 0.5717989265918733
+              },
+              "sample_count": 15018
+            },
+            "medium_uncertainty": {
+              "absolute_delta_logit": {
+                "mean_absolute": 1.6761444817708144,
+                "median_absolute": 0.6189696192741394,
+                "q90_absolute": 4.011160850524902
+              },
+              "absolute_gate_times_delta_logit": {
+                "mean_absolute": 0.6505793971200825,
+                "median_absolute": 0.3409903347492218,
+                "q90_absolute": 2.0223192691802985
+              },
+              "sample_count": 1797
+            }
+          }
+        },
+        "42": {
+          "absolute_delta_logit": {
+            "mean_absolute": 1.5482280084150093,
+            "median_absolute": 0.38514143228530884,
+            "q90_absolute": 6.2279534339904785
+          },
+          "absolute_gate_times_delta_logit": {
+            "mean_absolute": 0.5814953416101366,
+            "median_absolute": 0.24087873101234436,
+            "q90_absolute": 1.3039649724960327
+          },
+          "by_reliability_tertile": {
+            "high_uncertainty": {
+              "absolute_delta_logit": {
+                "mean_absolute": 3.848219941112171,
+                "median_absolute": 3.1282002925872803,
+                "q90_absolute": 8.400297164916992
+              },
+              "absolute_gate_times_delta_logit": {
+                "mean_absolute": 1.7674507128088126,
+                "median_absolute": 0.3522329777479172,
+                "q90_absolute": 5.7418341636657715
+              },
+              "sample_count": 1516
+            },
+            "low_uncertainty": {
+              "absolute_delta_logit": {
+                "mean_absolute": 1.1491201104301567,
+                "median_absolute": 0.37676386535167694,
+                "q90_absolute": 3.505233669281006
+              },
+              "absolute_gate_times_delta_logit": {
+                "mean_absolute": 0.39466044594279504,
+                "median_absolute": 0.23455800861120224,
+                "q90_absolute": 0.7979452013969422
+              },
+              "sample_count": 15018
+            },
+            "medium_uncertainty": {
+              "absolute_delta_logit": {
+                "mean_absolute": 2.943339105781518,
+                "median_absolute": 0.7505884170532227,
+                "q90_absolute": 7.956689643859864
+              },
+              "absolute_gate_times_delta_logit": {
+                "mean_absolute": 1.142418057467089,
+                "median_absolute": 0.2685786783695221,
+                "q90_absolute": 4.1958180427551275
+              },
+              "sample_count": 1797
+            }
+          }
+        },
+        "mean_across_seeds": {
+          "absolute_delta_logit": {
+            "mean_absolute": {
+              "mean": 1.5429908990827268,
+              "n": 3,
+              "sample_std": 0.4925026141799351
+            },
+            "median_absolute": {
+              "mean": 0.3713078300158183,
+              "n": 3,
+              "sample_std": 0.2357200384677649
+            },
+            "q90_absolute": {
+              "mean": 7.090750217437744,
+              "n": 3,
+              "sample_std": 4.506114278685096
+            }
+          },
+          "absolute_gate_times_delta_logit": {
+            "mean_absolute": {
+              "mean": 0.5690693364480612,
+              "n": 3,
+              "sample_std": 0.12368159523633745
+            },
+            "median_absolute": {
+              "mean": 0.2158366988102595,
+              "n": 3,
+              "sample_std": 0.12756259633639166
+            },
+            "q90_absolute": {
+              "mean": 1.180465539296468,
+              "n": 3,
+              "sample_std": 0.4522032533947851
+            }
+          }
+        }
+      },
+      "D_reliability_gate": {
+        "123": {
+          "absolute_delta_logit": {
+            "mean_absolute": 8.643466841432927,
+            "median_absolute": 0.14688453078269958,
+            "q90_absolute": 49.74556350708008
+          },
+          "absolute_gate_times_delta_logit": {
+            "mean_absolute": 5.204766098959088,
+            "median_absolute": 0.14060261845588684,
+            "q90_absolute": 20.00095558166504
+          },
+          "by_reliability_tertile": {
+            "high_uncertainty": {
+              "absolute_delta_logit": {
+                "mean_absolute": 28.789461219560422,
+                "median_absolute": 26.131107330322266,
+                "q90_absolute": 62.22414016723633
+              },
+              "absolute_gate_times_delta_logit": {
+                "mean_absolute": 4.642006527883266,
+                "median_absolute": 0.6508878469467163,
+                "q90_absolute": 15.104138374328613
+              },
+              "sample_count": 1516
+            },
+            "low_uncertainty": {
+              "absolute_delta_logit": {
+                "mean_absolute": 5.266860169763501,
+                "median_absolute": 0.14619477838277817,
+                "q90_absolute": 13.927877235412627
+              },
+              "absolute_gate_times_delta_logit": {
+                "mean_absolute": 4.718654611116961,
+                "median_absolute": 0.14029905945062637,
+                "q90_absolute": 12.352028179168766
+              },
+              "sample_count": 15018
+            },
+            "medium_uncertainty": {
+              "absolute_delta_logit": {
+                "mean_absolute": 19.866923445712363,
+                "median_absolute": 0.22445623576641083,
+                "q90_absolute": 57.80986022949219
+              },
+              "absolute_gate_times_delta_logit": {
+                "mean_absolute": 9.742087097380908,
+                "median_absolute": 0.11279457062482834,
+                "q90_absolute": 29.826892089843753
+              },
+              "sample_count": 1797
+            }
+          }
+        },
+        "2024": {
+          "absolute_delta_logit": {
+            "mean_absolute": 0.6554830669025636,
+            "median_absolute": 0.37816667556762695,
+            "q90_absolute": 1.8996598720550537
+          },
+          "absolute_gate_times_delta_logit": {
+            "mean_absolute": 0.4735825851599351,
+            "median_absolute": 0.3566489815711975,
+            "q90_absolute": 1.0485646724700928
+          },
+          "by_reliability_tertile": {
+            "high_uncertainty": {
+              "absolute_delta_logit": {
+                "mean_absolute": 1.3872040318322705,
+                "median_absolute": 1.1809865832328796,
+                "q90_absolute": 2.8968379497528076
+              },
+              "absolute_gate_times_delta_logit": {
+                "mean_absolute": 0.23725532030754773,
+                "median_absolute": 0.11291244998574257,
+                "q90_absolute": 0.645043671131134
+              },
+              "sample_count": 1516
+            },
+            "low_uncertainty": {
+              "absolute_delta_logit": {
+                "mean_absolute": 0.5340542063659771,
+                "median_absolute": 0.37591981887817383,
+                "q90_absolute": 1.1662875890731843
+              },
+              "absolute_gate_times_delta_logit": {
+                "mean_absolute": 0.4921340268529215,
+                "median_absolute": 0.359434112906456,
+                "q90_absolute": 1.0244850873947173
+              },
+              "sample_count": 15018
+            },
+            "medium_uncertainty": {
+              "absolute_delta_logit": {
+                "mean_absolute": 1.0529953900550513,
+                "median_absolute": 0.3855630159378052,
+                "q90_absolute": 2.5778025150299073
+              },
+              "absolute_gate_times_delta_logit": {
+                "mean_absolute": 0.5179156859784936,
+                "median_absolute": 0.2318452149629593,
+                "q90_absolute": 1.2676562786102297
+              },
+              "sample_count": 1797
+            }
+          }
+        },
+        "42": {
+          "absolute_delta_logit": {
+            "mean_absolute": 1.309597444214997,
+            "median_absolute": 0.13885533809661865,
+            "q90_absolute": 6.051682949066162
+          },
+          "absolute_gate_times_delta_logit": {
+            "mean_absolute": 0.8494392513904288,
+            "median_absolute": 0.125400111079216,
+            "q90_absolute": 3.0568790435791016
+          },
+          "by_reliability_tertile": {
+            "high_uncertainty": {
+              "absolute_delta_logit": {
+                "mean_absolute": 3.6697206390913486,
+                "median_absolute": 2.8010072708129883,
+                "q90_absolute": 8.401700019836426
+              },
+              "absolute_gate_times_delta_logit": {
+                "mean_absolute": 0.6196652640614837,
+                "median_absolute": 0.1891116127371788,
+                "q90_absolute": 1.958987534046173
+              },
+              "sample_count": 1516
+            },
+            "low_uncertainty": {
+              "absolute_delta_logit": {
+                "mean_absolute": 0.9001032125920688,
+                "median_absolute": 0.13234467059373856,
+                "q90_absolute": 3.1762530803680535
+              },
+              "absolute_gate_times_delta_logit": {
+                "mean_absolute": 0.8133681171963768,
+                "median_absolute": 0.12418510764837265,
+                "q90_absolute": 2.8229034423828128
+              },
+              "sample_count": 15018
+            },
+            "medium_uncertainty": {
+              "absolute_delta_logit": {
+                "mean_absolute": 2.740781421444037,
+                "median_absolute": 0.39560213685035706,
+                "q90_absolute": 7.9169654846191415
+              },
+              "absolute_gate_times_delta_logit": {
+                "mean_absolute": 1.3447390054900121,
+                "median_absolute": 0.18608976900577545,
+                "q90_absolute": 3.8529703617095947
+              },
+              "sample_count": 1797
+            }
+          }
+        },
+        "mean_across_seeds": {
+          "absolute_delta_logit": {
+            "mean_absolute": {
+              "mean": 3.5361824508501627,
+              "n": 3,
+              "sample_std": 4.435113503549766
+            },
+            "median_absolute": {
+              "mean": 0.22130218148231506,
+              "n": 3,
+              "sample_std": 0.1359079435216286
+            },
+            "q90_absolute": {
+              "mean": 19.232302109400432,
+              "n": 3,
+              "sample_std": 26.50668151146713
+            }
+          },
+          "absolute_gate_times_delta_logit": {
+            "mean_absolute": {
+              "mean": 2.175929311836484,
+              "n": 3,
+              "sample_std": 2.6297730454656842
+            },
+            "median_absolute": {
+              "mean": 0.20755057036876678,
+              "n": 3,
+              "sample_std": 0.12934655474712603
+            },
+            "q90_absolute": {
+              "mean": 8.035466432571411,
+              "n": 3,
+              "sample_std": 10.41095718875593
+            }
+          }
+        }
+      }
+    },
+    "split": "official_test"
+  },
+  "validation": {
+    "gate_by_crossing_label": {
+      "motion": {
+        "0": {
+          "max": 0.9641039371490479,
+          "mean": 0.535117181623058,
+          "min": 0.1861180067062378,
+          "q10": 0.24941565096378326,
+          "q50": 0.5002036094665527,
+          "q90": 0.8352119445800781,
+          "std": 0.2007801259099016
+        },
+        "1": {
+          "max": 0.9992873668670654,
+          "mean": 0.5419821835353226,
+          "min": 0.01924094930291176,
+          "q10": 0.16465774178504944,
+          "q50": 0.56523597240448,
+          "q90": 0.9347843527793884,
+          "std": 0.2833136338223146
+        },
+        "overall": {
+          "max": 0.9992873668670654,
+          "mean": 0.5411644253409178,
+          "min": 0.01924094930291176,
+          "q10": 0.17316854745149612,
+          "q50": 0.5562772154808044,
+          "q90": 0.9284725487232208,
+          "std": 0.27479492332731936
+        }
+      },
+      "reliability": {
+        "0": {
+          "max": 0.9995316863059998,
+          "mean": 0.953018831789114,
+          "min": 0.6680986881256104,
+          "q10": 0.9042024612426758,
+          "q50": 0.9611516296863556,
+          "q90": 0.9892861366271972,
+          "std": 0.03980701376577074
+        },
+        "1": {
+          "max": 0.9998167753219604,
+          "mean": 0.9075052834899645,
+          "min": 0.04693162813782692,
+          "q10": 0.7417070269584656,
+          "q50": 0.9724518656730652,
+          "q90": 0.9972105622291565,
+          "std": 0.17242972727158884
+        },
+        "overall": {
+          "max": 0.9998167753219604,
+          "mean": 0.912926851838194,
+          "min": 0.04693162813782692,
+          "q10": 0.7512725591659546,
+          "q50": 0.9711487293243408,
+          "q90": 0.9968440532684326,
+          "std": 0.16308419879381358
+        }
+      }
+    },
+    "residuals": {
+      "B_always_future": {
+        "123": {
+          "absolute_delta_logit": {
+            "mean_absolute": 2.6409051227256124,
+            "median_absolute": 0.02267496008425951,
+            "q90_absolute": 5.559289932250977
+          },
+          "absolute_gate_times_delta_logit": {
+            "mean_absolute": 2.6409051227256124,
+            "median_absolute": 0.02267496008425951,
+            "q90_absolute": 5.559289932250977
+          },
+          "by_reliability_tertile": {
+            "high_uncertainty": {
+              "absolute_delta_logit": {
+                "mean_absolute": 6.996215957995147,
+                "median_absolute": 0.017257846891880035,
+                "q90_absolute": 27.538927459716795
+              },
+              "absolute_gate_times_delta_logit": {
+                "mean_absolute": 6.996215957995147,
+                "median_absolute": 0.017257846891880035,
+                "q90_absolute": 27.538927459716795
+              },
+              "sample_count": 73
+            },
+            "low_uncertainty": {
+              "absolute_delta_logit": {
+                "mean_absolute": 1.9216689505268378,
+                "median_absolute": 0.02261033933609724,
+                "q90_absolute": 4.305666255950928
+              },
+              "absolute_gate_times_delta_logit": {
+                "mean_absolute": 1.9216689505268378,
+                "median_absolute": 0.02261033933609724,
+                "q90_absolute": 4.305666255950928
+              },
+              "sample_count": 2482
+            },
+            "medium_uncertainty": {
+              "absolute_delta_logit": {
+                "mean_absolute": 20.75456547362293,
+                "median_absolute": 26.988332748413086,
+                "q90_absolute": 32.09589767456055
+              },
+              "absolute_gate_times_delta_logit": {
+                "mean_absolute": 20.75456547362293,
+                "median_absolute": 26.988332748413086,
+                "q90_absolute": 32.09589767456055
+              },
+              "sample_count": 81
+            }
+          }
+        },
+        "2024": {
+          "absolute_delta_logit": {
+            "mean_absolute": 0.4279495332084811,
+            "median_absolute": 0.3008362948894501,
+            "q90_absolute": 0.9527705907821655
+          },
+          "absolute_gate_times_delta_logit": {
+            "mean_absolute": 0.4279495332084811,
+            "median_absolute": 0.3008362948894501,
+            "q90_absolute": 0.9527705907821655
+          },
+          "by_reliability_tertile": {
+            "high_uncertainty": {
+              "absolute_delta_logit": {
+                "mean_absolute": 0.7222514479127649,
+                "median_absolute": 0.28614485263824463,
+                "q90_absolute": 2.136967992782593
+              },
+              "absolute_gate_times_delta_logit": {
+                "mean_absolute": 0.7222514479127649,
+                "median_absolute": 0.28614485263824463,
+                "q90_absolute": 2.136967992782593
+              },
+              "sample_count": 73
+            },
+            "low_uncertainty": {
+              "absolute_delta_logit": {
+                "mean_absolute": 0.38397520785666495,
+                "median_absolute": 0.30055101215839386,
+                "q90_absolute": 0.7890054583549501
+              },
+              "absolute_gate_times_delta_logit": {
+                "mean_absolute": 0.38397520785666495,
+                "median_absolute": 0.30055101215839386,
+                "q90_absolute": 0.7890054583549501
+              },
+              "sample_count": 2482
+            },
+            "medium_uncertainty": {
+              "absolute_delta_logit": {
+                "mean_absolute": 1.5101746659220001,
+                "median_absolute": 1.8613264560699463,
+                "q90_absolute": 2.234234571456909
+              },
+              "absolute_gate_times_delta_logit": {
+                "mean_absolute": 1.5101746659220001,
+                "median_absolute": 1.8613264560699463,
+                "q90_absolute": 2.234234571456909
+              },
+              "sample_count": 81
+            }
+          }
+        },
+        "42": {
+          "absolute_delta_logit": {
+            "mean_absolute": 0.5419491842176768,
+            "median_absolute": 0.048606988042593,
+            "q90_absolute": 2.0230116844177246
+          },
+          "absolute_gate_times_delta_logit": {
+            "mean_absolute": 0.5419491842176768,
+            "median_absolute": 0.048606988042593,
+            "q90_absolute": 2.0230116844177246
+          },
+          "by_reliability_tertile": {
+            "high_uncertainty": {
+              "absolute_delta_logit": {
+                "mean_absolute": 1.2283871680855343,
+                "median_absolute": 0.06031718850135803,
+                "q90_absolute": 4.764794158935547
+              },
+              "absolute_gate_times_delta_logit": {
+                "mean_absolute": 1.2283871680855343,
+                "median_absolute": 0.06031718850135803,
+                "q90_absolute": 4.764794158935547
+              },
+              "sample_count": 73
+            },
+            "low_uncertainty": {
+              "absolute_delta_logit": {
+                "mean_absolute": 0.42955731934909824,
+                "median_absolute": 0.0465555377304554,
+                "q90_absolute": 1.8269700050354005
+              },
+              "absolute_gate_times_delta_logit": {
+                "mean_absolute": 0.42955731934909824,
+                "median_absolute": 0.0465555377304554,
+                "q90_absolute": 1.8269700050354005
+              },
+              "sample_count": 2482
+            },
+            "medium_uncertainty": {
+              "absolute_delta_logit": {
+                "mean_absolute": 3.367216292630743,
+                "median_absolute": 4.416675567626953,
+                "q90_absolute": 5.046100616455078
+              },
+              "absolute_gate_times_delta_logit": {
+                "mean_absolute": 3.367216292630743,
+                "median_absolute": 4.416675567626953,
+                "q90_absolute": 5.046100616455078
+              },
+              "sample_count": 81
+            }
+          }
+        },
+        "mean_across_seeds": {
+          "absolute_delta_logit": {
+            "mean_absolute": {
+              "mean": 1.2036012800505902,
+              "n": 3,
+              "sample_std": 1.2460460393716772
+            },
+            "median_absolute": {
+              "mean": 0.12403941433876753,
+              "n": 3,
+              "sample_std": 0.15365861592454613
+            },
+            "q90_absolute": {
+              "mean": 2.845024069150289,
+              "n": 3,
+              "sample_std": 2.4107640658765948
+            }
+          },
+          "absolute_gate_times_delta_logit": {
+            "mean_absolute": {
+              "mean": 1.2036012800505902,
+              "n": 3,
+              "sample_std": 1.2460460393716772
+            },
+            "median_absolute": {
+              "mean": 0.12403941433876753,
+              "n": 3,
+              "sample_std": 0.15365861592454613
+            },
+            "q90_absolute": {
+              "mean": 2.845024069150289,
+              "n": 3,
+              "sample_std": 2.4107640658765948
+            }
+          }
+        }
+      },
+      "C_motion_gate": {
+        "123": {
+          "absolute_delta_logit": {
+            "mean_absolute": 1.2555164403839627,
+            "median_absolute": 0.12322971224784851,
+            "q90_absolute": 2.561384439468384
+          },
+          "absolute_gate_times_delta_logit": {
+            "mean_absolute": 0.5732803428350239,
+            "median_absolute": 0.05967872776091099,
+            "q90_absolute": 1.2217767834663391
+          },
+          "by_reliability_tertile": {
+            "high_uncertainty": {
+              "absolute_delta_logit": {
+                "mean_absolute": 3.3344013210232943,
+                "median_absolute": 0.1147836223244667,
+                "q90_absolute": 13.189357376098632
+              },
+              "absolute_gate_times_delta_logit": {
+                "mean_absolute": 0.8728277491252512,
+                "median_absolute": 0.024364175274968147,
+                "q90_absolute": 2.519989776611327
+              },
+              "sample_count": 73
+            },
+            "low_uncertainty": {
+              "absolute_delta_logit": {
+                "mean_absolute": 0.9258691754622128,
+                "median_absolute": 0.12283310666680336,
+                "q90_absolute": 1.5470225930213957
+              },
+              "absolute_gate_times_delta_logit": {
+                "mean_absolute": 0.4441133203672155,
+                "median_absolute": 0.05857927165925503,
+                "q90_absolute": 0.5961991310119636
+              },
+              "sample_count": 2482
+            },
+            "medium_uncertainty": {
+              "absolute_delta_logit": {
+                "mean_absolute": 9.482996875558186,
+                "median_absolute": 12.800326347351074,
+                "q90_absolute": 13.255003929138184
+              },
+              "absolute_gate_times_delta_logit": {
+                "mean_absolute": 4.261250578710503,
+                "median_absolute": 2.5942723751068115,
+                "q90_absolute": 9.863905906677246
+              },
+              "sample_count": 81
+            }
+          }
+        },
+        "2024": {
+          "absolute_delta_logit": {
+            "mean_absolute": 0.8688585863558912,
+            "median_absolute": 0.6005173921585083,
+            "q90_absolute": 1.7922511100769043
+          },
+          "absolute_gate_times_delta_logit": {
+            "mean_absolute": 0.4300692806874879,
+            "median_absolute": 0.3230748921632767,
+            "q90_absolute": 0.6002278923988342
+          },
+          "by_reliability_tertile": {
+            "high_uncertainty": {
+              "absolute_delta_logit": {
+                "mean_absolute": 1.4558241889901358,
+                "median_absolute": 0.6021612286567688,
+                "q90_absolute": 4.121905136108398
+              },
+              "absolute_gate_times_delta_logit": {
+                "mean_absolute": 0.40568383430985555,
+                "median_absolute": 0.25715649127960205,
+                "q90_absolute": 0.6791545271873473
+              },
+              "sample_count": 73
+            },
+            "low_uncertainty": {
+              "absolute_delta_logit": {
+                "mean_absolute": 0.7839725085246728,
+                "median_absolute": 0.6000905632972717,
+                "q90_absolute": 1.4382980823516847
+              },
+              "absolute_gate_times_delta_logit": {
+                "mean_absolute": 0.40312589178716446,
+                "median_absolute": 0.3188422918319702,
+                "q90_absolute": 0.5920523881912232
+              },
+              "sample_count": 2482
+            },
+            "medium_uncertainty": {
+              "absolute_delta_logit": {
+                "mean_absolute": 2.940941996044583,
+                "median_absolute": 3.6088507175445557,
+                "q90_absolute": 4.272374153137207
+              },
+              "absolute_gate_times_delta_logit": {
+                "mean_absolute": 1.2776449453315617,
+                "median_absolute": 0.769025444984436,
+                "q90_absolute": 2.8208770751953125
+              },
+              "sample_count": 81
+            }
+          }
+        },
+        "42": {
+          "absolute_delta_logit": {
+            "mean_absolute": 1.0553176286941244,
+            "median_absolute": 0.3509879559278488,
+            "q90_absolute": 3.1629761457443237
+          },
+          "absolute_gate_times_delta_logit": {
+            "mean_absolute": 0.5009147064884295,
+            "median_absolute": 0.1981218457221985,
+            "q90_absolute": 1.111244797706604
+          },
+          "by_reliability_tertile": {
+            "high_uncertainty": {
+              "absolute_delta_logit": {
+                "mean_absolute": 2.234471666486296,
+                "median_absolute": 0.38102346658706665,
+                "q90_absolute": 7.860063362121582
+              },
+              "absolute_gate_times_delta_logit": {
+                "mean_absolute": 0.6056546758196942,
+                "median_absolute": 0.2179776430130005,
+                "q90_absolute": 1.1790974140167234
+              },
+              "sample_count": 73
+            },
+            "low_uncertainty": {
+              "absolute_delta_logit": {
+                "mean_absolute": 0.8716151752035636,
+                "median_absolute": 0.3483636677265167,
+                "q90_absolute": 2.7992761850357057
+              },
+              "absolute_gate_times_delta_logit": {
+                "mean_absolute": 0.43296199479735736,
+                "median_absolute": 0.1898268684744835,
+                "q90_absolute": 0.9715843558311463
+              },
+              "sample_count": 2482
+            },
+            "medium_uncertainty": {
+              "absolute_delta_logit": {
+                "mean_absolute": 5.621629292950218,
+                "median_absolute": 7.27952241897583,
+                "q90_absolute": 8.308245658874512
+              },
+              "absolute_gate_times_delta_logit": {
+                "mean_absolute": 2.488724739279276,
+                "median_absolute": 1.5481491088867188,
+                "q90_absolute": 5.691377639770508
+              },
+              "sample_count": 81
+            }
+          }
+        },
+        "mean_across_seeds": {
+          "absolute_delta_logit": {
+            "mean_absolute": {
+              "mean": 1.059897551811326,
+              "n": 3,
+              "sample_std": 0.19336960927771968
+            },
+            "median_absolute": {
+              "mean": 0.35824502011140186,
+              "n": 3,
+              "sample_std": 0.23872658227363008
+            },
+            "q90_absolute": {
+              "mean": 2.505537231763204,
+              "n": 3,
+              "sample_std": 0.6870669281865568
+            }
+          },
+          "absolute_gate_times_delta_logit": {
+            "mean_absolute": {
+              "mean": 0.5014214433369805,
+              "n": 3,
+              "sample_std": 0.07160687583627438
+            },
+            "median_absolute": {
+              "mean": 0.19362515521546206,
+              "n": 3,
+              "sample_std": 0.13175564513372678
+            },
+            "q90_absolute": {
+              "mean": 0.9777498245239258,
+              "n": 3,
+              "sample_std": 0.3315817197850241
+            }
+          }
+        }
+      },
+      "D_reliability_gate": {
+        "123": {
+          "absolute_delta_logit": {
+            "mean_absolute": 5.216010817094834,
+            "median_absolute": 0.14802997559309006,
+            "q90_absolute": 10.734358787536621
+          },
+          "absolute_gate_times_delta_logit": {
+            "mean_absolute": 3.703458986113974,
+            "median_absolute": 0.14200174063444138,
+            "q90_absolute": 10.08751392364502
+          },
+          "by_reliability_tertile": {
+            "high_uncertainty": {
+              "absolute_delta_logit": {
+                "mean_absolute": 14.02889865728682,
+                "median_absolute": 0.12663187086582184,
+                "q90_absolute": 55.38527069091796
+              },
+              "absolute_gate_times_delta_logit": {
+                "mean_absolute": 3.487142924295917,
+                "median_absolute": 0.01378466933965683,
+                "q90_absolute": 14.130313301086426
+              },
+              "sample_count": 73
+            },
+            "low_uncertainty": {
+              "absolute_delta_logit": {
+                "mean_absolute": 3.7697948700554016,
+                "median_absolute": 0.14779218286275864,
+                "q90_absolute": 8.272587203979494
+              },
+              "absolute_gate_times_delta_logit": {
+                "mean_absolute": 3.106207892844237,
+                "median_absolute": 0.14188172668218613,
+                "q90_absolute": 7.7783407688140995
+              },
+              "sample_count": 2482
+            },
+            "medium_uncertainty": {
+              "absolute_delta_logit": {
+                "mean_absolute": 41.58844499262395,
+                "median_absolute": 53.797794342041016,
+                "q90_absolute": 63.94023895263672
+              },
+              "absolute_gate_times_delta_logit": {
+                "mean_absolute": 22.199363751647372,
+                "median_absolute": 28.82720184326172,
+                "q90_absolute": 36.380008697509766
+              },
+              "sample_count": 81
+            }
+          }
+        },
+        "2024": {
+          "absolute_delta_logit": {
+            "mean_absolute": 0.5457169150542157,
+            "median_absolute": 0.37799428403377533,
+            "q90_absolute": 1.040626883506775
+          },
+          "absolute_gate_times_delta_logit": {
+            "mean_absolute": 0.45942321570062117,
+            "median_absolute": 0.368062824010849,
+            "q90_absolute": 0.8793109059333801
+          },
+          "by_reliability_tertile": {
+            "high_uncertainty": {
+              "absolute_delta_logit": {
+                "mean_absolute": 0.9258991573771386,
+                "median_absolute": 0.3775200843811035,
+                "q90_absolute": 2.665440797805786
+              },
+              "absolute_gate_times_delta_logit": {
+                "mean_absolute": 0.20048844097309734,
+                "median_absolute": 0.04898613691329956,
+                "q90_absolute": 0.7365791201591491
+              },
+              "sample_count": 73
+            },
+            "low_uncertainty": {
+              "absolute_delta_logit": {
+                "mean_absolute": 0.49130254773247467,
+                "median_absolute": 0.37768083810806274,
+                "q90_absolute": 0.8076764345169068
+              },
+              "absolute_gate_times_delta_logit": {
+                "mean_absolute": 0.44985910424058145,
+                "median_absolute": 0.36805158853530884,
+                "q90_absolute": 0.7942607939243317
+              },
+              "sample_count": 2482
+            },
+            "medium_uncertainty": {
+              "absolute_delta_logit": {
+                "mean_absolute": 1.8704472360787567,
+                "median_absolute": 2.2824535369873047,
+                "q90_absolute": 2.774688720703125
+              },
+              "absolute_gate_times_delta_logit": {
+                "mean_absolute": 0.9858474527244214,
+                "median_absolute": 1.183971643447876,
+                "q90_absolute": 1.506435513496399
+              },
+              "sample_count": 81
+            }
+          }
+        },
+        "42": {
+          "absolute_delta_logit": {
+            "mean_absolute": 0.8165209558714684,
+            "median_absolute": 0.10146762058138847,
+            "q90_absolute": 2.8292908668518066
+          },
+          "absolute_gate_times_delta_logit": {
+            "mean_absolute": 0.6070915522511406,
+            "median_absolute": 0.09749806299805641,
+            "q90_absolute": 2.56738817691803
+          },
+          "by_reliability_tertile": {
+            "high_uncertainty": {
+              "absolute_delta_logit": {
+                "mean_absolute": 2.0206810649586457,
+                "median_absolute": 0.13695907592773438,
+                "q90_absolute": 7.807545948028564
+              },
+              "absolute_gate_times_delta_logit": {
+                "mean_absolute": 0.4991183663670162,
+                "median_absolute": 0.015731893479824066,
+                "q90_absolute": 2.1315685272216793
+              },
+              "sample_count": 73
+            },
+            "low_uncertainty": {
+              "absolute_delta_logit": {
+                "mean_absolute": 0.6284818045966069,
+                "median_absolute": 0.09905089065432549,
+                "q90_absolute": 2.457609272003174
+              },
+              "absolute_gate_times_delta_logit": {
+                "mean_absolute": 0.5350861604079276,
+                "median_absolute": 0.09739718213677406,
+                "q90_absolute": 2.364785981178284
+              },
+              "sample_count": 2482
+            },
+            "medium_uncertainty": {
+              "absolute_delta_logit": {
+                "mean_absolute": 5.493181270696683,
+                "median_absolute": 7.186629772186279,
+                "q90_absolute": 8.296682357788086
+              },
+              "absolute_gate_times_delta_logit": {
+                "mean_absolute": 2.910788158725165,
+                "median_absolute": 3.7134318351745605,
+                "q90_absolute": 4.6574249267578125
+              },
+              "sample_count": 81
+            }
+          }
+        },
+        "mean_across_seeds": {
+          "absolute_delta_logit": {
+            "mean_absolute": {
+              "mean": 2.1927495626735065,
+              "n": 3,
+              "sample_std": 2.62171988711507
+            },
+            "median_absolute": {
+              "mean": 0.20916396006941795,
+              "n": 3,
+              "sample_std": 0.14805327400463433
+            },
+            "q90_absolute": {
+              "mean": 4.868092179298401,
+              "n": 3,
+              "sample_std": 5.15845351345992
+            }
+          },
+          "absolute_gate_times_delta_logit": {
+            "mean_absolute": {
+              "mean": 1.5899912513552452,
+              "n": 3,
+              "sample_std": 1.8318053618778778
+            },
+            "median_absolute": {
+              "mean": 0.2025208758811156,
+              "n": 3,
+              "sample_std": 0.14508013914292792
+            },
+            "q90_absolute": {
+              "mean": 4.51140433549881,
+              "n": 3,
+              "sample_std": 4.902259664936754
+            }
+          }
+        }
+      }
+    },
+    "split": "official_val"
+  }
+}

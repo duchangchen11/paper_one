@@ -1,0 +1,21 @@
+{
+  "base_frozen": false,
+  "checkpoint": "checkpoints/reliability_gated_intent/A_observed_only_seed42.pt",
+  "checkpoint_sha256": "c9172fdc3ebb265e733eed6237b19d1f4ea1eb30a767233e4890beedd8853ca2",
+  "initial_future_branch_sha256": null,
+  "model_architecture": "ObservedOnlyIntent",
+  "model_parameter_count": 160385,
+  "seed": 42,
+  "selected_epoch": 1,
+  "temperature": 1.9062301786975708,
+  "temperature_fit_split": "official_val",
+  "threshold": 0.4721340475334477,
+  "threshold_fit_split": "official_val",
+  "validation_auc_at_selection": 0.7007219780882943,
+  "validation_brier_at_selection": 0.25067547097873416,
+  "validation_metrics_calibrated": {
+    "brier": 0.2407607052415068,
+    "roc_auc": 0.7007219780882943
+  },
+  "variant": "A_observed_only"
+}

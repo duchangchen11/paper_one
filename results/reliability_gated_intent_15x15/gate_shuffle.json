@@ -1,0 +1,93 @@
+{
+  "diagnostic_only": true,
+  "protocol_sha256": "d4535b05241c7ed60eeac30e113ff04b80ebf8af78f79e80464b0e36fde4f4b9",
+  "results": {
+    "123": {
+      "gate_shuffle_preserves_base_logit_and_future_prediction": true,
+      "motion_decile_cutpoints_train_oof": [
+        9.552486419677734,
+        15.882380485534668,
+        21.662179946899414,
+        28.635643005371094,
+        36.73384475708008,
+        47.434165954589844,
+        60.03751754760742,
+        85.78607177734375,
+        131.87824249267578
+      ],
+      "permutations": 200,
+      "real_auc": 0.6824978375374446,
+      "real_brier": 0.2098259328136591,
+      "real_minus_shuffled_auc_mean": -3.0164718392344803e-05,
+      "real_minus_shuffled_brier_mean": 0.0006958159584354584,
+      "shuffled_auc_mean_std": {
+        "mean": 0.682528002255837,
+        "n": 200,
+        "sample_std": 0.0017357024939845137
+      },
+      "shuffled_brier_mean_std": {
+        "mean": 0.20913011685522365,
+        "n": 200,
+        "sample_std": 9.3845692708987e-05
+      }
+    },
+    "2024": {
+      "gate_shuffle_preserves_base_logit_and_future_prediction": true,
+      "motion_decile_cutpoints_train_oof": [
+        9.552486419677734,
+        15.882380485534668,
+        21.662179946899414,
+        28.635643005371094,
+        36.73384475708008,
+        47.434165954589844,
+        60.03751754760742,
+        85.78607177734375,
+        131.87824249267578
+      ],
+      "permutations": 200,
+      "real_auc": 0.6647469347157169,
+      "real_brier": 0.2206662391432518,
+      "real_minus_shuffled_auc_mean": 0.008645874408285348,
+      "real_minus_shuffled_brier_mean": 0.001961071480037241,
+      "shuffled_auc_mean_std": {
+        "mean": 0.6561010603074315,
+        "n": 200,
+        "sample_std": 0.0029824232062186313
+      },
+      "shuffled_brier_mean_std": {
+        "mean": 0.21870516766321457,
+        "n": 200,
+        "sample_std": 6.165383080308465e-05
+      }
+    },
+    "42": {
+      "gate_shuffle_preserves_base_logit_and_future_prediction": true,
+      "motion_decile_cutpoints_train_oof": [
+        9.552486419677734,
+        15.882380485534668,
+        21.662179946899414,
+        28.635643005371094,
+        36.73384475708008,
+        47.434165954589844,
+        60.03751754760742,
+        85.78607177734375,
+        131.87824249267578
+      ],
+      "permutations": 200,
+      "real_auc": 0.6421883895089373,
+      "real_brier": 0.2123754550998228,
+      "real_minus_shuffled_auc_mean": 0.013936791799229575,
+      "real_minus_shuffled_brier_mean": 0.0013912805627907532,
+      "shuffled_auc_mean_std": {
+        "mean": 0.6282515977097077,
+        "n": 200,
+        "sample_std": 0.001641338328666418
+      },
+      "shuffled_brier_mean_std": {
+        "mean": 0.21098417453703205,
+        "n": 200,
+        "sample_std": 8.226066169909754e-05
+      }
+    }
+  }
+}

@@ -1,0 +1,112 @@
+{
+  "models": [
+    {
+      "best_epoch": 16,
+      "best_val_ade_pixel": 9.912650108337402,
+      "checkpoint": "checkpoints/crossfit_traj_fold0_seed42.pt",
+      "checkpoint_sha256": "13ac3a8361b5f1d506bd8a432f2a31c602cddb7b6816ecd0c975cf2ebd18d5d3",
+      "fold": 0,
+      "heldout_sample_count": 7542,
+      "heldout_scene_ids_sha256": "871f3262175d428890aa5b04108d5f5c176a6b41b2251884f3513f988b80c6bc",
+      "heldout_video_count": 48,
+      "seed": 42,
+      "train_scene_ids_sha256": "46dd3e9a398f90060c3a00a59e614f3e4e76ffbfd1c707b54019e687a8281da7"
+    },
+    {
+      "best_epoch": 20,
+      "best_val_ade_pixel": 10.046160697937012,
+      "checkpoint": "checkpoints/crossfit_traj_fold0_seed123.pt",
+      "checkpoint_sha256": "08842ffbb67769bc7d0c600cf7a1e4ababeb8650da19ebb9867b4b42bf56bfba",
+      "fold": 0,
+      "heldout_sample_count": 7542,
+      "heldout_scene_ids_sha256": "871f3262175d428890aa5b04108d5f5c176a6b41b2251884f3513f988b80c6bc",
+      "heldout_video_count": 48,
+      "seed": 123,
+      "train_scene_ids_sha256": "46dd3e9a398f90060c3a00a59e614f3e4e76ffbfd1c707b54019e687a8281da7"
+    },
+    {
+      "best_epoch": 16,
+      "best_val_ade_pixel": 10.241459846496582,
+      "checkpoint": "checkpoints/crossfit_traj_fold0_seed2024.pt",
+      "checkpoint_sha256": "4a3366e948ba43943125765aef5365f229adb7f5dfd711ab61abddca83623b31",
+      "fold": 0,
+      "heldout_sample_count": 7542,
+      "heldout_scene_ids_sha256": "871f3262175d428890aa5b04108d5f5c176a6b41b2251884f3513f988b80c6bc",
+      "heldout_video_count": 48,
+      "seed": 2024,
+      "train_scene_ids_sha256": "46dd3e9a398f90060c3a00a59e614f3e4e76ffbfd1c707b54019e687a8281da7"
+    },
+    {
+      "best_epoch": 15,
+      "best_val_ade_pixel": 9.94898509979248,
+      "checkpoint": "checkpoints/crossfit_traj_fold1_seed42.pt",
+      "checkpoint_sha256": "a94a2a63ec6a764ea73cc58b279ee8b6fab4c8f454eb4d3a32e2ec812eb2e84d",
+      "fold": 1,
+      "heldout_sample_count": 7165,
+      "heldout_scene_ids_sha256": "3dbdc5a2fa6a2f346bd88f2b0463203f14f94db3725e348a799622a7e057c70c",
+      "heldout_video_count": 48,
+      "seed": 42,
+      "train_scene_ids_sha256": "8136d968c25b55abc0164f1b7728d6234406d8f76b1853d97c79584d9d5f6f00"
+    },
+    {
+      "best_epoch": 19,
+      "best_val_ade_pixel": 10.185930252075195,
+      "checkpoint": "checkpoints/crossfit_traj_fold1_seed123.pt",
+      "checkpoint_sha256": "32caddd7e34f9b7a3bd8d63b3dea12e939fcc76176392a592b08748b1b64676c",
+      "fold": 1,
+      "heldout_sample_count": 7165,
+      "heldout_scene_ids_sha256": "3dbdc5a2fa6a2f346bd88f2b0463203f14f94db3725e348a799622a7e057c70c",
+      "heldout_video_count": 48,
+      "seed": 123,
+      "train_scene_ids_sha256": "8136d968c25b55abc0164f1b7728d6234406d8f76b1853d97c79584d9d5f6f00"
+    },
+    {
+      "best_epoch": 18,
+      "best_val_ade_pixel": 10.073034286499023,
+      "checkpoint": "checkpoints/crossfit_traj_fold1_seed2024.pt",
+      "checkpoint_sha256": "692b57fe646ac457d1a83b3d300fe87ea2e8083b3f6180b29634f7151e17b2fb",
+      "fold": 1,
+      "heldout_sample_count": 7165,
+      "heldout_scene_ids_sha256": "3dbdc5a2fa6a2f346bd88f2b0463203f14f94db3725e348a799622a7e057c70c",
+      "heldout_video_count": 48,
+      "seed": 2024,
+      "train_scene_ids_sha256": "8136d968c25b55abc0164f1b7728d6234406d8f76b1853d97c79584d9d5f6f00"
+    },
+    {
+      "best_epoch": 19,
+      "best_val_ade_pixel": 9.799856185913086,
+      "checkpoint": "checkpoints/crossfit_traj_fold2_seed42.pt",
+      "checkpoint_sha256": "e8a397fb4f1b4b315ad107f501fa954b812d61e5154433f57e2f38161161a1e1",
+      "fold": 2,
+      "heldout_sample_count": 9849,
+      "heldout_scene_ids_sha256": "f780ecc70fcd76169f687ef215aa70fe8d06c028bcf8298d47830e181c0542cf",
+      "heldout_video_count": 48,
+      "seed": 42,
+      "train_scene_ids_sha256": "15d7c5e84ecb70b5b5dba542b7abdd071c8455be09e7bef1b60f2228157b6ceb"
+    },
+    {
+      "best_epoch": 17,
+      "best_val_ade_pixel": 10.109292984008789,
+      "checkpoint": "checkpoints/crossfit_traj_fold2_seed123.pt",
+      "checkpoint_sha256": "f2ec4f167ab9d8683c84a943fc911bfc37325d68021c7116064dc7fc54fabedc",
+      "fold": 2,
+      "heldout_sample_count": 9849,
+      "heldout_scene_ids_sha256": "f780ecc70fcd76169f687ef215aa70fe8d06c028bcf8298d47830e181c0542cf",
+      "heldout_video_count": 48,
+      "seed": 123,
+      "train_scene_ids_sha256": "15d7c5e84ecb70b5b5dba542b7abdd071c8455be09e7bef1b60f2228157b6ceb"
+    },
+    {
+      "best_epoch": 19,
+      "best_val_ade_pixel": 9.748008728027344,
+      "checkpoint": "checkpoints/crossfit_traj_fold2_seed2024.pt",
+      "checkpoint_sha256": "1ddb9aba2da2461b6102f047a3feb7bda66c1962351e3396e53ca169c3fdee68",
+      "fold": 2,
+      "heldout_sample_count": 9849,
+      "heldout_scene_ids_sha256": "f780ecc70fcd76169f687ef215aa70fe8d06c028bcf8298d47830e181c0542cf",
+      "heldout_video_count": 48,
+      "seed": 2024,
+      "train_scene_ids_sha256": "15d7c5e84ecb70b5b5dba542b7abdd071c8455be09e7bef1b60f2228157b6ceb"
+    }
+  ]
+}

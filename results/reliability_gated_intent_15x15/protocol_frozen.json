@@ -1,0 +1,382 @@
+{
+  "bootstrap": {
+    "ci": "percentile 95%",
+    "paired": true,
+    "repetitions": 2000,
+    "seed": 9124,
+    "unit": "scene_id video cluster"
+  },
+  "class_weighting": {
+    "negative": 11.04136690647482,
+    "negative_count": 1112,
+    "positive": 0.5237160894045385,
+    "positive_count": 23444,
+    "sampling": "natural shuffle=True"
+  },
+  "crossfit_manifest_sha256": "efab389e01f08b5d41251ce7c8da1412d2124de3672d8807d9631b9c75526a7f",
+  "data": {
+    "test_feature_cache_sha256": "54b1c6de657d0fe908051582ffe8764088cef06c32b8585c1fe7f5d56ca46ab1",
+    "test_intent_labels_read_before_freeze": false,
+    "test_npz_sha256": "23658152706d460493fa6146f6b401648a509cc8708ab5eb6c0892e300de1935",
+    "train_npz_sha256": "6da2d1d40a918a218a7d054407d95f2791e2338a760b4836f2ca6d06c59ea19a",
+    "validation_npz_sha256": "fb78bb5edcd18d74a15744cfd8ae728c8600b485d4028bed8ee2c9c2d4c5f66c"
+  },
+  "feature_cache_manifest_sha256": "9513d9b5636f2af60d2cb1af0977e6343d5c6dc2c3b39083944dff79a34e0d66",
+  "full_train_trajectory_checkpoint_sha256": {
+    "123": "01636b673d96c126671103ba329654d9e9da175daa36eb8c4a55696f8e310163",
+    "2024": "67fe318f8d801e6f063d7c42d15ed60003f38a4e66fc65bea5cb29bf76154868",
+    "42": "46a70ab491168aa7d221eb3b2cb851572c44c2f0ddb78cdbac760869780b1dca"
+  },
+  "future_gt_or_ade_or_fde_as_intention_input_loss_gate_or_selection": false,
+  "gate_shuffle": {
+    "bin_cutpoints_source": "official_train_oof motion quantiles",
+    "permutations": 200,
+    "seed": 9124,
+    "within_bins": 10
+  },
+  "intent_training": {
+    "batch_size": 256,
+    "gradient_clip_norm": 5.0,
+    "learning_rate": 0.001,
+    "optimizer": "AdamW",
+    "sampling": "natural shuffle=True",
+    "selection": "max val ROC-AUC; if within 1e-4 select lower val Brier",
+    "weight_decay": 0.0001
+  },
+  "paired_comparisons": [
+    "D-A",
+    "D-B",
+    "D-C",
+    "B-A",
+    "C-B"
+  ],
+  "primary_test_metrics_planned": [
+    "ROC-AUC",
+    "Brier",
+    "ECE(15 equal-width bins)",
+    "Balanced Accuracy",
+    "F1",
+    "negative recall/specificity"
+  ],
+  "protocol": "reliability-gated future-trajectory intention experiment; A/B/C/D primary",
+  "reliability_tertile_cutpoints_train_oof_adjusted_u": [
+    -0.0786452935211428,
+    0.045930285995114284
+  ],
+  "reliability_transform": {
+    "adjusted_u_cdf": {
+      "reference_sha256": "1bbebe57d864a8baf7c798a5eb5adae6f5c7b4e84f48f8e415876984eef86922",
+      "sample_count": 24556,
+      "source": "official_train_oof_adjusted_u"
+    },
+    "cdf_formula": "1 - (count(train_reference <= score) + 0.5) / (N + 1)",
+    "fit_source": "official_train_oof_only",
+    "motion_cdf": {
+      "reference_sha256": "91fd06a88bc02d4ec996ecd6abd79651efb0946a90e1da41af565b4bc8597c09",
+      "sample_count": 24556,
+      "source": "official_train_oof_log1p_motion"
+    },
+    "polynomial": {
+      "b0": 1.6033213630961112,
+      "b1": -0.41989980605522786,
+      "b2": 0.08050920235539792,
+      "degree": 2,
+      "fit_motion_sha256": "06362dcb396c22107379ad9929852845de58f66bbd1adecc3d9be95ae53a9093",
+      "fit_sample_count": 24556,
+      "fit_split": "official_train_oof_only",
+      "fit_u_mean_sha256": "d65e7541a772cffe21c750d94a8674459179629cfdec05d5f29e26c5ecd3d3e1",
+      "future_gt_used": false,
+      "intent_label_used": false,
+      "predictor": "log1p(observed_motion_pixel)",
+      "target": "log1p(u_mean_pixel)",
+      "trajectory_error_used": false
+    },
+    "raw_u_cdf_secondary": {
+      "reference_sha256": "48031853eeeea7948c5a335e26f8473a7e842cdfe6aab6da1a1f9da39f1a4de4",
+      "sample_count": 24556,
+      "source": "official_train_oof_raw_u_secondary"
+    },
+    "transform_sha256": "33e1113b018434a94fb724cc135b0ef75873d4961c03e86ba346be0c96b23850",
+    "validation_or_test_refit": false
+  },
+  "reliability_transform_sha256": "d79eac79713a53d0a8e5216c679bc4caedfc7b7616c44fcc1fd81c89fba437be",
+  "selected_models": {
+    "A_observed_only_seed123": {
+      "base_frozen": false,
+      "checkpoint": "checkpoints/reliability_gated_intent/A_observed_only_seed123.pt",
+      "checkpoint_sha256": "167e02c2d2a2196ca4d993da48b20e91145e72c063272e8c500d69ce6bc90cbb",
+      "initial_future_branch_sha256": null,
+      "model_architecture": "ObservedOnlyIntent",
+      "model_parameter_count": 160385,
+      "seed": 123,
+      "selected_epoch": 2,
+      "temperature": 4.456874374001441,
+      "temperature_fit_split": "official_val",
+      "threshold": 0.4824478566054384,
+      "threshold_fit_split": "official_val",
+      "validation_auc_at_selection": 0.7399562204776247,
+      "validation_brier_at_selection": 0.28286192392132153,
+      "validation_metrics_calibrated": {
+        "brier": 0.24533581916987257,
+        "roc_auc": 0.7399562204776247
+      },
+      "variant": "A_observed_only"
+    },
+    "A_observed_only_seed2024": {
+      "base_frozen": false,
+      "checkpoint": "checkpoints/reliability_gated_intent/A_observed_only_seed2024.pt",
+      "checkpoint_sha256": "c9933077ba8d31cc7697579525ca39193398d013264e0513526f297aedb3e522",
+      "initial_future_branch_sha256": null,
+      "model_architecture": "ObservedOnlyIntent",
+      "model_parameter_count": 160385,
+      "seed": 2024,
+      "selected_epoch": 1,
+      "temperature": 0.4872201805907978,
+      "temperature_fit_split": "official_val",
+      "threshold": 0.49088475372030954,
+      "threshold_fit_split": "official_val",
+      "validation_auc_at_selection": 0.7431765938653807,
+      "validation_brier_at_selection": 0.2189137556828731,
+      "validation_metrics_calibrated": {
+        "brier": 0.2190547107841669,
+        "roc_auc": 0.7431765938653807
+      },
+      "variant": "A_observed_only"
+    },
+    "A_observed_only_seed42": {
+      "base_frozen": false,
+      "checkpoint": "checkpoints/reliability_gated_intent/A_observed_only_seed42.pt",
+      "checkpoint_sha256": "c9172fdc3ebb265e733eed6237b19d1f4ea1eb30a767233e4890beedd8853ca2",
+      "initial_future_branch_sha256": null,
+      "model_architecture": "ObservedOnlyIntent",
+      "model_parameter_count": 160385,
+      "seed": 42,
+      "selected_epoch": 1,
+      "temperature": 1.9062301786975708,
+      "temperature_fit_split": "official_val",
+      "threshold": 0.4721340475334477,
+      "threshold_fit_split": "official_val",
+      "validation_auc_at_selection": 0.7007219780882943,
+      "validation_brier_at_selection": 0.25067547097873416,
+      "validation_metrics_calibrated": {
+        "brier": 0.2407607052415068,
+        "roc_auc": 0.7007219780882943
+      },
+      "variant": "A_observed_only"
+    },
+    "B_always_future_seed123": {
+      "base_frozen": true,
+      "checkpoint": "checkpoints/reliability_gated_intent/B_always_future_seed123.pt",
+      "checkpoint_sha256": "da79cce05e66f3a8b9d304ddaf8d25c1e3862970e90bb2919dffa132db24758c",
+      "initial_future_branch_sha256": "6281b9f2d2b022d9a95241853f441441ed4b59a54498463a068b95a61010cfda",
+      "model_architecture": "ReliabilityGatedIntent",
+      "model_parameter_count": 198274,
+      "seed": 123,
+      "selected_epoch": 15,
+      "temperature": 3.873680349619979,
+      "temperature_fit_split": "official_val",
+      "threshold": 0.479687318575551,
+      "threshold_fit_split": "official_val",
+      "validation_auc_at_selection": 0.7592400577143578,
+      "validation_brier_at_selection": 0.24623778376850536,
+      "validation_metrics_calibrated": {
+        "brier": 0.224754834489856,
+        "roc_auc": 0.7592400577143579
+      },
+      "variant": "B_always_future"
+    },
+    "B_always_future_seed2024": {
+      "base_frozen": true,
+      "checkpoint": "checkpoints/reliability_gated_intent/B_always_future_seed2024.pt",
+      "checkpoint_sha256": "a9915896835a8e9dfedf4db3c1e029d57b6f92300b2dc912b8c9d629d284d811",
+      "initial_future_branch_sha256": "540ec4c55307010b23b2147ef3685f29b927bd8c71da1cf5cbbe93f350de5481",
+      "model_architecture": "ReliabilityGatedIntent",
+      "model_parameter_count": 198274,
+      "seed": 2024,
+      "selected_epoch": 1,
+      "temperature": 2.3128343744316666,
+      "temperature_fit_split": "official_val",
+      "threshold": 0.4702384048421906,
+      "threshold_fit_split": "official_val",
+      "validation_auc_at_selection": 0.7427761045002935,
+      "validation_brier_at_selection": 0.2563232531910481,
+      "validation_metrics_calibrated": {
+        "brier": 0.236756722018978,
+        "roc_auc": 0.7427761045002935
+      },
+      "variant": "B_always_future"
+    },
+    "B_always_future_seed42": {
+      "base_frozen": true,
+      "checkpoint": "checkpoints/reliability_gated_intent/B_always_future_seed42.pt",
+      "checkpoint_sha256": "f4c9fef482cf3780fbf2339f16311889b8cb0cf57a62ca2f88bfb62d1dfd82eb",
+      "initial_future_branch_sha256": "e0a255886a070f7871d59955bd13368d814f402c2aec2a56eda94207be82be32",
+      "model_architecture": "ReliabilityGatedIntent",
+      "model_parameter_count": 198274,
+      "seed": 42,
+      "selected_epoch": 1,
+      "temperature": 1.9032781193986095,
+      "temperature_fit_split": "official_val",
+      "threshold": 0.48762280117926493,
+      "threshold_fit_split": "official_val",
+      "validation_auc_at_selection": 0.5748709381874839,
+      "validation_brier_at_selection": 0.23613392130417288,
+      "validation_metrics_calibrated": {
+        "brier": 0.22661923029119663,
+        "roc_auc": 0.5748709381874839
+      },
+      "variant": "B_always_future"
+    },
+    "C_motion_gate_seed123": {
+      "base_frozen": true,
+      "checkpoint": "checkpoints/reliability_gated_intent/C_motion_gate_seed123.pt",
+      "checkpoint_sha256": "e546cbc561de5d9d36cc71429264f5ea4e2a22c5d164f23db164ea71b0791126",
+      "initial_future_branch_sha256": "6281b9f2d2b022d9a95241853f441441ed4b59a54498463a068b95a61010cfda",
+      "model_architecture": "ReliabilityGatedIntent",
+      "model_parameter_count": 198274,
+      "seed": 123,
+      "selected_epoch": 1,
+      "temperature": 4.741621527651628,
+      "temperature_fit_split": "official_val",
+      "threshold": 0.4817326709078154,
+      "threshold_fit_split": "official_val",
+      "validation_auc_at_selection": 0.723929788179529,
+      "validation_brier_at_selection": 0.28004704946227177,
+      "validation_metrics_calibrated": {
+        "brier": 0.23883542065349048,
+        "roc_auc": 0.723929788179529
+      },
+      "variant": "C_motion_gate"
+    },
+    "C_motion_gate_seed2024": {
+      "base_frozen": true,
+      "checkpoint": "checkpoints/reliability_gated_intent/C_motion_gate_seed2024.pt",
+      "checkpoint_sha256": "9bc8c84faff41fe6ebecf9431875f4b26aa7e6c70d7250bfa4c5d229bd43c245",
+      "initial_future_branch_sha256": "540ec4c55307010b23b2147ef3685f29b927bd8c71da1cf5cbbe93f350de5481",
+      "model_architecture": "ReliabilityGatedIntent",
+      "model_parameter_count": 198274,
+      "seed": 2024,
+      "selected_epoch": 1,
+      "temperature": 2.7637515634369882,
+      "temperature_fit_split": "official_val",
+      "threshold": 0.4766199908818388,
+      "threshold_fit_split": "official_val",
+      "validation_auc_at_selection": 0.6504372466081842,
+      "validation_brier_at_selection": 0.26676708395907417,
+      "validation_metrics_calibrated": {
+        "brier": 0.24017664709117378,
+        "roc_auc": 0.6504372466081842
+      },
+      "variant": "C_motion_gate"
+    },
+    "C_motion_gate_seed42": {
+      "base_frozen": true,
+      "checkpoint": "checkpoints/reliability_gated_intent/C_motion_gate_seed42.pt",
+      "checkpoint_sha256": "cf4d6c63244e7d4e3d76f9b01ea9a3f692d20d1825363d82eaa0319711d1f289",
+      "initial_future_branch_sha256": "e0a255886a070f7871d59955bd13368d814f402c2aec2a56eda94207be82be32",
+      "model_architecture": "ReliabilityGatedIntent",
+      "model_parameter_count": 198274,
+      "seed": 42,
+      "selected_epoch": 1,
+      "temperature": 3.232089086579724,
+      "temperature_fit_split": "official_val",
+      "threshold": 0.47720064947759194,
+      "threshold_fit_split": "official_val",
+      "validation_auc_at_selection": 0.6602204337354686,
+      "validation_brier_at_selection": 0.27243535511056455,
+      "validation_metrics_calibrated": {
+        "brier": 0.23830611668483612,
+        "roc_auc": 0.6602204337354686
+      },
+      "variant": "C_motion_gate"
+    },
+    "D_reliability_gate_seed123": {
+      "base_frozen": true,
+      "checkpoint": "checkpoints/reliability_gated_intent/D_reliability_gate_seed123.pt",
+      "checkpoint_sha256": "35f95ffd4c4b01a066e918203373d532338d642cd44af5da78813acd4da43d6e",
+      "initial_future_branch_sha256": "6281b9f2d2b022d9a95241853f441441ed4b59a54498463a068b95a61010cfda",
+      "model_architecture": "ReliabilityGatedIntent",
+      "model_parameter_count": 198274,
+      "seed": 123,
+      "selected_epoch": 15,
+      "temperature": 6.218544701178939,
+      "temperature_fit_split": "official_val",
+      "threshold": 0.4816337535654563,
+      "threshold_fit_split": "official_val",
+      "validation_auc_at_selection": 0.7771139529397566,
+      "validation_brier_at_selection": 0.2730360662072371,
+      "validation_metrics_calibrated": {
+        "brier": 0.2253931901942483,
+        "roc_auc": 0.7771139529397566
+      },
+      "variant": "D_reliability_gate"
+    },
+    "D_reliability_gate_seed2024": {
+      "base_frozen": true,
+      "checkpoint": "checkpoints/reliability_gated_intent/D_reliability_gate_seed2024.pt",
+      "checkpoint_sha256": "34d4a6f807ac9c429b4576afbb064ef9fe2765fc29c4a6ea27afd0b72eadcfac",
+      "initial_future_branch_sha256": "540ec4c55307010b23b2147ef3685f29b927bd8c71da1cf5cbbe93f350de5481",
+      "model_architecture": "ReliabilityGatedIntent",
+      "model_parameter_count": 198274,
+      "seed": 2024,
+      "selected_epoch": 1,
+      "temperature": 2.996525839718731,
+      "temperature_fit_split": "official_val",
+      "threshold": 0.47191441164462844,
+      "threshold_fit_split": "official_val",
+      "validation_auc_at_selection": 0.6918906389725528,
+      "validation_brier_at_selection": 0.27189002355279324,
+      "validation_metrics_calibrated": {
+        "brier": 0.24126102928850177,
+        "roc_auc": 0.6918906389725528
+      },
+      "variant": "D_reliability_gate"
+    },
+    "D_reliability_gate_seed42": {
+      "base_frozen": true,
+      "checkpoint": "checkpoints/reliability_gated_intent/D_reliability_gate_seed42.pt",
+      "checkpoint_sha256": "d61edd3f84ca8ebf5038dae0b0a098134a49fd78b713cda7ab4f2deeb20ff832",
+      "initial_future_branch_sha256": "e0a255886a070f7871d59955bd13368d814f402c2aec2a56eda94207be82be32",
+      "model_architecture": "ReliabilityGatedIntent",
+      "model_parameter_count": 198274,
+      "seed": 42,
+      "selected_epoch": 1,
+      "temperature": 2.8456092409455693,
+      "temperature_fit_split": "official_val",
+      "threshold": 0.4809563573591957,
+      "threshold_fit_split": "official_val",
+      "validation_auc_at_selection": 0.5599335077930843,
+      "validation_brier_at_selection": 0.2591549267249066,
+      "validation_metrics_calibrated": {
+        "brier": 0.2325916446881959,
+        "roc_auc": 0.5599335077930843
+      },
+      "variant": "D_reliability_gate"
+    }
+  },
+  "test_selection": false,
+  "trajectory_crossfit_checkpoints_sha256": "c65f5e67c3404a26dc47ee918c12295da90fcb39c86a610faf4e1d6a1a71b2b0",
+  "trajectory_predictors_fine_tuned_for_intention": false,
+  "variant_definitions": {
+    "A_observed_only": {
+      "gate": null,
+      "input": "15x8 observed target history only",
+      "trainable": "observed GRU and base head"
+    },
+    "B_always_future": {
+      "gate": 1.0,
+      "input": "observed history + ensemble-mean predicted future [15,2]",
+      "trainable": "future GRU and residual head; matched A base frozen"
+    },
+    "C_motion_gate": {
+      "gate": "train-defined motion empirical confidence",
+      "input": "observed history + ensemble-mean predicted future [15,2]",
+      "trainable": "future GRU and residual head; matched A base frozen"
+    },
+    "D_reliability_gate": {
+      "gate": "train-defined motion-adjusted disagreement empirical confidence",
+      "input": "observed history + ensemble-mean predicted future [15,2]",
+      "trainable": "future GRU and residual head; matched A base frozen"
+    }
+  }
+}

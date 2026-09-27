@@ -1,0 +1,21 @@
+{
+  "base_frozen": true,
+  "checkpoint": "checkpoints/reliability_gated_intent/C_motion_gate_seed2024.pt",
+  "checkpoint_sha256": "9bc8c84faff41fe6ebecf9431875f4b26aa7e6c70d7250bfa4c5d229bd43c245",
+  "initial_future_branch_sha256": "540ec4c55307010b23b2147ef3685f29b927bd8c71da1cf5cbbe93f350de5481",
+  "model_architecture": "ReliabilityGatedIntent",
+  "model_parameter_count": 198274,
+  "seed": 2024,
+  "selected_epoch": 1,
+  "temperature": 2.7637515634369882,
+  "temperature_fit_split": "official_val",
+  "threshold": 0.4766199908818388,
+  "threshold_fit_split": "official_val",
+  "validation_auc_at_selection": 0.6504372466081842,
+  "validation_brier_at_selection": 0.26676708395907417,
+  "validation_metrics_calibrated": {
+    "brier": 0.24017664709117378,
+    "roc_auc": 0.6504372466081842
+  },
+  "variant": "C_motion_gate"
+}

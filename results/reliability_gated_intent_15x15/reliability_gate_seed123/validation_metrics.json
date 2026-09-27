@@ -1,0 +1,21 @@
+{
+  "base_frozen": true,
+  "checkpoint": "checkpoints/reliability_gated_intent/D_reliability_gate_seed123.pt",
+  "checkpoint_sha256": "35f95ffd4c4b01a066e918203373d532338d642cd44af5da78813acd4da43d6e",
+  "initial_future_branch_sha256": "6281b9f2d2b022d9a95241853f441441ed4b59a54498463a068b95a61010cfda",
+  "model_architecture": "ReliabilityGatedIntent",
+  "model_parameter_count": 198274,
+  "seed": 123,
+  "selected_epoch": 15,
+  "temperature": 6.218544701178939,
+  "temperature_fit_split": "official_val",
+  "threshold": 0.4816337535654563,
+  "threshold_fit_split": "official_val",
+  "validation_auc_at_selection": 0.7771139529397566,
+  "validation_brier_at_selection": 0.2730360662072371,
+  "validation_metrics_calibrated": {
+    "brier": 0.2253931901942483,
+    "roc_auc": 0.7771139529397566
+  },
+  "variant": "D_reliability_gate"
+}

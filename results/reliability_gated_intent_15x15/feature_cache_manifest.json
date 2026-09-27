@@ -1,0 +1,51 @@
+{
+  "crossfit_manifest_sha256": "6e167a8657d0891b1997ddea909c86784f28be27bb9fac5453614e9d9b788e05",
+  "feature_cache_sha256": {
+    "test_features_unlabeled.npz": "54b1c6de657d0fe908051582ffe8764088cef06c32b8585c1fe7f5d56ca46ab1",
+    "train_oof_features.npz": "e574bf9c81b305d36818b01d3515fa8e763c11a6cb5f02de2ca78060d1ea3ed3",
+    "val_features.npz": "d952e00c40dcfa45b1d4a96fba04ba3a42fa09ee95954f78d0a1308e750b0095"
+  },
+  "feature_fields_pre_freeze": [
+    "sample_index",
+    "scene_id",
+    "target_id",
+    "obs_end_frame",
+    "target_obs",
+    "future_pred_mean",
+    "u_mean_pixel",
+    "observed_motion_pixel",
+    "image_size"
+  ],
+  "full_train_zero_scene_checkpoint_sha256": {
+    "123": "01636b673d96c126671103ba329654d9e9da175daa36eb8c4a55696f8e310163",
+    "2024": "67fe318f8d801e6f063d7c42d15ed60003f38a4e66fc65bea5cb29bf76154868",
+    "42": "46a70ab491168aa7d221eb3b2cb851572c44c2f0ddb78cdbac760869780b1dca"
+  },
+  "future_gt_saved": false,
+  "intent_and_crossing_labels_saved": {
+    "test_before_freeze": false,
+    "train_oof": true,
+    "val": true
+  },
+  "manifest_sha256": "36dc469cf15d9b96e6fa63acb94bfe6cbf83e9a16fd2f023660ec4a1c4eca442",
+  "oof_train_sample_count": 24556,
+  "protocol": "OOF train; frozen full-train ensemble for val/test",
+  "test_intent_label_read_or_saved": false,
+  "test_npz_sha256": "23658152706d460493fa6146f6b401648a509cc8708ab5eb6c0892e300de1935",
+  "test_sample_count": 18331,
+  "train_npz_sha256": "6da2d1d40a918a218a7d054407d95f2791e2338a760b4836f2ca6d06c59ea19a",
+  "trajectory_crossfit_checkpoint_sha256": {
+    "checkpoints/crossfit_traj_fold0_seed123.pt": "08842ffbb67769bc7d0c600cf7a1e4ababeb8650da19ebb9867b4b42bf56bfba",
+    "checkpoints/crossfit_traj_fold0_seed2024.pt": "4a3366e948ba43943125765aef5365f229adb7f5dfd711ab61abddca83623b31",
+    "checkpoints/crossfit_traj_fold0_seed42.pt": "13ac3a8361b5f1d506bd8a432f2a31c602cddb7b6816ecd0c975cf2ebd18d5d3",
+    "checkpoints/crossfit_traj_fold1_seed123.pt": "32caddd7e34f9b7a3bd8d63b3dea12e939fcc76176392a592b08748b1b64676c",
+    "checkpoints/crossfit_traj_fold1_seed2024.pt": "692b57fe646ac457d1a83b3d300fe87ea2e8083b3f6180b29634f7151e17b2fb",
+    "checkpoints/crossfit_traj_fold1_seed42.pt": "a94a2a63ec6a764ea73cc58b279ee8b6fab4c8f454eb4d3a32e2ec812eb2e84d",
+    "checkpoints/crossfit_traj_fold2_seed123.pt": "f2ec4f167ab9d8683c84a943fc911bfc37325d68021c7116064dc7fc54fabedc",
+    "checkpoints/crossfit_traj_fold2_seed2024.pt": "1ddb9aba2da2461b6102f047a3feb7bda66c1962351e3396e53ca169c3fdee68",
+    "checkpoints/crossfit_traj_fold2_seed42.pt": "e8a397fb4f1b4b315ad107f501fa954b812d61e5154433f57e2f38161161a1e1"
+  },
+  "trajectory_crossfit_summary_sha256": "c65f5e67c3404a26dc47ee918c12295da90fcb39c86a610faf4e1d6a1a71b2b0",
+  "val_sample_count": 2636,
+  "validation_npz_sha256": "fb78bb5edcd18d74a15744cfd8ae728c8600b485d4028bed8ee2c9c2d4c5f66c"
+}
