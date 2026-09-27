@@ -1,0 +1,39 @@
+{
+  "source": "results/trajectory_reliability_deconfounding/adjusted_score.json",
+  "source_report": "results/trajectory_reliability_deconfounding/summary.md",
+  "score": "adjusted_u_mean",
+  "score_definition": "log1p(u_mean) minus a validation-fitted quadratic function of log1p(observed_motion); fit does not use ADE/FDE or future ground truth.",
+  "score_model_scope": "Existing reliability results use a frozen three-seed zero-scene trajectory-only ensemble, not the joint checkpoint under audit.",
+  "spearman_vs_pixel_error": {
+    "validation": {
+      "sample_count": 2636,
+      "ade_rho": 0.011729330704150767,
+      "ade_p_value": 0.5472125720882268,
+      "fde_rho": -0.004512296431925351,
+      "fde_p_value": 0.8168785534936206
+    },
+    "test": {
+      "sample_count": 18331,
+      "ade_rho": 0.228989713681273,
+      "ade_p_value": 1.0914102780610754e-216,
+      "fde_rho": 0.19865109983643509,
+      "fde_p_value": 1.6796703836508688e-162
+    }
+  },
+  "test_context": {
+    "raw_u_mean_vs_ade_rho": 0.4275888235864215,
+    "motion_only_vs_ade_rho": 0.45004357464230316,
+    "adjusted_u_mean_vs_ade_video_cluster_bootstrap_95pct_ci": [0.117, 0.312],
+    "adjusted_score_bins_ade_monotonic": false,
+    "interpretation": "Adjusted uncertainty has a positive but modest test association with trajectory error; it is weaker than raw uncertainty/motion and not evident in validation global Spearman. Do not treat the test association as a training-loss result."
+  },
+  "adjusted_u_vs_joint_trajectory_ade": {
+    "status": "not_available",
+    "reason": "No aligned per-sample adjusted-u and joint-checkpoint prediction/error artifact was saved."
+  },
+  "adjusted_u_vs_training_trajectory_loss": {
+    "status": "not_available",
+    "reason": "No per-sample training trajectory losses or aligned training adjusted-u values were persisted; the reliability artifact contains aggregate validation/test summaries only."
+  },
+  "weighting_recommendation": "Reliability-aware trajectory weighting is a later controlled candidate, not the first fix. First generate training-only or cross-fitted uncertainty scores and verify their association with per-sample joint trajectory loss without using test labels; validate whether high uncertainty should upweight hard examples or downweight unreliable targets."
+}

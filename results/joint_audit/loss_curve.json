@@ -1,0 +1,32 @@
+{
+  "source": "results/joint_transformer_gate_15x15_seed123/metrics.json",
+  "checkpoint_selected_epoch": 14,
+  "training_component_losses_logged": false,
+  "per_epoch_checkpoints_available": false,
+  "lambda_trajectory": 1.0,
+  "prior_weight": 0.5,
+  "ambiguity_weight_training": 0.2,
+  "epoch_loss_scope": "The saved history contains only aggregate validation total loss. Validation total is main-intent BCE + 0.5 * proposal-intent BCE + lambda * trajectory SmoothL1; the ambiguity regularizer is omitted by the validation call. Intent and trajectory components cannot be separated from saved logs.",
+  "epochs": [
+    {"epoch": 1, "intent_loss": null, "trajectory_loss": null, "total_loss": 0.5992251006442607, "lambda_trajectory": 1.0},
+    {"epoch": 2, "intent_loss": null, "trajectory_loss": null, "total_loss": 0.4460674564103979, "lambda_trajectory": 1.0},
+    {"epoch": 3, "intent_loss": null, "trajectory_loss": null, "total_loss": 0.41788749417151594, "lambda_trajectory": 1.0},
+    {"epoch": 4, "intent_loss": null, "trajectory_loss": null, "total_loss": 0.4571817792692025, "lambda_trajectory": 1.0},
+    {"epoch": 5, "intent_loss": null, "trajectory_loss": null, "total_loss": 0.4955431808108444, "lambda_trajectory": 1.0},
+    {"epoch": 6, "intent_loss": null, "trajectory_loss": null, "total_loss": 0.5273626246383591, "lambda_trajectory": 1.0},
+    {"epoch": 7, "intent_loss": null, "trajectory_loss": null, "total_loss": 0.5911268234383591, "lambda_trajectory": 1.0},
+    {"epoch": 8, "intent_loss": null, "trajectory_loss": null, "total_loss": 0.6070284179336927, "lambda_trajectory": 1.0},
+    {"epoch": 9, "intent_loss": null, "trajectory_loss": null, "total_loss": 0.7327933875174009, "lambda_trajectory": 1.0},
+    {"epoch": 10, "intent_loss": null, "trajectory_loss": null, "total_loss": 0.6903411287006008, "lambda_trajectory": 1.0},
+    {"epoch": 11, "intent_loss": null, "trajectory_loss": null, "total_loss": 0.5125795939713943, "lambda_trajectory": 1.0},
+    {"epoch": 12, "intent_loss": null, "trajectory_loss": null, "total_loss": 0.6341334183294784, "lambda_trajectory": 1.0},
+    {"epoch": 13, "intent_loss": null, "trajectory_loss": null, "total_loss": 0.6590676329611647, "lambda_trajectory": 1.0},
+    {"epoch": 14, "intent_loss": null, "trajectory_loss": null, "total_loss": 0.7065857762586727, "lambda_trajectory": 1.0},
+    {"epoch": 15, "intent_loss": null, "trajectory_loss": null, "total_loss": 0.8079819545879033, "lambda_trajectory": 1.0}
+  ],
+  "limitations": [
+    "No separate per-epoch intent/prior/trajectory losses were persisted.",
+    "Only the selected best checkpoint was saved; epoch 1, 5, and 10 checkpoints are absent.",
+    "These records are validation losses, not training losses."
+  ]
+}

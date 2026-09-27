@@ -1,0 +1,50 @@
+{
+  "diagnostic_only": true,
+  "split": "train",
+  "sampling": "uniform random sample without replacement",
+  "seed": 9127,
+  "requested_samples": 1000,
+  "actual_sample_count": 1000,
+  "statistics": {
+    "trajectory_only_target_encoder_output": {
+      "sample_count": 1000,
+      "feature_width": 128,
+      "feature_mean": -0.08802589774131775,
+      "feature_std_population": 1.8211901187896729,
+      "mean_per_dimension_variance": 0.07458822429180145,
+      "feature_norm_mean": 20.624652862548828,
+      "feature_norm_std_population": 0.3967014253139496
+    },
+    "joint_target_encoder_output": {
+      "sample_count": 1000,
+      "feature_width": 128,
+      "feature_mean": -0.07119973003864288,
+      "feature_std_population": 2.243112564086914,
+      "mean_per_dimension_variance": 4.171638488769531,
+      "feature_norm_mean": 24.503738403320312,
+      "feature_norm_std_population": 6.652410984039307
+    },
+    "trajectory_only_decoder_input_target_plus_scene": {
+      "sample_count": 1000,
+      "feature_width": 256,
+      "feature_mean": 0.07278693467378616,
+      "feature_std_population": 1.3293834924697876,
+      "mean_per_dimension_variance": 0.03900837153196335,
+      "feature_norm_mean": 21.298526763916016,
+      "feature_norm_std_population": 0.3842560648918152
+    },
+    "joint_trajectory_decoder_input_fused_plus_target": {
+      "sample_count": 1000,
+      "feature_width": 256,
+      "feature_mean": 0.6834098100662231,
+      "feature_std_population": 2.3741655349731445,
+      "mean_per_dimension_variance": 3.331256151199341,
+      "feature_norm_mean": 38.35103225708008,
+      "feature_norm_std_population": 9.5785493850708
+    }
+  },
+  "caveat": "Different learned checkpoint weights and different decoder inputs are compared; larger variance/norm is not by itself evidence of better or collapsed representations.",
+  "device": "cuda",
+  "joint_checkpoint": "checkpoints/joint_transformer_gate_15x15_seed123.pt",
+  "trajectory_checkpoint": "checkpoints/trajectory_transformer_scene_15x15_seed123.pt"
+}
