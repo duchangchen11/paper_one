@@ -30,6 +30,164 @@ def set_seed(seed: int) -> None:
     torch.cuda.manual_seed_all(seed)
 
 
+SHARED_GRADIENT_PREFIXES = (
+    "target_projection.",
+    "position_embedding",
+    "target_encoder.",
+    "neighbor_encoder.",
+    "scene_encoder.",
+    "proposal_fusion.",
+    "proposal_head.",
+    "gate.",
+    "fusion.",
+)
+
+
+def balanced_sample_indices(labels: torch.Tensor, count: int, seed: int) -> torch.Tensor:
+    """Create a fixed, approximately class-balanced audit subset without using global RNG."""
+    generator = torch.Generator(device="cpu").manual_seed(seed)
+    labels = labels.to(torch.int64).cpu()
+    classes = [torch.where(labels == cls)[0] for cls in (0, 1)]
+    if any(indices.numel() == 0 for indices in classes):
+        raise ValueError("Gradient audit requires both intent classes in the training split")
+    per_class = count // 2
+    selected = []
+    for indices in classes:
+        order = torch.randperm(indices.numel(), generator=generator)
+        take = min(per_class, indices.numel())
+        chosen = indices[order[:take]]
+        if take < per_class:
+            extra = indices[torch.randint(indices.numel(), (per_class - take,), generator=generator)]
+            chosen = torch.cat([chosen, extra])
+        selected.append(chosen)
+    result = torch.cat(selected)
+    if result.numel() < count:
+        extra = torch.randint(labels.numel(), (count - result.numel(),), generator=generator)
+        result = torch.cat([result, extra])
+    return result[torch.randperm(result.numel(), generator=generator)][:count]
+
+
+def stack_dataset_batch(dataset: JAADSequenceDataset, indices: torch.Tensor) -> dict[str, torch.Tensor]:
+    keys = (
+        "target_obs",
+        "target_abs_obs",
+        "future_gt",
+        "neighbor_obs",
+        "neighbor_mask",
+        "neighbor_visible_mask",
+        "scene_feat",
+        "intent_label",
+    )
+    return {key: getattr(dataset, key)[indices] for key in keys}
+
+
+def _flat_gradient_norm(gradients, parameters) -> tuple[torch.Tensor, torch.Tensor]:
+    squared_norm = None
+    flattened = []
+    for gradient, parameter in zip(gradients, parameters):
+        if gradient is None:
+            value = torch.zeros_like(parameter, dtype=torch.float32).reshape(-1)
+        else:
+            value = gradient.detach().float().reshape(-1)
+        flattened.append(value)
+        term = torch.sum(value * value)
+        squared_norm = term if squared_norm is None else squared_norm + term
+    if not flattened:
+        raise RuntimeError("No gradients were produced for the shared parameter set")
+    vector = torch.cat(flattened)
+    return torch.sqrt(squared_norm), vector
+
+
+def measure_shared_gradient_balance(
+    model: JointTransformerSceneGate,
+    main_batch: dict[str, torch.Tensor],
+    ambiguous_batch: dict[str, torch.Tensor],
+    device: torch.device,
+    prior_weight: float,
+    trajectory_weight: float,
+    ambiguous_weight: float,
+) -> dict[str, float | int]:
+    """Measure task gradients at a fixed audit batch without affecting training RNG/state."""
+    cpu_rng = torch.get_rng_state()
+    cuda_rng = torch.cuda.get_rng_state_all() if torch.cuda.is_available() else None
+    python_rng = random.getstate()
+    numpy_rng = np.random.get_state()
+    was_training = model.training
+    try:
+        # GRU backward is kept in train mode. Restore RNG afterwards so dropout
+        # here cannot perturb the next epoch's data order or stochastic masks.
+        model.train()
+        main_target = torch.cat([main_batch["target_obs"], main_batch["target_abs_obs"]], dim=-1).to(device)
+        output = model(
+            main_target,
+            main_batch["neighbor_obs"].to(device),
+            main_batch["neighbor_mask"].to(device),
+            main_batch["neighbor_visible_mask"].to(device),
+            main_batch["scene_feat"].to(device),
+        )
+        labels = main_batch["intent_label"].to(device)
+        intent_main = nn.functional.binary_cross_entropy_with_logits(output["intent_logit"], labels)
+        intent_prior = nn.functional.binary_cross_entropy_with_logits(output["prior_logit"], labels)
+        trajectory_raw = nn.functional.smooth_l1_loss(
+            output["future_pred"], main_batch["future_gt"].to(device)
+        )
+
+        ambiguous_target = torch.cat(
+            [ambiguous_batch["target_obs"], ambiguous_batch["target_abs_obs"]], dim=-1
+        ).to(device)
+        ambiguous_output = model(
+            ambiguous_target,
+            ambiguous_batch["neighbor_obs"].to(device),
+            ambiguous_batch["neighbor_mask"].to(device),
+            ambiguous_batch["neighbor_visible_mask"].to(device),
+            ambiguous_batch["scene_feat"].to(device),
+        )
+        ambiguity_raw = 0.5 * (
+            ambiguous_output["prior_logit"].square().mean()
+            + ambiguous_output["intent_logit"].square().mean()
+        )
+        intent_objective = (
+            intent_main + prior_weight * intent_prior + ambiguous_weight * ambiguity_raw
+        )
+
+        parameters = [
+            parameter
+            for name, parameter in model.named_parameters()
+            if parameter.requires_grad and name.startswith(SHARED_GRADIENT_PREFIXES)
+        ]
+        intent_gradients = torch.autograd.grad(
+            intent_objective, parameters, retain_graph=True, allow_unused=True
+        )
+        trajectory_gradients = torch.autograd.grad(
+            trajectory_raw, parameters, allow_unused=True
+        )
+        intent_norm, intent_vector = _flat_gradient_norm(intent_gradients, parameters)
+        trajectory_norm_raw, trajectory_vector = _flat_gradient_norm(trajectory_gradients, parameters)
+        trajectory_norm_weighted = trajectory_norm_raw * trajectory_weight
+        cosine = torch.dot(intent_vector, trajectory_vector) / (
+            intent_norm * trajectory_norm_raw
+        ).clamp_min(torch.finfo(intent_vector.dtype).eps)
+        ratio = intent_norm / trajectory_norm_weighted.clamp_min(1e-20)
+
+        return {
+            "audit_main_samples": int(labels.numel()),
+            "audit_ambiguous_samples": int(ambiguous_batch["intent_label"].numel()),
+            "shared_parameter_count": int(sum(parameter.numel() for parameter in parameters)),
+            "intent_gradient_norm": float(intent_norm.detach().cpu()),
+            "trajectory_gradient_norm_unweighted": float(trajectory_norm_raw.detach().cpu()),
+            "trajectory_gradient_norm_weighted": float(trajectory_norm_weighted.detach().cpu()),
+            "intent_over_weighted_trajectory_gradient_ratio": float(ratio.detach().cpu()),
+            "gradient_cosine_intent_vs_trajectory": float(cosine.detach().cpu()),
+        }
+    finally:
+        model.train(was_training)
+        random.setstate(python_rng)
+        np.random.set_state(numpy_rng)
+        torch.set_rng_state(cpu_rng)
+        if cuda_rng is not None:
+            torch.cuda.set_rng_state_all(cuda_rng)
+
+
 def compute_metrics(labels, logits, predictions, targets, image_sizes, gates, entropies):
     y_true = np.asarray(labels, dtype=np.int64)
     probability = 1.0 / (1.0 + np.exp(-np.asarray(logits)))
@@ -130,6 +288,16 @@ def main() -> None:
     val_loader = DataLoader(val_set, batch_size=args.batch_size, shuffle=False)
     test_loader = DataLoader(test_set, batch_size=args.batch_size, shuffle=False)
     ambiguous_loader = DataLoader(ambiguous_set, batch_size=args.batch_size, shuffle=True)
+    audit_count = min(args.batch_size, len(train_set))
+    audit_main_indices = balanced_sample_indices(
+        train_set.intent_label, audit_count, seed=args.seed + 1_000_003
+    )
+    audit_ambiguous_generator = torch.Generator(device="cpu").manual_seed(args.seed + 2_000_003)
+    audit_ambiguous_indices = torch.randperm(
+        len(ambiguous_set), generator=audit_ambiguous_generator
+    )[: min(audit_count, len(ambiguous_set))]
+    audit_main_batch = stack_dataset_batch(train_set, audit_main_indices)
+    audit_ambiguous_batch = stack_dataset_batch(ambiguous_set, audit_ambiguous_indices)
     raw = {split: np.load(args.data_root / f"{split}.npz", allow_pickle=False) for split in ("train", "val", "test")}
     sizes = {split: torch.from_numpy(raw[split]["image_size"].astype(np.float32)) for split in raw}
     model = JointTransformerSceneGate(
@@ -165,9 +333,34 @@ def main() -> None:
     best_score = -float("inf")
     best_epoch = 0
     history = []
+    gradient_history = {
+        "diagnostic_only": True,
+        "optimizer_created_for_diagnostics": False,
+        "parameters_updated_by_diagnostics": False,
+        "gradient_scope": "shared target, scene, social, proposal, gate, and fusion parameters; task output heads excluded",
+        "gradient_sampling": "one fixed class-balanced main training subset and one fixed ambiguous-training subset per run, measured after each epoch; diagnostic RNG state is restored",
+        "gradient_ratio_definition": "intent_gradient_norm / (lambda_trajectory * unweighted_trajectory_gradient_norm)",
+        "seed": args.seed,
+        "lambda_trajectory": args.traj_weight,
+        "epochs": [],
+    }
+    gradient_history_path = args.output_root / "gradient_history.json"
     for epoch in range(1, args.epochs + 1):
         model.train()
         amb_iter = iter(ambiguous_loader)
+        epoch_sums = {
+            key: torch.zeros((), device=device)
+            for key in (
+                "main_intent_bce",
+                "weighted_proposal_intent_bce",
+                "weighted_ambiguity_regularizer",
+                "intent_loss",
+                "trajectory_loss",
+                "weighted_trajectory_loss",
+                "total_loss",
+            )
+        }
+        epoch_items = 0
         for batch in train_loader:
             try:
                 amb_batch = next(amb_iter)
@@ -177,21 +370,76 @@ def main() -> None:
             target = torch.cat([batch["target_obs"], batch["target_abs_obs"]], dim=-1).to(device)
             output = model(target, batch["neighbor_obs"].to(device), batch["neighbor_mask"].to(device), batch["neighbor_visible_mask"].to(device), batch["scene_feat"].to(device))
             label = batch["intent_label"].to(device)
-            loss = nn.functional.binary_cross_entropy_with_logits(output["intent_logit"], label)
-            loss = loss + args.prior_weight * nn.functional.binary_cross_entropy_with_logits(output["prior_logit"], label)
-            loss = loss + args.traj_weight * nn.functional.smooth_l1_loss(output["future_pred"], batch["future_gt"].to(device))
+            main_intent_bce = nn.functional.binary_cross_entropy_with_logits(output["intent_logit"], label)
+            proposal_intent_bce = nn.functional.binary_cross_entropy_with_logits(output["prior_logit"], label)
+            trajectory_loss = nn.functional.smooth_l1_loss(output["future_pred"], batch["future_gt"].to(device))
             amb_target = torch.cat([amb_batch["target_obs"], amb_batch["target_abs_obs"]], dim=-1).to(device)
             amb_output = model(amb_target, amb_batch["neighbor_obs"].to(device), amb_batch["neighbor_mask"].to(device), amb_batch["neighbor_visible_mask"].to(device), amb_batch["scene_feat"].to(device))
-            loss = loss + args.ambiguous_weight * 0.5 * (amb_output["prior_logit"].square().mean() + amb_output["intent_logit"].square().mean())
+            ambiguity_regularizer = 0.5 * (
+                amb_output["prior_logit"].square().mean()
+                + amb_output["intent_logit"].square().mean()
+            )
+            intent_loss = (
+                main_intent_bce
+                + args.prior_weight * proposal_intent_bce
+                + args.ambiguous_weight * ambiguity_regularizer
+            )
+            # Preserve the baseline objective's operation/order: supervised
+            # intent + weighted trajectory, then the ambiguity regularizer.
+            loss = main_intent_bce + args.prior_weight * proposal_intent_bce
+            loss = loss + args.traj_weight * trajectory_loss
+            weighted_ambiguity_regularizer = args.ambiguous_weight * ambiguity_regularizer
+            loss = loss + weighted_ambiguity_regularizer
+            count = target.shape[0]
+            epoch_items += count
+            epoch_sums["main_intent_bce"] += main_intent_bce.detach() * count
+            epoch_sums["weighted_proposal_intent_bce"] += args.prior_weight * proposal_intent_bce.detach() * count
+            epoch_sums["weighted_ambiguity_regularizer"] += weighted_ambiguity_regularizer.detach() * count
+            epoch_sums["intent_loss"] += intent_loss.detach() * count
+            epoch_sums["trajectory_loss"] += trajectory_loss.detach() * count
+            epoch_sums["weighted_trajectory_loss"] += args.traj_weight * trajectory_loss.detach() * count
+            epoch_sums["total_loss"] += loss.detach() * count
             optimizer.zero_grad(set_to_none=True)
             loss.backward()
             nn.utils.clip_grad_norm_(model.parameters(), 5.0)
             optimizer.step()
+        train_metrics = {
+            key: float((value / epoch_items).detach().cpu())
+            for key, value in epoch_sums.items()
+        }
+        train_metrics["sample_count"] = epoch_items
+        gradient_metrics = measure_shared_gradient_balance(
+            model,
+            audit_main_batch,
+            audit_ambiguous_batch,
+            device,
+            prior_weight=args.prior_weight,
+            trajectory_weight=args.traj_weight,
+            ambiguous_weight=args.ambiguous_weight,
+        )
+        gradient_record = {
+            "epoch": epoch,
+            "lambda_trajectory": args.traj_weight,
+            "intent_loss": train_metrics["intent_loss"],
+            "trajectory_loss": train_metrics["trajectory_loss"],
+            "total_loss": train_metrics["total_loss"],
+            **gradient_metrics,
+        }
+        gradient_history["epochs"].append(gradient_record)
+        gradient_history_path.write_text(
+            json.dumps(gradient_history, ensure_ascii=False, indent=2), encoding="utf-8"
+        )
         with torch.no_grad():
             val = run_epoch(model, val_loader, sizes["val"], device, None, args.prior_weight, args.traj_weight)
         score = val["intent_auc"] + 0.1 * val["intent_f1"] - 0.01 * val["trajectory_ade_pixel"]
         scheduler.step(score)
-        record = {"epoch": epoch, "learning_rate": optimizer.param_groups[0]["lr"], "val": val}
+        record = {
+            "epoch": epoch,
+            "learning_rate": optimizer.param_groups[0]["lr"],
+            "train": train_metrics,
+            "gradient": gradient_record,
+            "val": val,
+        }
         history.append(record)
         print(json.dumps(record, ensure_ascii=False))
         if score > best_score:
@@ -202,7 +450,17 @@ def main() -> None:
     model.load_state_dict(checkpoint["model"])
     with torch.no_grad():
         test = run_epoch(model, test_loader, sizes["test"], device, None, args.prior_weight, args.traj_weight)
-    result = {"device": str(device), "seed": args.seed, "gate_mode": args.gate_mode, "best_epoch": best_epoch, "history": history, "test": test}
+    result = {
+        "device": str(device),
+        "seed": args.seed,
+        "gate_mode": args.gate_mode,
+        "prior_weight": args.prior_weight,
+        "traj_weight": args.traj_weight,
+        "ambiguous_weight": args.ambiguous_weight,
+        "best_epoch": best_epoch,
+        "history": history,
+        "test": test,
+    }
     (args.output_root / "metrics.json").write_text(json.dumps(result, ensure_ascii=False, indent=2), encoding="utf-8")
     print(json.dumps({"best_epoch": best_epoch, "test": test}, ensure_ascii=False, indent=2))
 

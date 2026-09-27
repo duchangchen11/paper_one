@@ -1,0 +1,32 @@
+{
+  "experiment": "joint_trajectory_loss_weight_sweep",
+  "purpose": "Test whether the joint trajectory degradation is primarily caused by trajectory-task loss/gradient underweighting.",
+  "protocol_revision": "6bbace5",
+  "method": "fixed_lambda_sweep_only",
+  "lambda_trajectory_values": [1.0, 5.0, 10.0, 50.0, 100.0],
+  "seeds": [42, 123, 2024],
+  "fixed_training_settings": {
+    "data_root": "data/processed/jaad_sequences_scene_15x15",
+    "ambiguous_root": "data/processed/jaad_ambiguous_scene_15x15",
+    "epochs": 15,
+    "batch_size": 512,
+    "hidden_dim": 128,
+    "learning_rate": 0.001,
+    "optimizer": "AdamW",
+    "weight_decay": 0.0001,
+    "prior_weight": 0.5,
+    "ambiguous_weight": 0.2,
+    "gate_mode": "uncertainty",
+    "model_architecture": "unchanged",
+    "data_split": "unchanged"
+  },
+  "gradient_diagnostic": {
+    "scope": "shared target, scene, social, proposal, gate, and fusion parameters; task-specific output heads excluded",
+    "sampling": "one fixed balanced 512-sample training subset and one fixed ambiguous subset per seed, measured after each epoch",
+    "ratio": "||g_intent|| / (lambda_trajectory * ||g_trajectory_unweighted||)",
+    "side_effects": "autograd.grad only; no optimizer update; Python/NumPy/CPU/CUDA RNG states restored"
+  },
+  "output_layout": "results/joint_loss_balance/{baseline,lambda5,lambda10,lambda50,lambda100}/seed{42,123,2024}/",
+  "checkpoint_layout": "checkpoints/joint_loss_balance/{baseline,lambda5,lambda10,lambda50,lambda100}_seed{42,123,2024}.pt",
+  "selection_note": "Best checkpoint per run follows the existing validation composite score; compare lambda conditions by validation ADE/AUC before drawing confirmatory conclusions. Test metrics are reported for held-out descriptive comparison."
+}
