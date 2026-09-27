@@ -1,0 +1,35 @@
+{
+  "architecture": {
+    "classifier": "Linear(fusion,128)-ReLU-Dropout(0.1)-Linear(128,64)-ReLU-Linear(64,1)",
+    "fusion_input_dim": 128,
+    "future_gru": null,
+    "observed_gru": {
+      "hidden": 128,
+      "input": [
+        15,
+        8
+      ],
+      "layers": 1
+    },
+    "reliability_mlp_input_dim": 0
+  },
+  "checkpoint": "checkpoints/reliability_feature_intent_15x15/model_A/seed42.pt",
+  "checkpoint_sha256": "91ad7bcb4f9ddc3a23f2a2d742fd77f8e0f4990fad6822f929c0cdbf3ada6011",
+  "initial_future_sha256": null,
+  "initial_observed_sha256": "bb2370869d847f271bf226d5dcaabf58f489009d08388ba66e46ff4a438b2055",
+  "parameter_count": 77825,
+  "seed": 42,
+  "selected_epoch": 1,
+  "temperature": 0.6046615011241343,
+  "temperature_fit_split": "official_val",
+  "threshold": 0.473859916833053,
+  "threshold_fit_split": "official_val",
+  "validation_auc_at_selection": 0.7285971351295008,
+  "validation_brier_at_selection": 0.20899066721142126,
+  "validation_metrics_calibrated": {
+    "brier": 0.20961370205884508,
+    "roc_auc": 0.7285971351295008
+  },
+  "variant": "A",
+  "variant_name": "Observed-only"
+}

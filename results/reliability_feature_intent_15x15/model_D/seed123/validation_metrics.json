@@ -1,0 +1,42 @@
+{
+  "architecture": {
+    "classifier": "Linear(fusion,128)-ReLU-Dropout(0.1)-Linear(128,64)-ReLU-Linear(64,1)",
+    "fusion_input_dim": 224,
+    "future_gru": {
+      "hidden": 64,
+      "input": [
+        15,
+        2
+      ],
+      "layers": 1
+    },
+    "observed_gru": {
+      "hidden": 128,
+      "input": [
+        15,
+        8
+      ],
+      "layers": 1
+    },
+    "reliability_mlp_input_dim": 1
+  },
+  "checkpoint": "checkpoints/reliability_feature_intent_15x15/model_D/seed123.pt",
+  "checkpoint_sha256": "6494f01516400511f92ef219e59af220dcc012ee21f58491f5373099e41f07b0",
+  "initial_future_sha256": "666b7d96b5075913381f1af4ed796ada141e7f6a9a2d4f27d8469bf2d0f6a5a9",
+  "initial_observed_sha256": "86ffdd948fcd3fb328ee32d0ea7aa35321425445c2c672bb295ec7d56df2bfe8",
+  "parameter_count": 104289,
+  "seed": 123,
+  "selected_epoch": 2,
+  "temperature": 0.8102222448239322,
+  "temperature_fit_split": "official_val",
+  "threshold": 0.573856731301297,
+  "threshold_fit_split": "official_val",
+  "validation_auc_at_selection": 0.6084146655913802,
+  "validation_brier_at_selection": 0.2310034588559944,
+  "validation_metrics_calibrated": {
+    "brier": 0.2315194919419776,
+    "roc_auc": 0.6084146655913802
+  },
+  "variant": "D",
+  "variant_name": "Observed + future + motion-adjusted reliability"
+}

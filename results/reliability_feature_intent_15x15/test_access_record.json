@@ -1,0 +1,9 @@
+{
+  "evaluation_pass": "single unified A/B/C/D/E/D_no_future pass",
+  "labels_read_after_protocol_freeze": true,
+  "labels_used_for_training_selection_or_normalization": false,
+  "protocol_sha256": "a863306a8b9c8c36e0e67d485d2c077d694b08556b5f2d4291d8cc30d635eea6",
+  "sample_count": 18331,
+  "test_cache_matches_frozen_protocol": true,
+  "test_cache_sha256": "d3e77f33978e657bcdf5b66bfa0d3efb21948a29342dc556b67373bdeecb69a6"
+}

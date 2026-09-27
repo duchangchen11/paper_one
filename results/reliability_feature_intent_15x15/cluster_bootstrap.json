@@ -1,0 +1,291 @@
+{
+  "bootstrap_unit": "scene_id video cluster",
+  "comparisons": {
+    "D-A": {
+      "mean_seed_delta": {
+        "delta_brier": 0.01020614561071508,
+        "delta_roc_auc": -0.07461845365585074
+      },
+      "per_seed": {
+        "123": {
+          "bootstrap_unit": "scene_id video cluster",
+          "delta_brier": {
+            "ci_percentile_95": {
+              "lower_95": -0.02796180786785756,
+              "upper_95": 0.011714644656876725
+            },
+            "mean": -0.00761799397541622
+          },
+          "delta_roc_auc": {
+            "ci_percentile_95": {
+              "lower_95": -0.23570066511106758,
+              "upper_95": -0.014467612617174653
+            },
+            "mean": -0.13380876357632346
+          },
+          "requested_repetitions": 2000,
+          "seed": 9124,
+          "valid_repetitions": 2000,
+          "video_count": 97
+        },
+        "2024": {
+          "bootstrap_unit": "scene_id video cluster",
+          "delta_brier": {
+            "ci_percentile_95": {
+              "lower_95": 0.0002728173783907037,
+              "upper_95": 0.004275334676648976
+            },
+            "mean": 0.0021857642940065897
+          },
+          "delta_roc_auc": {
+            "ci_percentile_95": {
+              "lower_95": -0.08586977759718793,
+              "upper_95": 0.062318570769557644
+            },
+            "mean": -0.0072759277199567545
+          },
+          "requested_repetitions": 2000,
+          "seed": 9124,
+          "valid_repetitions": 2000,
+          "video_count": 97
+        },
+        "42": {
+          "bootstrap_unit": "scene_id video cluster",
+          "delta_brier": {
+            "ci_percentile_95": {
+              "lower_95": 0.01983964773008366,
+              "upper_95": 0.05021359849172351
+            },
+            "mean": 0.03620698779173216
+          },
+          "delta_roc_auc": {
+            "ci_percentile_95": {
+              "lower_95": -0.18657610731384874,
+              "upper_95": 0.043624208014710876
+            },
+            "mean": -0.08027126964802925
+          },
+          "requested_repetitions": 2000,
+          "seed": 9124,
+          "valid_repetitions": 2000,
+          "video_count": 97
+        }
+      }
+    },
+    "D-B": {
+      "mean_seed_delta": {
+        "delta_brier": -0.010321494963202912,
+        "delta_roc_auc": -0.0736640979672879
+      },
+      "per_seed": {
+        "123": {
+          "bootstrap_unit": "scene_id video cluster",
+          "delta_brier": {
+            "ci_percentile_95": {
+              "lower_95": -0.03686076656518829,
+              "upper_95": 0.009097140158235022
+            },
+            "mean": -0.013119779510663064
+          },
+          "delta_roc_auc": {
+            "ci_percentile_95": {
+              "lower_95": -0.24375145045310026,
+              "upper_95": 0.004224706585541365
+            },
+            "mean": -0.1315625460027055
+          },
+          "requested_repetitions": 2000,
+          "seed": 9124,
+          "valid_repetitions": 2000,
+          "video_count": 97
+        },
+        "2024": {
+          "bootstrap_unit": "scene_id video cluster",
+          "delta_brier": {
+            "ci_percentile_95": {
+              "lower_95": 0.0001912561263337595,
+              "upper_95": 0.005035417731459706
+            },
+            "mean": 0.0025357340699078733
+          },
+          "delta_roc_auc": {
+            "ci_percentile_95": {
+              "lower_95": -0.08648011012775253,
+              "upper_95": 0.05033243202481743
+            },
+            "mean": -0.01066875386441411
+          },
+          "requested_repetitions": 2000,
+          "seed": 9124,
+          "valid_repetitions": 2000,
+          "video_count": 97
+        },
+        "42": {
+          "bootstrap_unit": "scene_id video cluster",
+          "delta_brier": {
+            "ci_percentile_95": {
+              "lower_95": -0.03191022152275761,
+              "upper_95": -0.006709441522591896
+            },
+            "mean": -0.01955906603794638
+          },
+          "delta_roc_auc": {
+            "ci_percentile_95": {
+              "lower_95": -0.20393090808902353,
+              "upper_95": 0.08068161363564876
+            },
+            "mean": -0.07477635821330605
+          },
+          "requested_repetitions": 2000,
+          "seed": 9124,
+          "valid_repetitions": 2000,
+          "video_count": 97
+        }
+      }
+    },
+    "D-C": {
+      "mean_seed_delta": {
+        "delta_brier": -0.015955507791166657,
+        "delta_roc_auc": -0.04468640477443179
+      },
+      "per_seed": {
+        "123": {
+          "bootstrap_unit": "scene_id video cluster",
+          "delta_brier": {
+            "ci_percentile_95": {
+              "lower_95": -0.03527410464388708,
+              "upper_95": 0.010453317368383036
+            },
+            "mean": -0.01202020279558429
+          },
+          "delta_roc_auc": {
+            "ci_percentile_95": {
+              "lower_95": -0.22119376813868658,
+              "upper_95": 0.07469858501521029
+            },
+            "mean": -0.08663456086822431
+          },
+          "requested_repetitions": 2000,
+          "seed": 9124,
+          "valid_repetitions": 2000,
+          "video_count": 97
+        },
+        "2024": {
+          "bootstrap_unit": "scene_id video cluster",
+          "delta_brier": {
+            "ci_percentile_95": {
+              "lower_95": -0.0008230380874969356,
+              "upper_95": 0.002669152472472243
+            },
+            "mean": 0.0007964392497280408
+          },
+          "delta_roc_auc": {
+            "ci_percentile_95": {
+              "lower_95": -0.048606276974041476,
+              "upper_95": 0.11135478809180853
+            },
+            "mean": 0.029360925380962282
+          },
+          "requested_repetitions": 2000,
+          "seed": 9124,
+          "valid_repetitions": 2000,
+          "video_count": 97
+        },
+        "42": {
+          "bootstrap_unit": "scene_id video cluster",
+          "delta_brier": {
+            "ci_percentile_95": {
+              "lower_95": -0.061765738291914944,
+              "upper_95": -0.009313308360813411
+            },
+            "mean": -0.03519062655009735
+          },
+          "delta_roc_auc": {
+            "ci_percentile_95": {
+              "lower_95": -0.17286001916907262,
+              "upper_95": 0.08839249166221069
+            },
+            "mean": -0.05507701141899751
+          },
+          "requested_repetitions": 2000,
+          "seed": 9124,
+          "valid_repetitions": 2000,
+          "video_count": 97
+        }
+      }
+    },
+    "E-D": {
+      "mean_seed_delta": {
+        "delta_brier": 0.014069387875627476,
+        "delta_roc_auc": 0.013946181973759445
+      },
+      "per_seed": {
+        "123": {
+          "bootstrap_unit": "scene_id video cluster",
+          "delta_brier": {
+            "ci_percentile_95": {
+              "lower_95": -0.01074386249818595,
+              "upper_95": 0.0342479898546498
+            },
+            "mean": 0.011324839863594874
+          },
+          "delta_roc_auc": {
+            "ci_percentile_95": {
+              "lower_95": -0.07034661103965506,
+              "upper_95": 0.17111720490639598
+            },
+            "mean": 0.06020128341758534
+          },
+          "requested_repetitions": 2000,
+          "seed": 9124,
+          "valid_repetitions": 2000,
+          "video_count": 97
+        },
+        "2024": {
+          "bootstrap_unit": "scene_id video cluster",
+          "delta_brier": {
+            "ci_percentile_95": {
+              "lower_95": -0.00551745930960197,
+              "upper_95": -0.0008675822326072559
+            },
+            "mean": -0.003115796871545525
+          },
+          "delta_roc_auc": {
+            "ci_percentile_95": {
+              "lower_95": -0.1362097293909888,
+              "upper_95": 0.021115382724779277
+            },
+            "mean": -0.060125738294222755
+          },
+          "requested_repetitions": 2000,
+          "seed": 9124,
+          "valid_repetitions": 2000,
+          "video_count": 97
+        },
+        "42": {
+          "bootstrap_unit": "scene_id video cluster",
+          "delta_brier": {
+            "ci_percentile_95": {
+              "lower_95": 0.00702720849955991,
+              "upper_95": 0.05854088507789231
+            },
+            "mean": 0.03259596580443094
+          },
+          "delta_roc_auc": {
+            "ci_percentile_95": {
+              "lower_95": -0.09442438808831734,
+              "upper_95": 0.1293432110511118
+            },
+            "mean": 0.023861792103470718
+          },
+          "requested_repetitions": 2000,
+          "seed": 9124,
+          "valid_repetitions": 2000,
+          "video_count": 97
+        }
+      }
+    }
+  },
+  "paired_sampling": true,
+  "protocol_sha256": "a863306a8b9c8c36e0e67d485d2c077d694b08556b5f2d4291d8cc30d635eea6"
+}

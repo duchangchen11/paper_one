@@ -1,0 +1,21 @@
+{
+  "features": {
+    "adjusted_u": {
+      "mean": 1.9328984667199336e-16,
+      "sample_count": 24556,
+      "std": 0.16203859442101415
+    },
+    "observed_motion_pixel": {
+      "mean": 55.19319228914122,
+      "sample_count": 24556,
+      "std": 53.79333314253397
+    },
+    "u_mean_pixel": {
+      "mean": 2.4638712750445904,
+      "sample_count": 24556,
+      "std": 1.0559747029975919
+    }
+  },
+  "fit_split": "official_train_oof",
+  "std_ddof": 0
+}

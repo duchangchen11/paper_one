@@ -1,0 +1,35 @@
+{
+  "architecture": {
+    "classifier": "Linear(fusion,128)-ReLU-Dropout(0.1)-Linear(128,64)-ReLU-Linear(64,1)",
+    "fusion_input_dim": 160,
+    "future_gru": null,
+    "observed_gru": {
+      "hidden": 128,
+      "input": [
+        15,
+        8
+      ],
+      "layers": 1
+    },
+    "reliability_mlp_input_dim": 1
+  },
+  "checkpoint": "checkpoints/reliability_feature_intent_15x15/model_D_no_future/seed42.pt",
+  "checkpoint_sha256": "3f949024cbc7c2638ddb128badf779e909d39c1c7fb7386009ee3c3f8453c0a7",
+  "initial_future_sha256": null,
+  "initial_observed_sha256": "bb2370869d847f271bf226d5dcaabf58f489009d08388ba66e46ff4a438b2055",
+  "parameter_count": 83041,
+  "seed": 42,
+  "selected_epoch": 1,
+  "temperature": 0.7260902183339877,
+  "temperature_fit_split": "official_val",
+  "threshold": 0.48830534276666304,
+  "threshold_fit_split": "official_val",
+  "validation_auc_at_selection": 0.6959641095695013,
+  "validation_brier_at_selection": 0.23241530059732346,
+  "validation_metrics_calibrated": {
+    "brier": 0.23284713937426102,
+    "roc_auc": 0.6959641095695013
+  },
+  "variant": "D_no_future",
+  "variant_name": "Observed + adjusted reliability (no future)"
+}

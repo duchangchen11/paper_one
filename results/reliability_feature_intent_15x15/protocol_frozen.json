@@ -1,0 +1,993 @@
+{
+  "architecture": {
+    "all_models_train_end_to_end": true,
+    "fusion": "Linear(d,128)-ReLU-Dropout(0.1)-Linear(128,64)-ReLU-Linear(64,1)",
+    "future_gru": {
+      "hidden_dim": 64,
+      "input_shape": [
+        15,
+        2
+      ],
+      "layers": 1
+    },
+    "observed_gru": {
+      "hidden_dim": 128,
+      "input_shape": [
+        15,
+        8
+      ],
+      "layers": 1
+    },
+    "reliability_branch": "Linear(d,32)-ReLU-Linear(32,32)"
+  },
+  "bootstrap": {
+    "ci": "percentile 95%",
+    "paired_sampling": true,
+    "per_seed": true,
+    "repetitions": 2000,
+    "seed": 9124,
+    "unit": "scene_id video cluster"
+  },
+  "calibration_and_threshold": {
+    "temperature_fit": "official_val only, separately per seed/model",
+    "test_temperature_and_threshold_frozen": true,
+    "threshold": "maximize balanced accuracy on calibrated official_val probabilities"
+  },
+  "data": {
+    "crossfit_manifest_embedded_sha256": "6e167a8657d0891b1997ddea909c86784f28be27bb9fac5453614e9d9b788e05",
+    "crossfit_manifest_sha256": "efab389e01f08b5d41251ce7c8da1412d2124de3672d8807d9631b9c75526a7f",
+    "feature_cache_manifest_embedded_sha256": "36dc469cf15d9b96e6fa63acb94bfe6cbf83e9a16fd2f023660ec4a1c4eca442",
+    "feature_cache_manifest_sha256": "9513d9b5636f2af60d2cb1af0977e6343d5c6dc2c3b39083944dff79a34e0d66",
+    "jaad_split_changed": false,
+    "labeled_test_cache_sha256_released_after_prior_protocol": "d3e77f33978e657bcdf5b66bfa0d3efb21948a29342dc556b67373bdeecb69a6",
+    "test_sample_count_from_unlabeled_cache": 18331,
+    "train_feature_sha256": "e574bf9c81b305d36818b01d3515fa8e763c11a6cb5f02de2ca78060d1ea3ed3",
+    "train_oof_sample_count": 24556,
+    "trajectory_predictor_retrained": false,
+    "unlabeled_test_feature_sha256": "54b1c6de657d0fe908051582ffe8764088cef06c32b8585c1fe7f5d56ca46ab1",
+    "validation_feature_sha256": "d952e00c40dcfa45b1d4a96fba04ba3a42fa09ee95954f78d0a1308e750b0095",
+    "validation_sample_count": 2636
+  },
+  "extra_ablation": {
+    "description": "Observed + adjusted reliability, with no predicted future input",
+    "raw_and_adjusted_aliases": {
+      "D_adjusted": "D",
+      "D_raw": "C"
+    },
+    "variant": "D_no_future"
+  },
+  "feature_normalization": {
+    "features": [
+      "u_mean_pixel",
+      "observed_motion_pixel",
+      "adjusted_u"
+    ],
+    "fit_split": "official_train_oof",
+    "path": "feature_normalization.json",
+    "sha256": "4fff020ed79014da126abe200e23028acbb824389614dff36e1f9cbd9be0084c",
+    "std_ddof": 0,
+    "validation_or_test_fit": false
+  },
+  "matched_initialization": {
+    "common_observed_and_future_branch_initialization": {
+      "123": {
+        "future_sha256": "666b7d96b5075913381f1af4ed796ada141e7f6a9a2d4f27d8469bf2d0f6a5a9",
+        "observed_sha256": "86ffdd948fcd3fb328ee32d0ea7aa35321425445c2c672bb295ec7d56df2bfe8"
+      },
+      "2024": {
+        "future_sha256": "c8c9942773523c1320f4be0488392d30428bf90469df93c3d740c193c5da2066",
+        "observed_sha256": "80acc394710d6af3dc362c7261312b1c92b416fafba932146e74311bb9a8cffc"
+      },
+      "42": {
+        "future_sha256": "da3edf7819f54b76d577e140e1f1f4978d1f579c90b2f8d0384b870c8c0fc0a1",
+        "observed_sha256": "bb2370869d847f271bf226d5dcaabf58f489009d08388ba66e46ff4a438b2055"
+      }
+    },
+    "required_variants": [
+      "B",
+      "C",
+      "D",
+      "E"
+    ]
+  },
+  "model_definitions": {
+    "A": {
+      "description": "Observed-only",
+      "forbidden_inputs": [
+        "future_gt",
+        "ADE",
+        "FDE",
+        "intent_label",
+        "crossing_label"
+      ],
+      "future_branch": false,
+      "inputs": [
+        "target_obs"
+      ],
+      "reliability_features": []
+    },
+    "B": {
+      "description": "Observed + future trajectory",
+      "forbidden_inputs": [
+        "future_gt",
+        "ADE",
+        "FDE",
+        "intent_label",
+        "crossing_label"
+      ],
+      "future_branch": true,
+      "inputs": [
+        "target_obs",
+        "future_pred_mean"
+      ],
+      "reliability_features": []
+    },
+    "C": {
+      "description": "Observed + future + raw reliability",
+      "forbidden_inputs": [
+        "future_gt",
+        "ADE",
+        "FDE",
+        "intent_label",
+        "crossing_label"
+      ],
+      "future_branch": true,
+      "inputs": [
+        "target_obs",
+        "future_pred_mean",
+        "u_mean_pixel"
+      ],
+      "reliability_features": [
+        "u_mean_pixel"
+      ]
+    },
+    "D": {
+      "description": "Observed + future + motion-adjusted reliability",
+      "forbidden_inputs": [
+        "future_gt",
+        "ADE",
+        "FDE",
+        "intent_label",
+        "crossing_label"
+      ],
+      "future_branch": true,
+      "inputs": [
+        "target_obs",
+        "future_pred_mean",
+        "adjusted_u"
+      ],
+      "reliability_features": [
+        "adjusted_u"
+      ]
+    },
+    "D_no_future": {
+      "description": "Observed + adjusted reliability (no future)",
+      "forbidden_inputs": [
+        "future_gt",
+        "ADE",
+        "FDE",
+        "intent_label",
+        "crossing_label"
+      ],
+      "future_branch": false,
+      "inputs": [
+        "target_obs",
+        "adjusted_u"
+      ],
+      "reliability_features": [
+        "adjusted_u"
+      ]
+    },
+    "E": {
+      "description": "Observed + future + motion + adjusted reliability",
+      "forbidden_inputs": [
+        "future_gt",
+        "ADE",
+        "FDE",
+        "intent_label",
+        "crossing_label"
+      ],
+      "future_branch": true,
+      "inputs": [
+        "target_obs",
+        "future_pred_mean",
+        "observed_motion_pixel",
+        "adjusted_u"
+      ],
+      "reliability_features": [
+        "observed_motion_pixel",
+        "adjusted_u"
+      ]
+    }
+  },
+  "motion_adjustment": {
+    "coefficients": {
+      "b0": 1.6033213630961112,
+      "b1": -0.41989980605522786,
+      "b2": 0.08050920235539792,
+      "degree": 2,
+      "fit_motion_sha256": "06362dcb396c22107379ad9929852845de58f66bbd1adecc3d9be95ae53a9093",
+      "fit_sample_count": 24556,
+      "fit_split": "official_train_oof_only",
+      "fit_u_mean_sha256": "d65e7541a772cffe21c750d94a8674459179629cfdec05d5f29e26c5ecd3d3e1",
+      "future_gt_used": false,
+      "intent_label_used": false,
+      "predictor": "log1p(observed_motion_pixel)",
+      "target": "log1p(u_mean_pixel)",
+      "trajectory_error_used": false
+    },
+    "fit_split": "previously_frozen_official_train_oof_only",
+    "method": "log1p(u_mean_pixel) residualized on quadratic log1p(observed_motion_pixel)",
+    "transform_sha256": "d79eac79713a53d0a8e5216c679bc4caedfc7b7616c44fcc1fd81c89fba437be"
+  },
+  "paired_comparisons": [
+    "D-B",
+    "D-A",
+    "D-C",
+    "E-D"
+  ],
+  "prohibited_information": {
+    "ADE_or_FDE_as_input": false,
+    "future_gt_as_input": false,
+    "gate_design": false,
+    "scene_or_social_features": false,
+    "test_labels_for_training_selection_or_normalization": false,
+    "test_percentile_normalization": false
+  },
+  "protocol": "reliability-as-feature intention recognition; frozen predictor and OOF features",
+  "reliability_tertile_cutpoints_train_oof_adjusted_u": [
+    -0.0786452935211428,
+    0.045930285995114284
+  ],
+  "results_scope": "one unified A/B/C/D/E and D_no_future test pass after this file is frozen",
+  "selected_models": {
+    "A_seed123": {
+      "architecture": {
+        "classifier": "Linear(fusion,128)-ReLU-Dropout(0.1)-Linear(128,64)-ReLU-Linear(64,1)",
+        "fusion_input_dim": 128,
+        "future_gru": null,
+        "observed_gru": {
+          "hidden": 128,
+          "input": [
+            15,
+            8
+          ],
+          "layers": 1
+        },
+        "reliability_mlp_input_dim": 0
+      },
+      "checkpoint": "checkpoints/reliability_feature_intent_15x15/model_A/seed123.pt",
+      "checkpoint_sha256": "605640dc4346518f1844cf12edfa9706a3f30bc762f3d1d4b413b2ee63da82b5",
+      "initial_future_sha256": null,
+      "initial_observed_sha256": "86ffdd948fcd3fb328ee32d0ea7aa35321425445c2c672bb295ec7d56df2bfe8",
+      "parameter_count": 77825,
+      "seed": 123,
+      "selected_epoch": 3,
+      "temperature": 19.999998273265103,
+      "temperature_fit_split": "official_val",
+      "threshold": 0.49386211625459375,
+      "threshold_fit_split": "official_val",
+      "validation_auc_at_selection": 0.7406611914832919,
+      "validation_brier_at_selection": 0.3252025537404936,
+      "validation_metrics_calibrated": {
+        "brier": 0.25075864122738994,
+        "roc_auc": 0.7406611914832919
+      },
+      "variant": "A",
+      "variant_name": "Observed-only"
+    },
+    "A_seed2024": {
+      "architecture": {
+        "classifier": "Linear(fusion,128)-ReLU-Dropout(0.1)-Linear(128,64)-ReLU-Linear(64,1)",
+        "fusion_input_dim": 128,
+        "future_gru": null,
+        "observed_gru": {
+          "hidden": 128,
+          "input": [
+            15,
+            8
+          ],
+          "layers": 1
+        },
+        "reliability_mlp_input_dim": 0
+      },
+      "checkpoint": "checkpoints/reliability_feature_intent_15x15/model_A/seed2024.pt",
+      "checkpoint_sha256": "7f5e05d621fd41b5a51b881aa416f9b59f508682c8aeaf6c7e247e10d0f85582",
+      "initial_future_sha256": null,
+      "initial_observed_sha256": "80acc394710d6af3dc362c7261312b1c92b416fafba932146e74311bb9a8cffc",
+      "parameter_count": 77825,
+      "seed": 2024,
+      "selected_epoch": 2,
+      "temperature": 19.999998751104968,
+      "temperature_fit_split": "official_val",
+      "threshold": 0.49623107760775353,
+      "threshold_fit_split": "official_val",
+      "validation_auc_at_selection": 0.7409368708065197,
+      "validation_brier_at_selection": 0.2736492282875763,
+      "validation_metrics_calibrated": {
+        "brier": 0.25017966613018705,
+        "roc_auc": 0.7409368708065197
+      },
+      "variant": "A",
+      "variant_name": "Observed-only"
+    },
+    "A_seed42": {
+      "architecture": {
+        "classifier": "Linear(fusion,128)-ReLU-Dropout(0.1)-Linear(128,64)-ReLU-Linear(64,1)",
+        "fusion_input_dim": 128,
+        "future_gru": null,
+        "observed_gru": {
+          "hidden": 128,
+          "input": [
+            15,
+            8
+          ],
+          "layers": 1
+        },
+        "reliability_mlp_input_dim": 0
+      },
+      "checkpoint": "checkpoints/reliability_feature_intent_15x15/model_A/seed42.pt",
+      "checkpoint_sha256": "91ad7bcb4f9ddc3a23f2a2d742fd77f8e0f4990fad6822f929c0cdbf3ada6011",
+      "initial_future_sha256": null,
+      "initial_observed_sha256": "bb2370869d847f271bf226d5dcaabf58f489009d08388ba66e46ff4a438b2055",
+      "parameter_count": 77825,
+      "seed": 42,
+      "selected_epoch": 1,
+      "temperature": 0.6046615011241343,
+      "temperature_fit_split": "official_val",
+      "threshold": 0.473859916833053,
+      "threshold_fit_split": "official_val",
+      "validation_auc_at_selection": 0.7285971351295008,
+      "validation_brier_at_selection": 0.20899066721142126,
+      "validation_metrics_calibrated": {
+        "brier": 0.20961370205884508,
+        "roc_auc": 0.7285971351295008
+      },
+      "variant": "A",
+      "variant_name": "Observed-only"
+    },
+    "B_seed123": {
+      "architecture": {
+        "classifier": "Linear(fusion,128)-ReLU-Dropout(0.1)-Linear(128,64)-ReLU-Linear(64,1)",
+        "fusion_input_dim": 192,
+        "future_gru": {
+          "hidden": 64,
+          "input": [
+            15,
+            2
+          ],
+          "layers": 1
+        },
+        "observed_gru": {
+          "hidden": 128,
+          "input": [
+            15,
+            8
+          ],
+          "layers": 1
+        },
+        "reliability_mlp_input_dim": 0
+      },
+      "checkpoint": "checkpoints/reliability_feature_intent_15x15/model_B/seed123.pt",
+      "checkpoint_sha256": "34267f25a1fd7526bc93b82e8e16c0c2290843b51203fecca364c0880ea76067",
+      "initial_future_sha256": "666b7d96b5075913381f1af4ed796ada141e7f6a9a2d4f27d8469bf2d0f6a5a9",
+      "initial_observed_sha256": "86ffdd948fcd3fb328ee32d0ea7aa35321425445c2c672bb295ec7d56df2bfe8",
+      "parameter_count": 99073,
+      "seed": 123,
+      "selected_epoch": 2,
+      "temperature": 19.999998694746747,
+      "temperature_fit_split": "official_val",
+      "threshold": 0.4945045806739526,
+      "threshold_fit_split": "official_val",
+      "validation_auc_at_selection": 0.7392930814090642,
+      "validation_brier_at_selection": 0.33121239266119235,
+      "validation_metrics_calibrated": {
+        "brier": 0.25336279069142503,
+        "roc_auc": 0.7392930814090642
+      },
+      "variant": "B",
+      "variant_name": "Observed + future trajectory"
+    },
+    "B_seed2024": {
+      "architecture": {
+        "classifier": "Linear(fusion,128)-ReLU-Dropout(0.1)-Linear(128,64)-ReLU-Linear(64,1)",
+        "fusion_input_dim": 192,
+        "future_gru": {
+          "hidden": 64,
+          "input": [
+            15,
+            2
+          ],
+          "layers": 1
+        },
+        "observed_gru": {
+          "hidden": 128,
+          "input": [
+            15,
+            8
+          ],
+          "layers": 1
+        },
+        "reliability_mlp_input_dim": 0
+      },
+      "checkpoint": "checkpoints/reliability_feature_intent_15x15/model_B/seed2024.pt",
+      "checkpoint_sha256": "ff1e9f9834ed2d63a96c70b9c131d538c4854f28dc359f70e52da726978fbe34",
+      "initial_future_sha256": "c8c9942773523c1320f4be0488392d30428bf90469df93c3d740c193c5da2066",
+      "initial_observed_sha256": "80acc394710d6af3dc362c7261312b1c92b416fafba932146e74311bb9a8cffc",
+      "parameter_count": 99073,
+      "seed": 2024,
+      "selected_epoch": 2,
+      "temperature": 19.999998496598586,
+      "temperature_fit_split": "official_val",
+      "threshold": 0.495460498301013,
+      "threshold_fit_split": "official_val",
+      "validation_auc_at_selection": 0.7412399809081782,
+      "validation_brier_at_selection": 0.2817499984663767,
+      "validation_metrics_calibrated": {
+        "brier": 0.2501297000777772,
+        "roc_auc": 0.7412399809081782
+      },
+      "variant": "B",
+      "variant_name": "Observed + future trajectory"
+    },
+    "B_seed42": {
+      "architecture": {
+        "classifier": "Linear(fusion,128)-ReLU-Dropout(0.1)-Linear(128,64)-ReLU-Linear(64,1)",
+        "fusion_input_dim": 192,
+        "future_gru": {
+          "hidden": 64,
+          "input": [
+            15,
+            2
+          ],
+          "layers": 1
+        },
+        "observed_gru": {
+          "hidden": 128,
+          "input": [
+            15,
+            8
+          ],
+          "layers": 1
+        },
+        "reliability_mlp_input_dim": 0
+      },
+      "checkpoint": "checkpoints/reliability_feature_intent_15x15/model_B/seed42.pt",
+      "checkpoint_sha256": "ea9e0318a70d04f7037301204f6291ee41caa75205c33a3955eb0b8d7e1ff198",
+      "initial_future_sha256": "da3edf7819f54b76d577e140e1f1f4978d1f579c90b2f8d0384b870c8c0fc0a1",
+      "initial_observed_sha256": "bb2370869d847f271bf226d5dcaabf58f489009d08388ba66e46ff4a438b2055",
+      "parameter_count": 99073,
+      "seed": 42,
+      "selected_epoch": 1,
+      "temperature": 2.7385025355038817,
+      "temperature_fit_split": "official_val",
+      "threshold": 0.4782787295710871,
+      "threshold_fit_split": "official_val",
+      "validation_auc_at_selection": 0.7145429758005672,
+      "validation_brier_at_selection": 0.2602209136320263,
+      "validation_metrics_calibrated": {
+        "brier": 0.2458335679624628,
+        "roc_auc": 0.7145429758005672
+      },
+      "variant": "B",
+      "variant_name": "Observed + future trajectory"
+    },
+    "C_seed123": {
+      "architecture": {
+        "classifier": "Linear(fusion,128)-ReLU-Dropout(0.1)-Linear(128,64)-ReLU-Linear(64,1)",
+        "fusion_input_dim": 224,
+        "future_gru": {
+          "hidden": 64,
+          "input": [
+            15,
+            2
+          ],
+          "layers": 1
+        },
+        "observed_gru": {
+          "hidden": 128,
+          "input": [
+            15,
+            8
+          ],
+          "layers": 1
+        },
+        "reliability_mlp_input_dim": 1
+      },
+      "checkpoint": "checkpoints/reliability_feature_intent_15x15/model_C/seed123.pt",
+      "checkpoint_sha256": "afddd80ff46365f636d6161ccebd52bec14e1b622bd88995f3c17438bc7ee9a6",
+      "initial_future_sha256": "666b7d96b5075913381f1af4ed796ada141e7f6a9a2d4f27d8469bf2d0f6a5a9",
+      "initial_observed_sha256": "86ffdd948fcd3fb328ee32d0ea7aa35321425445c2c672bb295ec7d56df2bfe8",
+      "parameter_count": 104289,
+      "seed": 123,
+      "selected_epoch": 1,
+      "temperature": 19.999998533884423,
+      "temperature_fit_split": "official_val",
+      "threshold": 0.4939891799050946,
+      "threshold_fit_split": "official_val",
+      "validation_auc_at_selection": 0.4910342500699485,
+      "validation_brier_at_selection": 0.34618843913182124,
+      "validation_metrics_calibrated": {
+        "brier": 0.25378389512737903,
+        "roc_auc": 0.4910342500699485
+      },
+      "variant": "C",
+      "variant_name": "Observed + future + raw reliability"
+    },
+    "C_seed2024": {
+      "architecture": {
+        "classifier": "Linear(fusion,128)-ReLU-Dropout(0.1)-Linear(128,64)-ReLU-Linear(64,1)",
+        "fusion_input_dim": 224,
+        "future_gru": {
+          "hidden": 64,
+          "input": [
+            15,
+            2
+          ],
+          "layers": 1
+        },
+        "observed_gru": {
+          "hidden": 128,
+          "input": [
+            15,
+            8
+          ],
+          "layers": 1
+        },
+        "reliability_mlp_input_dim": 1
+      },
+      "checkpoint": "checkpoints/reliability_feature_intent_15x15/model_C/seed2024.pt",
+      "checkpoint_sha256": "3cc3c79f3efa4dbe14d6f0f1be85e9e24bd9f70a6581415bbf08864ea1f296c7",
+      "initial_future_sha256": "c8c9942773523c1320f4be0488392d30428bf90469df93c3d740c193c5da2066",
+      "initial_observed_sha256": "80acc394710d6af3dc362c7261312b1c92b416fafba932146e74311bb9a8cffc",
+      "parameter_count": 104289,
+      "seed": 2024,
+      "selected_epoch": 1,
+      "temperature": 19.999998439055876,
+      "temperature_fit_split": "official_val",
+      "threshold": 0.49508408855365765,
+      "threshold_fit_split": "official_val",
+      "validation_auc_at_selection": 0.510425067342561,
+      "validation_brier_at_selection": 0.3208262103126455,
+      "validation_metrics_calibrated": {
+        "brier": 0.25261210317021277,
+        "roc_auc": 0.510425067342561
+      },
+      "variant": "C",
+      "variant_name": "Observed + future + raw reliability"
+    },
+    "C_seed42": {
+      "architecture": {
+        "classifier": "Linear(fusion,128)-ReLU-Dropout(0.1)-Linear(128,64)-ReLU-Linear(64,1)",
+        "fusion_input_dim": 224,
+        "future_gru": {
+          "hidden": 64,
+          "input": [
+            15,
+            2
+          ],
+          "layers": 1
+        },
+        "observed_gru": {
+          "hidden": 128,
+          "input": [
+            15,
+            8
+          ],
+          "layers": 1
+        },
+        "reliability_mlp_input_dim": 1
+      },
+      "checkpoint": "checkpoints/reliability_feature_intent_15x15/model_C/seed42.pt",
+      "checkpoint_sha256": "81824f706eed6c0814e52f43b4c4d14c67970d18890489b6e466195b7d82df88",
+      "initial_future_sha256": "da3edf7819f54b76d577e140e1f1f4978d1f579c90b2f8d0384b870c8c0fc0a1",
+      "initial_observed_sha256": "bb2370869d847f271bf226d5dcaabf58f489009d08388ba66e46ff4a438b2055",
+      "parameter_count": 104289,
+      "seed": 42,
+      "selected_epoch": 1,
+      "temperature": 19.999998436438148,
+      "temperature_fit_split": "official_val",
+      "threshold": 0.4926556037912188,
+      "threshold_fit_split": "official_val",
+      "validation_auc_at_selection": 0.50350153886667,
+      "validation_brier_at_selection": 0.3652238986383122,
+      "validation_metrics_calibrated": {
+        "brier": 0.2543647823683446,
+        "roc_auc": 0.50350153886667
+      },
+      "variant": "C",
+      "variant_name": "Observed + future + raw reliability"
+    },
+    "D_no_future_seed123": {
+      "architecture": {
+        "classifier": "Linear(fusion,128)-ReLU-Dropout(0.1)-Linear(128,64)-ReLU-Linear(64,1)",
+        "fusion_input_dim": 160,
+        "future_gru": null,
+        "observed_gru": {
+          "hidden": 128,
+          "input": [
+            15,
+            8
+          ],
+          "layers": 1
+        },
+        "reliability_mlp_input_dim": 1
+      },
+      "checkpoint": "checkpoints/reliability_feature_intent_15x15/model_D_no_future/seed123.pt",
+      "checkpoint_sha256": "d005a0a9672e86fb30394c9182ebe044af5ef9623d6222bebcf75c7f5fef800b",
+      "initial_future_sha256": null,
+      "initial_observed_sha256": "86ffdd948fcd3fb328ee32d0ea7aa35321425445c2c672bb295ec7d56df2bfe8",
+      "parameter_count": 83041,
+      "seed": 123,
+      "selected_epoch": 2,
+      "temperature": 1.2392807486989668,
+      "temperature_fit_split": "official_val",
+      "threshold": 0.4447194081713429,
+      "threshold_fit_split": "official_val",
+      "validation_auc_at_selection": 0.7259980688731985,
+      "validation_brier_at_selection": 0.23185188411035573,
+      "validation_metrics_calibrated": {
+        "brier": 0.22982033512597164,
+        "roc_auc": 0.7259980688731985
+      },
+      "variant": "D_no_future",
+      "variant_name": "Observed + adjusted reliability (no future)"
+    },
+    "D_no_future_seed2024": {
+      "architecture": {
+        "classifier": "Linear(fusion,128)-ReLU-Dropout(0.1)-Linear(128,64)-ReLU-Linear(64,1)",
+        "fusion_input_dim": 160,
+        "future_gru": null,
+        "observed_gru": {
+          "hidden": 128,
+          "input": [
+            15,
+            8
+          ],
+          "layers": 1
+        },
+        "reliability_mlp_input_dim": 1
+      },
+      "checkpoint": "checkpoints/reliability_feature_intent_15x15/model_D_no_future/seed2024.pt",
+      "checkpoint_sha256": "512bf33fb2af2a2aec67c71c7872261f98926854522d423729275174d6a1bab2",
+      "initial_future_sha256": null,
+      "initial_observed_sha256": "80acc394710d6af3dc362c7261312b1c92b416fafba932146e74311bb9a8cffc",
+      "parameter_count": 83041,
+      "seed": 2024,
+      "selected_epoch": 1,
+      "temperature": 0.21974454430585977,
+      "temperature_fit_split": "official_val",
+      "threshold": 0.5015368744340485,
+      "threshold_fit_split": "official_val",
+      "validation_auc_at_selection": 0.7466959627380305,
+      "validation_brier_at_selection": 0.2154553638391808,
+      "validation_metrics_calibrated": {
+        "brier": 0.2031775396602902,
+        "roc_auc": 0.7466959627380305
+      },
+      "variant": "D_no_future",
+      "variant_name": "Observed + adjusted reliability (no future)"
+    },
+    "D_no_future_seed42": {
+      "architecture": {
+        "classifier": "Linear(fusion,128)-ReLU-Dropout(0.1)-Linear(128,64)-ReLU-Linear(64,1)",
+        "fusion_input_dim": 160,
+        "future_gru": null,
+        "observed_gru": {
+          "hidden": 128,
+          "input": [
+            15,
+            8
+          ],
+          "layers": 1
+        },
+        "reliability_mlp_input_dim": 1
+      },
+      "checkpoint": "checkpoints/reliability_feature_intent_15x15/model_D_no_future/seed42.pt",
+      "checkpoint_sha256": "3f949024cbc7c2638ddb128badf779e909d39c1c7fb7386009ee3c3f8453c0a7",
+      "initial_future_sha256": null,
+      "initial_observed_sha256": "bb2370869d847f271bf226d5dcaabf58f489009d08388ba66e46ff4a438b2055",
+      "parameter_count": 83041,
+      "seed": 42,
+      "selected_epoch": 1,
+      "temperature": 0.7260902183339877,
+      "temperature_fit_split": "official_val",
+      "threshold": 0.48830534276666304,
+      "threshold_fit_split": "official_val",
+      "validation_auc_at_selection": 0.6959641095695013,
+      "validation_brier_at_selection": 0.23241530059732346,
+      "validation_metrics_calibrated": {
+        "brier": 0.23284713937426102,
+        "roc_auc": 0.6959641095695013
+      },
+      "variant": "D_no_future",
+      "variant_name": "Observed + adjusted reliability (no future)"
+    },
+    "D_seed123": {
+      "architecture": {
+        "classifier": "Linear(fusion,128)-ReLU-Dropout(0.1)-Linear(128,64)-ReLU-Linear(64,1)",
+        "fusion_input_dim": 224,
+        "future_gru": {
+          "hidden": 64,
+          "input": [
+            15,
+            2
+          ],
+          "layers": 1
+        },
+        "observed_gru": {
+          "hidden": 128,
+          "input": [
+            15,
+            8
+          ],
+          "layers": 1
+        },
+        "reliability_mlp_input_dim": 1
+      },
+      "checkpoint": "checkpoints/reliability_feature_intent_15x15/model_D/seed123.pt",
+      "checkpoint_sha256": "6494f01516400511f92ef219e59af220dcc012ee21f58491f5373099e41f07b0",
+      "initial_future_sha256": "666b7d96b5075913381f1af4ed796ada141e7f6a9a2d4f27d8469bf2d0f6a5a9",
+      "initial_observed_sha256": "86ffdd948fcd3fb328ee32d0ea7aa35321425445c2c672bb295ec7d56df2bfe8",
+      "parameter_count": 104289,
+      "seed": 123,
+      "selected_epoch": 2,
+      "temperature": 0.8102222448239322,
+      "temperature_fit_split": "official_val",
+      "threshold": 0.573856731301297,
+      "threshold_fit_split": "official_val",
+      "validation_auc_at_selection": 0.6084146655913802,
+      "validation_brier_at_selection": 0.2310034588559944,
+      "validation_metrics_calibrated": {
+        "brier": 0.2315194919419776,
+        "roc_auc": 0.6084146655913802
+      },
+      "variant": "D",
+      "variant_name": "Observed + future + motion-adjusted reliability"
+    },
+    "D_seed2024": {
+      "architecture": {
+        "classifier": "Linear(fusion,128)-ReLU-Dropout(0.1)-Linear(128,64)-ReLU-Linear(64,1)",
+        "fusion_input_dim": 224,
+        "future_gru": {
+          "hidden": 64,
+          "input": [
+            15,
+            2
+          ],
+          "layers": 1
+        },
+        "observed_gru": {
+          "hidden": 128,
+          "input": [
+            15,
+            8
+          ],
+          "layers": 1
+        },
+        "reliability_mlp_input_dim": 1
+      },
+      "checkpoint": "checkpoints/reliability_feature_intent_15x15/model_D/seed2024.pt",
+      "checkpoint_sha256": "e8031ef9a7cd52fa2e987ab4a8f9fb6e2996325444f28171ae34e633746e18f8",
+      "initial_future_sha256": "c8c9942773523c1320f4be0488392d30428bf90469df93c3d740c193c5da2066",
+      "initial_observed_sha256": "80acc394710d6af3dc362c7261312b1c92b416fafba932146e74311bb9a8cffc",
+      "parameter_count": 104289,
+      "seed": 2024,
+      "selected_epoch": 1,
+      "temperature": 19.999998361280795,
+      "temperature_fit_split": "official_val",
+      "threshold": 0.4985947109288907,
+      "threshold_fit_split": "official_val",
+      "validation_auc_at_selection": 0.6796866856487653,
+      "validation_brier_at_selection": 0.266331887255621,
+      "validation_metrics_calibrated": {
+        "brier": 0.2507733014675038,
+        "roc_auc": 0.6796866856487653
+      },
+      "variant": "D",
+      "variant_name": "Observed + future + motion-adjusted reliability"
+    },
+    "D_seed42": {
+      "architecture": {
+        "classifier": "Linear(fusion,128)-ReLU-Dropout(0.1)-Linear(128,64)-ReLU-Linear(64,1)",
+        "fusion_input_dim": 224,
+        "future_gru": {
+          "hidden": 64,
+          "input": [
+            15,
+            2
+          ],
+          "layers": 1
+        },
+        "observed_gru": {
+          "hidden": 128,
+          "input": [
+            15,
+            8
+          ],
+          "layers": 1
+        },
+        "reliability_mlp_input_dim": 1
+      },
+      "checkpoint": "checkpoints/reliability_feature_intent_15x15/model_D/seed42.pt",
+      "checkpoint_sha256": "51f7546c18e0ba278191d8608895abc3ba08378d5b44e0d21dabac82b091318a",
+      "initial_future_sha256": "da3edf7819f54b76d577e140e1f1f4978d1f579c90b2f8d0384b870c8c0fc0a1",
+      "initial_observed_sha256": "bb2370869d847f271bf226d5dcaabf58f489009d08388ba66e46ff4a438b2055",
+      "parameter_count": 104289,
+      "seed": 42,
+      "selected_epoch": 1,
+      "temperature": 0.7600093959803244,
+      "temperature_fit_split": "official_val",
+      "threshold": 0.5166621699138731,
+      "threshold_fit_split": "official_val",
+      "validation_auc_at_selection": 0.6308036669464606,
+      "validation_brier_at_selection": 0.2271731078802976,
+      "validation_metrics_calibrated": {
+        "brier": 0.22807942103506762,
+        "roc_auc": 0.6308036669464606
+      },
+      "variant": "D",
+      "variant_name": "Observed + future + motion-adjusted reliability"
+    },
+    "E_seed123": {
+      "architecture": {
+        "classifier": "Linear(fusion,128)-ReLU-Dropout(0.1)-Linear(128,64)-ReLU-Linear(64,1)",
+        "fusion_input_dim": 224,
+        "future_gru": {
+          "hidden": 64,
+          "input": [
+            15,
+            2
+          ],
+          "layers": 1
+        },
+        "observed_gru": {
+          "hidden": 128,
+          "input": [
+            15,
+            8
+          ],
+          "layers": 1
+        },
+        "reliability_mlp_input_dim": 2
+      },
+      "checkpoint": "checkpoints/reliability_feature_intent_15x15/model_E/seed123.pt",
+      "checkpoint_sha256": "f48f1300d6b09a5a99ac44909991e2168e7e69f8226d6ee94e38a2ec85f794c8",
+      "initial_future_sha256": "666b7d96b5075913381f1af4ed796ada141e7f6a9a2d4f27d8469bf2d0f6a5a9",
+      "initial_observed_sha256": "86ffdd948fcd3fb328ee32d0ea7aa35321425445c2c672bb295ec7d56df2bfe8",
+      "parameter_count": 104321,
+      "seed": 123,
+      "selected_epoch": 1,
+      "temperature": 19.99999839922263,
+      "temperature_fit_split": "official_val",
+      "threshold": 0.49507213189223215,
+      "threshold_fit_split": "official_val",
+      "validation_auc_at_selection": 0.5158947645616287,
+      "validation_brier_at_selection": 0.3410880198984565,
+      "validation_metrics_calibrated": {
+        "brier": 0.2533939578706718,
+        "roc_auc": 0.5158947645616287
+      },
+      "variant": "E",
+      "variant_name": "Observed + future + motion + adjusted reliability"
+    },
+    "E_seed2024": {
+      "architecture": {
+        "classifier": "Linear(fusion,128)-ReLU-Dropout(0.1)-Linear(128,64)-ReLU-Linear(64,1)",
+        "fusion_input_dim": 224,
+        "future_gru": {
+          "hidden": 64,
+          "input": [
+            15,
+            2
+          ],
+          "layers": 1
+        },
+        "observed_gru": {
+          "hidden": 128,
+          "input": [
+            15,
+            8
+          ],
+          "layers": 1
+        },
+        "reliability_mlp_input_dim": 2
+      },
+      "checkpoint": "checkpoints/reliability_feature_intent_15x15/model_E/seed2024.pt",
+      "checkpoint_sha256": "931dbdebd3dd6aab89accfee2878355d7c07a73e5dc743adb7f4074d62f85591",
+      "initial_future_sha256": "c8c9942773523c1320f4be0488392d30428bf90469df93c3d740c193c5da2066",
+      "initial_observed_sha256": "80acc394710d6af3dc362c7261312b1c92b416fafba932146e74311bb9a8cffc",
+      "parameter_count": 104321,
+      "seed": 2024,
+      "selected_epoch": 1,
+      "temperature": 19.9999986904527,
+      "temperature_fit_split": "official_val",
+      "threshold": 0.501773679569513,
+      "threshold_fit_split": "official_val",
+      "validation_auc_at_selection": 0.5067507145717782,
+      "validation_brier_at_selection": 0.2929852805621174,
+      "validation_metrics_calibrated": {
+        "brier": 0.2507849990480791,
+        "roc_auc": 0.5067507145717782
+      },
+      "variant": "E",
+      "variant_name": "Observed + future + motion + adjusted reliability"
+    },
+    "E_seed42": {
+      "architecture": {
+        "classifier": "Linear(fusion,128)-ReLU-Dropout(0.1)-Linear(128,64)-ReLU-Linear(64,1)",
+        "fusion_input_dim": 224,
+        "future_gru": {
+          "hidden": 64,
+          "input": [
+            15,
+            2
+          ],
+          "layers": 1
+        },
+        "observed_gru": {
+          "hidden": 128,
+          "input": [
+            15,
+            8
+          ],
+          "layers": 1
+        },
+        "reliability_mlp_input_dim": 2
+      },
+      "checkpoint": "checkpoints/reliability_feature_intent_15x15/model_E/seed42.pt",
+      "checkpoint_sha256": "bb891bdd42cd0aee8075e353743b1130247d05ec446ab445c94ff45814301d25",
+      "initial_future_sha256": "da3edf7819f54b76d577e140e1f1f4978d1f579c90b2f8d0384b870c8c0fc0a1",
+      "initial_observed_sha256": "bb2370869d847f271bf226d5dcaabf58f489009d08388ba66e46ff4a438b2055",
+      "parameter_count": 104321,
+      "seed": 42,
+      "selected_epoch": 1,
+      "temperature": 19.99999897367323,
+      "temperature_fit_split": "official_val",
+      "threshold": 0.4960924303287748,
+      "threshold_fit_split": "official_val",
+      "validation_auc_at_selection": 0.48872046390932483,
+      "validation_brier_at_selection": 0.3489522224166284,
+      "validation_metrics_calibrated": {
+        "brier": 0.2530460662817141,
+        "roc_auc": 0.48872046390932483
+      },
+      "variant": "E",
+      "variant_name": "Observed + future + motion + adjusted reliability"
+    }
+  },
+  "test_labels_read_during_training_or_selection": false,
+  "test_metrics": [
+    "ROC-AUC",
+    "Brier",
+    "ECE-15 equal-width",
+    "Balanced Accuracy",
+    "F1"
+  ],
+  "test_protocol_frozen_before_labeled_test_labels_read": true,
+  "test_stratification": "fixed q33/q67 of official train OOF adjusted_u; no test percentile normalization",
+  "training": {
+    "balanced_bce_weights": {
+      "negative": 11.04136690647482,
+      "negative_count": 1112,
+      "positive": 0.5237160894045385,
+      "positive_count": 23444,
+      "sampling": "natural shuffle=True",
+      "source": "previous_frozen_reliability_gated_intent_protocol"
+    },
+    "batch_size": 256,
+    "checkpoint_selection": "maximum official validation ROC-AUC; exact tie broken by lower validation Brier",
+    "epochs_max": 20,
+    "gradient_clip_norm": 5.0,
+    "learning_rate": 0.001,
+    "optimizer": "AdamW",
+    "sampling": "natural shuffle=True",
+    "seeds": [
+      42,
+      123,
+      2024
+    ],
+    "test_selection": false,
+    "weight_decay": 0.0001
+  }
+}

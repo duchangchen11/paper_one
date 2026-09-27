@@ -1,0 +1,102 @@
+{
+  "diagnostic_only": true,
+  "measure": "L2 norm per input column of the reliability MLP first linear layer; not a causal attribution",
+  "models": {
+    "C": {
+      "123": {
+        "branch_first_layer_frobenius_norm": 3.4136204719543457,
+        "branch_output_layer_frobenius_norm": 3.424016237258911,
+        "input_column_l2_norm": {
+          "u_mean_pixel": 3.4136204719543457
+        }
+      },
+      "2024": {
+        "branch_first_layer_frobenius_norm": 3.3160829544067383,
+        "branch_output_layer_frobenius_norm": 3.3514223098754883,
+        "input_column_l2_norm": {
+          "u_mean_pixel": 3.3160829544067383
+        }
+      },
+      "42": {
+        "branch_first_layer_frobenius_norm": 3.3466529846191406,
+        "branch_output_layer_frobenius_norm": 3.441218137741089,
+        "input_column_l2_norm": {
+          "u_mean_pixel": 3.3466529846191406
+        }
+      }
+    },
+    "D": {
+      "123": {
+        "branch_first_layer_frobenius_norm": 3.392423629760742,
+        "branch_output_layer_frobenius_norm": 3.4294300079345703,
+        "input_column_l2_norm": {
+          "adjusted_u": 3.392423629760742
+        }
+      },
+      "2024": {
+        "branch_first_layer_frobenius_norm": 3.261378049850464,
+        "branch_output_layer_frobenius_norm": 3.335358142852783,
+        "input_column_l2_norm": {
+          "adjusted_u": 3.261378049850464
+        }
+      },
+      "42": {
+        "branch_first_layer_frobenius_norm": 3.3158929347991943,
+        "branch_output_layer_frobenius_norm": 3.4220023155212402,
+        "input_column_l2_norm": {
+          "adjusted_u": 3.3158929347991943
+        }
+      }
+    },
+    "D_no_future": {
+      "123": {
+        "branch_first_layer_frobenius_norm": 3.3515851497650146,
+        "branch_output_layer_frobenius_norm": 3.5418872833251953,
+        "input_column_l2_norm": {
+          "adjusted_u": 3.3515851497650146
+        }
+      },
+      "2024": {
+        "branch_first_layer_frobenius_norm": 3.339369297027588,
+        "branch_output_layer_frobenius_norm": 3.3355817794799805,
+        "input_column_l2_norm": {
+          "adjusted_u": 3.339369297027588
+        }
+      },
+      "42": {
+        "branch_first_layer_frobenius_norm": 3.952800989151001,
+        "branch_output_layer_frobenius_norm": 3.453479766845703,
+        "input_column_l2_norm": {
+          "adjusted_u": 3.952800989151001
+        }
+      }
+    },
+    "E": {
+      "123": {
+        "branch_first_layer_frobenius_norm": 3.337564706802368,
+        "branch_output_layer_frobenius_norm": 3.4950461387634277,
+        "input_column_l2_norm": {
+          "adjusted_u": 2.4654510021209717,
+          "observed_motion_pixel": 2.2496421337127686
+        }
+      },
+      "2024": {
+        "branch_first_layer_frobenius_norm": 3.27603816986084,
+        "branch_output_layer_frobenius_norm": 3.423734426498413,
+        "input_column_l2_norm": {
+          "adjusted_u": 2.1124885082244873,
+          "observed_motion_pixel": 2.503960371017456
+        }
+      },
+      "42": {
+        "branch_first_layer_frobenius_norm": 3.4180948734283447,
+        "branch_output_layer_frobenius_norm": 3.5077667236328125,
+        "input_column_l2_norm": {
+          "adjusted_u": 2.3008298873901367,
+          "observed_motion_pixel": 2.527756690979004
+        }
+      }
+    }
+  },
+  "test_labels_used": false
+}
