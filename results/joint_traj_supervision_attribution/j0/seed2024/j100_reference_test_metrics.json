@@ -1,0 +1,14 @@
+{
+  "intent_accuracy": 0.8913861764224538,
+  "intent_balanced_accuracy": 0.6058854087728107,
+  "intent_f1": 0.9408021883269408,
+  "intent_brier": 0.09903631953861022,
+  "trajectory_ade_normalized": 0.009729556739330292,
+  "trajectory_fde_normalized": 0.015057307668030262,
+  "trajectory_ade_pixel": 15.35651969909668,
+  "trajectory_fde_pixel": 24.79048728942871,
+  "gate_mean": 0.6146960854530334,
+  "entropy_mean": 0.07541592419147491,
+  "intent_auc": 0.7886359169521837,
+  "loss": 0.9662115873255684
+}

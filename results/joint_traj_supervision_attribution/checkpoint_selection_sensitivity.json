@@ -1,0 +1,79 @@
+{
+  "per_seed": {
+    "42": {
+      "composite_best_epoch": 1,
+      "recomputed_composite_best_epoch": 1,
+      "validation_auc_best_epoch": 3,
+      "same_epoch": false,
+      "selected_checkpoint_val_auc": 0.8155485881378342,
+      "selected_checkpoint_val_f1": 0.9637372013651877,
+      "selected_checkpoint_val_ade_pixel": 460.1567077636719,
+      "auc_best_epoch_metrics": {
+        "intent_accuracy": 0.8615326251896813,
+        "intent_balanced_accuracy": 0.7878325296115253,
+        "intent_f1": 0.9183992845964677,
+        "intent_brier": 0.08947914893904418,
+        "trajectory_ade_normalized": 0.32996031641960144,
+        "trajectory_fde_normalized": 0.26154056191444397,
+        "trajectory_ade_pixel": 504.912353515625,
+        "trajectory_fde_pixel": 341.7231750488281,
+        "gate_mean": 0.6499230265617371,
+        "entropy_mean": 0.1934269517660141,
+        "intent_auc": 0.8497341957570073,
+        "loss": 0.471528764243191
+      },
+      "selection_rule": "validation intent_auc + 0.1*intent_f1 - 0.01*trajectory_ade_pixel"
+    },
+    "123": {
+      "composite_best_epoch": 2,
+      "recomputed_composite_best_epoch": 2,
+      "validation_auc_best_epoch": 1,
+      "same_epoch": false,
+      "selected_checkpoint_val_auc": 0.8577714138371818,
+      "selected_checkpoint_val_f1": 0.9404292597459483,
+      "selected_checkpoint_val_ade_pixel": 600.5045776367188,
+      "auc_best_epoch_metrics": {
+        "intent_accuracy": 0.8968133535660091,
+        "intent_balanced_accuracy": 0.8078583694048069,
+        "intent_f1": 0.9404292597459483,
+        "intent_brier": 0.07705118859860627,
+        "trajectory_ade_normalized": 0.42099204659461975,
+        "trajectory_fde_normalized": 0.5500776171684265,
+        "trajectory_ade_pixel": 649.6459350585938,
+        "trajectory_fde_pixel": 711.2655639648438,
+        "gate_mean": 0.42174723744392395,
+        "entropy_mean": 0.3292001485824585,
+        "intent_auc": 0.8700686318076335,
+        "loss": 0.4033299166262602
+      },
+      "selection_rule": "validation intent_auc + 0.1*intent_f1 - 0.01*trajectory_ade_pixel"
+    },
+    "2024": {
+      "composite_best_epoch": 2,
+      "recomputed_composite_best_epoch": 2,
+      "validation_auc_best_epoch": 1,
+      "same_epoch": false,
+      "selected_checkpoint_val_auc": 0.8367868683377497,
+      "selected_checkpoint_val_f1": 0.940661265601051,
+      "selected_checkpoint_val_ade_pixel": 487.6260986328125,
+      "auc_best_epoch_metrics": {
+        "intent_accuracy": 0.9298179059180577,
+        "intent_balanced_accuracy": 0.8265922195340059,
+        "intent_f1": 0.960240704921556,
+        "intent_brier": 0.06635092733516564,
+        "trajectory_ade_normalized": 0.3557417392730713,
+        "trajectory_fde_normalized": 0.2846459150314331,
+        "trajectory_ade_pixel": 545.6071166992188,
+        "trajectory_fde_pixel": 441.8019104003906,
+        "gate_mean": 0.4408433735370636,
+        "entropy_mean": 0.3383725583553314,
+        "intent_auc": 0.8773583611755735,
+        "loss": 0.3669362701306032
+      },
+      "selection_rule": "validation intent_auc + 0.1*intent_f1 - 0.01*trajectory_ade_pixel"
+    }
+  },
+  "composite_vs_auc_epoch_agreement_count": 0,
+  "selection_use": "The composite rule alone selects the official J0 checkpoint; AUC-best epochs are read-only sensitivity analysis.",
+  "test_split_loaded": false
+}

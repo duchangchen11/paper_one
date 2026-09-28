@@ -1,0 +1,412 @@
+{
+  "protocol_id": "Joint-Trajectory-Supervision-Attribution-v1",
+  "frozen_at_utc": "2026-09-28T16:07:02.549288+00:00",
+  "base_commit": "08d238cf1a8b0fa506713504b305ccd0a241a191",
+  "definition": {
+    "J0": {
+      "definition": "existing JointTransformerSceneGate architecture and full intention objective, with traj_weight=0; trajectory forward/output/metrics retained",
+      "traj_weight": 0.0
+    },
+    "J100": {
+      "definition": "frozen existing lambda100 runs; no retraining",
+      "traj_weight": 100.0,
+      "metrics_root": "results/joint_loss_balance/lambda100",
+      "checkpoint_root": "checkpoints/joint_loss_balance"
+    },
+    "only_intended_training_difference": "trajectory-loss weight"
+  },
+  "training_contract_source": "actual J100 checkpoint args and metrics, audited per seed",
+  "training_contracts_J100": {
+    "42": {
+      "seed": 42,
+      "data_root": "data/processed/jaad_sequences_scene_15x15",
+      "ambiguous_root": "data/processed/jaad_ambiguous_scene_15x15",
+      "epochs": 15,
+      "batch_size": 512,
+      "hidden_dim": 128,
+      "learning_rate": 0.001,
+      "prior_weight": 0.5,
+      "traj_weight": 100.0,
+      "ambiguous_weight": 0.2,
+      "gate_mode": "uncertainty",
+      "init_trajectory_checkpoint": null,
+      "optimizer": "AdamW",
+      "weight_decay": 0.0001,
+      "scheduler": {
+        "name": "ReduceLROnPlateau",
+        "mode": "max",
+        "factor": 0.5,
+        "patience": 2
+      },
+      "gradient_clip_norm": 5.0,
+      "train_sampler": "WeightedRandomSampler(inverse class counts,replacement=True,num_samples=len(train))",
+      "ambiguous_sampler": "DataLoader(shuffle=True)",
+      "checkpoint_selection": "validation intent_auc + 0.1*intent_f1 - 0.01*trajectory_ade_pixel",
+      "objective": "main BCE + prior_weight*proposal BCE + traj_weight*SmoothL1(future_pred,future_gt) + ambiguous_weight*0.5*(ambiguous prior_logit^2 mean + intent_logit^2 mean)",
+      "trajectory_weight_mode": "fixed"
+    },
+    "123": {
+      "seed": 123,
+      "data_root": "data/processed/jaad_sequences_scene_15x15",
+      "ambiguous_root": "data/processed/jaad_ambiguous_scene_15x15",
+      "epochs": 15,
+      "batch_size": 512,
+      "hidden_dim": 128,
+      "learning_rate": 0.001,
+      "prior_weight": 0.5,
+      "traj_weight": 100.0,
+      "ambiguous_weight": 0.2,
+      "gate_mode": "uncertainty",
+      "init_trajectory_checkpoint": null,
+      "optimizer": "AdamW",
+      "weight_decay": 0.0001,
+      "scheduler": {
+        "name": "ReduceLROnPlateau",
+        "mode": "max",
+        "factor": 0.5,
+        "patience": 2
+      },
+      "gradient_clip_norm": 5.0,
+      "train_sampler": "WeightedRandomSampler(inverse class counts,replacement=True,num_samples=len(train))",
+      "ambiguous_sampler": "DataLoader(shuffle=True)",
+      "checkpoint_selection": "validation intent_auc + 0.1*intent_f1 - 0.01*trajectory_ade_pixel",
+      "objective": "main BCE + prior_weight*proposal BCE + traj_weight*SmoothL1(future_pred,future_gt) + ambiguous_weight*0.5*(ambiguous prior_logit^2 mean + intent_logit^2 mean)",
+      "trajectory_weight_mode": "fixed"
+    },
+    "2024": {
+      "seed": 2024,
+      "data_root": "data/processed/jaad_sequences_scene_15x15",
+      "ambiguous_root": "data/processed/jaad_ambiguous_scene_15x15",
+      "epochs": 15,
+      "batch_size": 512,
+      "hidden_dim": 128,
+      "learning_rate": 0.001,
+      "prior_weight": 0.5,
+      "traj_weight": 100.0,
+      "ambiguous_weight": 0.2,
+      "gate_mode": "uncertainty",
+      "init_trajectory_checkpoint": null,
+      "optimizer": "AdamW",
+      "weight_decay": 0.0001,
+      "scheduler": {
+        "name": "ReduceLROnPlateau",
+        "mode": "max",
+        "factor": 0.5,
+        "patience": 2
+      },
+      "gradient_clip_norm": 5.0,
+      "train_sampler": "WeightedRandomSampler(inverse class counts,replacement=True,num_samples=len(train))",
+      "ambiguous_sampler": "DataLoader(shuffle=True)",
+      "checkpoint_selection": "validation intent_auc + 0.1*intent_f1 - 0.01*trajectory_ade_pixel",
+      "objective": "main BCE + prior_weight*proposal BCE + traj_weight*SmoothL1(future_pred,future_gt) + ambiguous_weight*0.5*(ambiguous prior_logit^2 mean + intent_logit^2 mean)",
+      "trajectory_weight_mode": "fixed"
+    }
+  },
+  "training_contracts_J0": {
+    "42": {
+      "seed": 42,
+      "data_root": "data/processed/jaad_sequences_scene_15x15",
+      "ambiguous_root": "data/processed/jaad_ambiguous_scene_15x15",
+      "epochs": 15,
+      "batch_size": 512,
+      "hidden_dim": 128,
+      "learning_rate": 0.001,
+      "prior_weight": 0.5,
+      "traj_weight": 0.0,
+      "ambiguous_weight": 0.2,
+      "gate_mode": "uncertainty",
+      "init_trajectory_checkpoint": null,
+      "optimizer": "AdamW",
+      "weight_decay": 0.0001,
+      "scheduler": {
+        "name": "ReduceLROnPlateau",
+        "mode": "max",
+        "factor": 0.5,
+        "patience": 2
+      },
+      "gradient_clip_norm": 5.0,
+      "train_sampler": "WeightedRandomSampler(inverse class counts,replacement=True,num_samples=len(train))",
+      "ambiguous_sampler": "DataLoader(shuffle=True)",
+      "checkpoint_selection": "validation intent_auc + 0.1*intent_f1 - 0.01*trajectory_ade_pixel",
+      "objective": "main BCE + prior_weight*proposal BCE + traj_weight*SmoothL1(future_pred,future_gt) + ambiguous_weight*0.5*(ambiguous prior_logit^2 mean + intent_logit^2 mean)",
+      "trajectory_weight_mode": "fixed"
+    },
+    "123": {
+      "seed": 123,
+      "data_root": "data/processed/jaad_sequences_scene_15x15",
+      "ambiguous_root": "data/processed/jaad_ambiguous_scene_15x15",
+      "epochs": 15,
+      "batch_size": 512,
+      "hidden_dim": 128,
+      "learning_rate": 0.001,
+      "prior_weight": 0.5,
+      "traj_weight": 0.0,
+      "ambiguous_weight": 0.2,
+      "gate_mode": "uncertainty",
+      "init_trajectory_checkpoint": null,
+      "optimizer": "AdamW",
+      "weight_decay": 0.0001,
+      "scheduler": {
+        "name": "ReduceLROnPlateau",
+        "mode": "max",
+        "factor": 0.5,
+        "patience": 2
+      },
+      "gradient_clip_norm": 5.0,
+      "train_sampler": "WeightedRandomSampler(inverse class counts,replacement=True,num_samples=len(train))",
+      "ambiguous_sampler": "DataLoader(shuffle=True)",
+      "checkpoint_selection": "validation intent_auc + 0.1*intent_f1 - 0.01*trajectory_ade_pixel",
+      "objective": "main BCE + prior_weight*proposal BCE + traj_weight*SmoothL1(future_pred,future_gt) + ambiguous_weight*0.5*(ambiguous prior_logit^2 mean + intent_logit^2 mean)",
+      "trajectory_weight_mode": "fixed"
+    },
+    "2024": {
+      "seed": 2024,
+      "data_root": "data/processed/jaad_sequences_scene_15x15",
+      "ambiguous_root": "data/processed/jaad_ambiguous_scene_15x15",
+      "epochs": 15,
+      "batch_size": 512,
+      "hidden_dim": 128,
+      "learning_rate": 0.001,
+      "prior_weight": 0.5,
+      "traj_weight": 0.0,
+      "ambiguous_weight": 0.2,
+      "gate_mode": "uncertainty",
+      "init_trajectory_checkpoint": null,
+      "optimizer": "AdamW",
+      "weight_decay": 0.0001,
+      "scheduler": {
+        "name": "ReduceLROnPlateau",
+        "mode": "max",
+        "factor": 0.5,
+        "patience": 2
+      },
+      "gradient_clip_norm": 5.0,
+      "train_sampler": "WeightedRandomSampler(inverse class counts,replacement=True,num_samples=len(train))",
+      "ambiguous_sampler": "DataLoader(shuffle=True)",
+      "checkpoint_selection": "validation intent_auc + 0.1*intent_f1 - 0.01*trajectory_ade_pixel",
+      "objective": "main BCE + prior_weight*proposal BCE + traj_weight*SmoothL1(future_pred,future_gt) + ambiguous_weight*0.5*(ambiguous prior_logit^2 mean + intent_logit^2 mean)",
+      "trajectory_weight_mode": "fixed"
+    }
+  },
+  "only_training_difference": "traj_weight: 0.0 vs 100.0",
+  "selection_rule": "validation intent_auc + 0.1*intent_f1 - 0.01*trajectory_ade_pixel",
+  "test_access_before_freeze": {
+    "test_dataset_loaded_or_evaluated_by_this_protocol": false,
+    "test_archive_opened_or_newly_hashed_by_this_protocol": false,
+    "historical_J100_test_metrics_reused": true,
+    "historical_P1_prediction_artifacts_fingerprinted_without_loading": true,
+    "planned_test_archive_path": "data/processed/jaad_sequences_scene_15x15/test.npz",
+    "expected_archive_sha256_reused_from_frozen_M0_P1_records": {
+      "42": "23658152706d460493fa6146f6b401648a509cc8708ab5eb6c0892e300de1935",
+      "123": "23658152706d460493fa6146f6b401648a509cc8708ab5eb6c0892e300de1935",
+      "2024": "23658152706d460493fa6146f6b401648a509cc8708ab5eb6c0892e300de1935"
+    }
+  },
+  "official_test_plan": {
+    "official_test_evaluation_count": 1,
+    "evaluate_selected_J0_and_frozen_J100_checkpoints_on_same_samples": true,
+    "primary_endpoint": "intention ROC-AUC; paired delta J100 minus J0",
+    "bootstrap_unit": "scene_id",
+    "bootstrap_repetitions_per_seed": 2000,
+    "bootstrap_seed": 9124,
+    "video_id_join": "exact unique (scene_id,target_id,obs_end_frame) match to frozen P1 test_predictions.npz",
+    "calibration": "none for J0/J100; raw sigmoid probabilities and the historical 0.5 threshold"
+  },
+  "pytest": {
+    "command": "PYTEST_DISABLE_PLUGIN_AUTOLOAD=1 python -m pytest tests -q --junitxml=results/joint_traj_supervision_attribution/pytest_results.xml",
+    "counts": {
+      "tests": 124,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "passed": 124
+    },
+    "junit_xml": "results/joint_traj_supervision_attribution/pytest_results.xml"
+  },
+  "per_seed_artifacts": {
+    "42": {
+      "J0": {
+        "metrics": "results/joint_traj_supervision_attribution/j0/seed42/metrics.json",
+        "gradient_history": "results/joint_traj_supervision_attribution/j0/seed42/gradient_history.json",
+        "validation_history": "results/joint_traj_supervision_attribution/j0/seed42/validation_history.json",
+        "checkpoint": "checkpoints/joint_traj_supervision_attribution/j0_seed42.pt",
+        "best_epoch": 1,
+        "initial_model_state_sha256": "415177a3ab4080e2d5222d66a46d0c34187ae27987b50c26fe62550edd1dfd6f",
+        "trajectory_metrics_at_selected_epoch": {
+          "validation_ADE_pixel": 460.1567077636719,
+          "validation_FDE_pixel": 265.9070129394531
+        }
+      },
+      "J100": {
+        "metrics": "results/joint_loss_balance/lambda100/seed42/metrics.json",
+        "gradient_history": "results/joint_loss_balance/lambda100/seed42/gradient_history.json",
+        "checkpoint": "checkpoints/joint_loss_balance/lambda100_seed42.pt",
+        "best_epoch": 14,
+        "historical_test_metrics_reused_without_retraining": {
+          "intent_accuracy": 0.8923135671812776,
+          "intent_balanced_accuracy": 0.6135962280906913,
+          "intent_f1": 0.9412010008340284,
+          "intent_brier": 0.09976113876041369,
+          "trajectory_ade_normalized": 0.009225327521562576,
+          "trajectory_fde_normalized": 0.015527605079114437,
+          "trajectory_ade_pixel": 14.759991645812988,
+          "trajectory_fde_pixel": 25.96396827697754,
+          "gate_mean": 0.4804275631904602,
+          "entropy_mean": 0.11588267982006073,
+          "intent_auc": 0.7795189791229084,
+          "loss": 0.8055705147902631
+        },
+        "initial_model_hash_note": "not persisted in historical J100 metrics; same seed/model-construction sequence is source-audited and reconstructed in validation diagnostics"
+      },
+      "M0_metrics": "results/intention_scratch_matched/seed42/metrics.json",
+      "P1_metrics": "results/trajectory_preserving_joint/P1_target_only/seed42/metrics.json",
+      "P1_test_prediction_reference": "results/trajectory_preserving_joint/P1_target_only/seed42/test_predictions.npz",
+      "T0_trajectory_only_metrics": "results/trajectory_transformer_scene_15x15_seed42/metrics.json"
+    },
+    "123": {
+      "J0": {
+        "metrics": "results/joint_traj_supervision_attribution/j0/seed123/metrics.json",
+        "gradient_history": "results/joint_traj_supervision_attribution/j0/seed123/gradient_history.json",
+        "validation_history": "results/joint_traj_supervision_attribution/j0/seed123/validation_history.json",
+        "checkpoint": "checkpoints/joint_traj_supervision_attribution/j0_seed123.pt",
+        "best_epoch": 2,
+        "initial_model_state_sha256": "9884ca5c859d799b37f4c6287824dc027cd19bd64cecd6f92b574c5ab4b8e394",
+        "trajectory_metrics_at_selected_epoch": {
+          "validation_ADE_pixel": 600.5045776367188,
+          "validation_FDE_pixel": 582.4459228515625
+        }
+      },
+      "J100": {
+        "metrics": "results/joint_loss_balance/lambda100/seed123/metrics.json",
+        "gradient_history": "results/joint_loss_balance/lambda100/seed123/gradient_history.json",
+        "checkpoint": "checkpoints/joint_loss_balance/lambda100_seed123.pt",
+        "best_epoch": 12,
+        "historical_test_metrics_reused_without_retraining": {
+          "intent_accuracy": 0.8725110468605095,
+          "intent_balanced_accuracy": 0.6523338320299913,
+          "intent_f1": 0.928455533445584,
+          "intent_brier": 0.099321456555376,
+          "trajectory_ade_normalized": 0.010695448145270348,
+          "trajectory_fde_normalized": 0.017842985689640045,
+          "trajectory_ade_pixel": 17.554773330688477,
+          "trajectory_fde_pixel": 30.013938903808594,
+          "gate_mean": 0.6918339729309082,
+          "entropy_mean": 0.14104944467544556,
+          "intent_auc": 0.8060768089698038,
+          "loss": 0.7354176966611145
+        },
+        "initial_model_hash_note": "not persisted in historical J100 metrics; same seed/model-construction sequence is source-audited and reconstructed in validation diagnostics"
+      },
+      "M0_metrics": "results/intention_scratch_matched/seed123/metrics.json",
+      "P1_metrics": "results/trajectory_preserving_joint/P1_target_only/seed123/metrics.json",
+      "P1_test_prediction_reference": "results/trajectory_preserving_joint/P1_target_only/seed123/test_predictions.npz",
+      "T0_trajectory_only_metrics": "results/trajectory_transformer_scene_15x15_seed123/metrics.json"
+    },
+    "2024": {
+      "J0": {
+        "metrics": "results/joint_traj_supervision_attribution/j0/seed2024/metrics.json",
+        "gradient_history": "results/joint_traj_supervision_attribution/j0/seed2024/gradient_history.json",
+        "validation_history": "results/joint_traj_supervision_attribution/j0/seed2024/validation_history.json",
+        "checkpoint": "checkpoints/joint_traj_supervision_attribution/j0_seed2024.pt",
+        "best_epoch": 2,
+        "initial_model_state_sha256": "0995d8d1d2d20a6c9457b78ce74a4351ecb07f9792eba14e81907b3b298d9069",
+        "trajectory_metrics_at_selected_epoch": {
+          "validation_ADE_pixel": 487.6260986328125,
+          "validation_FDE_pixel": 459.5785217285156
+        }
+      },
+      "J100": {
+        "metrics": "results/joint_loss_balance/lambda100/seed2024/metrics.json",
+        "gradient_history": "results/joint_loss_balance/lambda100/seed2024/gradient_history.json",
+        "checkpoint": "checkpoints/joint_loss_balance/lambda100_seed2024.pt",
+        "best_epoch": 11,
+        "historical_test_metrics_reused_without_retraining": {
+          "intent_accuracy": 0.8913861764224538,
+          "intent_balanced_accuracy": 0.6058854087728107,
+          "intent_f1": 0.9408021883269408,
+          "intent_brier": 0.09903631953861022,
+          "trajectory_ade_normalized": 0.009729556739330292,
+          "trajectory_fde_normalized": 0.015057307668030262,
+          "trajectory_ade_pixel": 15.35651969909668,
+          "trajectory_fde_pixel": 24.79048728942871,
+          "gate_mean": 0.6146960854530334,
+          "entropy_mean": 0.07541592419147491,
+          "intent_auc": 0.7886359169521837,
+          "loss": 0.9662115873255684
+        },
+        "initial_model_hash_note": "not persisted in historical J100 metrics; same seed/model-construction sequence is source-audited and reconstructed in validation diagnostics"
+      },
+      "M0_metrics": "results/intention_scratch_matched/seed2024/metrics.json",
+      "P1_metrics": "results/trajectory_preserving_joint/P1_target_only/seed2024/metrics.json",
+      "P1_test_prediction_reference": "results/trajectory_preserving_joint/P1_target_only/seed2024/test_predictions.npz",
+      "T0_trajectory_only_metrics": "results/trajectory_transformer_scene_15x15_seed2024/metrics.json"
+    }
+  },
+  "sha256": {
+    "config_sources_and_code": {
+      "configs/joint_traj_supervision_attribution.json": "1bd61f3362f6384e5d515d19242347f01f32111ed28bcf95ec8218ca7fe4e35b",
+      "scripts/joint_traj_supervision_utils.py": "a15c27be1328c54f6b4c8b143f826a76012e55fba3ddbe6ebefa17100bae9ba4",
+      "scripts/audit_joint_traj_supervision.py": "7fb0fd62aac0e4f024716e9b85471d260e325f815223b984bedffc439ba2d69e",
+      "scripts/run_joint_traj_supervision_zero.py": "627715c88828a1d0a008720e71d1f78c4b6e45ed99a0de7e04453bb3768b3b5a",
+      "scripts/analyze_joint_traj_supervision_validation.py": "b6aa3fe842c03314e7e0ba5fd61d73fa607371a17ce36a05441d2abe747b6d8a",
+      "scripts/freeze_joint_traj_supervision_protocol.py": "c7666691b8fde1de4b79af7f53a068b8cc1c79d02bfe0de191f29887ec6b7b38",
+      "scripts/evaluate_joint_traj_supervision_test.py": "b8168e9bcf6d74ba238679b7107dd5606f095891a69939a6fac41e8e2518a627",
+      "scripts/analyze_joint_traj_supervision_attribution.py": "4d3eb1868f06f0dc22f3707ea59c696dbed19270e1648fcb1a04b8867d52d35d",
+      "scripts/train_joint_transformer_gate.py": "6c16fac1ad855a240803b3c7e3a883dec97e5f6928bf5855099131102e8fa8d7",
+      "src/models/joint_transformer_gate.py": "e6d480d8277db193e9d5217e47e6d7000b5dcc0c4637a6223e603f5b48d54621",
+      "tests/test_joint_traj_supervision_attribution.py": "b455d2073e1947d0c9688001057b605bff675468a83fb52fe5680a4aedfec5a5"
+    },
+    "training_and_validation_data_only": {
+      "data/processed/jaad_sequences_scene_15x15/train.npz": "6da2d1d40a918a218a7d054407d95f2791e2338a760b4836f2ca6d06c59ea19a",
+      "data/processed/jaad_sequences_scene_15x15/val.npz": "fb78bb5edcd18d74a15744cfd8ae728c8600b485d4028bed8ee2c9c2d4c5f66c",
+      "data/processed/jaad_ambiguous_scene_15x15/train.npz": "8538fd3f47c056b767021eb095ba3fbbfa587466226b6bd860cd32f67260611e"
+    },
+    "pretest_and_comparator_artifacts": {
+      "results/joint_traj_supervision_attribution/j0_run_manifest.json": "1b61e1962b04316eee1d5afadc07dad1b923ddeec80f291a705776cfd3b37b4f",
+      "results/joint_traj_supervision_attribution/j0_vs_j100_config_audit.json": "c07d5b5a81ab489af3f80c4d386b1c0286dda440cafd5edf6ea516f30a268355",
+      "results/joint_traj_supervision_attribution/j0_gradient_audit.json": "6ce8fab728175761b44c7f35af3f4481e0c1a4326b5dec9fa42f80134d7afcea",
+      "results/joint_traj_supervision_attribution/checkpoint_selection_sensitivity.json": "045de11a47e35d8e18c66c3a084103a500244a66faba55c2f37ae294b3ca52b9",
+      "results/joint_traj_supervision_attribution/representation_drift.json": "9b67edbc3e095210927b03b387cba70916cce56d3a6b2dd206f9d66cd32033e0",
+      "results/joint_traj_supervision_attribution/gradient_diagnostics.json": "42401eb5a5e48fc440ff856abb2715a3e74a573838eb10a08cea3471d1827d17",
+      "results/joint_traj_supervision_attribution/pytest_results.xml": "2c0593d9fa81c404e594dda0e3be9f43e54f5feba3d1960d5b14c95cb2edf274",
+      "results/joint_traj_supervision_attribution/j0/seed42/metrics.json": "fcd313a50209dc104667edddec1e46104759ad5ac84c4827008baabbe0d60a5c",
+      "results/joint_traj_supervision_attribution/j0/seed42/validation_history.json": "22e232d632013093d01def76248194d601e2e00981d3a489eecc5f9861501000",
+      "results/joint_traj_supervision_attribution/j0/seed42/gradient_history.json": "65736ec94bbbe92a2635e897f8970d35769681eb81a8d7a3679d4a940a16f53a",
+      "results/joint_traj_supervision_attribution/j0/seed42/training.log": "51b208917e1d0b616bba65719ac5e09a16655bbc65717da1e422d9393544fd2e",
+      "checkpoints/joint_traj_supervision_attribution/j0_seed42.pt": "9531b8ba2b5db927255c8b4691b97cfb494753da21d4b2f1dcbc84c52e5e4cef",
+      "results/joint_loss_balance/lambda100/seed42/metrics.json": "08503fffefe9563793b27c229068a4a34c4b6b19363ea781c74a04b61c8fe1d8",
+      "results/joint_loss_balance/lambda100/seed42/gradient_history.json": "8e975d872f965312fbc4c348d1048d4d2752a4a9439904a93f1f9677bfc42b88",
+      "checkpoints/joint_loss_balance/lambda100_seed42.pt": "b894a97dd0442870cad8cb93181371d445ca8a3018762336f4d9aea32c165a0b",
+      "results/intention_scratch_matched/seed42/metrics.json": "c9a6cb3e8bf6d9f497f0f4193dabb28d280c2558170ff4bf7ba62435c82bc40e",
+      "results/trajectory_preserving_joint/P1_target_only/seed42/metrics.json": "18e1b3e3af99e0aff7992d20af3fc671cafe63b0c91fa2812f39edfbcd5c1a42",
+      "results/trajectory_preserving_joint/P1_target_only/seed42/test_predictions.npz": "f24f9093573b54a98bfa9f4d9e31eaab9ee33f9e49651c83a308c675ee2d3bdf",
+      "results/trajectory_transformer_scene_15x15_seed42/metrics.json": "345c21a47317b506fcea90020130a0fe22d571c7613de74919662c65b5902014",
+      "results/joint_traj_supervision_attribution/j0/seed123/metrics.json": "434f52c3afd0815365bee8628f73ec198760a70690102bb9722bdd20dd1bdb8a",
+      "results/joint_traj_supervision_attribution/j0/seed123/validation_history.json": "ec6a9260ab11976d7d170e93d747c13974d8bc8ced436c0bd8caf2d1a9e7c64d",
+      "results/joint_traj_supervision_attribution/j0/seed123/gradient_history.json": "f445b94f65361682eb002045ef16c9af6568942ba90ff5f0f74c7a1d0c7fc21a",
+      "results/joint_traj_supervision_attribution/j0/seed123/training.log": "a2577971bcc01db32f43ae51592d63215f68ab9da4f467bdcdcf645e9a0c648d",
+      "checkpoints/joint_traj_supervision_attribution/j0_seed123.pt": "3f5ab341d78e06fe6b2fc033e2457c589705b57f1c47e394739d4e660030fa24",
+      "results/joint_loss_balance/lambda100/seed123/metrics.json": "0acd2eeac3f499ceaed4ec70033378cbcb35b75247ef6d0435a8668de3c8636f",
+      "results/joint_loss_balance/lambda100/seed123/gradient_history.json": "69613904db8ed7a1c9077ab893d424218e44e1f3a881cda7c3cfec550c557e74",
+      "checkpoints/joint_loss_balance/lambda100_seed123.pt": "eefaadf314b95dc3798fe97db72d502f5754c96a995c54a4b87b397182a8b203",
+      "results/intention_scratch_matched/seed123/metrics.json": "f095f96b0adc88b41408a821cc310dacc7c24a0fab8cab3ebf66a70b27870770",
+      "results/trajectory_preserving_joint/P1_target_only/seed123/metrics.json": "0b5c2c0e3ffd0af9052ee0fc4be655199ccd9b62e15e4b362449815bf0f3c2d3",
+      "results/trajectory_preserving_joint/P1_target_only/seed123/test_predictions.npz": "babdd0a7e21184daa300128a08fcc466c52aba69737fa25001ab059878be3def",
+      "results/trajectory_transformer_scene_15x15_seed123/metrics.json": "1cf5ed0d22a875a8050b320e4538fae7a7267e5e420a7cff2db8ec48c46dd8fb",
+      "results/joint_traj_supervision_attribution/j0/seed2024/metrics.json": "8b20cc5932c7a13091a787c121968da3bf0f4e41d128167701d46e738a6eb098",
+      "results/joint_traj_supervision_attribution/j0/seed2024/validation_history.json": "f82b9a3f847f15999c8fdf6b77d6d2d684c2679deb78db7d210333073d1b30c5",
+      "results/joint_traj_supervision_attribution/j0/seed2024/gradient_history.json": "64d587a3c79dea11f5f00024f04f9348afc8eca8b7fa2b3401ce348449331671",
+      "results/joint_traj_supervision_attribution/j0/seed2024/training.log": "682fc5bacf4bb021021993d2852534b71b18fa6bafd5704c462bde7b52b2c265",
+      "checkpoints/joint_traj_supervision_attribution/j0_seed2024.pt": "7b3f12328162181e1585cc994ae88e452d810d34044d07982987181887d126f9",
+      "results/joint_loss_balance/lambda100/seed2024/metrics.json": "0a6a1898ff0166ab8b8cd68b12579fe796e4f01c0a89cb40333274cca6685d82",
+      "results/joint_loss_balance/lambda100/seed2024/gradient_history.json": "14c0977bddbf9827c075eee7437c63484c1b570fd81bca9f27729f8a7a4577de",
+      "checkpoints/joint_loss_balance/lambda100_seed2024.pt": "c6716c69633ecbdba8bfccc6d019efe1cb033af495dd2c04f26037e159680f02",
+      "results/intention_scratch_matched/seed2024/metrics.json": "76bd9e75b64c5d866dabe4a99cb752890ff2668834feb6d97a7e03f6dad0ca84",
+      "results/trajectory_preserving_joint/P1_target_only/seed2024/metrics.json": "6e92299746c4a3c691dee44ddbef1c0b55a1d08b074b1087b665f3d20f8b756c",
+      "results/trajectory_preserving_joint/P1_target_only/seed2024/test_predictions.npz": "bd3ecf4a9b59cac6293d259161b3244761a8c00750021ddd5ada6a3f81962f0c",
+      "results/trajectory_transformer_scene_15x15_seed2024/metrics.json": "d0c48311e00bcae24c46b8fd8cf7156f877492ebbce3bb264278bf35ae0a952c"
+    }
+  },
+  "test_archive_sha256": null,
+  "status": "frozen_before_first_access_to_test_archive"
+}

@@ -1,0 +1,78 @@
+{
+  "protocol": "J0 uses the unchanged joint forward graph and the historical J100 objective except trajectory_weight=0",
+  "scope": "all trainable parameters partitioned into shared prefixes and traj_head; fixed training batches per seed",
+  "per_seed": {
+    "42": {
+      "seed": 42,
+      "fixed_training_batch_count": 512,
+      "fixed_ambiguous_batch_count": 512,
+      "traj_weight": 0.0,
+      "intent_objective": 1.0487966537475586,
+      "raw_trajectory_loss_computed": 0.02189704030752182,
+      "weighted_trajectory_loss_contribution": 0.0,
+      "future_pred_shape": [
+        512,
+        15,
+        2
+      ],
+      "intent_grad_norm_shared_parameters": 0.5924729108810425,
+      "trajectory_contribution_grad_norm_shared_parameters": 0.0,
+      "total_grad_norm_shared_parameters": 0.5924729108810425,
+      "total_grad_norm_all_parameters": 0.6524664759635925,
+      "trajectory_head_grad_norm_from_zero_weight_objective": 0.0,
+      "trajectory_head_unweighted_grad_norm_control": 0.2499881088733673,
+      "shared_total_vs_intent_gradient_max_abs_difference": 0.0,
+      "shared_parameter_count": 830530,
+      "pass": true
+    },
+    "123": {
+      "seed": 123,
+      "fixed_training_batch_count": 512,
+      "fixed_ambiguous_batch_count": 512,
+      "traj_weight": 0.0,
+      "intent_objective": 1.060445785522461,
+      "raw_trajectory_loss_computed": 0.029249854385852814,
+      "weighted_trajectory_loss_contribution": 0.0,
+      "future_pred_shape": [
+        512,
+        15,
+        2
+      ],
+      "intent_grad_norm_shared_parameters": 0.8846257328987122,
+      "trajectory_contribution_grad_norm_shared_parameters": 0.0,
+      "total_grad_norm_shared_parameters": 0.8846257328987122,
+      "total_grad_norm_all_parameters": 0.8895590901374817,
+      "trajectory_head_grad_norm_from_zero_weight_objective": 0.0,
+      "trajectory_head_unweighted_grad_norm_control": 0.2919592559337616,
+      "shared_total_vs_intent_gradient_max_abs_difference": 0.0,
+      "shared_parameter_count": 830530,
+      "pass": true
+    },
+    "2024": {
+      "seed": 2024,
+      "fixed_training_batch_count": 512,
+      "fixed_ambiguous_batch_count": 512,
+      "traj_weight": 0.0,
+      "intent_objective": 1.0454809665679932,
+      "raw_trajectory_loss_computed": 0.012597345747053623,
+      "weighted_trajectory_loss_contribution": 0.0,
+      "future_pred_shape": [
+        512,
+        15,
+        2
+      ],
+      "intent_grad_norm_shared_parameters": 0.3851240873336792,
+      "trajectory_contribution_grad_norm_shared_parameters": 0.0,
+      "total_grad_norm_shared_parameters": 0.3851240873336792,
+      "total_grad_norm_all_parameters": 0.4203747510910034,
+      "trajectory_head_grad_norm_from_zero_weight_objective": 0.0,
+      "trajectory_head_unweighted_grad_norm_control": 0.1604960858821869,
+      "shared_total_vs_intent_gradient_max_abs_difference": 0.0,
+      "shared_parameter_count": 830530,
+      "pass": true
+    }
+  },
+  "all_seeds_pass": true,
+  "test_split_loaded": false,
+  "j0_vs_j100_config_audit_pass": true
+}

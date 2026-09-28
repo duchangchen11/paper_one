@@ -1,0 +1,90 @@
+{
+  "split": "fixed validation batch for intent/trajectory; fixed ambiguous-train batch for ambiguity regularizer",
+  "selection_use": false,
+  "per_seed": {
+    "42": {
+      "matched_dropout_seed": 5000045,
+      "J0": {
+        "traj_weight": 0.0,
+        "intent_objective": 1.241651177406311,
+        "raw_trajectory_loss": 0.041197504848241806,
+        "intent_gradient_norm_shared": 14.813982963562012,
+        "trajectory_gradient_norm_shared_unweighted": 0.40268608927726746,
+        "trajectory_gradient_norm_shared_weighted": 0.0,
+        "weighted_intent_to_trajectory_gradient_ratio": null,
+        "raw_intent_to_trajectory_gradient_ratio": 36.78791832653032,
+        "gradient_cosine_intent_vs_trajectory": -0.0372856967151165,
+        "shared_parameter_count": 830530
+      },
+      "J100": {
+        "traj_weight": 100.0,
+        "intent_objective": 1.6895517110824585,
+        "raw_trajectory_loss": 5.6000899348873645e-05,
+        "intent_gradient_norm_shared": 36.22410583496094,
+        "trajectory_gradient_norm_shared_unweighted": 0.0003428442287258804,
+        "trajectory_gradient_norm_shared_weighted": 0.03428442287258804,
+        "weighted_intent_to_trajectory_gradient_ratio": 1056.5762174145789,
+        "raw_intent_to_trajectory_gradient_ratio": 105657.62174145789,
+        "gradient_cosine_intent_vs_trajectory": -0.04272230342030525,
+        "shared_parameter_count": 830530
+      },
+      "gradient_cosine_change_J100_minus_J0": -0.005436606705188751
+    },
+    "123": {
+      "matched_dropout_seed": 5000126,
+      "J0": {
+        "traj_weight": 0.0,
+        "intent_objective": 1.0053263902664185,
+        "raw_trajectory_loss": 0.056098565459251404,
+        "intent_gradient_norm_shared": 11.144561767578125,
+        "trajectory_gradient_norm_shared_unweighted": 0.5527307391166687,
+        "trajectory_gradient_norm_shared_weighted": 0.0,
+        "weighted_intent_to_trajectory_gradient_ratio": null,
+        "raw_intent_to_trajectory_gradient_ratio": 20.162732011953047,
+        "gradient_cosine_intent_vs_trajectory": 0.16604532301425934,
+        "shared_parameter_count": 830530
+      },
+      "J100": {
+        "traj_weight": 100.0,
+        "intent_objective": 1.580622911453247,
+        "raw_trajectory_loss": 4.424999133334495e-05,
+        "intent_gradient_norm_shared": 25.574710845947266,
+        "trajectory_gradient_norm_shared_unweighted": 0.00052647601114586,
+        "trajectory_gradient_norm_shared_weighted": 0.052647601114585996,
+        "weighted_intent_to_trajectory_gradient_ratio": 485.7716269025181,
+        "raw_intent_to_trajectory_gradient_ratio": 48577.16269025181,
+        "gradient_cosine_intent_vs_trajectory": 0.288838654756546,
+        "shared_parameter_count": 830530
+      },
+      "gradient_cosine_change_J100_minus_J0": 0.12279333174228668
+    },
+    "2024": {
+      "matched_dropout_seed": 5002027,
+      "J0": {
+        "traj_weight": 0.0,
+        "intent_objective": 0.9750359058380127,
+        "raw_trajectory_loss": 0.045328378677368164,
+        "intent_gradient_norm_shared": 10.817742347717285,
+        "trajectory_gradient_norm_shared_unweighted": 0.4563291370868683,
+        "trajectory_gradient_norm_shared_weighted": 0.0,
+        "weighted_intent_to_trajectory_gradient_ratio": null,
+        "raw_intent_to_trajectory_gradient_ratio": 23.706008379776076,
+        "gradient_cosine_intent_vs_trajectory": -0.05515044927597046,
+        "shared_parameter_count": 830530
+      },
+      "J100": {
+        "traj_weight": 100.0,
+        "intent_objective": 1.9325008392333984,
+        "raw_trajectory_loss": 6.559044413734227e-05,
+        "intent_gradient_norm_shared": 27.532150268554688,
+        "trajectory_gradient_norm_shared_unweighted": 0.00022513848671223968,
+        "trajectory_gradient_norm_shared_weighted": 0.02251384867122397,
+        "weighted_intent_to_trajectory_gradient_ratio": 1222.898433342712,
+        "raw_intent_to_trajectory_gradient_ratio": 122289.8433342712,
+        "gradient_cosine_intent_vs_trajectory": 0.10567612946033478,
+        "shared_parameter_count": 830530
+      },
+      "gradient_cosine_change_J100_minus_J0": 0.16082657873630524
+    }
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "amendment_type": "post_freeze_reporting_only",
+  "protocol_sha256": "c9398b6ca3809f90310f854005e5d0187db35780e6f6743fcdb221cf4054f7b2",
+  "reason": "The first summary rendering attempt referenced the J100 historical-match flag from the per-seed metric row instead of the official evaluation record. The test evaluation and all 6000 requested bootstrap replications had already completed and their outputs were saved.",
+  "original_report_generator_sha256_frozen_before_test": "4d3eb1868f06f0dc22f3707ea59c696dbed19270e1648fcb1a04b8867d52d35d",
+  "report_generator_sha256_after_render_fix": "853a6c39c9dbcc687319db3fbf41214eea1d42772c18a19470a418a5c5cfdd52",
+  "change_scope": [
+    "Corrected the source field for the J100 historical metric verification flag.",
+    "Added a render-summary-only path that reuses existing metrics/bootstrap files."
+  ],
+  "unchanged": [
+    "No model, training parameter, checkpoint-selection rule, endpoint, or bootstrap definition changed.",
+    "No training or inference was repeated.",
+    "The official test archive was not reopened; test_evaluation_count remains one.",
+    "The pre-freeze test suite remains 124 passed, 0 failed, 0 errors."
+  ],
+  "reused_output_sha256": {
+    "cluster_bootstrap.json": "f5275e2d0836ce101e7b046816f34d3e35425a98884e2be05b2073249f8c4c0e",
+    "attribution_metrics.json": "3b201b33dc5cec11d0f34a09eba87d9cd10a96f8d152af8b38da80e89b0b027c",
+    "official_test_evaluation.json": "1a3a8b0528808f4ef9f66ba45a28715f22017bf1324d04849ad01fbd120ffca0"
+  },
+  "summary_sha256_after_fix": "094d77e53944f7ae78643d4090af2e2ae8a87a393ae6ca22bce026c7d58f4de1"
+}

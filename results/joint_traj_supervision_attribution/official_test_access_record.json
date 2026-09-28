@@ -1,0 +1,16 @@
+{
+  "protocol_sha256": "c9398b6ca3809f90310f854005e5d0187db35780e6f6743fcdb221cf4054f7b2",
+  "status": "complete_one_time_official_test_evaluation",
+  "started_at_utc": "2026-09-28T16:07:40.211547+00:00",
+  "test_archive": "data/processed/jaad_sequences_scene_15x15/test.npz",
+  "test_archive_sha256": "23658152706d460493fa6146f6b401648a509cc8708ab5eb6c0892e300de1935",
+  "test_sample_count": 18331,
+  "seed_status": {
+    "42": "evaluated_once",
+    "123": "evaluated_once",
+    "2024": "evaluated_once"
+  },
+  "test_evaluation_count": 1,
+  "warning": "This marker is written before the sole test archive read. Any interruption is a consumed test access and must not be retried without explicit protocol amendment.",
+  "completed_at_utc": "2026-09-28T16:07:44.289892+00:00"
+}

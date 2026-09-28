@@ -1,0 +1,73 @@
+{
+  "protocol_sha256": "c9398b6ca3809f90310f854005e5d0187db35780e6f6743fcdb221cf4054f7b2",
+  "bootstrap_unit": "scene_id video cluster",
+  "requested_repetitions_per_seed": 2000,
+  "bootstrap_seed": 9124,
+  "delta_definition": "J100 minus J0",
+  "pooled_across_seeds": false,
+  "per_seed": {
+    "42": {
+      "bootstrap_unit": "scene_id video cluster",
+      "seed": 9124,
+      "requested_repetitions": 2000,
+      "valid_repetitions": 2000,
+      "video_count": 97,
+      "delta_roc_auc": {
+        "mean": 0.02487176258716861,
+        "ci_percentile_95": {
+          "lower_95": -0.048521345997080995,
+          "upper_95": 0.10721105055341469
+        }
+      },
+      "delta_brier": {
+        "mean": 0.005900335955446524,
+        "ci_percentile_95": {
+          "lower_95": -0.008947677769145231,
+          "upper_95": 0.02126314746177717
+        }
+      }
+    },
+    "123": {
+      "bootstrap_unit": "scene_id video cluster",
+      "seed": 9124,
+      "requested_repetitions": 2000,
+      "valid_repetitions": 2000,
+      "video_count": 97,
+      "delta_roc_auc": {
+        "mean": 0.05738949385277445,
+        "ci_percentile_95": {
+          "lower_95": 0.016006538943689644,
+          "upper_95": 0.10994363060235608
+        }
+      },
+      "delta_brier": {
+        "mean": -0.0029001857322636343,
+        "ci_percentile_95": {
+          "lower_95": -0.019392285343802804,
+          "upper_95": 0.014350099848877442
+        }
+      }
+    },
+    "2024": {
+      "bootstrap_unit": "scene_id video cluster",
+      "seed": 9124,
+      "requested_repetitions": 2000,
+      "valid_repetitions": 2000,
+      "video_count": 97,
+      "delta_roc_auc": {
+        "mean": 0.029450143227087756,
+        "ci_percentile_95": {
+          "lower_95": -0.04477353120504781,
+          "upper_95": 0.1114348322670257
+        }
+      },
+      "delta_brier": {
+        "mean": 0.002242642889695263,
+        "ci_percentile_95": {
+          "lower_95": -0.014515786423802557,
+          "upper_95": 0.01806766551617212
+        }
+      }
+    }
+  }
+}
