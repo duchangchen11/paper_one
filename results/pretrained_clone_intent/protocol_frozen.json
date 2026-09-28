@@ -1,0 +1,257 @@
+{
+  "protocol_id": "Pretrained-Clone-Intent-v1",
+  "frozen": true,
+  "base_commit": "13a1f3c35d1dba20093c0b90b970be79c1b8d58a",
+  "working_tree_policy": "source/config/test selection are frozen by source_sha256 and artifact hashes",
+  "test_access_before_freeze": false,
+  "test_not_accessed_before_freeze": true,
+  "test_archive_sha256_reference_from_prior_reports": "23658152706d460493fa6146f6b401648a509cc8708ab5eb6c0892e300de1935",
+  "seeds": [
+    42,
+    123,
+    2024
+  ],
+  "architecture_and_input": {
+    "trajectory_branch": "SceneTrajectoryTransformer restored from the matching seed checkpoint; every parameter frozen; eval mode permanently",
+    "intention_branch": {
+      "initialization": "copy input_projection, position_embedding, temporal_encoder from the corresponding seed trajectory checkpoint",
+      "architecture": "exactly IntentionScratchTransformer / M0",
+      "hidden_dimension": 128,
+      "layers": 3,
+      "heads": 4,
+      "feedforward_dimension": 512,
+      "activation": "gelu",
+      "norm_first": true,
+      "dropout": 0.1,
+      "context": "last temporal encoder output [B,128]",
+      "head": "LayerNorm(128) -> Linear(128,128) -> GELU -> Dropout(0.1) -> Linear(128,1)",
+      "all_parameters_trainable": true
+    },
+    "parameter_sharing": false,
+    "trajectory_loss_in_optimizer": false
+  },
+  "input_protocol": {
+    "intention": "concat(target_obs, target_abs_obs)",
+    "shape": "[B,15,8]",
+    "scene_input_to_intention": false,
+    "future_or_social_or_reliability_input": false,
+    "preprocessing": "reuse data/processed/jaad_sequences_scene_15x15 arrays exactly"
+  },
+  "training_protocol": {
+    "train_split": "data/processed/jaad_sequences_scene_15x15/train.npz",
+    "validation_split": "data/processed/jaad_sequences_scene_15x15/val.npz",
+    "test_split": "forbidden until protocol freeze",
+    "maximum_epochs": 20,
+    "batch_size": 256,
+    "optimizer": "AdamW",
+    "learning_rate": 0.001,
+    "weight_decay": 0.0001,
+    "gradient_clip_norm": 5.0,
+    "sampling": "natural shuffle=True; no WeightedRandomSampler",
+    "loss": "inverse-frequency weighted BCE on intention only",
+    "checkpoint_selection": "highest raw validation ROC-AUC; if within 1e-4, lower raw validation Brier",
+    "selection_tolerance": 0.0001,
+    "temperature_fit": "validation split only",
+    "threshold_fit": "validation balanced accuracy only"
+  },
+  "trajectory_preservation_protocol": {
+    "validation_samples_minimum": 1024,
+    "max_abs_future_prediction_difference": 1e-06,
+    "max_abs_ade_difference_pixel": 1e-05,
+    "max_abs_fde_difference_pixel": 1e-05,
+    "trajectory_parameter_sha256_must_be_unchanged_every_epoch": true
+  },
+  "paired_analysis_protocol": {
+    "primary_baseline": "M0_scratch_matched",
+    "secondary_baseline": "P1_target_only",
+    "bootstrap_cluster": "scene_id",
+    "bootstrap_repetitions": 2000,
+    "bootstrap_seed": 9124,
+    "delta_definition": "M1 minus comparator; positive AUC favors M1; negative Brier favors M1",
+    "transfer_success_rule": {
+      "positive_mean_delta_auc_required": true,
+      "minimum_positive_seed_delta_auc_count": 2,
+      "minimum_seed_auc_ci_stable_positive_count": 2,
+      "maximum_m1_auc_seed_sd_vs_m0_seed_sd_ratio": 1.5,
+      "trajectory_preservation_required": true,
+      "if_ci_crosses_zero": "describe as weak/inconclusive, not significant transfer"
+    }
+  },
+  "selected_checkpoints": {
+    "42": {
+      "checkpoint": "checkpoints/pretrained_clone_intent/M1_pretrained_clone_seed42.pt",
+      "checkpoint_sha256": "ca49ae9f6ea8bb3db84f25dbe3bbdc3938b1ccd545127ee7dc70016660cde50a",
+      "selected_epoch": 1,
+      "validation_raw_metrics": {
+        "roc_auc": 0.7171091251227528,
+        "brier": 0.2610218550170492,
+        "f1": 0.3137254901960784,
+        "balanced_accuracy": 0.5930232558139534,
+        "accuracy": 0.2830045523520486
+      },
+      "validation_calibration": {
+        "temperature": 19.999998419156125,
+        "temperature_fit_split": "validation",
+        "threshold": 0.4977118683575765,
+        "threshold_fit_split": "validation balanced accuracy",
+        "metrics": {
+          "roc_auc": 0.7171091251227528,
+          "brier": 0.2503967522230319,
+          "f1": 0.8564090590707448,
+          "balanced_accuracy": 0.692688874624884,
+          "accuracy": 0.7666919575113809
+        }
+      },
+      "validation_metrics_sha256": "b40e91044b56296c72af9e1bda1c36feb4501ddcb8aa389bf239f53107762088",
+      "validation_history_sha256": "c1e03a95b1b1b009cb521ec82b7227793a3c6e5545c14d7a178bc41aa967576e",
+      "parameter_hashes_sha256": "00d179b3c2932ade23c396404ec0228e069b107845d3a6f88252c68fb21e24bf",
+      "encoder_drift_sha256": "5e5b5058090b41bbe5d5381d4bc71d07f426b47e5b96d88e5d5fa2489b9863a1"
+    },
+    "123": {
+      "checkpoint": "checkpoints/pretrained_clone_intent/M1_pretrained_clone_seed123.pt",
+      "checkpoint_sha256": "4f4c7e1d48320903c293051a51c9db42903315935fac59cdf70d2b65846a1f3a",
+      "selected_epoch": 5,
+      "validation_raw_metrics": {
+        "roc_auc": 0.7485605699018527,
+        "brier": 0.26168213519830047,
+        "f1": 0.381317532241199,
+        "balanced_accuracy": 0.617786391042205,
+        "accuracy": 0.3266312594840668
+      },
+      "validation_calibration": {
+        "temperature": 19.99999837787729,
+        "temperature_fit_split": "validation",
+        "threshold": 0.49761312758608084,
+        "threshold_fit_split": "validation balanced accuracy",
+        "metrics": {
+          "roc_auc": 0.7485605699018527,
+          "brier": 0.2501670529242194,
+          "f1": 0.6143867924528302,
+          "balanced_accuracy": 0.6797895510678802,
+          "accuracy": 0.503793626707132
+        }
+      },
+      "validation_metrics_sha256": "74bfe6d76a7dad8d64c5a147c5d36f941f53f9e9d5880b8fd66f1fea2d3f2f39",
+      "validation_history_sha256": "35a080617c8433a05501ebfae0c64d495a0c6de23c3aeff96b8408adfd3fe240",
+      "parameter_hashes_sha256": "3e4ea6c24801c4842c8c049b96429b292673ffdc37565fea5fedc4233dc98e4a",
+      "encoder_drift_sha256": "4fcdf79c0342020a582f7927c96545f764cd0d431b2d103a8efa0885a334ad30"
+    },
+    "2024": {
+      "checkpoint": "checkpoints/pretrained_clone_intent/M1_pretrained_clone_seed2024.pt",
+      "checkpoint_sha256": "e3a2781fc3de1b8b90aa4c6d49865832a48a4f4f8017e43109fdbc4b4d60932f",
+      "selected_epoch": 1,
+      "validation_raw_metrics": {
+        "roc_auc": 0.6962480181262585,
+        "brier": 0.2203656908829915,
+        "f1": 0.936668011294877,
+        "balanced_accuracy": 0.5,
+        "accuracy": 0.8808801213960546
+      },
+      "validation_calibration": {
+        "temperature": 0.06823907471103263,
+        "temperature_fit_split": "validation",
+        "threshold": 0.8065471971744346,
+        "threshold_fit_split": "validation balanced accuracy",
+        "metrics": {
+          "roc_auc": 0.6962480181262585,
+          "brier": 0.10108829846735802,
+          "f1": 0.8977955911823647,
+          "balanced_accuracy": 0.6904779538833753,
+          "accuracy": 0.8258725341426404
+        }
+      },
+      "validation_metrics_sha256": "b6270f27b24ea2dd88af87caa75b10a7441285aaf4df8f2394c9d11d3af652e4",
+      "validation_history_sha256": "b8c65ab5c735831b76ff274c6fe2b2ba9935e42ce066423a03bca65908cb0b5f",
+      "parameter_hashes_sha256": "8748ef0c8a1d1ab81b333c88833e6d7e5cf31356d249fba1dc4cea3a52b710db",
+      "encoder_drift_sha256": "748a34378ae6d37b4e5f9db2b119dc60e8c4659804966d4324f7460c9aae3ffc"
+    }
+  },
+  "trajectory_checkpoints": {
+    "42": {
+      "path": "checkpoints/trajectory_transformer_scene_15x15_seed42.pt",
+      "sha256": "0dd7b14e12c94f002c603938fe9ab838fa18a5233bae2a3a04bb669fe019e0dd"
+    },
+    "123": {
+      "path": "checkpoints/trajectory_transformer_scene_15x15_seed123.pt",
+      "sha256": "cc29da66624a0118d754b7b5b07d5af01af4e9b6b8969b06a3b362cc6024771a"
+    },
+    "2024": {
+      "path": "checkpoints/trajectory_transformer_scene_15x15_seed2024.pt",
+      "sha256": "b14d2b424e3f24fea1d5b7af49024dcef7f87458b9a557daee21d5ac785be75a"
+    }
+  },
+  "training_validation_data_sha256": {
+    "data/processed/jaad_sequences_scene_15x15/train.npz": "6da2d1d40a918a218a7d054407d95f2791e2338a760b4836f2ca6d06c59ea19a",
+    "data/processed/jaad_sequences_scene_15x15/val.npz": "fb78bb5edcd18d74a15744cfd8ae728c8600b485d4028bed8ee2c9c2d4c5f66c"
+  },
+  "immutable_baseline_artifacts": {
+    "M0_scratch_matched": {
+      "42": {
+        "metrics_path": "results/intention_scratch_matched/seed42/metrics.json",
+        "metrics_sha256": "c9a6cb3e8bf6d9f497f0f4193dabb28d280c2558170ff4bf7ba62435c82bc40e",
+        "predictions_path": "results/intention_scratch_matched/seed42/test_predictions.npz",
+        "predictions_sha256": "6f0a79e05aea01ce95fd1b7b15b4bc70b580edc36f12c229fa93bb59d424883a"
+      },
+      "123": {
+        "metrics_path": "results/intention_scratch_matched/seed123/metrics.json",
+        "metrics_sha256": "f095f96b0adc88b41408a821cc310dacc7c24a0fab8cab3ebf66a70b27870770",
+        "predictions_path": "results/intention_scratch_matched/seed123/test_predictions.npz",
+        "predictions_sha256": "570e08a150035e42bec7da8b33a27e28ef65f98fa7f57bf235019a963592cc97"
+      },
+      "2024": {
+        "metrics_path": "results/intention_scratch_matched/seed2024/metrics.json",
+        "metrics_sha256": "76bd9e75b64c5d866dabe4a99cb752890ff2668834feb6d97a7e03f6dad0ca84",
+        "predictions_path": "results/intention_scratch_matched/seed2024/test_predictions.npz",
+        "predictions_sha256": "b6618e06358f5a8b6f670edc7e20f34cf0fa985ec61c3c5cf096e50bc0ae676e"
+      }
+    },
+    "P1_target_only": {
+      "42": {
+        "metrics_path": "results/trajectory_preserving_joint/P1_target_only/seed42/metrics.json",
+        "metrics_sha256": "18e1b3e3af99e0aff7992d20af3fc671cafe63b0c91fa2812f39edfbcd5c1a42",
+        "predictions_path": "results/trajectory_preserving_joint/P1_target_only/seed42/test_predictions.npz",
+        "predictions_sha256": "f24f9093573b54a98bfa9f4d9e31eaab9ee33f9e49651c83a308c675ee2d3bdf"
+      },
+      "123": {
+        "metrics_path": "results/trajectory_preserving_joint/P1_target_only/seed123/metrics.json",
+        "metrics_sha256": "0b5c2c0e3ffd0af9052ee0fc4be655199ccd9b62e15e4b362449815bf0f3c2d3",
+        "predictions_path": "results/trajectory_preserving_joint/P1_target_only/seed123/test_predictions.npz",
+        "predictions_sha256": "babdd0a7e21184daa300128a08fcc466c52aba69737fa25001ab059878be3def"
+      },
+      "2024": {
+        "metrics_path": "results/trajectory_preserving_joint/P1_target_only/seed2024/metrics.json",
+        "metrics_sha256": "6e92299746c4a3c691dee44ddbef1c0b55a1d08b074b1087b665f3d20f8b756c",
+        "predictions_path": "results/trajectory_preserving_joint/P1_target_only/seed2024/test_predictions.npz",
+        "predictions_sha256": "bd3ecf4a9b59cac6293d259161b3244761a8c00750021ddd5ada6a3f81962f0c"
+      }
+    }
+  },
+  "pretest_audit_artifacts_sha256": {
+    "clone": "33de5e70b851b4bf8918df26d6f90d77b13a79852952ec26086bf80ff376c2c1",
+    "independence": "c989685980a3de0d4987ecf23ad9141d12e779cc3a16f9b2bbe77611a3cd2632",
+    "trajectory_equivalence": "6a397579aed6f6656b619dae0715363bbc5d565dc54d4bfe6e20791abfcfe98a",
+    "representation_shift": "e1b3c2fb63be1a13366ccf4def4370c43860290e285ce68bc29fdacc0cbd51a0"
+  },
+  "representation_shift_sha256": "e1b3c2fb63be1a13366ccf4def4370c43860290e285ce68bc29fdacc0cbd51a0",
+  "source_sha256": {
+    "configs/pretrained_clone_intent.json": "be0db1cdc7e1f8543705feed3cd53100a1147f66f3862abde5135bfa181fefa8",
+    "scripts/audit_pretrained_clone_intent.py": "358c9658deeef32c7c184d80a204cd6d131039824a63fc2fb34290111ecb1161",
+    "scripts/train_pretrained_clone_intent.py": "fc7f5814358baf6a2d6fb121c2551a778722110f51ebf3a4a5b12411a14eda6b",
+    "scripts/pretrained_clone_intent_utils.py": "39271e7c0ab34f70ff08cb1ab133fc1cdce99d1cce6361465f6d451c0ac5bdb1",
+    "scripts/representation_shift_pretrained_clone_intent.py": "b5841981fe1287b81ea1e25915c7e3c2e6a6c921b8c821416d610d081b334d2e",
+    "scripts/freeze_pretrained_clone_intent_protocol.py": "e46306f7c5ef9a14c9159f8997c3aa2426ddc3591e3f0f797ef7f5e76d683989",
+    "scripts/evaluate_pretrained_clone_intent_test.py": "b2dd23e3ba4084d2560a901e3658e4fdd931570ab2592de36415cf74f8aaa97f",
+    "scripts/analyze_pretrained_clone_intent.py": "8170adf29906ac6d8ed3422fa44aeebd72f7925fea25b333048680dda08551c4",
+    "src/models/pretrained_clone_intent.py": "11422ce5cea56ea8651012806c36c2557d7a303725792a3691800e63d5ee74b7",
+    "src/models/intention_scratch_transformer.py": "2c03097553dbd8520e1e1cf043a15737c374647361c0405b7bba49b8924cf5fd",
+    "src/models/trajectory_transformer.py": "2f13ea5fc0929c7c037f7177decaed0732f86b54eaf04f0d4f09d2c7f520ea8a",
+    "scripts/trajectory_preserving_utils.py": "c520fb6d940a1134f1a2955bf79f945f1172efe62f9ed3315995dbd5aab82b53",
+    "scripts/reliability_gated_intent_utils.py": "bd2f7eadb3a54726ada64563d425d8879b33af33118fa052b7ce8e8c4d8d8c8f",
+    "tests/test_pretrained_clone_intent.py": "5b3975e35679f0bcc349e8d4db0351a5731862bbcf648570be11b0f4ba3456b6"
+  },
+  "environment": {
+    "python": "3.10.21 (main, Aug 27 2026, 14:42:07) [GCC 14.3.0]",
+    "torch": "2.5.1+cu124",
+    "numpy": "1.26.4"
+  }
+}

@@ -1,0 +1,1226 @@
+{
+  "seed": 2024,
+  "method": "M1_pretrained_clone_trainable",
+  "epochs": [
+    {
+      "epoch": 1,
+      "train_weighted_bce": 0.6993300254443197,
+      "validation_raw": {
+        "roc_auc": 0.6962480181262585,
+        "brier": 0.2203656908829915,
+        "f1": 0.936668011294877,
+        "balanced_accuracy": 0.5,
+        "accuracy": 0.8808801213960546
+      },
+      "trajectory_validation": {
+        "ade_pixel": 10.251533508300781,
+        "fde_pixel": 17.75859832763672
+      },
+      "trajectory_ade_difference_vs_original_pixel": 0.0,
+      "trajectory_fde_difference_vs_original_pixel": 0.0,
+      "trajectory_parameter_sha256": "9adaebd0d20bd734cad7d2e8dd79a98a3b86d90b6f1b6f425f083639e07909e2",
+      "trajectory_parameter_hash_unchanged": true,
+      "encoder_drift": {
+        "encoder_parameter_tensor_count": 39,
+        "overall": {
+          "relative_l2_parameter_change": 0.15022701920323314,
+          "cosine_similarity": 0.9889642158806558,
+          "absolute_l2_parameter_change": 7.049939155578613,
+          "reference_l2_norm": 46.92856979370117
+        },
+        "per_layer": {
+          "input_projection": {
+            "relative_l2_parameter_change": 0.07928638395279604,
+            "cosine_similarity": 0.9970943518603347,
+            "absolute_l2_parameter_change": 0.6037157773971558,
+            "reference_l2_norm": 7.614368915557861
+          },
+          "position_embedding": {
+            "relative_l2_parameter_change": 1.3580702221913712,
+            "cosine_similarity": 0.585786213287314,
+            "absolute_l2_parameter_change": 0.3370135724544525,
+            "reference_l2_norm": 0.24815621972084045
+          },
+          "temporal_encoder.layer_0": {
+            "relative_l2_parameter_change": 0.2078786897534108,
+            "cosine_similarity": 0.9793508624707569,
+            "absolute_l2_parameter_change": 5.631293773651123,
+            "reference_l2_norm": 27.089326858520508
+          },
+          "temporal_encoder.layer_1": {
+            "relative_l2_parameter_change": 0.11202607129389244,
+            "cosine_similarity": 0.9937809199820778,
+            "absolute_l2_parameter_change": 2.9730513095855713,
+            "reference_l2_norm": 26.538923263549805
+          },
+          "temporal_encoder.layer_2": {
+            "relative_l2_parameter_change": 0.11083203612948682,
+            "cosine_similarity": 0.9939057618236217,
+            "absolute_l2_parameter_change": 2.945136308670044,
+            "reference_l2_norm": 26.572969436645508
+          }
+        },
+        "definition": "relative_l2=||current-reference||_2/||reference||_2; cosine over flattened tensors"
+      }
+    },
+    {
+      "epoch": 2,
+      "train_weighted_bce": 0.6926494207167047,
+      "validation_raw": {
+        "roc_auc": 0.6734873297234429,
+        "brier": 0.26340358840143424,
+        "f1": 0.14758675708017552,
+        "balanced_accuracy": 0.5398363479758829,
+        "accuracy": 0.18930197268588772
+      },
+      "trajectory_validation": {
+        "ade_pixel": 10.251533508300781,
+        "fde_pixel": 17.75859832763672
+      },
+      "trajectory_ade_difference_vs_original_pixel": 0.0,
+      "trajectory_fde_difference_vs_original_pixel": 0.0,
+      "trajectory_parameter_sha256": "9adaebd0d20bd734cad7d2e8dd79a98a3b86d90b6f1b6f425f083639e07909e2",
+      "trajectory_parameter_hash_unchanged": true,
+      "encoder_drift": {
+        "encoder_parameter_tensor_count": 39,
+        "overall": {
+          "relative_l2_parameter_change": 0.194802582790517,
+          "cosine_similarity": 0.9816091411945,
+          "absolute_l2_parameter_change": 9.141806602478027,
+          "reference_l2_norm": 46.92856979370117
+        },
+        "per_layer": {
+          "input_projection": {
+            "relative_l2_parameter_change": 0.10617724225504367,
+            "cosine_similarity": 0.994680908681539,
+            "absolute_l2_parameter_change": 0.8084726929664612,
+            "reference_l2_norm": 7.614368915557861
+          },
+          "position_embedding": {
+            "relative_l2_parameter_change": 2.323354599356459,
+            "cosine_similarity": 0.37861468147935745,
+            "absolute_l2_parameter_change": 0.5765548944473267,
+            "reference_l2_norm": 0.24815621972084045
+          },
+          "temporal_encoder.layer_0": {
+            "relative_l2_parameter_change": 0.25933897074826184,
+            "cosine_similarity": 0.9684306216291851,
+            "absolute_l2_parameter_change": 7.025318145751953,
+            "reference_l2_norm": 27.089326858520508
+          },
+          "temporal_encoder.layer_1": {
+            "relative_l2_parameter_change": 0.15801256558214333,
+            "cosine_similarity": 0.9877042527690963,
+            "absolute_l2_parameter_change": 4.193483352661133,
+            "reference_l2_norm": 26.538923263549805
+          },
+          "temporal_encoder.layer_2": {
+            "relative_l2_parameter_change": 0.1488637326926736,
+            "cosine_similarity": 0.9890535916729347,
+            "absolute_l2_parameter_change": 3.955751419067383,
+            "reference_l2_norm": 26.572969436645508
+          }
+        },
+        "definition": "relative_l2=||current-reference||_2/||reference||_2; cosine over flattened tensors"
+      }
+    },
+    {
+      "epoch": 3,
+      "train_weighted_bce": 0.6705786649111642,
+      "validation_raw": {
+        "roc_auc": 0.41338731710528487,
+        "brier": 0.283581784866466,
+        "f1": 0.2710349962769918,
+        "balanced_accuracy": 0.578380706287683,
+        "accuracy": 0.2572078907435508
+      },
+      "trajectory_validation": {
+        "ade_pixel": 10.251533508300781,
+        "fde_pixel": 17.75859832763672
+      },
+      "trajectory_ade_difference_vs_original_pixel": 0.0,
+      "trajectory_fde_difference_vs_original_pixel": 0.0,
+      "trajectory_parameter_sha256": "9adaebd0d20bd734cad7d2e8dd79a98a3b86d90b6f1b6f425f083639e07909e2",
+      "trajectory_parameter_hash_unchanged": true,
+      "encoder_drift": {
+        "encoder_parameter_tensor_count": 39,
+        "overall": {
+          "relative_l2_parameter_change": 0.2449825000611687,
+          "cosine_similarity": 0.9713183414422792,
+          "absolute_l2_parameter_change": 11.496678352355957,
+          "reference_l2_norm": 46.92856979370117
+        },
+        "per_layer": {
+          "input_projection": {
+            "relative_l2_parameter_change": 0.2046560416580429,
+            "cosine_similarity": 0.9806557468280463,
+            "absolute_l2_parameter_change": 1.5583266019821167,
+            "reference_l2_norm": 7.614368915557861
+          },
+          "position_embedding": {
+            "relative_l2_parameter_change": 3.5823201418177892,
+            "cosine_similarity": 0.2385319759628704,
+            "absolute_l2_parameter_change": 0.8889750242233276,
+            "reference_l2_norm": 0.24815621972084045
+          },
+          "temporal_encoder.layer_0": {
+            "relative_l2_parameter_change": 0.31146094354917464,
+            "cosine_similarity": 0.9553829702812187,
+            "absolute_l2_parameter_change": 8.437267303466797,
+            "reference_l2_norm": 27.089326858520508
+          },
+          "temporal_encoder.layer_1": {
+            "relative_l2_parameter_change": 0.20255083732336815,
+            "cosine_similarity": 0.9799489581318038,
+            "absolute_l2_parameter_change": 5.375481128692627,
+            "reference_l2_norm": 26.538923263549805
+          },
+          "temporal_encoder.layer_2": {
+            "relative_l2_parameter_change": 0.20221455611654673,
+            "cosine_similarity": 0.9800373975271801,
+            "absolute_l2_parameter_change": 5.373441219329834,
+            "reference_l2_norm": 26.572969436645508
+          }
+        },
+        "definition": "relative_l2=||current-reference||_2/||reference||_2; cosine over flattened tensors"
+      }
+    },
+    {
+      "epoch": 4,
+      "train_weighted_bce": 0.6374486822281157,
+      "validation_raw": {
+        "roc_auc": 0.5251965415274554,
+        "brier": 0.33932235049136944,
+        "f1": 0.24952883528081418,
+        "balanced_accuracy": 0.5712747631352283,
+        "accuracy": 0.24468892261001518
+      },
+      "trajectory_validation": {
+        "ade_pixel": 10.251533508300781,
+        "fde_pixel": 17.75859832763672
+      },
+      "trajectory_ade_difference_vs_original_pixel": 0.0,
+      "trajectory_fde_difference_vs_original_pixel": 0.0,
+      "trajectory_parameter_sha256": "9adaebd0d20bd734cad7d2e8dd79a98a3b86d90b6f1b6f425f083639e07909e2",
+      "trajectory_parameter_hash_unchanged": true,
+      "encoder_drift": {
+        "encoder_parameter_tensor_count": 39,
+        "overall": {
+          "relative_l2_parameter_change": 0.2811805933372205,
+          "cosine_similarity": 0.9625754249358386,
+          "absolute_l2_parameter_change": 13.195403099060059,
+          "reference_l2_norm": 46.92856979370117
+        },
+        "per_layer": {
+          "input_projection": {
+            "relative_l2_parameter_change": 0.31025255426483994,
+            "cosine_similarity": 0.9580793373842373,
+            "absolute_l2_parameter_change": 2.362377405166626,
+            "reference_l2_norm": 7.614368915557861
+          },
+          "position_embedding": {
+            "relative_l2_parameter_change": 3.9308966136931605,
+            "cosine_similarity": 0.2043323429087646,
+            "absolute_l2_parameter_change": 0.9754764437675476,
+            "reference_l2_norm": 0.24815621972084045
+          },
+          "temporal_encoder.layer_0": {
+            "relative_l2_parameter_change": 0.35992168762795623,
+            "cosine_similarity": 0.941653589904706,
+            "absolute_l2_parameter_change": 9.750036239624023,
+            "reference_l2_norm": 27.089326858520508
+          },
+          "temporal_encoder.layer_1": {
+            "relative_l2_parameter_change": 0.2260602942107608,
+            "cosine_similarity": 0.9750258125247763,
+            "absolute_l2_parameter_change": 5.999396800994873,
+            "reference_l2_norm": 26.538923263549805
+          },
+          "temporal_encoder.layer_2": {
+            "relative_l2_parameter_change": 0.22746143756959303,
+            "cosine_similarity": 0.9748221993295109,
+            "absolute_l2_parameter_change": 6.044325828552246,
+            "reference_l2_norm": 26.572969436645508
+          }
+        },
+        "definition": "relative_l2=||current-reference||_2/||reference||_2; cosine over flattened tensors"
+      }
+    },
+    {
+      "epoch": 5,
+      "train_weighted_bce": 0.6346230590881364,
+      "validation_raw": {
+        "roc_auc": 0.5028925755855099,
+        "brier": 0.2633872282474576,
+        "f1": 0.3324955116696589,
+        "balanced_accuracy": 0.5996985357450474,
+        "accuracy": 0.2947647951441578
+      },
+      "trajectory_validation": {
+        "ade_pixel": 10.251533508300781,
+        "fde_pixel": 17.75859832763672
+      },
+      "trajectory_ade_difference_vs_original_pixel": 0.0,
+      "trajectory_fde_difference_vs_original_pixel": 0.0,
+      "trajectory_parameter_sha256": "9adaebd0d20bd734cad7d2e8dd79a98a3b86d90b6f1b6f425f083639e07909e2",
+      "trajectory_parameter_hash_unchanged": true,
+      "encoder_drift": {
+        "encoder_parameter_tensor_count": 39,
+        "overall": {
+          "relative_l2_parameter_change": 0.33280716056674486,
+          "cosine_similarity": 0.9484718927712205,
+          "absolute_l2_parameter_change": 15.6181640625,
+          "reference_l2_norm": 46.92856979370117
+        },
+        "per_layer": {
+          "input_projection": {
+            "relative_l2_parameter_change": 0.40353423545584055,
+            "cosine_similarity": 0.9338367388780473,
+            "absolute_l2_parameter_change": 3.0726585388183594,
+            "reference_l2_norm": 7.614368915557861
+          },
+          "position_embedding": {
+            "relative_l2_parameter_change": 4.355816519332113,
+            "cosine_similarity": 0.17955229608040502,
+            "absolute_l2_parameter_change": 1.0809229612350464,
+            "reference_l2_norm": 0.24815621972084045
+          },
+          "temporal_encoder.layer_0": {
+            "relative_l2_parameter_change": 0.4532453509070059,
+            "cosine_similarity": 0.9110767546236958,
+            "absolute_l2_parameter_change": 12.278111457824707,
+            "reference_l2_norm": 27.089326858520508
+          },
+          "temporal_encoder.layer_1": {
+            "relative_l2_parameter_change": 0.24291354221444975,
+            "cosine_similarity": 0.9712435924039973,
+            "absolute_l2_parameter_change": 6.446663856506348,
+            "reference_l2_norm": 26.538923263549805
+          },
+          "temporal_encoder.layer_2": {
+            "relative_l2_parameter_change": 0.24099698540520959,
+            "cosine_similarity": 0.9717622907889336,
+            "absolute_l2_parameter_change": 6.404005527496338,
+            "reference_l2_norm": 26.572969436645508
+          }
+        },
+        "definition": "relative_l2=||current-reference||_2/||reference||_2; cosine over flattened tensors"
+      }
+    },
+    {
+      "epoch": 6,
+      "train_weighted_bce": 0.5989567961827185,
+      "validation_raw": {
+        "roc_auc": 0.5484016085408472,
+        "brier": 0.2962289814867551,
+        "f1": 0.4514838279426476,
+        "balanced_accuracy": 0.6457795004306632,
+        "accuracy": 0.37594840667678303
+      },
+      "trajectory_validation": {
+        "ade_pixel": 10.251533508300781,
+        "fde_pixel": 17.75859832763672
+      },
+      "trajectory_ade_difference_vs_original_pixel": 0.0,
+      "trajectory_fde_difference_vs_original_pixel": 0.0,
+      "trajectory_parameter_sha256": "9adaebd0d20bd734cad7d2e8dd79a98a3b86d90b6f1b6f425f083639e07909e2",
+      "trajectory_parameter_hash_unchanged": true,
+      "encoder_drift": {
+        "encoder_parameter_tensor_count": 39,
+        "overall": {
+          "relative_l2_parameter_change": 0.3786906369941968,
+          "cosine_similarity": 0.93469204333313,
+          "absolute_l2_parameter_change": 17.77140998840332,
+          "reference_l2_norm": 46.92856979370117
+        },
+        "per_layer": {
+          "input_projection": {
+            "relative_l2_parameter_change": 0.49200735273074364,
+            "cosine_similarity": 0.9088171714928414,
+            "absolute_l2_parameter_change": 3.7463254928588867,
+            "reference_l2_norm": 7.614368915557861
+          },
+          "position_embedding": {
+            "relative_l2_parameter_change": 4.3902828249371515,
+            "cosine_similarity": 0.1808871994206835,
+            "absolute_l2_parameter_change": 1.0894759893417358,
+            "reference_l2_norm": 0.24815621972084045
+          },
+          "temporal_encoder.layer_0": {
+            "relative_l2_parameter_change": 0.5280378062931959,
+            "cosine_similarity": 0.8844232209602921,
+            "absolute_l2_parameter_change": 14.30418872833252,
+            "reference_l2_norm": 27.089326858520508
+          },
+          "temporal_encoder.layer_1": {
+            "relative_l2_parameter_change": 0.2681699397277814,
+            "cosine_similarity": 0.9652580071324733,
+            "absolute_l2_parameter_change": 7.116941452026367,
+            "reference_l2_norm": 26.538923263549805
+          },
+          "temporal_encoder.layer_2": {
+            "relative_l2_parameter_change": 0.25342485861034353,
+            "cosine_similarity": 0.968837993309951,
+            "absolute_l2_parameter_change": 6.734251022338867,
+            "reference_l2_norm": 26.572969436645508
+          }
+        },
+        "definition": "relative_l2=||current-reference||_2/||reference||_2; cosine over flattened tensors"
+      }
+    },
+    {
+      "epoch": 7,
+      "train_weighted_bce": 0.6136583837823577,
+      "validation_raw": {
+        "roc_auc": 0.5073555632361735,
+        "brier": 0.25874901469206624,
+        "f1": 0.5395178516936222,
+        "balanced_accuracy": 0.5772958190007517,
+        "accuracy": 0.4275417298937785
+      },
+      "trajectory_validation": {
+        "ade_pixel": 10.251533508300781,
+        "fde_pixel": 17.75859832763672
+      },
+      "trajectory_ade_difference_vs_original_pixel": 0.0,
+      "trajectory_fde_difference_vs_original_pixel": 0.0,
+      "trajectory_parameter_sha256": "9adaebd0d20bd734cad7d2e8dd79a98a3b86d90b6f1b6f425f083639e07909e2",
+      "trajectory_parameter_hash_unchanged": true,
+      "encoder_drift": {
+        "encoder_parameter_tensor_count": 39,
+        "overall": {
+          "relative_l2_parameter_change": 0.40476321697136,
+          "cosine_similarity": 0.9263798675091172,
+          "absolute_l2_parameter_change": 18.994958877563477,
+          "reference_l2_norm": 46.92856979370117
+        },
+        "per_layer": {
+          "input_projection": {
+            "relative_l2_parameter_change": 0.5470631566956649,
+            "cosine_similarity": 0.8921222614552845,
+            "absolute_l2_parameter_change": 4.16554069519043,
+            "reference_l2_norm": 7.614368915557861
+          },
+          "position_embedding": {
+            "relative_l2_parameter_change": 4.558886604014704,
+            "cosine_similarity": 0.17324195244723045,
+            "absolute_l2_parameter_change": 1.131316065788269,
+            "reference_l2_norm": 0.24815621972084045
+          },
+          "temporal_encoder.layer_0": {
+            "relative_l2_parameter_change": 0.5650181596916454,
+            "cosine_similarity": 0.8709862263814572,
+            "absolute_l2_parameter_change": 15.305961608886719,
+            "reference_l2_norm": 27.089326858520508
+          },
+          "temporal_encoder.layer_1": {
+            "relative_l2_parameter_change": 0.2879144222608547,
+            "cosine_similarity": 0.960213632465217,
+            "absolute_l2_parameter_change": 7.640938758850098,
+            "reference_l2_norm": 26.538923263549805
+          },
+          "temporal_encoder.layer_2": {
+            "relative_l2_parameter_change": 0.26485367490366885,
+            "cosine_similarity": 0.9660345755898216,
+            "absolute_l2_parameter_change": 7.0379486083984375,
+            "reference_l2_norm": 26.572969436645508
+          }
+        },
+        "definition": "relative_l2=||current-reference||_2/||reference||_2; cosine over flattened tensors"
+      }
+    },
+    {
+      "epoch": 8,
+      "train_weighted_bce": 0.5853934826495923,
+      "validation_raw": {
+        "roc_auc": 0.4874325888620068,
+        "brier": 0.2582828720354692,
+        "f1": 0.6412131058759816,
+        "balanced_accuracy": 0.45718192640870764,
+        "accuracy": 0.4973444613050076
+      },
+      "trajectory_validation": {
+        "ade_pixel": 10.251533508300781,
+        "fde_pixel": 17.75859832763672
+      },
+      "trajectory_ade_difference_vs_original_pixel": 0.0,
+      "trajectory_fde_difference_vs_original_pixel": 0.0,
+      "trajectory_parameter_sha256": "9adaebd0d20bd734cad7d2e8dd79a98a3b86d90b6f1b6f425f083639e07909e2",
+      "trajectory_parameter_hash_unchanged": true,
+      "encoder_drift": {
+        "encoder_parameter_tensor_count": 39,
+        "overall": {
+          "relative_l2_parameter_change": 0.4308707098487625,
+          "cosine_similarity": 0.9177326291795503,
+          "absolute_l2_parameter_change": 20.22014617919922,
+          "reference_l2_norm": 46.92856979370117
+        },
+        "per_layer": {
+          "input_projection": {
+            "relative_l2_parameter_change": 0.5831889291466462,
+            "cosine_similarity": 0.8819595974911709,
+            "absolute_l2_parameter_change": 4.440615653991699,
+            "reference_l2_norm": 7.614368915557861
+          },
+          "position_embedding": {
+            "relative_l2_parameter_change": 4.845926155262905,
+            "cosine_similarity": 0.15423895468175983,
+            "absolute_l2_parameter_change": 1.2025467157363892,
+            "reference_l2_norm": 0.24815621972084045
+          },
+          "temporal_encoder.layer_0": {
+            "relative_l2_parameter_change": 0.5997333306859324,
+            "cosine_similarity": 0.8579888911289317,
+            "absolute_l2_parameter_change": 16.24637222290039,
+            "reference_l2_norm": 27.089326858520508
+          },
+          "temporal_encoder.layer_1": {
+            "relative_l2_parameter_change": 0.31339861128749175,
+            "cosine_similarity": 0.9533354807795764,
+            "absolute_l2_parameter_change": 8.317261695861816,
+            "reference_l2_norm": 26.538923263549805
+          },
+          "temporal_encoder.layer_2": {
+            "relative_l2_parameter_change": 0.2780165166403493,
+            "cosine_similarity": 0.9626964428680027,
+            "absolute_l2_parameter_change": 7.38772439956665,
+            "reference_l2_norm": 26.572969436645508
+          }
+        },
+        "definition": "relative_l2=||current-reference||_2/||reference||_2; cosine over flattened tensors"
+      }
+    },
+    {
+      "epoch": 9,
+      "train_weighted_bce": 0.5825667831307029,
+      "validation_raw": {
+        "roc_auc": 0.4756881010769323,
+        "brier": 0.24798551423753012,
+        "f1": 0.6290849673202614,
+        "balanced_accuracy": 0.4381984561957899,
+        "accuracy": 0.48330804248861914
+      },
+      "trajectory_validation": {
+        "ade_pixel": 10.251533508300781,
+        "fde_pixel": 17.75859832763672
+      },
+      "trajectory_ade_difference_vs_original_pixel": 0.0,
+      "trajectory_fde_difference_vs_original_pixel": 0.0,
+      "trajectory_parameter_sha256": "9adaebd0d20bd734cad7d2e8dd79a98a3b86d90b6f1b6f425f083639e07909e2",
+      "trajectory_parameter_hash_unchanged": true,
+      "encoder_drift": {
+        "encoder_parameter_tensor_count": 39,
+        "overall": {
+          "relative_l2_parameter_change": 0.4504177883299546,
+          "cosine_similarity": 0.9110765019470699,
+          "absolute_l2_parameter_change": 21.137462615966797,
+          "reference_l2_norm": 46.92856979370117
+        },
+        "per_layer": {
+          "input_projection": {
+            "relative_l2_parameter_change": 0.6181379465521127,
+            "cosine_similarity": 0.8711526765306487,
+            "absolute_l2_parameter_change": 4.706730365753174,
+            "reference_l2_norm": 7.614368915557861
+          },
+          "position_embedding": {
+            "relative_l2_parameter_change": 4.923581987238465,
+            "cosine_similarity": 0.15721551719363486,
+            "absolute_l2_parameter_change": 1.2218174934387207,
+            "reference_l2_norm": 0.24815621972084045
+          },
+          "temporal_encoder.layer_0": {
+            "relative_l2_parameter_change": 0.6235913415626664,
+            "cosine_similarity": 0.8493481605754984,
+            "absolute_l2_parameter_change": 16.892669677734375,
+            "reference_l2_norm": 27.089326858520508
+          },
+          "temporal_encoder.layer_1": {
+            "relative_l2_parameter_change": 0.33179089838687387,
+            "cosine_similarity": 0.9480171779537063,
+            "absolute_l2_parameter_change": 8.805373191833496,
+            "reference_l2_norm": 26.538923263549805
+          },
+          "temporal_encoder.layer_2": {
+            "relative_l2_parameter_change": 0.2921309342903895,
+            "cosine_similarity": 0.9589605252262694,
+            "absolute_l2_parameter_change": 7.762786388397217,
+            "reference_l2_norm": 26.572969436645508
+          }
+        },
+        "definition": "relative_l2=||current-reference||_2/||reference||_2; cosine over flattened tensors"
+      }
+    },
+    {
+      "epoch": 10,
+      "train_weighted_bce": 0.5740557368501892,
+      "validation_raw": {
+        "roc_auc": 0.42640870762630506,
+        "brier": 0.26079268568006825,
+        "f1": 0.5734383792909398,
+        "balanced_accuracy": 0.3802509367610834,
+        "accuracy": 0.424886191198786
+      },
+      "trajectory_validation": {
+        "ade_pixel": 10.251533508300781,
+        "fde_pixel": 17.75859832763672
+      },
+      "trajectory_ade_difference_vs_original_pixel": 0.0,
+      "trajectory_fde_difference_vs_original_pixel": 0.0,
+      "trajectory_parameter_sha256": "9adaebd0d20bd734cad7d2e8dd79a98a3b86d90b6f1b6f425f083639e07909e2",
+      "trajectory_parameter_hash_unchanged": true,
+      "encoder_drift": {
+        "encoder_parameter_tensor_count": 39,
+        "overall": {
+          "relative_l2_parameter_change": 0.4733009793576563,
+          "cosine_similarity": 0.9031911735000694,
+          "absolute_l2_parameter_change": 22.21133804321289,
+          "reference_l2_norm": 46.92856979370117
+        },
+        "per_layer": {
+          "input_projection": {
+            "relative_l2_parameter_change": 0.6502783074841959,
+            "cosine_similarity": 0.8619095609113404,
+            "absolute_l2_parameter_change": 4.951458930969238,
+            "reference_l2_norm": 7.614368915557861
+          },
+          "position_embedding": {
+            "relative_l2_parameter_change": 5.541460218349532,
+            "cosine_similarity": 0.13204435911780088,
+            "absolute_l2_parameter_change": 1.375147819519043,
+            "reference_l2_norm": 0.24815621972084045
+          },
+          "temporal_encoder.layer_0": {
+            "relative_l2_parameter_change": 0.6499295305531541,
+            "cosine_similarity": 0.8397448521317288,
+            "absolute_l2_parameter_change": 17.60615348815918,
+            "reference_l2_norm": 27.089326858520508
+          },
+          "temporal_encoder.layer_1": {
+            "relative_l2_parameter_change": 0.3578415656302243,
+            "cosine_similarity": 0.9402301834623377,
+            "absolute_l2_parameter_change": 9.496729850769043,
+            "reference_l2_norm": 26.538923263549805
+          },
+          "temporal_encoder.layer_2": {
+            "relative_l2_parameter_change": 0.3075390925092785,
+            "cosine_similarity": 0.9547715035661448,
+            "absolute_l2_parameter_change": 8.172226905822754,
+            "reference_l2_norm": 26.572969436645508
+          }
+        },
+        "definition": "relative_l2=||current-reference||_2/||reference||_2; cosine over flattened tensors"
+      }
+    },
+    {
+      "epoch": 11,
+      "train_weighted_bce": 0.5568018402721618,
+      "validation_raw": {
+        "roc_auc": 0.43519615749655743,
+        "brier": 0.26155085517959314,
+        "f1": 0.6031570202160067,
+        "balanced_accuracy": 0.4160247864513899,
+        "accuracy": 0.4563732928679818
+      },
+      "trajectory_validation": {
+        "ade_pixel": 10.251533508300781,
+        "fde_pixel": 17.75859832763672
+      },
+      "trajectory_ade_difference_vs_original_pixel": 0.0,
+      "trajectory_fde_difference_vs_original_pixel": 0.0,
+      "trajectory_parameter_sha256": "9adaebd0d20bd734cad7d2e8dd79a98a3b86d90b6f1b6f425f083639e07909e2",
+      "trajectory_parameter_hash_unchanged": true,
+      "encoder_drift": {
+        "encoder_parameter_tensor_count": 39,
+        "overall": {
+          "relative_l2_parameter_change": 0.49736299897504826,
+          "cosine_similarity": 0.8945338718240183,
+          "absolute_l2_parameter_change": 23.340534210205078,
+          "reference_l2_norm": 46.92856979370117
+        },
+        "per_layer": {
+          "input_projection": {
+            "relative_l2_parameter_change": 0.6704975655492514,
+            "cosine_similarity": 0.8547014280147012,
+            "absolute_l2_parameter_change": 5.1054158210754395,
+            "reference_l2_norm": 7.614368915557861
+          },
+          "position_embedding": {
+            "relative_l2_parameter_change": 6.272352652736527,
+            "cosine_similarity": 0.10895909697010839,
+            "absolute_l2_parameter_change": 1.556523323059082,
+            "reference_l2_norm": 0.24815621972084045
+          },
+          "temporal_encoder.layer_0": {
+            "relative_l2_parameter_change": 0.6740060224146142,
+            "cosine_similarity": 0.8310148415145039,
+            "absolute_l2_parameter_change": 18.25836944580078,
+            "reference_l2_norm": 27.089326858520508
+          },
+          "temporal_encoder.layer_1": {
+            "relative_l2_parameter_change": 0.38318409916775426,
+            "cosine_similarity": 0.9320860528743374,
+            "absolute_l2_parameter_change": 10.169293403625488,
+            "reference_l2_norm": 26.538923263549805
+          },
+          "temporal_encoder.layer_2": {
+            "relative_l2_parameter_change": 0.3355934719261688,
+            "cosine_similarity": 0.9466712765791304,
+            "absolute_l2_parameter_change": 8.917715072631836,
+            "reference_l2_norm": 26.572969436645508
+          }
+        },
+        "definition": "relative_l2=||current-reference||_2/||reference||_2; cosine over flattened tensors"
+      }
+    },
+    {
+      "epoch": 12,
+      "train_weighted_bce": 0.5438170890832185,
+      "validation_raw": {
+        "roc_auc": 0.4447454972377206,
+        "brier": 0.2626407053743152,
+        "f1": 0.6014254385964912,
+        "balanced_accuracy": 0.37156909538778893,
+        "accuracy": 0.44840667678300455
+      },
+      "trajectory_validation": {
+        "ade_pixel": 10.251533508300781,
+        "fde_pixel": 17.75859832763672
+      },
+      "trajectory_ade_difference_vs_original_pixel": 0.0,
+      "trajectory_fde_difference_vs_original_pixel": 0.0,
+      "trajectory_parameter_sha256": "9adaebd0d20bd734cad7d2e8dd79a98a3b86d90b6f1b6f425f083639e07909e2",
+      "trajectory_parameter_hash_unchanged": true,
+      "encoder_drift": {
+        "encoder_parameter_tensor_count": 39,
+        "overall": {
+          "relative_l2_parameter_change": 0.5164888466086487,
+          "cosine_similarity": 0.8874761798251442,
+          "absolute_l2_parameter_change": 24.238082885742188,
+          "reference_l2_norm": 46.92856979370117
+        },
+        "per_layer": {
+          "input_projection": {
+            "relative_l2_parameter_change": 0.6965131140460441,
+            "cosine_similarity": 0.8472398784219185,
+            "absolute_l2_parameter_change": 5.3035078048706055,
+            "reference_l2_norm": 7.614368915557861
+          },
+          "position_embedding": {
+            "relative_l2_parameter_change": 6.517193221213438,
+            "cosine_similarity": 0.10752851970389452,
+            "absolute_l2_parameter_change": 1.6172820329666138,
+            "reference_l2_norm": 0.24815621972084045
+          },
+          "temporal_encoder.layer_0": {
+            "relative_l2_parameter_change": 0.6953712518594295,
+            "cosine_similarity": 0.8221699318885078,
+            "absolute_l2_parameter_change": 18.837139129638672,
+            "reference_l2_norm": 27.089326858520508
+          },
+          "temporal_encoder.layer_1": {
+            "relative_l2_parameter_change": 0.40558399326033223,
+            "cosine_similarity": 0.9248833462688895,
+            "absolute_l2_parameter_change": 10.763762474060059,
+            "reference_l2_norm": 26.538923263549805
+          },
+          "temporal_encoder.layer_2": {
+            "relative_l2_parameter_change": 0.3491110214845955,
+            "cosine_similarity": 0.9425826868922297,
+            "absolute_l2_parameter_change": 9.27691650390625,
+            "reference_l2_norm": 26.572969436645508
+          }
+        },
+        "definition": "relative_l2=||current-reference||_2/||reference||_2; cosine over flattened tensors"
+      }
+    },
+    {
+      "epoch": 13,
+      "train_weighted_bce": 0.5287957104084682,
+      "validation_raw": {
+        "roc_auc": 0.44085238400895344,
+        "brier": 0.29940684928608813,
+        "f1": 0.5247236765561373,
+        "balanced_accuracy": 0.35346478162357287,
+        "accuracy": 0.38012139605462825
+      },
+      "trajectory_validation": {
+        "ade_pixel": 10.251533508300781,
+        "fde_pixel": 17.75859832763672
+      },
+      "trajectory_ade_difference_vs_original_pixel": 0.0,
+      "trajectory_fde_difference_vs_original_pixel": 0.0,
+      "trajectory_parameter_sha256": "9adaebd0d20bd734cad7d2e8dd79a98a3b86d90b6f1b6f425f083639e07909e2",
+      "trajectory_parameter_hash_unchanged": true,
+      "encoder_drift": {
+        "encoder_parameter_tensor_count": 39,
+        "overall": {
+          "relative_l2_parameter_change": 0.5449537934471534,
+          "cosine_similarity": 0.8770928894404033,
+          "absolute_l2_parameter_change": 25.573902130126953,
+          "reference_l2_norm": 46.92856979370117
+        },
+        "per_layer": {
+          "input_projection": {
+            "relative_l2_parameter_change": 0.7234791594871625,
+            "cosine_similarity": 0.8383774781118644,
+            "absolute_l2_parameter_change": 5.5088372230529785,
+            "reference_l2_norm": 7.614368915557861
+          },
+          "position_embedding": {
+            "relative_l2_parameter_change": 7.137336924494229,
+            "cosine_similarity": 0.09247267381720596,
+            "absolute_l2_parameter_change": 1.7711745500564575,
+            "reference_l2_norm": 0.24815621972084045
+          },
+          "temporal_encoder.layer_0": {
+            "relative_l2_parameter_change": 0.7241799024390518,
+            "cosine_similarity": 0.8115319228555598,
+            "absolute_l2_parameter_change": 19.61754608154297,
+            "reference_l2_norm": 27.089326858520508
+          },
+          "temporal_encoder.layer_1": {
+            "relative_l2_parameter_change": 0.43994888903214946,
+            "cosine_similarity": 0.9134019435964758,
+            "absolute_l2_parameter_change": 11.675769805908203,
+            "reference_l2_norm": 26.538923263549805
+          },
+          "temporal_encoder.layer_2": {
+            "relative_l2_parameter_change": 0.37517012229999824,
+            "cosine_similarity": 0.9344360475912754,
+            "absolute_l2_parameter_change": 9.96938419342041,
+            "reference_l2_norm": 26.572969436645508
+          }
+        },
+        "definition": "relative_l2=||current-reference||_2/||reference||_2; cosine over flattened tensors"
+      }
+    },
+    {
+      "epoch": 14,
+      "train_weighted_bce": 0.5142957906242224,
+      "validation_raw": {
+        "roc_auc": 0.44395617658837916,
+        "brier": 0.2628709915537012,
+        "f1": 0.726231956197113,
+        "balanced_accuracy": 0.43678028495092636,
+        "accuracy": 0.582701062215478
+      },
+      "trajectory_validation": {
+        "ade_pixel": 10.251533508300781,
+        "fde_pixel": 17.75859832763672
+      },
+      "trajectory_ade_difference_vs_original_pixel": 0.0,
+      "trajectory_fde_difference_vs_original_pixel": 0.0,
+      "trajectory_parameter_sha256": "9adaebd0d20bd734cad7d2e8dd79a98a3b86d90b6f1b6f425f083639e07909e2",
+      "trajectory_parameter_hash_unchanged": true,
+      "encoder_drift": {
+        "encoder_parameter_tensor_count": 39,
+        "overall": {
+          "relative_l2_parameter_change": 0.565031393566093,
+          "cosine_similarity": 0.8695069808226655,
+          "absolute_l2_parameter_change": 26.516115188598633,
+          "reference_l2_norm": 46.92856979370117
+        },
+        "per_layer": {
+          "input_projection": {
+            "relative_l2_parameter_change": 0.7408003349596821,
+            "cosine_similarity": 0.8326437256378598,
+            "absolute_l2_parameter_change": 5.6407270431518555,
+            "reference_l2_norm": 7.614368915557861
+          },
+          "position_embedding": {
+            "relative_l2_parameter_change": 7.082026449483657,
+            "cosine_similarity": 0.09651268623787726,
+            "absolute_l2_parameter_change": 1.7574489116668701,
+            "reference_l2_norm": 0.24815621972084045
+          },
+          "temporal_encoder.layer_0": {
+            "relative_l2_parameter_change": 0.7512933715206833,
+            "cosine_similarity": 0.8009951590814297,
+            "absolute_l2_parameter_change": 20.352031707763672,
+            "reference_l2_norm": 27.089326858520508
+          },
+          "temporal_encoder.layer_1": {
+            "relative_l2_parameter_change": 0.4586450059540583,
+            "cosine_similarity": 0.9068343350230091,
+            "absolute_l2_parameter_change": 12.171944618225098,
+            "reference_l2_norm": 26.538923263549805
+          },
+          "temporal_encoder.layer_2": {
+            "relative_l2_parameter_change": 0.3871850759075097,
+            "cosine_similarity": 0.9305491152657901,
+            "absolute_l2_parameter_change": 10.288657188415527,
+            "reference_l2_norm": 26.572969436645508
+          }
+        },
+        "definition": "relative_l2=||current-reference||_2/||reference||_2; cosine over flattened tensors"
+      }
+    },
+    {
+      "epoch": 15,
+      "train_weighted_bce": 0.4974136115246748,
+      "validation_raw": {
+        "roc_auc": 0.4755564333404653,
+        "brier": 0.2300104088236052,
+        "f1": 0.7766388557806913,
+        "balanced_accuracy": 0.4622401619513159,
+        "accuracy": 0.6445371775417299
+      },
+      "trajectory_validation": {
+        "ade_pixel": 10.251533508300781,
+        "fde_pixel": 17.75859832763672
+      },
+      "trajectory_ade_difference_vs_original_pixel": 0.0,
+      "trajectory_fde_difference_vs_original_pixel": 0.0,
+      "trajectory_parameter_sha256": "9adaebd0d20bd734cad7d2e8dd79a98a3b86d90b6f1b6f425f083639e07909e2",
+      "trajectory_parameter_hash_unchanged": true,
+      "encoder_drift": {
+        "encoder_parameter_tensor_count": 39,
+        "overall": {
+          "relative_l2_parameter_change": 0.5862902608940646,
+          "cosine_similarity": 0.8615289274447344,
+          "absolute_l2_parameter_change": 27.513763427734375,
+          "reference_l2_norm": 46.92856979370117
+        },
+        "per_layer": {
+          "input_projection": {
+            "relative_l2_parameter_change": 0.7567311471987112,
+            "cosine_similarity": 0.8272648533026566,
+            "absolute_l2_parameter_change": 5.762030124664307,
+            "reference_l2_norm": 7.614368915557861
+          },
+          "position_embedding": {
+            "relative_l2_parameter_change": 7.230759309074222,
+            "cosine_similarity": 0.09489725986744353,
+            "absolute_l2_parameter_change": 1.7943578958511353,
+            "reference_l2_norm": 0.24815621972084045
+          },
+          "temporal_encoder.layer_0": {
+            "relative_l2_parameter_change": 0.7809402483726757,
+            "cosine_similarity": 0.790448020440493,
+            "absolute_l2_parameter_change": 21.1551456451416,
+            "reference_l2_norm": 27.089326858520508
+          },
+          "temporal_encoder.layer_1": {
+            "relative_l2_parameter_change": 0.47143525327189323,
+            "cosine_similarity": 0.9019986253177841,
+            "absolute_l2_parameter_change": 12.511384010314941,
+            "reference_l2_norm": 26.538923263549805
+          },
+          "temporal_encoder.layer_2": {
+            "relative_l2_parameter_change": 0.4062376968406797,
+            "cosine_similarity": 0.9242889261045014,
+            "absolute_l2_parameter_change": 10.794941902160645,
+            "reference_l2_norm": 26.572969436645508
+          }
+        },
+        "definition": "relative_l2=||current-reference||_2/||reference||_2; cosine over flattened tensors"
+      }
+    },
+    {
+      "epoch": 16,
+      "train_weighted_bce": 0.4967383524167225,
+      "validation_raw": {
+        "roc_auc": 0.41190194045326617,
+        "brier": 0.39901158850801477,
+        "f1": 0.42158516020236086,
+        "balanced_accuracy": 0.6059198362931143,
+        "accuracy": 0.3493930197268589
+      },
+      "trajectory_validation": {
+        "ade_pixel": 10.251533508300781,
+        "fde_pixel": 17.75859832763672
+      },
+      "trajectory_ade_difference_vs_original_pixel": 0.0,
+      "trajectory_fde_difference_vs_original_pixel": 0.0,
+      "trajectory_parameter_sha256": "9adaebd0d20bd734cad7d2e8dd79a98a3b86d90b6f1b6f425f083639e07909e2",
+      "trajectory_parameter_hash_unchanged": true,
+      "encoder_drift": {
+        "encoder_parameter_tensor_count": 39,
+        "overall": {
+          "relative_l2_parameter_change": 0.6063369311910225,
+          "cosine_similarity": 0.8535754896507695,
+          "absolute_l2_parameter_change": 28.454524993896484,
+          "reference_l2_norm": 46.92856979370117
+        },
+        "per_layer": {
+          "input_projection": {
+            "relative_l2_parameter_change": 0.7695198337175171,
+            "cosine_similarity": 0.8226051879691206,
+            "absolute_l2_parameter_change": 5.859407901763916,
+            "reference_l2_norm": 7.614368915557861
+          },
+          "position_embedding": {
+            "relative_l2_parameter_change": 7.333884409278492,
+            "cosine_similarity": 0.0922261879009795,
+            "absolute_l2_parameter_change": 1.8199490308761597,
+            "reference_l2_norm": 0.24815621972084045
+          },
+          "temporal_encoder.layer_0": {
+            "relative_l2_parameter_change": 0.8017495940358563,
+            "cosine_similarity": 0.7818219169939165,
+            "absolute_l2_parameter_change": 21.718856811523438,
+            "reference_l2_norm": 27.089326858520508
+          },
+          "temporal_encoder.layer_1": {
+            "relative_l2_parameter_change": 0.4897744644815211,
+            "cosine_similarity": 0.8952122434778218,
+            "absolute_l2_parameter_change": 12.998086929321289,
+            "reference_l2_norm": 26.538923263549805
+          },
+          "temporal_encoder.layer_2": {
+            "relative_l2_parameter_change": 0.43133877968737766,
+            "cosine_similarity": 0.9156931396846684,
+            "absolute_l2_parameter_change": 11.461952209472656,
+            "reference_l2_norm": 26.572969436645508
+          }
+        },
+        "definition": "relative_l2=||current-reference||_2/||reference||_2; cosine over flattened tensors"
+      }
+    },
+    {
+      "epoch": 17,
+      "train_weighted_bce": 0.4708122406327816,
+      "validation_raw": {
+        "roc_auc": 0.40143298386521614,
+        "brier": 0.3264099141034921,
+        "f1": 0.5846741205344969,
+        "balanced_accuracy": 0.2961221108532618,
+        "accuracy": 0.4222306525037936
+      },
+      "trajectory_validation": {
+        "ade_pixel": 10.251533508300781,
+        "fde_pixel": 17.75859832763672
+      },
+      "trajectory_ade_difference_vs_original_pixel": 0.0,
+      "trajectory_fde_difference_vs_original_pixel": 0.0,
+      "trajectory_parameter_sha256": "9adaebd0d20bd734cad7d2e8dd79a98a3b86d90b6f1b6f425f083639e07909e2",
+      "trajectory_parameter_hash_unchanged": true,
+      "encoder_drift": {
+        "encoder_parameter_tensor_count": 39,
+        "overall": {
+          "relative_l2_parameter_change": 0.6305364482956205,
+          "cosine_similarity": 0.8445126613363706,
+          "absolute_l2_parameter_change": 29.590173721313477,
+          "reference_l2_norm": 46.92856979370117
+        },
+        "per_layer": {
+          "input_projection": {
+            "relative_l2_parameter_change": 0.7852709169915826,
+            "cosine_similarity": 0.8170495684162462,
+            "absolute_l2_parameter_change": 5.979342460632324,
+            "reference_l2_norm": 7.614368915557861
+          },
+          "position_embedding": {
+            "relative_l2_parameter_change": 7.369621800413872,
+            "cosine_similarity": 0.09063746588044172,
+            "absolute_l2_parameter_change": 1.8288174867630005,
+            "reference_l2_norm": 0.24815621972084045
+          },
+          "temporal_encoder.layer_0": {
+            "relative_l2_parameter_change": 0.8214956139396642,
+            "cosine_similarity": 0.7747573491741208,
+            "absolute_l2_parameter_change": 22.25376319885254,
+            "reference_l2_norm": 27.089326858520508
+          },
+          "temporal_encoder.layer_1": {
+            "relative_l2_parameter_change": 0.5166336676216015,
+            "cosine_similarity": 0.8854420897922306,
+            "absolute_l2_parameter_change": 13.710901260375977,
+            "reference_l2_norm": 26.538923263549805
+          },
+          "temporal_encoder.layer_2": {
+            "relative_l2_parameter_change": 0.4659101863358228,
+            "cosine_similarity": 0.9037369018411076,
+            "absolute_l2_parameter_change": 12.380617141723633,
+            "reference_l2_norm": 26.572969436645508
+          }
+        },
+        "definition": "relative_l2=||current-reference||_2/||reference||_2; cosine over flattened tensors"
+      }
+    },
+    {
+      "epoch": 18,
+      "train_weighted_bce": 0.46482419123438323,
+      "validation_raw": {
+        "roc_auc": 0.4353744575563565,
+        "brier": 0.322032450561592,
+        "f1": 0.5955334987593052,
+        "balanced_accuracy": 0.37427788475781365,
+        "accuracy": 0.44347496206373294
+      },
+      "trajectory_validation": {
+        "ade_pixel": 10.251533508300781,
+        "fde_pixel": 17.75859832763672
+      },
+      "trajectory_ade_difference_vs_original_pixel": 0.0,
+      "trajectory_fde_difference_vs_original_pixel": 0.0,
+      "trajectory_parameter_sha256": "9adaebd0d20bd734cad7d2e8dd79a98a3b86d90b6f1b6f425f083639e07909e2",
+      "trajectory_parameter_hash_unchanged": true,
+      "encoder_drift": {
+        "encoder_parameter_tensor_count": 39,
+        "overall": {
+          "relative_l2_parameter_change": 0.6591020288256186,
+          "cosine_similarity": 0.83374601654132,
+          "absolute_l2_parameter_change": 30.930715560913086,
+          "reference_l2_norm": 46.92856979370117
+        },
+        "per_layer": {
+          "input_projection": {
+            "relative_l2_parameter_change": 0.8010054050824721,
+            "cosine_similarity": 0.8129597470797906,
+            "absolute_l2_parameter_change": 6.099150657653809,
+            "reference_l2_norm": 7.614368915557861
+          },
+          "position_embedding": {
+            "relative_l2_parameter_change": 7.491869868415506,
+            "cosine_similarity": 0.09266322088456926,
+            "absolute_l2_parameter_change": 1.8591541051864624,
+            "reference_l2_norm": 0.24815621972084045
+          },
+          "temporal_encoder.layer_0": {
+            "relative_l2_parameter_change": 0.8483613116435157,
+            "cosine_similarity": 0.7652369985173983,
+            "absolute_l2_parameter_change": 22.981536865234375,
+            "reference_l2_norm": 27.089326858520508
+          },
+          "temporal_encoder.layer_1": {
+            "relative_l2_parameter_change": 0.5469495234273815,
+            "cosine_similarity": 0.8742404908507996,
+            "absolute_l2_parameter_change": 14.515451431274414,
+            "reference_l2_norm": 26.538923263549805
+          },
+          "temporal_encoder.layer_2": {
+            "relative_l2_parameter_change": 0.5009786899680294,
+            "cosine_similarity": 0.8910458586994613,
+            "absolute_l2_parameter_change": 13.312491416931152,
+            "reference_l2_norm": 26.572969436645508
+          }
+        },
+        "definition": "relative_l2=||current-reference||_2/||reference||_2; cosine over flattened tensors"
+      }
+    },
+    {
+      "epoch": 19,
+      "train_weighted_bce": 0.463049726851077,
+      "validation_raw": {
+        "roc_auc": 0.49754631686938017,
+        "brier": 0.34325426485388544,
+        "f1": 0.506150061500615,
+        "balanced_accuracy": 0.506835749984913,
+        "accuracy": 0.3907435508345979
+      },
+      "trajectory_validation": {
+        "ade_pixel": 10.251533508300781,
+        "fde_pixel": 17.75859832763672
+      },
+      "trajectory_ade_difference_vs_original_pixel": 0.0,
+      "trajectory_fde_difference_vs_original_pixel": 0.0,
+      "trajectory_parameter_sha256": "9adaebd0d20bd734cad7d2e8dd79a98a3b86d90b6f1b6f425f083639e07909e2",
+      "trajectory_parameter_hash_unchanged": true,
+      "encoder_drift": {
+        "encoder_parameter_tensor_count": 39,
+        "overall": {
+          "relative_l2_parameter_change": 0.6879724774169623,
+          "cosine_similarity": 0.8226034652920561,
+          "absolute_l2_parameter_change": 32.28556442260742,
+          "reference_l2_norm": 46.92856979370117
+        },
+        "per_layer": {
+          "input_projection": {
+            "relative_l2_parameter_change": 0.8131567739439843,
+            "cosine_similarity": 0.8081297416114103,
+            "absolute_l2_parameter_change": 6.191675662994385,
+            "reference_l2_norm": 7.614368915557861
+          },
+          "position_embedding": {
+            "relative_l2_parameter_change": 7.489499673401634,
+            "cosine_similarity": 0.09500119377224886,
+            "absolute_l2_parameter_change": 1.8585659265518188,
+            "reference_l2_norm": 0.24815621972084045
+          },
+          "temporal_encoder.layer_0": {
+            "relative_l2_parameter_change": 0.8763729959755986,
+            "cosine_similarity": 0.7551069692379049,
+            "absolute_l2_parameter_change": 23.740354537963867,
+            "reference_l2_norm": 27.089326858520508
+          },
+          "temporal_encoder.layer_1": {
+            "relative_l2_parameter_change": 0.5752550715144611,
+            "cosine_similarity": 0.8633655498608428,
+            "absolute_l2_parameter_change": 15.266650199890137,
+            "reference_l2_norm": 26.538923263549805
+          },
+          "temporal_encoder.layer_2": {
+            "relative_l2_parameter_change": 0.5373759796679403,
+            "cosine_similarity": 0.8775016537674989,
+            "absolute_l2_parameter_change": 14.279675483703613,
+            "reference_l2_norm": 26.572969436645508
+          }
+        },
+        "definition": "relative_l2=||current-reference||_2/||reference||_2; cosine over flattened tensors"
+      }
+    },
+    {
+      "epoch": 20,
+      "train_weighted_bce": 0.45185305847856,
+      "validation_raw": {
+        "roc_auc": 0.4206839041678324,
+        "brier": 0.28387012246299037,
+        "f1": 0.7081481481481482,
+        "balanced_accuracy": 0.34063266347372406,
+        "accuracy": 0.5515933232169955
+      },
+      "trajectory_validation": {
+        "ade_pixel": 10.251533508300781,
+        "fde_pixel": 17.75859832763672
+      },
+      "trajectory_ade_difference_vs_original_pixel": 0.0,
+      "trajectory_fde_difference_vs_original_pixel": 0.0,
+      "trajectory_parameter_sha256": "9adaebd0d20bd734cad7d2e8dd79a98a3b86d90b6f1b6f425f083639e07909e2",
+      "trajectory_parameter_hash_unchanged": true,
+      "encoder_drift": {
+        "encoder_parameter_tensor_count": 39,
+        "overall": {
+          "relative_l2_parameter_change": 0.7242505980510717,
+          "cosine_similarity": 0.8086757772538952,
+          "absolute_l2_parameter_change": 33.98804473876953,
+          "reference_l2_norm": 46.92856979370117
+        },
+        "per_layer": {
+          "input_projection": {
+            "relative_l2_parameter_change": 0.8276193195235942,
+            "cosine_similarity": 0.8045526080679121,
+            "absolute_l2_parameter_change": 6.3017988204956055,
+            "reference_l2_norm": 7.614368915557861
+          },
+          "position_embedding": {
+            "relative_l2_parameter_change": 8.24426363207406,
+            "cosine_similarity": 0.07654674859217388,
+            "absolute_l2_parameter_change": 2.045865297317505,
+            "reference_l2_norm": 0.24815621972084045
+          },
+          "temporal_encoder.layer_0": {
+            "relative_l2_parameter_change": 0.9054244892610928,
+            "cosine_similarity": 0.7445839714315167,
+            "absolute_l2_parameter_change": 24.527339935302734,
+            "reference_l2_norm": 27.089326858520508
+          },
+          "temporal_encoder.layer_1": {
+            "relative_l2_parameter_change": 0.6204898520120578,
+            "cosine_similarity": 0.8460470891688834,
+            "absolute_l2_parameter_change": 16.467132568359375,
+            "reference_l2_norm": 26.538923263549805
+          },
+          "temporal_encoder.layer_2": {
+            "relative_l2_parameter_change": 0.5812428953460654,
+            "cosine_similarity": 0.860751326041889,
+            "absolute_l2_parameter_change": 15.44534969329834,
+            "reference_l2_norm": 26.572969436645508
+          }
+        },
+        "definition": "relative_l2=||current-reference||_2/||reference||_2; cosine over flattened tensors"
+      }
+    }
+  ]
+}

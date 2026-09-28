@@ -1,0 +1,36 @@
+{
+  "addendum_id": "M1-evaluator-metadata-field-correction-v1",
+  "parent_protocol_sha256": "24840578d8f6afcdc97a2bd7f2bff9e20df504bdd1213249ccb716d2bf85d3af",
+  "created_utc": "2026-09-28T15:08:23.671859+00:00",
+  "reason": "The frozen test archive does not contain video_id; its IDs are reconstructed only by exact join to pre-registered, hash-verified P1 outputs.",
+  "analysis_protocol_changed": false,
+  "model_or_checkpoint_changed": false,
+  "selection_or_calibration_changed": false,
+  "test_labels_or_metrics_examined_during_failed_attempt": false,
+  "failed_attempt": {
+    "protocol_sha256": "24840578d8f6afcdc97a2bd7f2bff9e20df504bdd1213249ccb716d2bf85d3af",
+    "archive_opened_after_freeze": true,
+    "archive_field_validation_failed": true,
+    "missing_member": "video_id",
+    "model_inference_started": false,
+    "test_labels_or_metrics_computed": false,
+    "predictions_written": false,
+    "evaluation_count": 0
+  },
+  "video_id_recovery": {
+    "source": "frozen P1_target_only test_predictions.npz",
+    "join_key": [
+      "scene_id",
+      "target_id",
+      "obs_end_frame"
+    ],
+    "requirements": [
+      "keys unique on both sides",
+      "exact key-set match",
+      "label parity checked before metric computation"
+    ]
+  },
+  "recovery_evaluator_sha256": "5ef4aae92947c4e45e64d4ad61d55bb96ba0e50a04915d07a8c5a2a4ad26fa91",
+  "parent_evaluator_sha256": "b2dd23e3ba4084d2560a901e3658e4fdd931570ab2592de36415cf74f8aaa97f",
+  "official_test_evaluation_count": 1
+}

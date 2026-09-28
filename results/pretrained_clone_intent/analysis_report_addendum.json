@@ -1,0 +1,14 @@
+{
+  "addendum_id": "M1-report-aggregation-fix-v1",
+  "parent_protocol_sha256": "24840578d8f6afcdc97a2bd7f2bff9e20df504bdd1213249ccb716d2bf85d3af",
+  "created_utc": "2026-09-28T15:11:54.713555+00:00",
+  "reason": "The frozen analyzer expected nested test metric dictionaries although the bootstrap output had already been computed and saved.",
+  "test_archive_reopened": false,
+  "bootstrap_recomputed": false,
+  "model_or_checkpoint_changed": false,
+  "decision_rule_changed": false,
+  "existing_bootstrap_sha256": "08fb25141b94b9d3b9225e4e4705a5b970993842e0217ba5004c3b47e66aec91",
+  "recovery_report_script_sha256": "17d6088f6943a4690f01c483ed73bdb0e3ddbc92b24c7670b419773fd0b0238a",
+  "parent_analyzer_sha256": "8170adf29906ac6d8ed3422fa44aeebd72f7925fea25b333048680dda08551c4",
+  "summary_sha256": "31128d5b9e1f706dfc106e793a2d305e7b4b58c482e6c48b45fefc944a141163"
+}

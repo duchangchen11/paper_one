@@ -1,0 +1,10 @@
+{
+  "protocol_sha256": "24840578d8f6afcdc97a2bd7f2bff9e20df504bdd1213249ccb716d2bf85d3af",
+  "archive_opened_after_freeze": true,
+  "archive_field_validation_failed": true,
+  "missing_member": "video_id",
+  "model_inference_started": false,
+  "test_labels_or_metrics_computed": false,
+  "predictions_written": false,
+  "evaluation_count": 0
+}

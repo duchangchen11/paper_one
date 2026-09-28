@@ -1,0 +1,50 @@
+{
+  "comparison": "standalone trajectory checkpoint model vs independent frozen M1 trajectory branch",
+  "minimum_validation_samples": 1024,
+  "all_seeds_pass": true,
+  "seeds": {
+    "42": {
+      "seed": 42,
+      "trajectory_checkpoint_sha256": "0dd7b14e12c94f002c603938fe9ab838fa18a5233bae2a3a04bb669fe019e0dd",
+      "trajectory_backbone_sha256": "de055f5b482d1e1e5ae69cfa5e10c57fa02a1d8aed464478b6cefc5899cd39b5",
+      "validation_samples": 1024,
+      "max_abs_future_prediction_difference": 0.0,
+      "reference_validation_ade_pixel": 9.39052677154541,
+      "m1_validation_ade_pixel": 9.39052677154541,
+      "validation_ade_difference_pixel": 0.0,
+      "reference_validation_fde_pixel": 17.477664947509766,
+      "m1_validation_fde_pixel": 17.477664947509766,
+      "validation_fde_difference_pixel": 0.0,
+      "pass": true
+    },
+    "123": {
+      "seed": 123,
+      "trajectory_checkpoint_sha256": "cc29da66624a0118d754b7b5b07d5af01af4e9b6b8969b06a3b362cc6024771a",
+      "trajectory_backbone_sha256": "30f6c43033acc1f7dfda8aac6617df43e9829d4a4945480892a82811cb1312c4",
+      "validation_samples": 1024,
+      "max_abs_future_prediction_difference": 0.0,
+      "reference_validation_ade_pixel": 9.359439849853516,
+      "m1_validation_ade_pixel": 9.359439849853516,
+      "validation_ade_difference_pixel": 0.0,
+      "reference_validation_fde_pixel": 16.979019165039062,
+      "m1_validation_fde_pixel": 16.979019165039062,
+      "validation_fde_difference_pixel": 0.0,
+      "pass": true
+    },
+    "2024": {
+      "seed": 2024,
+      "trajectory_checkpoint_sha256": "b14d2b424e3f24fea1d5b7af49024dcef7f87458b9a557daee21d5ac785be75a",
+      "trajectory_backbone_sha256": "9adaebd0d20bd734cad7d2e8dd79a98a3b86d90b6f1b6f425f083639e07909e2",
+      "validation_samples": 1024,
+      "max_abs_future_prediction_difference": 0.0,
+      "reference_validation_ade_pixel": 9.474353790283203,
+      "m1_validation_ade_pixel": 9.474353790283203,
+      "validation_ade_difference_pixel": 0.0,
+      "reference_validation_fde_pixel": 16.780057907104492,
+      "m1_validation_fde_pixel": 16.780057907104492,
+      "validation_fde_difference_pixel": 0.0,
+      "pass": true
+    }
+  },
+  "test_split_loaded": false
+}

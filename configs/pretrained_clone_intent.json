@@ -1,0 +1,95 @@
+{
+  "experiment": "Trajectory-pretrained clone initialization with trainable intention encoder (M1)",
+  "protocol_id": "Pretrained-Clone-Intent-v1",
+  "base_commit": "13a1f3c35d1dba20093c0b90b970be79c1b8d58a",
+  "seeds": [42, 123, 2024],
+  "seed_to_trajectory_checkpoint": {
+    "42": "checkpoints/trajectory_transformer_scene_15x15_seed42.pt",
+    "123": "checkpoints/trajectory_transformer_scene_15x15_seed123.pt",
+    "2024": "checkpoints/trajectory_transformer_scene_15x15_seed2024.pt"
+  },
+  "input": {
+    "intention": "concat(target_obs, target_abs_obs)",
+    "shape": "[B,15,8]",
+    "scene_input_to_intention": false,
+    "future_or_social_or_reliability_input": false,
+    "preprocessing": "reuse data/processed/jaad_sequences_scene_15x15 arrays exactly"
+  },
+  "model": {
+    "trajectory_branch": "SceneTrajectoryTransformer restored from the matching seed checkpoint; every parameter frozen; eval mode permanently",
+    "intention_branch": {
+      "initialization": "copy input_projection, position_embedding, temporal_encoder from the corresponding seed trajectory checkpoint",
+      "architecture": "exactly IntentionScratchTransformer / M0",
+      "hidden_dimension": 128,
+      "layers": 3,
+      "heads": 4,
+      "feedforward_dimension": 512,
+      "activation": "gelu",
+      "norm_first": true,
+      "dropout": 0.1,
+      "context": "last temporal encoder output [B,128]",
+      "head": "LayerNorm(128) -> Linear(128,128) -> GELU -> Dropout(0.1) -> Linear(128,1)",
+      "all_parameters_trainable": true
+    },
+    "parameter_sharing": false,
+    "trajectory_loss_in_optimizer": false
+  },
+  "training": {
+    "train_split": "data/processed/jaad_sequences_scene_15x15/train.npz",
+    "validation_split": "data/processed/jaad_sequences_scene_15x15/val.npz",
+    "test_split": "forbidden until protocol freeze",
+    "maximum_epochs": 20,
+    "batch_size": 256,
+    "optimizer": "AdamW",
+    "learning_rate": 0.001,
+    "weight_decay": 0.0001,
+    "gradient_clip_norm": 5.0,
+    "sampling": "natural shuffle=True; no WeightedRandomSampler",
+    "loss": "inverse-frequency weighted BCE on intention only",
+    "checkpoint_selection": "highest raw validation ROC-AUC; if within 1e-4, lower raw validation Brier",
+    "selection_tolerance": 0.0001,
+    "temperature_fit": "validation split only",
+    "threshold_fit": "validation balanced accuracy only"
+  },
+  "trajectory_preservation": {
+    "validation_samples_minimum": 1024,
+    "max_abs_future_prediction_difference": 0.000001,
+    "max_abs_ade_difference_pixel": 0.00001,
+    "max_abs_fde_difference_pixel": 0.00001,
+    "trajectory_parameter_sha256_must_be_unchanged_every_epoch": true
+  },
+  "representation_shift": {
+    "split": "validation",
+    "validation_samples": 1000,
+    "features": ["mean", "std", "sample_l2_norm", "per_dimension_variance", "per_sample_cosine_similarity", "linear_cka"],
+    "selection_use": false
+  },
+  "paired_analysis": {
+    "primary_baseline": "M0_scratch_matched",
+    "secondary_baseline": "P1_target_only",
+    "bootstrap_cluster": "scene_id",
+    "bootstrap_repetitions": 2000,
+    "bootstrap_seed": 9124,
+    "delta_definition": "M1 minus comparator; positive AUC favors M1; negative Brier favors M1",
+    "transfer_success_rule": {
+      "positive_mean_delta_auc_required": true,
+      "minimum_positive_seed_delta_auc_count": 2,
+      "minimum_seed_auc_ci_stable_positive_count": 2,
+      "maximum_m1_auc_seed_sd_vs_m0_seed_sd_ratio": 1.5,
+      "trajectory_preservation_required": true,
+      "if_ci_crosses_zero": "describe as weak/inconclusive, not significant transfer"
+    }
+  },
+  "forbidden": [
+    "adapter",
+    "residual adapter",
+    "partial unfreeze of trajectory branch",
+    "scene/social/reliability/uncertainty input to intention",
+    "DGB",
+    "PCGrad",
+    "GradNorm",
+    "trajectory loss in intention optimization",
+    "encoder differential learning rate",
+    "test-based tuning"
+  ]
+}

@@ -1,0 +1,48 @@
+{
+  "all_seeds_test_pass": true,
+  "seeds": {
+    "42": {
+      "initial_value_equal": true,
+      "same_parameter_object": false,
+      "same_storage": false,
+      "optimizer_contains_trajectory_parameter": false,
+      "optimizer_parameter_count": 45,
+      "intention_changed_after_step": true,
+      "intent_encoder_changed_after_step": true,
+      "trajectory_changed_after_step": false,
+      "trajectory_hash_before": "de055f5b482d1e1e5ae69cfa5e10c57fa02a1d8aed464478b6cefc5899cd39b5",
+      "trajectory_hash_after": "de055f5b482d1e1e5ae69cfa5e10c57fa02a1d8aed464478b6cefc5899cd39b5",
+      "smoke_loss": 0.9194005727767944,
+      "test_pass": true
+    },
+    "123": {
+      "initial_value_equal": true,
+      "same_parameter_object": false,
+      "same_storage": false,
+      "optimizer_contains_trajectory_parameter": false,
+      "optimizer_parameter_count": 45,
+      "intention_changed_after_step": true,
+      "intent_encoder_changed_after_step": true,
+      "trajectory_changed_after_step": false,
+      "trajectory_hash_before": "30f6c43033acc1f7dfda8aac6617df43e9829d4a4945480892a82811cb1312c4",
+      "trajectory_hash_after": "30f6c43033acc1f7dfda8aac6617df43e9829d4a4945480892a82811cb1312c4",
+      "smoke_loss": 0.7325648665428162,
+      "test_pass": true
+    },
+    "2024": {
+      "initial_value_equal": true,
+      "same_parameter_object": false,
+      "same_storage": false,
+      "optimizer_contains_trajectory_parameter": false,
+      "optimizer_parameter_count": 45,
+      "intention_changed_after_step": true,
+      "intent_encoder_changed_after_step": true,
+      "trajectory_changed_after_step": false,
+      "trajectory_hash_before": "9adaebd0d20bd734cad7d2e8dd79a98a3b86d90b6f1b6f425f083639e07909e2",
+      "trajectory_hash_after": "9adaebd0d20bd734cad7d2e8dd79a98a3b86d90b6f1b6f425f083639e07909e2",
+      "smoke_loss": 0.9728848934173584,
+      "test_pass": true
+    }
+  },
+  "test_split_loaded": false
+}

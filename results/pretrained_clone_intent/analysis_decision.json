@@ -1,0 +1,15 @@
+{
+  "mean_delta_auc_m1_minus_m0": -0.012821146381072235,
+  "positive_seed_count": 1,
+  "seed_ci_lower_above_zero_count": 0,
+  "m0_seed_auc_sample_sd": 0.007882581323080574,
+  "m1_seed_auc_sample_sd": 0.015379074356530234,
+  "m1_to_m0_seed_sd_ratio": 1.9510200689588284,
+  "trajectory_exact_preservation_pass": true,
+  "positive_mean_delta_auc_pass": false,
+  "positive_seed_count_pass": false,
+  "bootstrap_stability_pass": false,
+  "seed_variance_pass": false,
+  "pretraining_transfer_success": false,
+  "interpretation": "does not meet the pre-registered stable-transfer rule; bootstrap intervals crossing zero are weak/inconclusive, not significant transfer"
+}

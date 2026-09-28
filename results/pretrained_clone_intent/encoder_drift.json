@@ -1,0 +1,2786 @@
+{
+  "reference": "trajectory-pretrained target encoder before intention fine-tuning",
+  "per_seed": {
+    "42": {
+      "selected_epoch": 1,
+      "selected_checkpoint_drift": {
+        "encoder_parameter_tensor_count": 39,
+        "overall": {
+          "relative_l2_parameter_change": 0.17029920593743247,
+          "cosine_similarity": 0.985870470522683,
+          "absolute_l2_parameter_change": 8.037310600280762,
+          "reference_l2_norm": 47.19523239135742
+        },
+        "per_layer": {
+          "input_projection": {
+            "relative_l2_parameter_change": 0.11035528168678205,
+            "cosine_similarity": 0.994470718944546,
+            "absolute_l2_parameter_change": 0.8826330304145813,
+            "reference_l2_norm": 7.998104095458984
+          },
+          "position_embedding": {
+            "relative_l2_parameter_change": 1.6056657834675678,
+            "cosine_similarity": 0.5802282394955182,
+            "absolute_l2_parameter_change": 0.4336101710796356,
+            "reference_l2_norm": 0.2700500786304474
+          },
+          "temporal_encoder.layer_0": {
+            "relative_l2_parameter_change": 0.2100954069246563,
+            "cosine_similarity": 0.9790706762716969,
+            "absolute_l2_parameter_change": 5.744444847106934,
+            "reference_l2_norm": 27.342077255249023
+          },
+          "temporal_encoder.layer_1": {
+            "relative_l2_parameter_change": 0.14826567091064347,
+            "cosine_similarity": 0.989126800421978,
+            "absolute_l2_parameter_change": 3.944016218185425,
+            "reference_l2_norm": 26.60100746154785
+          },
+          "temporal_encoder.layer_2": {
+            "relative_l2_parameter_change": 0.1459178371411652,
+            "cosine_similarity": 0.9894596089143657,
+            "absolute_l2_parameter_change": 3.8830769062042236,
+            "reference_l2_norm": 26.611392974853516
+          }
+        },
+        "definition": "relative_l2=||current-reference||_2/||reference||_2; cosine over flattened tensors"
+      },
+      "all_epochs": [
+        {
+          "epoch": 1,
+          "encoder_parameter_tensor_count": 39,
+          "overall": {
+            "relative_l2_parameter_change": 0.17029920593743247,
+            "cosine_similarity": 0.985870470522683,
+            "absolute_l2_parameter_change": 8.037310600280762,
+            "reference_l2_norm": 47.19523239135742
+          },
+          "per_layer": {
+            "input_projection": {
+              "relative_l2_parameter_change": 0.11035528168678205,
+              "cosine_similarity": 0.994470718944546,
+              "absolute_l2_parameter_change": 0.8826330304145813,
+              "reference_l2_norm": 7.998104095458984
+            },
+            "position_embedding": {
+              "relative_l2_parameter_change": 1.6056657834675678,
+              "cosine_similarity": 0.5802282394955182,
+              "absolute_l2_parameter_change": 0.4336101710796356,
+              "reference_l2_norm": 0.2700500786304474
+            },
+            "temporal_encoder.layer_0": {
+              "relative_l2_parameter_change": 0.2100954069246563,
+              "cosine_similarity": 0.9790706762716969,
+              "absolute_l2_parameter_change": 5.744444847106934,
+              "reference_l2_norm": 27.342077255249023
+            },
+            "temporal_encoder.layer_1": {
+              "relative_l2_parameter_change": 0.14826567091064347,
+              "cosine_similarity": 0.989126800421978,
+              "absolute_l2_parameter_change": 3.944016218185425,
+              "reference_l2_norm": 26.60100746154785
+            },
+            "temporal_encoder.layer_2": {
+              "relative_l2_parameter_change": 0.1459178371411652,
+              "cosine_similarity": 0.9894596089143657,
+              "absolute_l2_parameter_change": 3.8830769062042236,
+              "reference_l2_norm": 26.611392974853516
+            }
+          },
+          "definition": "relative_l2=||current-reference||_2/||reference||_2; cosine over flattened tensors",
+          "is_selected_epoch": true
+        },
+        {
+          "epoch": 2,
+          "encoder_parameter_tensor_count": 39,
+          "overall": {
+            "relative_l2_parameter_change": 0.2281925997581464,
+            "cosine_similarity": 0.9749674047794928,
+            "absolute_l2_parameter_change": 10.76960277557373,
+            "reference_l2_norm": 47.19523239135742
+          },
+          "per_layer": {
+            "input_projection": {
+              "relative_l2_parameter_change": 0.17785940581545368,
+              "cosine_similarity": 0.9864262997170807,
+              "absolute_l2_parameter_change": 1.4225380420684814,
+              "reference_l2_norm": 7.998104095458984
+            },
+            "position_embedding": {
+              "relative_l2_parameter_change": 1.9604768679197433,
+              "cosine_similarity": 0.48275104169930566,
+              "absolute_l2_parameter_change": 0.5294269323348999,
+              "reference_l2_norm": 0.2700500786304474
+            },
+            "temporal_encoder.layer_0": {
+              "relative_l2_parameter_change": 0.2791737643269611,
+              "cosine_similarity": 0.9636862129570765,
+              "absolute_l2_parameter_change": 7.633190631866455,
+              "reference_l2_norm": 27.342077255249023
+            },
+            "temporal_encoder.layer_1": {
+              "relative_l2_parameter_change": 0.19877050223534945,
+              "cosine_similarity": 0.9806638096405477,
+              "absolute_l2_parameter_change": 5.2874956130981445,
+              "reference_l2_norm": 26.60100746154785
+            },
+            "temporal_encoder.layer_2": {
+              "relative_l2_parameter_change": 0.196911737027017,
+              "cosine_similarity": 0.9809594406250989,
+              "absolute_l2_parameter_change": 5.240095615386963,
+              "reference_l2_norm": 26.611392974853516
+            }
+          },
+          "definition": "relative_l2=||current-reference||_2/||reference||_2; cosine over flattened tensors",
+          "is_selected_epoch": false
+        },
+        {
+          "epoch": 3,
+          "encoder_parameter_tensor_count": 39,
+          "overall": {
+            "relative_l2_parameter_change": 0.25416919018485934,
+            "cosine_similarity": 0.9692564993979396,
+            "absolute_l2_parameter_change": 11.995573997497559,
+            "reference_l2_norm": 47.19523239135742
+          },
+          "per_layer": {
+            "input_projection": {
+              "relative_l2_parameter_change": 0.21928937104578483,
+              "cosine_similarity": 0.9800839405070018,
+              "absolute_l2_parameter_change": 1.7538992166519165,
+              "reference_l2_norm": 7.998104095458984
+            },
+            "position_embedding": {
+              "relative_l2_parameter_change": 2.800045291129593,
+              "cosine_similarity": 0.35389989157249374,
+              "absolute_l2_parameter_change": 0.7561524510383606,
+              "reference_l2_norm": 0.2700500786304474
+            },
+            "temporal_encoder.layer_0": {
+              "relative_l2_parameter_change": 0.32149685775280756,
+              "cosine_similarity": 0.9528603081823133,
+              "absolute_l2_parameter_change": 8.79039192199707,
+              "reference_l2_norm": 27.342077255249023
+            },
+            "temporal_encoder.layer_1": {
+              "relative_l2_parameter_change": 0.21396134925894783,
+              "cosine_similarity": 0.9776843510572557,
+              "absolute_l2_parameter_change": 5.691587448120117,
+              "reference_l2_norm": 26.60100746154785
+            },
+            "temporal_encoder.layer_2": {
+              "relative_l2_parameter_change": 0.2078137137567182,
+              "cosine_similarity": 0.9788314272482282,
+              "absolute_l2_parameter_change": 5.53021240234375,
+              "reference_l2_norm": 26.611392974853516
+            }
+          },
+          "definition": "relative_l2=||current-reference||_2/||reference||_2; cosine over flattened tensors",
+          "is_selected_epoch": false
+        },
+        {
+          "epoch": 4,
+          "encoder_parameter_tensor_count": 39,
+          "overall": {
+            "relative_l2_parameter_change": 0.27557669378958705,
+            "cosine_similarity": 0.9642301809127105,
+            "absolute_l2_parameter_change": 13.005906105041504,
+            "reference_l2_norm": 47.19523239135742
+          },
+          "per_layer": {
+            "input_projection": {
+              "relative_l2_parameter_change": 0.24432102861462662,
+              "cosine_similarity": 0.975831681723138,
+              "absolute_l2_parameter_change": 1.954105019569397,
+              "reference_l2_norm": 7.998104095458984
+            },
+            "position_embedding": {
+              "relative_l2_parameter_change": 3.3763632172019773,
+              "cosine_similarity": 0.31625601208397425,
+              "absolute_l2_parameter_change": 0.9117871522903442,
+              "reference_l2_norm": 0.2700500786304474
+            },
+            "temporal_encoder.layer_0": {
+              "relative_l2_parameter_change": 0.35441893313367456,
+              "cosine_similarity": 0.9440259693744435,
+              "absolute_l2_parameter_change": 9.690549850463867,
+              "reference_l2_norm": 27.342077255249023
+            },
+            "temporal_encoder.layer_1": {
+              "relative_l2_parameter_change": 0.22819088595784962,
+              "cosine_similarity": 0.9747286576706136,
+              "absolute_l2_parameter_change": 6.070107460021973,
+              "reference_l2_norm": 26.60100746154785
+            },
+            "temporal_encoder.layer_2": {
+              "relative_l2_parameter_change": 0.21832173359095886,
+              "cosine_similarity": 0.9766611401390513,
+              "absolute_l2_parameter_change": 5.809845447540283,
+              "reference_l2_norm": 26.611392974853516
+            }
+          },
+          "definition": "relative_l2=||current-reference||_2/||reference||_2; cosine over flattened tensors",
+          "is_selected_epoch": false
+        },
+        {
+          "epoch": 5,
+          "encoder_parameter_tensor_count": 39,
+          "overall": {
+            "relative_l2_parameter_change": 0.29969955416071536,
+            "cosine_similarity": 0.9581337754790724,
+            "absolute_l2_parameter_change": 14.144390106201172,
+            "reference_l2_norm": 47.19523239135742
+          },
+          "per_layer": {
+            "input_projection": {
+              "relative_l2_parameter_change": 0.2750205684769311,
+              "cosine_similarity": 0.970239594883993,
+              "absolute_l2_parameter_change": 2.199643135070801,
+              "reference_l2_norm": 7.998104095458984
+            },
+            "position_embedding": {
+              "relative_l2_parameter_change": 3.764863110761201,
+              "cosine_similarity": 0.3012796730715781,
+              "absolute_l2_parameter_change": 1.016701579093933,
+              "reference_l2_norm": 0.2700500786304474
+            },
+            "temporal_encoder.layer_0": {
+              "relative_l2_parameter_change": 0.39636314944768875,
+              "cosine_similarity": 0.9316247082948432,
+              "absolute_l2_parameter_change": 10.83739185333252,
+              "reference_l2_norm": 27.342077255249023
+            },
+            "temporal_encoder.layer_1": {
+              "relative_l2_parameter_change": 0.2373939068542136,
+              "cosine_similarity": 0.9726929156520729,
+              "absolute_l2_parameter_change": 6.314917087554932,
+              "reference_l2_norm": 26.60100746154785
+            },
+            "temporal_encoder.layer_2": {
+              "relative_l2_parameter_change": 0.22816950919127635,
+              "cosine_similarity": 0.9745680869409136,
+              "absolute_l2_parameter_change": 6.071908473968506,
+              "reference_l2_norm": 26.611392974853516
+            }
+          },
+          "definition": "relative_l2=||current-reference||_2/||reference||_2; cosine over flattened tensors",
+          "is_selected_epoch": false
+        },
+        {
+          "epoch": 6,
+          "encoder_parameter_tensor_count": 39,
+          "overall": {
+            "relative_l2_parameter_change": 0.3310228778057326,
+            "cosine_similarity": 0.9495708128881258,
+            "absolute_l2_parameter_change": 15.622701644897461,
+            "reference_l2_norm": 47.19523239135742
+          },
+          "per_layer": {
+            "input_projection": {
+              "relative_l2_parameter_change": 0.2960541612711676,
+              "cosine_similarity": 0.9660298614928341,
+              "absolute_l2_parameter_change": 2.3678719997406006,
+              "reference_l2_norm": 7.998104095458984
+            },
+            "position_embedding": {
+              "relative_l2_parameter_change": 4.0682483468020365,
+              "cosine_similarity": 0.2849220770606212,
+              "absolute_l2_parameter_change": 1.0986307859420776,
+              "reference_l2_norm": 0.2700500786304474
+            },
+            "temporal_encoder.layer_0": {
+              "relative_l2_parameter_change": 0.4412552302481116,
+              "cosine_similarity": 0.9178294635195279,
+              "absolute_l2_parameter_change": 12.064834594726562,
+              "reference_l2_norm": 27.342077255249023
+            },
+            "temporal_encoder.layer_1": {
+              "relative_l2_parameter_change": 0.263767291055899,
+              "cosine_similarity": 0.9664847771574256,
+              "absolute_l2_parameter_change": 7.016475677490234,
+              "reference_l2_norm": 26.60100746154785
+            },
+            "temporal_encoder.layer_2": {
+              "relative_l2_parameter_change": 0.2448864086770431,
+              "cosine_similarity": 0.9706908203968597,
+              "absolute_l2_parameter_change": 6.516768455505371,
+              "reference_l2_norm": 26.611392974853516
+            }
+          },
+          "definition": "relative_l2=||current-reference||_2/||reference||_2; cosine over flattened tensors",
+          "is_selected_epoch": false
+        },
+        {
+          "epoch": 7,
+          "encoder_parameter_tensor_count": 39,
+          "overall": {
+            "relative_l2_parameter_change": 0.3544945674274227,
+            "cosine_similarity": 0.9427612538543352,
+            "absolute_l2_parameter_change": 16.730453491210938,
+            "reference_l2_norm": 47.19523239135742
+          },
+          "per_layer": {
+            "input_projection": {
+              "relative_l2_parameter_change": 0.31190256026861835,
+              "cosine_similarity": 0.9630772849526741,
+              "absolute_l2_parameter_change": 2.494629144668579,
+              "reference_l2_norm": 7.998104095458984
+            },
+            "position_embedding": {
+              "relative_l2_parameter_change": 4.49916607597278,
+              "cosine_similarity": 0.26096897723653684,
+              "absolute_l2_parameter_change": 1.2150001525878906,
+              "reference_l2_norm": 0.2700500786304474
+            },
+            "temporal_encoder.layer_0": {
+              "relative_l2_parameter_change": 0.48430125085079495,
+              "cosine_similarity": 0.9040000894705114,
+              "absolute_l2_parameter_change": 13.241802215576172,
+              "reference_l2_norm": 27.342077255249023
+            },
+            "temporal_encoder.layer_1": {
+              "relative_l2_parameter_change": 0.2701357658134186,
+              "cosine_similarity": 0.9647995186902459,
+              "absolute_l2_parameter_change": 7.185883522033691,
+              "reference_l2_norm": 26.60100746154785
+            },
+            "temporal_encoder.layer_2": {
+              "relative_l2_parameter_change": 0.25273071295554467,
+              "cosine_similarity": 0.9687223860285586,
+              "absolute_l2_parameter_change": 6.725516319274902,
+              "reference_l2_norm": 26.611392974853516
+            }
+          },
+          "definition": "relative_l2=||current-reference||_2/||reference||_2; cosine over flattened tensors",
+          "is_selected_epoch": false
+        },
+        {
+          "epoch": 8,
+          "encoder_parameter_tensor_count": 39,
+          "overall": {
+            "relative_l2_parameter_change": 0.3748051943643147,
+            "cosine_similarity": 0.9366793996958493,
+            "absolute_l2_parameter_change": 17.68901824951172,
+            "reference_l2_norm": 47.19523239135742
+          },
+          "per_layer": {
+            "input_projection": {
+              "relative_l2_parameter_change": 0.33347290088259635,
+              "cosine_similarity": 0.9589661371841307,
+              "absolute_l2_parameter_change": 2.6671509742736816,
+              "reference_l2_norm": 7.998104095458984
+            },
+            "position_embedding": {
+              "relative_l2_parameter_change": 4.58210358094581,
+              "cosine_similarity": 0.25618994612627705,
+              "absolute_l2_parameter_change": 1.2373974323272705,
+              "reference_l2_norm": 0.2700500786304474
+            },
+            "temporal_encoder.layer_0": {
+              "relative_l2_parameter_change": 0.5173837015559616,
+              "cosine_similarity": 0.8928468824459763,
+              "absolute_l2_parameter_change": 14.146345138549805,
+              "reference_l2_norm": 27.342077255249023
+            },
+            "temporal_encoder.layer_1": {
+              "relative_l2_parameter_change": 0.27773954262221395,
+              "cosine_similarity": 0.9628660220762701,
+              "absolute_l2_parameter_change": 7.3881516456604,
+              "reference_l2_norm": 26.60100746154785
+            },
+            "temporal_encoder.layer_2": {
+              "relative_l2_parameter_change": 0.26454391882932626,
+              "cosine_similarity": 0.9658172806520913,
+              "absolute_l2_parameter_change": 7.039882183074951,
+              "reference_l2_norm": 26.611392974853516
+            }
+          },
+          "definition": "relative_l2=||current-reference||_2/||reference||_2; cosine over flattened tensors",
+          "is_selected_epoch": false
+        },
+        {
+          "epoch": 9,
+          "encoder_parameter_tensor_count": 39,
+          "overall": {
+            "relative_l2_parameter_change": 0.39596451552855827,
+            "cosine_similarity": 0.9300605939044815,
+            "absolute_l2_parameter_change": 18.687637329101562,
+            "reference_l2_norm": 47.19523239135742
+          },
+          "per_layer": {
+            "input_projection": {
+              "relative_l2_parameter_change": 0.35442591890415925,
+              "cosine_similarity": 0.9544172871174419,
+              "absolute_l2_parameter_change": 2.83473539352417,
+              "reference_l2_norm": 7.998104095458984
+            },
+            "position_embedding": {
+              "relative_l2_parameter_change": 4.607226031981673,
+              "cosine_similarity": 0.2515877405540897,
+              "absolute_l2_parameter_change": 1.244181752204895,
+              "reference_l2_norm": 0.2700500786304474
+            },
+            "temporal_encoder.layer_0": {
+              "relative_l2_parameter_change": 0.5505447005930818,
+              "cosine_similarity": 0.8814911639596817,
+              "absolute_l2_parameter_change": 15.053035736083984,
+              "reference_l2_norm": 27.342077255249023
+            },
+            "temporal_encoder.layer_1": {
+              "relative_l2_parameter_change": 0.2898502458199636,
+              "cosine_similarity": 0.9596786818175806,
+              "absolute_l2_parameter_change": 7.71030855178833,
+              "reference_l2_norm": 26.60100746154785
+            },
+            "temporal_encoder.layer_2": {
+              "relative_l2_parameter_change": 0.2751363170416586,
+              "cosine_similarity": 0.9630602360930274,
+              "absolute_l2_parameter_change": 7.321760654449463,
+              "reference_l2_norm": 26.611392974853516
+            }
+          },
+          "definition": "relative_l2=||current-reference||_2/||reference||_2; cosine over flattened tensors",
+          "is_selected_epoch": false
+        },
+        {
+          "epoch": 10,
+          "encoder_parameter_tensor_count": 39,
+          "overall": {
+            "relative_l2_parameter_change": 0.41837881297098994,
+            "cosine_similarity": 0.9231337248215999,
+            "absolute_l2_parameter_change": 19.745485305786133,
+            "reference_l2_norm": 47.19523239135742
+          },
+          "per_layer": {
+            "input_projection": {
+              "relative_l2_parameter_change": 0.37158172779975723,
+              "cosine_similarity": 0.950318206798326,
+              "absolute_l2_parameter_change": 2.971949338912964,
+              "reference_l2_norm": 7.998104095458984
+            },
+            "position_embedding": {
+              "relative_l2_parameter_change": 4.781873218606841,
+              "cosine_similarity": 0.24442068520824356,
+              "absolute_l2_parameter_change": 1.291345238685608,
+              "reference_l2_norm": 0.2700500786304474
+            },
+            "temporal_encoder.layer_0": {
+              "relative_l2_parameter_change": 0.582343137202241,
+              "cosine_similarity": 0.8711393889704491,
+              "absolute_l2_parameter_change": 15.922471046447754,
+              "reference_l2_norm": 27.342077255249023
+            },
+            "temporal_encoder.layer_1": {
+              "relative_l2_parameter_change": 0.3024975856103596,
+              "cosine_similarity": 0.9563546805422274,
+              "absolute_l2_parameter_change": 8.046740531921387,
+              "reference_l2_norm": 26.60100746154785
+            },
+            "temporal_encoder.layer_2": {
+              "relative_l2_parameter_change": 0.2937791005956551,
+              "cosine_similarity": 0.9582172463087268,
+              "absolute_l2_parameter_change": 7.81787109375,
+              "reference_l2_norm": 26.611392974853516
+            }
+          },
+          "definition": "relative_l2=||current-reference||_2/||reference||_2; cosine over flattened tensors",
+          "is_selected_epoch": false
+        },
+        {
+          "epoch": 11,
+          "encoder_parameter_tensor_count": 39,
+          "overall": {
+            "relative_l2_parameter_change": 0.4428880514926228,
+            "cosine_similarity": 0.9150474069798193,
+            "absolute_l2_parameter_change": 20.902204513549805,
+            "reference_l2_norm": 47.19523239135742
+          },
+          "per_layer": {
+            "input_projection": {
+              "relative_l2_parameter_change": 0.40654283251178663,
+              "cosine_similarity": 0.9416646478389571,
+              "absolute_l2_parameter_change": 3.2515718936920166,
+              "reference_l2_norm": 7.998104095458984
+            },
+            "position_embedding": {
+              "relative_l2_parameter_change": 4.893557789285227,
+              "cosine_similarity": 0.2380392730824396,
+              "absolute_l2_parameter_change": 1.3215056657791138,
+              "reference_l2_norm": 0.2700500786304474
+            },
+            "temporal_encoder.layer_0": {
+              "relative_l2_parameter_change": 0.6158133418178553,
+              "cosine_similarity": 0.8591393101727764,
+              "absolute_l2_parameter_change": 16.837615966796875,
+              "reference_l2_norm": 27.342077255249023
+            },
+            "temporal_encoder.layer_1": {
+              "relative_l2_parameter_change": 0.31794480356451316,
+              "cosine_similarity": 0.9521018511509434,
+              "absolute_l2_parameter_change": 8.45765209197998,
+              "reference_l2_norm": 26.60100746154785
+            },
+            "temporal_encoder.layer_2": {
+              "relative_l2_parameter_change": 0.3134005765754298,
+              "cosine_similarity": 0.9527843890951728,
+              "absolute_l2_parameter_change": 8.340025901794434,
+              "reference_l2_norm": 26.611392974853516
+            }
+          },
+          "definition": "relative_l2=||current-reference||_2/||reference||_2; cosine over flattened tensors",
+          "is_selected_epoch": false
+        },
+        {
+          "epoch": 12,
+          "encoder_parameter_tensor_count": 39,
+          "overall": {
+            "relative_l2_parameter_change": 0.4651330142296924,
+            "cosine_similarity": 0.9075458579508312,
+            "absolute_l2_parameter_change": 21.95206069946289,
+            "reference_l2_norm": 47.19523239135742
+          },
+          "per_layer": {
+            "input_projection": {
+              "relative_l2_parameter_change": 0.436673832843267,
+              "cosine_similarity": 0.9337124082119568,
+              "absolute_l2_parameter_change": 3.492562770843506,
+              "reference_l2_norm": 7.998104095458984
+            },
+            "position_embedding": {
+              "relative_l2_parameter_change": 5.133282502206894,
+              "cosine_similarity": 0.2258525067565339,
+              "absolute_l2_parameter_change": 1.3862433433532715,
+              "reference_l2_norm": 0.2700500786304474
+            },
+            "temporal_encoder.layer_0": {
+              "relative_l2_parameter_change": 0.6422667597620195,
+              "cosine_similarity": 0.8498394080603849,
+              "absolute_l2_parameter_change": 17.5609073638916,
+              "reference_l2_norm": 27.342077255249023
+            },
+            "temporal_encoder.layer_1": {
+              "relative_l2_parameter_change": 0.34156315927858777,
+              "cosine_similarity": 0.9453373673251768,
+              "absolute_l2_parameter_change": 9.08592414855957,
+              "reference_l2_norm": 26.60100746154785
+            },
+            "temporal_encoder.layer_2": {
+              "relative_l2_parameter_change": 0.3294118620983865,
+              "cosine_similarity": 0.9481090833333333,
+              "absolute_l2_parameter_change": 8.766108512878418,
+              "reference_l2_norm": 26.611392974853516
+            }
+          },
+          "definition": "relative_l2=||current-reference||_2/||reference||_2; cosine over flattened tensors",
+          "is_selected_epoch": false
+        },
+        {
+          "epoch": 13,
+          "encoder_parameter_tensor_count": 39,
+          "overall": {
+            "relative_l2_parameter_change": 0.4812721069690971,
+            "cosine_similarity": 0.9021385140576733,
+            "absolute_l2_parameter_change": 22.713748931884766,
+            "reference_l2_norm": 47.19523239135742
+          },
+          "per_layer": {
+            "input_projection": {
+              "relative_l2_parameter_change": 0.4620674061779358,
+              "cosine_similarity": 0.9262922075301059,
+              "absolute_l2_parameter_change": 3.6956632137298584,
+              "reference_l2_norm": 7.998104095458984
+            },
+            "position_embedding": {
+              "relative_l2_parameter_change": 5.185456470909443,
+              "cosine_similarity": 0.2294558436397496,
+              "absolute_l2_parameter_change": 1.4003329277038574,
+              "reference_l2_norm": 0.2700500786304474
+            },
+            "temporal_encoder.layer_0": {
+              "relative_l2_parameter_change": 0.6676038984806757,
+              "cosine_similarity": 0.841385844189209,
+              "absolute_l2_parameter_change": 18.253677368164062,
+              "reference_l2_norm": 27.342077255249023
+            },
+            "temporal_encoder.layer_1": {
+              "relative_l2_parameter_change": 0.34949990280777615,
+              "cosine_similarity": 0.942991240786901,
+              "absolute_l2_parameter_change": 9.297049522399902,
+              "reference_l2_norm": 26.60100746154785
+            },
+            "temporal_encoder.layer_2": {
+              "relative_l2_parameter_change": 0.3375184578821984,
+              "cosine_similarity": 0.9456902082105962,
+              "absolute_l2_parameter_change": 8.981836318969727,
+              "reference_l2_norm": 26.611392974853516
+            }
+          },
+          "definition": "relative_l2=||current-reference||_2/||reference||_2; cosine over flattened tensors",
+          "is_selected_epoch": false
+        },
+        {
+          "epoch": 14,
+          "encoder_parameter_tensor_count": 39,
+          "overall": {
+            "relative_l2_parameter_change": 0.49702043663782264,
+            "cosine_similarity": 0.8966228860809536,
+            "absolute_l2_parameter_change": 23.456995010375977,
+            "reference_l2_norm": 47.19523239135742
+          },
+          "per_layer": {
+            "input_projection": {
+              "relative_l2_parameter_change": 0.49389080463881757,
+              "cosine_similarity": 0.9174359634987581,
+              "absolute_l2_parameter_change": 3.9501900672912598,
+              "reference_l2_norm": 7.998104095458984
+            },
+            "position_embedding": {
+              "relative_l2_parameter_change": 5.613537103687442,
+              "cosine_similarity": 0.2111616008266977,
+              "absolute_l2_parameter_change": 1.5159361362457275,
+              "reference_l2_norm": 0.2700500786304474
+            },
+            "temporal_encoder.layer_0": {
+              "relative_l2_parameter_change": 0.6870245898831842,
+              "cosine_similarity": 0.8341783578294938,
+              "absolute_l2_parameter_change": 18.784679412841797,
+              "reference_l2_norm": 27.342077255249023
+            },
+            "temporal_encoder.layer_1": {
+              "relative_l2_parameter_change": 0.36100067192056784,
+              "cosine_similarity": 0.9395325959018749,
+              "absolute_l2_parameter_change": 9.602981567382812,
+              "reference_l2_norm": 26.60100746154785
+            },
+            "temporal_encoder.layer_2": {
+              "relative_l2_parameter_change": 0.3510330106707022,
+              "cosine_similarity": 0.9416109653813921,
+              "absolute_l2_parameter_change": 9.341477394104004,
+              "reference_l2_norm": 26.611392974853516
+            }
+          },
+          "definition": "relative_l2=||current-reference||_2/||reference||_2; cosine over flattened tensors",
+          "is_selected_epoch": false
+        },
+        {
+          "epoch": 15,
+          "encoder_parameter_tensor_count": 39,
+          "overall": {
+            "relative_l2_parameter_change": 0.5126787643044382,
+            "cosine_similarity": 0.8911457611780325,
+            "absolute_l2_parameter_change": 24.195993423461914,
+            "reference_l2_norm": 47.19523239135742
+          },
+          "per_layer": {
+            "input_projection": {
+              "relative_l2_parameter_change": 0.52383022004097,
+              "cosine_similarity": 0.908397316249785,
+              "absolute_l2_parameter_change": 4.189648628234863,
+              "reference_l2_norm": 7.998104095458984
+            },
+            "position_embedding": {
+              "relative_l2_parameter_change": 6.025649743962755,
+              "cosine_similarity": 0.19585619403218477,
+              "absolute_l2_parameter_change": 1.6272271871566772,
+              "reference_l2_norm": 0.2700500786304474
+            },
+            "temporal_encoder.layer_0": {
+              "relative_l2_parameter_change": 0.7045481228169441,
+              "cosine_similarity": 0.8279053349585044,
+              "absolute_l2_parameter_change": 19.263809204101562,
+              "reference_l2_norm": 27.342077255249023
+            },
+            "temporal_encoder.layer_1": {
+              "relative_l2_parameter_change": 0.38012961448853194,
+              "cosine_similarity": 0.933711228548972,
+              "absolute_l2_parameter_change": 10.111830711364746,
+              "reference_l2_norm": 26.60100746154785
+            },
+            "temporal_encoder.layer_2": {
+              "relative_l2_parameter_change": 0.3602717352896359,
+              "cosine_similarity": 0.9387240038106203,
+              "absolute_l2_parameter_change": 9.587332725524902,
+              "reference_l2_norm": 26.611392974853516
+            }
+          },
+          "definition": "relative_l2=||current-reference||_2/||reference||_2; cosine over flattened tensors",
+          "is_selected_epoch": false
+        },
+        {
+          "epoch": 16,
+          "encoder_parameter_tensor_count": 39,
+          "overall": {
+            "relative_l2_parameter_change": 0.536050025109225,
+            "cosine_similarity": 0.8824273680167993,
+            "absolute_l2_parameter_change": 25.29900550842285,
+            "reference_l2_norm": 47.19523239135742
+          },
+          "per_layer": {
+            "input_projection": {
+              "relative_l2_parameter_change": 0.5503753597992994,
+              "cosine_similarity": 0.9001379550077436,
+              "absolute_l2_parameter_change": 4.401959419250488,
+              "reference_l2_norm": 7.998104095458984
+            },
+            "position_embedding": {
+              "relative_l2_parameter_change": 6.384334742942491,
+              "cosine_similarity": 0.1940042408698434,
+              "absolute_l2_parameter_change": 1.7240900993347168,
+              "reference_l2_norm": 0.2700500786304474
+            },
+            "temporal_encoder.layer_0": {
+              "relative_l2_parameter_change": 0.7397347759067013,
+              "cosine_similarity": 0.8143140763150245,
+              "absolute_l2_parameter_change": 20.22588539123535,
+              "reference_l2_norm": 27.342077255249023
+            },
+            "temporal_encoder.layer_1": {
+              "relative_l2_parameter_change": 0.3949786933564903,
+              "cosine_similarity": 0.9288856127634266,
+              "absolute_l2_parameter_change": 10.506831169128418,
+              "reference_l2_norm": 26.60100746154785
+            },
+            "temporal_encoder.layer_2": {
+              "relative_l2_parameter_change": 0.3724348363829962,
+              "cosine_similarity": 0.9347185930331379,
+              "absolute_l2_parameter_change": 9.911009788513184,
+              "reference_l2_norm": 26.611392974853516
+            }
+          },
+          "definition": "relative_l2=||current-reference||_2/||reference||_2; cosine over flattened tensors",
+          "is_selected_epoch": false
+        },
+        {
+          "epoch": 17,
+          "encoder_parameter_tensor_count": 39,
+          "overall": {
+            "relative_l2_parameter_change": 0.5558701067827077,
+            "cosine_similarity": 0.8751482873379001,
+            "absolute_l2_parameter_change": 26.234418869018555,
+            "reference_l2_norm": 47.19523239135742
+          },
+          "per_layer": {
+            "input_projection": {
+              "relative_l2_parameter_change": 0.5742103493421664,
+              "cosine_similarity": 0.8930469775651972,
+              "absolute_l2_parameter_change": 4.592594146728516,
+              "reference_l2_norm": 7.998104095458984
+            },
+            "position_embedding": {
+              "relative_l2_parameter_change": 6.138141697448412,
+              "cosine_similarity": 0.20151061728211336,
+              "absolute_l2_parameter_change": 1.6576056480407715,
+              "reference_l2_norm": 0.2700500786304474
+            },
+            "temporal_encoder.layer_0": {
+              "relative_l2_parameter_change": 0.768692253285863,
+              "cosine_similarity": 0.8039763908315626,
+              "absolute_l2_parameter_change": 21.017642974853516,
+              "reference_l2_norm": 27.342077255249023
+            },
+            "temporal_encoder.layer_1": {
+              "relative_l2_parameter_change": 0.41131856685530777,
+              "cosine_similarity": 0.9234686933771422,
+              "absolute_l2_parameter_change": 10.941488265991211,
+              "reference_l2_norm": 26.60100746154785
+            },
+            "temporal_encoder.layer_2": {
+              "relative_l2_parameter_change": 0.3813162654276789,
+              "cosine_similarity": 0.9317252076047774,
+              "absolute_l2_parameter_change": 10.147356986999512,
+              "reference_l2_norm": 26.611392974853516
+            }
+          },
+          "definition": "relative_l2=||current-reference||_2/||reference||_2; cosine over flattened tensors",
+          "is_selected_epoch": false
+        },
+        {
+          "epoch": 18,
+          "encoder_parameter_tensor_count": 39,
+          "overall": {
+            "relative_l2_parameter_change": 0.5718656085416467,
+            "cosine_similarity": 0.8693830647785156,
+            "absolute_l2_parameter_change": 26.989330291748047,
+            "reference_l2_norm": 47.19523239135742
+          },
+          "per_layer": {
+            "input_projection": {
+              "relative_l2_parameter_change": 0.5954520414660495,
+              "cosine_similarity": 0.8866581314247662,
+              "absolute_l2_parameter_change": 4.762487411499023,
+              "reference_l2_norm": 7.998104095458984
+            },
+            "position_embedding": {
+              "relative_l2_parameter_change": 6.332369131093431,
+              "cosine_similarity": 0.19459996314136668,
+              "absolute_l2_parameter_change": 1.7100567817687988,
+              "reference_l2_norm": 0.2700500786304474
+            },
+            "temporal_encoder.layer_0": {
+              "relative_l2_parameter_change": 0.792745901099,
+              "cosine_similarity": 0.795776193722056,
+              "absolute_l2_parameter_change": 21.67531967163086,
+              "reference_l2_norm": 27.342077255249023
+            },
+            "temporal_encoder.layer_1": {
+              "relative_l2_parameter_change": 0.4212473386861834,
+              "cosine_similarity": 0.920163669937959,
+              "absolute_l2_parameter_change": 11.20560359954834,
+              "reference_l2_norm": 26.60100746154785
+            },
+            "temporal_encoder.layer_2": {
+              "relative_l2_parameter_change": 0.38953467286561944,
+              "cosine_similarity": 0.9289973620988415,
+              "absolute_l2_parameter_change": 10.366060256958008,
+              "reference_l2_norm": 26.611392974853516
+            }
+          },
+          "definition": "relative_l2=||current-reference||_2/||reference||_2; cosine over flattened tensors",
+          "is_selected_epoch": false
+        },
+        {
+          "epoch": 19,
+          "encoder_parameter_tensor_count": 39,
+          "overall": {
+            "relative_l2_parameter_change": 0.5942540410171495,
+            "cosine_similarity": 0.8609339496880535,
+            "absolute_l2_parameter_change": 28.045957565307617,
+            "reference_l2_norm": 47.19523239135742
+          },
+          "per_layer": {
+            "input_projection": {
+              "relative_l2_parameter_change": 0.6121782076688821,
+              "cosine_similarity": 0.8814611787136145,
+              "absolute_l2_parameter_change": 4.896265029907227,
+              "reference_l2_norm": 7.998104095458984
+            },
+            "position_embedding": {
+              "relative_l2_parameter_change": 7.1208077977552415,
+              "cosine_similarity": 0.1729345562107286,
+              "absolute_l2_parameter_change": 1.922974705696106,
+              "reference_l2_norm": 0.2700500786304474
+            },
+            "temporal_encoder.layer_0": {
+              "relative_l2_parameter_change": 0.8229209473821746,
+              "cosine_similarity": 0.7846502949616365,
+              "absolute_l2_parameter_change": 22.500368118286133,
+              "reference_l2_norm": 27.342077255249023
+            },
+            "temporal_encoder.layer_1": {
+              "relative_l2_parameter_change": 0.4424310489109559,
+              "cosine_similarity": 0.9130295617911177,
+              "absolute_l2_parameter_change": 11.769111633300781,
+              "reference_l2_norm": 26.60100746154785
+            },
+            "temporal_encoder.layer_2": {
+              "relative_l2_parameter_change": 0.40148063716014454,
+              "cosine_similarity": 0.924832766361746,
+              "absolute_l2_parameter_change": 10.683959007263184,
+              "reference_l2_norm": 26.611392974853516
+            }
+          },
+          "definition": "relative_l2=||current-reference||_2/||reference||_2; cosine over flattened tensors",
+          "is_selected_epoch": false
+        },
+        {
+          "epoch": 20,
+          "encoder_parameter_tensor_count": 39,
+          "overall": {
+            "relative_l2_parameter_change": 0.621166579520588,
+            "cosine_similarity": 0.8504310630536825,
+            "absolute_l2_parameter_change": 29.31610107421875,
+            "reference_l2_norm": 47.19523239135742
+          },
+          "per_layer": {
+            "input_projection": {
+              "relative_l2_parameter_change": 0.6394047303919815,
+              "cosine_similarity": 0.8731593869389521,
+              "absolute_l2_parameter_change": 5.114025592803955,
+              "reference_l2_norm": 7.998104095458984
+            },
+            "position_embedding": {
+              "relative_l2_parameter_change": 7.33173291432417,
+              "cosine_similarity": 0.16234190893761133,
+              "absolute_l2_parameter_change": 1.9799350500106812,
+              "reference_l2_norm": 0.2700500786304474
+            },
+            "temporal_encoder.layer_0": {
+              "relative_l2_parameter_change": 0.8551722227985069,
+              "cosine_similarity": 0.7725258405506761,
+              "absolute_l2_parameter_change": 23.382184982299805,
+              "reference_l2_norm": 27.342077255249023
+            },
+            "temporal_encoder.layer_1": {
+              "relative_l2_parameter_change": 0.4720701958019986,
+              "cosine_similarity": 0.9024353810950967,
+              "absolute_l2_parameter_change": 12.55754280090332,
+              "reference_l2_norm": 26.60100746154785
+            },
+            "temporal_encoder.layer_2": {
+              "relative_l2_parameter_change": 0.4200752736124353,
+              "cosine_similarity": 0.9182123634017764,
+              "absolute_l2_parameter_change": 11.178788185119629,
+              "reference_l2_norm": 26.611392974853516
+            }
+          },
+          "definition": "relative_l2=||current-reference||_2/||reference||_2; cosine over flattened tensors",
+          "is_selected_epoch": false
+        }
+      ]
+    },
+    "123": {
+      "selected_epoch": 5,
+      "selected_checkpoint_drift": {
+        "encoder_parameter_tensor_count": 39,
+        "overall": {
+          "relative_l2_parameter_change": 0.4474019749794947,
+          "cosine_similarity": 0.9112408886040388,
+          "absolute_l2_parameter_change": 21.099390029907227,
+          "reference_l2_norm": 47.15980529785156
+        },
+        "per_layer": {
+          "input_projection": {
+            "relative_l2_parameter_change": 0.3351243134233173,
+            "cosine_similarity": 0.9537305154614589,
+            "absolute_l2_parameter_change": 2.69063138961792,
+            "reference_l2_norm": 8.028756141662598
+          },
+          "position_embedding": {
+            "relative_l2_parameter_change": 4.037399564925944,
+            "cosine_similarity": 0.25426011602693355,
+            "absolute_l2_parameter_change": 1.1199002265930176,
+            "reference_l2_norm": 0.27738156914711
+          },
+          "temporal_encoder.layer_0": {
+            "relative_l2_parameter_change": 0.5535788278167965,
+            "cosine_similarity": 0.8709631391617301,
+            "absolute_l2_parameter_change": 15.090460777282715,
+            "reference_l2_norm": 27.259822845458984
+          },
+          "temporal_encoder.layer_1": {
+            "relative_l2_parameter_change": 0.40148332533060443,
+            "cosine_similarity": 0.9270878499389209,
+            "absolute_l2_parameter_change": 10.683614730834961,
+            "reference_l2_norm": 26.6103572845459
+          },
+          "temporal_encoder.layer_2": {
+            "relative_l2_parameter_change": 0.36590683749505054,
+            "cosine_similarity": 0.938013342065934,
+            "absolute_l2_parameter_change": 9.73836612701416,
+            "reference_l2_norm": 26.61433219909668
+          }
+        },
+        "definition": "relative_l2=||current-reference||_2/||reference||_2; cosine over flattened tensors"
+      },
+      "all_epochs": [
+        {
+          "epoch": 1,
+          "encoder_parameter_tensor_count": 39,
+          "overall": {
+            "relative_l2_parameter_change": 0.14545488187817185,
+            "cosine_similarity": 0.9895670348851251,
+            "absolute_l2_parameter_change": 6.859623908996582,
+            "reference_l2_norm": 47.15980529785156
+          },
+          "per_layer": {
+            "input_projection": {
+              "relative_l2_parameter_change": 0.0725508777360469,
+              "cosine_similarity": 0.9975163880256247,
+              "absolute_l2_parameter_change": 0.5824933052062988,
+              "reference_l2_norm": 8.028756141662598
+            },
+            "position_embedding": {
+              "relative_l2_parameter_change": 1.088547680598871,
+              "cosine_similarity": 0.737879173313761,
+              "absolute_l2_parameter_change": 0.3019430637359619,
+              "reference_l2_norm": 0.27738156914711
+            },
+            "temporal_encoder.layer_0": {
+              "relative_l2_parameter_change": 0.18928821218698744,
+              "cosine_similarity": 0.982474055846363,
+              "absolute_l2_parameter_change": 5.159963130950928,
+              "reference_l2_norm": 27.259822845458984
+            },
+            "temporal_encoder.layer_1": {
+              "relative_l2_parameter_change": 0.12102077476880428,
+              "cosine_similarity": 0.9927448435440944,
+              "absolute_l2_parameter_change": 3.2204060554504395,
+              "reference_l2_norm": 26.6103572845459
+            },
+            "temporal_encoder.layer_2": {
+              "relative_l2_parameter_change": 0.11659130366232309,
+              "cosine_similarity": 0.9932433313588632,
+              "absolute_l2_parameter_change": 3.102999687194824,
+              "reference_l2_norm": 26.61433219909668
+            }
+          },
+          "definition": "relative_l2=||current-reference||_2/||reference||_2; cosine over flattened tensors",
+          "is_selected_epoch": false
+        },
+        {
+          "epoch": 2,
+          "encoder_parameter_tensor_count": 39,
+          "overall": {
+            "relative_l2_parameter_change": 0.23263969889975133,
+            "cosine_similarity": 0.9736856319982646,
+            "absolute_l2_parameter_change": 10.971242904663086,
+            "reference_l2_norm": 47.15980529785156
+          },
+          "per_layer": {
+            "input_projection": {
+              "relative_l2_parameter_change": 0.13400364079702465,
+              "cosine_similarity": 0.9917284618505043,
+              "absolute_l2_parameter_change": 1.0758825540542603,
+              "reference_l2_norm": 8.028756141662598
+            },
+            "position_embedding": {
+              "relative_l2_parameter_change": 2.181711482531982,
+              "cosine_similarity": 0.38470312032795106,
+              "absolute_l2_parameter_change": 0.6051665544509888,
+              "reference_l2_norm": 0.27738156914711
+            },
+            "temporal_encoder.layer_0": {
+              "relative_l2_parameter_change": 0.31159012896587307,
+              "cosine_similarity": 0.9535623596246435,
+              "absolute_l2_parameter_change": 8.493891716003418,
+              "reference_l2_norm": 27.259822845458984
+            },
+            "temporal_encoder.layer_1": {
+              "relative_l2_parameter_change": 0.185828704616589,
+              "cosine_similarity": 0.9830862317052698,
+              "absolute_l2_parameter_change": 4.944968223571777,
+              "reference_l2_norm": 26.6103572845459
+            },
+            "temporal_encoder.layer_2": {
+              "relative_l2_parameter_change": 0.17722503014460453,
+              "cosine_similarity": 0.9845204730382616,
+              "absolute_l2_parameter_change": 4.716725826263428,
+              "reference_l2_norm": 26.61433219909668
+            }
+          },
+          "definition": "relative_l2=||current-reference||_2/||reference||_2; cosine over flattened tensors",
+          "is_selected_epoch": false
+        },
+        {
+          "epoch": 3,
+          "encoder_parameter_tensor_count": 39,
+          "overall": {
+            "relative_l2_parameter_change": 0.36672690181562867,
+            "cosine_similarity": 0.9379412958007056,
+            "absolute_l2_parameter_change": 17.294769287109375,
+            "reference_l2_norm": 47.15980529785156
+          },
+          "per_layer": {
+            "input_projection": {
+              "relative_l2_parameter_change": 0.22981147403994484,
+              "cosine_similarity": 0.9769956628373998,
+              "absolute_l2_parameter_change": 1.8451002836227417,
+              "reference_l2_norm": 8.028756141662598
+            },
+            "position_embedding": {
+              "relative_l2_parameter_change": 3.273893912798885,
+              "cosine_similarity": 0.2492084720562531,
+              "absolute_l2_parameter_change": 0.9081178307533264,
+              "reference_l2_norm": 0.27738156914711
+            },
+            "temporal_encoder.layer_0": {
+              "relative_l2_parameter_change": 0.46001808144669487,
+              "cosine_similarity": 0.9055973524839259,
+              "absolute_l2_parameter_change": 12.540011405944824,
+              "reference_l2_norm": 27.259822845458984
+            },
+            "temporal_encoder.layer_1": {
+              "relative_l2_parameter_change": 0.3178216220760921,
+              "cosine_similarity": 0.9526795523285749,
+              "absolute_l2_parameter_change": 8.45734691619873,
+              "reference_l2_norm": 26.6103572845459
+            },
+            "temporal_encoder.layer_2": {
+              "relative_l2_parameter_change": 0.30549751586958895,
+              "cosine_similarity": 0.9558370591692961,
+              "absolute_l2_parameter_change": 8.13061237335205,
+              "reference_l2_norm": 26.61433219909668
+            }
+          },
+          "definition": "relative_l2=||current-reference||_2/||reference||_2; cosine over flattened tensors",
+          "is_selected_epoch": false
+        },
+        {
+          "epoch": 4,
+          "encoder_parameter_tensor_count": 39,
+          "overall": {
+            "relative_l2_parameter_change": 0.37231675869109077,
+            "cosine_similarity": 0.9361241577322668,
+            "absolute_l2_parameter_change": 17.558385848999023,
+            "reference_l2_norm": 47.15980529785156
+          },
+          "per_layer": {
+            "input_projection": {
+              "relative_l2_parameter_change": 0.24673106588962437,
+              "cosine_similarity": 0.9732989241665058,
+              "absolute_l2_parameter_change": 1.9809435606002808,
+              "reference_l2_norm": 8.028756141662598
+            },
+            "position_embedding": {
+              "relative_l2_parameter_change": 3.2108637220287854,
+              "cosine_similarity": 0.2741032946864826,
+              "absolute_l2_parameter_change": 0.8906344175338745,
+              "reference_l2_norm": 0.27738156914711
+            },
+            "temporal_encoder.layer_0": {
+              "relative_l2_parameter_change": 0.46625331881518595,
+              "cosine_similarity": 0.9033756592458335,
+              "absolute_l2_parameter_change": 12.709982872009277,
+              "reference_l2_norm": 27.259822845458984
+            },
+            "temporal_encoder.layer_1": {
+              "relative_l2_parameter_change": 0.3222401462323991,
+              "cosine_similarity": 0.951370232674894,
+              "absolute_l2_parameter_change": 8.574925422668457,
+              "reference_l2_norm": 26.6103572845459
+            },
+            "temporal_encoder.layer_2": {
+              "relative_l2_parameter_change": 0.3110050650102214,
+              "cosine_similarity": 0.9542332402302939,
+              "absolute_l2_parameter_change": 8.277192115783691,
+              "reference_l2_norm": 26.61433219909668
+            }
+          },
+          "definition": "relative_l2=||current-reference||_2/||reference||_2; cosine over flattened tensors",
+          "is_selected_epoch": false
+        },
+        {
+          "epoch": 5,
+          "encoder_parameter_tensor_count": 39,
+          "overall": {
+            "relative_l2_parameter_change": 0.4474019749794947,
+            "cosine_similarity": 0.9112408886040388,
+            "absolute_l2_parameter_change": 21.099390029907227,
+            "reference_l2_norm": 47.15980529785156
+          },
+          "per_layer": {
+            "input_projection": {
+              "relative_l2_parameter_change": 0.3351243134233173,
+              "cosine_similarity": 0.9537305154614589,
+              "absolute_l2_parameter_change": 2.69063138961792,
+              "reference_l2_norm": 8.028756141662598
+            },
+            "position_embedding": {
+              "relative_l2_parameter_change": 4.037399564925944,
+              "cosine_similarity": 0.25426011602693355,
+              "absolute_l2_parameter_change": 1.1199002265930176,
+              "reference_l2_norm": 0.27738156914711
+            },
+            "temporal_encoder.layer_0": {
+              "relative_l2_parameter_change": 0.5535788278167965,
+              "cosine_similarity": 0.8709631391617301,
+              "absolute_l2_parameter_change": 15.090460777282715,
+              "reference_l2_norm": 27.259822845458984
+            },
+            "temporal_encoder.layer_1": {
+              "relative_l2_parameter_change": 0.40148332533060443,
+              "cosine_similarity": 0.9270878499389209,
+              "absolute_l2_parameter_change": 10.683614730834961,
+              "reference_l2_norm": 26.6103572845459
+            },
+            "temporal_encoder.layer_2": {
+              "relative_l2_parameter_change": 0.36590683749505054,
+              "cosine_similarity": 0.938013342065934,
+              "absolute_l2_parameter_change": 9.73836612701416,
+              "reference_l2_norm": 26.61433219909668
+            }
+          },
+          "definition": "relative_l2=||current-reference||_2/||reference||_2; cosine over flattened tensors",
+          "is_selected_epoch": true
+        },
+        {
+          "epoch": 6,
+          "encoder_parameter_tensor_count": 39,
+          "overall": {
+            "relative_l2_parameter_change": 0.4616243591589512,
+            "cosine_similarity": 0.9060658504887031,
+            "absolute_l2_parameter_change": 21.77011489868164,
+            "reference_l2_norm": 47.15980529785156
+          },
+          "per_layer": {
+            "input_projection": {
+              "relative_l2_parameter_change": 0.39590522880979756,
+              "cosine_similarity": 0.9358973353334797,
+              "absolute_l2_parameter_change": 3.178626537322998,
+              "reference_l2_norm": 8.028756141662598
+            },
+            "position_embedding": {
+              "relative_l2_parameter_change": 4.187760660061085,
+              "cosine_similarity": 0.23969839101945803,
+              "absolute_l2_parameter_change": 1.1616076231002808,
+              "reference_l2_norm": 0.27738156914711
+            },
+            "temporal_encoder.layer_0": {
+              "relative_l2_parameter_change": 0.5672163192298235,
+              "cosine_similarity": 0.8657544678511517,
+              "absolute_l2_parameter_change": 15.4622163772583,
+              "reference_l2_norm": 27.259822845458984
+            },
+            "temporal_encoder.layer_1": {
+              "relative_l2_parameter_change": 0.4087854122545038,
+              "cosine_similarity": 0.9243372188806452,
+              "absolute_l2_parameter_change": 10.877925872802734,
+              "reference_l2_norm": 26.6103572845459
+            },
+            "temporal_encoder.layer_2": {
+              "relative_l2_parameter_change": 0.3851697504044662,
+              "cosine_similarity": 0.9318583798438326,
+              "absolute_l2_parameter_change": 10.251035690307617,
+              "reference_l2_norm": 26.61433219909668
+            }
+          },
+          "definition": "relative_l2=||current-reference||_2/||reference||_2; cosine over flattened tensors",
+          "is_selected_epoch": false
+        },
+        {
+          "epoch": 7,
+          "encoder_parameter_tensor_count": 39,
+          "overall": {
+            "relative_l2_parameter_change": 0.49121083164949936,
+            "cosine_similarity": 0.8955130420040888,
+            "absolute_l2_parameter_change": 23.165407180786133,
+            "reference_l2_norm": 47.15980529785156
+          },
+          "per_layer": {
+            "input_projection": {
+              "relative_l2_parameter_change": 0.4404351483549658,
+              "cosine_similarity": 0.9237986149727236,
+              "absolute_l2_parameter_change": 3.536146402359009,
+              "reference_l2_norm": 8.028756141662598
+            },
+            "position_embedding": {
+              "relative_l2_parameter_change": 4.559330707532012,
+              "cosine_similarity": 0.2436475062349382,
+              "absolute_l2_parameter_change": 1.2646743059158325,
+              "reference_l2_norm": 0.27738156914711
+            },
+            "temporal_encoder.layer_0": {
+              "relative_l2_parameter_change": 0.6027237759199239,
+              "cosine_similarity": 0.8518080018217485,
+              "absolute_l2_parameter_change": 16.430143356323242,
+              "reference_l2_norm": 27.259822845458984
+            },
+            "temporal_encoder.layer_1": {
+              "relative_l2_parameter_change": 0.4310145417432445,
+              "cosine_similarity": 0.9169706838701234,
+              "absolute_l2_parameter_change": 11.469450950622559,
+              "reference_l2_norm": 26.6103572845459
+            },
+            "temporal_encoder.layer_2": {
+              "relative_l2_parameter_change": 0.4133839177415107,
+              "cosine_similarity": 0.922654451864169,
+              "absolute_l2_parameter_change": 11.001936912536621,
+              "reference_l2_norm": 26.61433219909668
+            }
+          },
+          "definition": "relative_l2=||current-reference||_2/||reference||_2; cosine over flattened tensors",
+          "is_selected_epoch": false
+        },
+        {
+          "epoch": 8,
+          "encoder_parameter_tensor_count": 39,
+          "overall": {
+            "relative_l2_parameter_change": 0.5103392797342967,
+            "cosine_similarity": 0.8880787265683373,
+            "absolute_l2_parameter_change": 24.067501068115234,
+            "reference_l2_norm": 47.15980529785156
+          },
+          "per_layer": {
+            "input_projection": {
+              "relative_l2_parameter_change": 0.4759964678888022,
+              "cosine_similarity": 0.9114448611835168,
+              "absolute_l2_parameter_change": 3.821659564971924,
+              "reference_l2_norm": 8.028756141662598
+            },
+            "position_embedding": {
+              "relative_l2_parameter_change": 4.922290384373435,
+              "cosine_similarity": 0.22611152853549377,
+              "absolute_l2_parameter_change": 1.3653526306152344,
+              "reference_l2_norm": 0.27738156914711
+            },
+            "temporal_encoder.layer_0": {
+              "relative_l2_parameter_change": 0.6320480873283078,
+              "cosine_similarity": 0.83935047515509,
+              "absolute_l2_parameter_change": 17.22951889038086,
+              "reference_l2_norm": 27.259822845458984
+            },
+            "temporal_encoder.layer_1": {
+              "relative_l2_parameter_change": 0.4387472994821844,
+              "cosine_similarity": 0.9141344984442217,
+              "absolute_l2_parameter_change": 11.675222396850586,
+              "reference_l2_norm": 26.6103572845459
+            },
+            "temporal_encoder.layer_2": {
+              "relative_l2_parameter_change": 0.42777965503464166,
+              "cosine_similarity": 0.9175919812928665,
+              "absolute_l2_parameter_change": 11.385069847106934,
+              "reference_l2_norm": 26.61433219909668
+            }
+          },
+          "definition": "relative_l2=||current-reference||_2/||reference||_2; cosine over flattened tensors",
+          "is_selected_epoch": false
+        },
+        {
+          "epoch": 9,
+          "encoder_parameter_tensor_count": 39,
+          "overall": {
+            "relative_l2_parameter_change": 0.5232598000753883,
+            "cosine_similarity": 0.8833708109858425,
+            "absolute_l2_parameter_change": 24.676830291748047,
+            "reference_l2_norm": 47.15980529785156
+          },
+          "per_layer": {
+            "input_projection": {
+              "relative_l2_parameter_change": 0.5228174906022395,
+              "cosine_similarity": 0.8975833291576161,
+              "absolute_l2_parameter_change": 4.197574138641357,
+              "reference_l2_norm": 8.028756141662598
+            },
+            "position_embedding": {
+              "relative_l2_parameter_change": 4.877019217328699,
+              "cosine_similarity": 0.22645684897435095,
+              "absolute_l2_parameter_change": 1.3527952432632446,
+              "reference_l2_norm": 0.27738156914711
+            },
+            "temporal_encoder.layer_0": {
+              "relative_l2_parameter_change": 0.6521125317817704,
+              "cosine_similarity": 0.8318297708382024,
+              "absolute_l2_parameter_change": 17.776472091674805,
+              "reference_l2_norm": 27.259822845458984
+            },
+            "temporal_encoder.layer_1": {
+              "relative_l2_parameter_change": 0.44720062536685146,
+              "cosine_similarity": 0.9111299609212975,
+              "absolute_l2_parameter_change": 11.900168418884277,
+              "reference_l2_norm": 26.6103572845459
+            },
+            "temporal_encoder.layer_2": {
+              "relative_l2_parameter_change": 0.43151278435813045,
+              "cosine_similarity": 0.9162377539557862,
+              "absolute_l2_parameter_change": 11.484424591064453,
+              "reference_l2_norm": 26.61433219909668
+            }
+          },
+          "definition": "relative_l2=||current-reference||_2/||reference||_2; cosine over flattened tensors",
+          "is_selected_epoch": false
+        },
+        {
+          "epoch": 10,
+          "encoder_parameter_tensor_count": 39,
+          "overall": {
+            "relative_l2_parameter_change": 0.5360114651701171,
+            "cosine_similarity": 0.8785898905582146,
+            "absolute_l2_parameter_change": 25.278196334838867,
+            "reference_l2_norm": 47.15980529785156
+          },
+          "per_layer": {
+            "input_projection": {
+              "relative_l2_parameter_change": 0.5371000554594673,
+              "cosine_similarity": 0.8922357918503462,
+              "absolute_l2_parameter_change": 4.3122453689575195,
+              "reference_l2_norm": 8.028756141662598
+            },
+            "position_embedding": {
+              "relative_l2_parameter_change": 5.02748689454101,
+              "cosine_similarity": 0.21924132405472868,
+              "absolute_l2_parameter_change": 1.3945322036743164,
+              "reference_l2_norm": 0.27738156914711
+            },
+            "temporal_encoder.layer_0": {
+              "relative_l2_parameter_change": 0.6713724701052994,
+              "cosine_similarity": 0.8244476397724303,
+              "absolute_l2_parameter_change": 18.301494598388672,
+              "reference_l2_norm": 27.259822845458984
+            },
+            "temporal_encoder.layer_1": {
+              "relative_l2_parameter_change": 0.453749101081741,
+              "cosine_similarity": 0.9087854958064152,
+              "absolute_l2_parameter_change": 12.07442569732666,
+              "reference_l2_norm": 26.6103572845459
+            },
+            "temporal_encoder.layer_2": {
+              "relative_l2_parameter_change": 0.4409487174433792,
+              "cosine_similarity": 0.9129084836399052,
+              "absolute_l2_parameter_change": 11.735555648803711,
+              "reference_l2_norm": 26.61433219909668
+            }
+          },
+          "definition": "relative_l2=||current-reference||_2/||reference||_2; cosine over flattened tensors",
+          "is_selected_epoch": false
+        },
+        {
+          "epoch": 11,
+          "encoder_parameter_tensor_count": 39,
+          "overall": {
+            "relative_l2_parameter_change": 0.555334288898991,
+            "cosine_similarity": 0.871309015528515,
+            "absolute_l2_parameter_change": 26.189456939697266,
+            "reference_l2_norm": 47.15980529785156
+          },
+          "per_layer": {
+            "input_projection": {
+              "relative_l2_parameter_change": 0.555712236040434,
+              "cosine_similarity": 0.8904565338657116,
+              "absolute_l2_parameter_change": 4.4616780281066895,
+              "reference_l2_norm": 8.028756141662598
+            },
+            "position_embedding": {
+              "relative_l2_parameter_change": 4.859613676500404,
+              "cosine_similarity": 0.23223409779229043,
+              "absolute_l2_parameter_change": 1.347967267036438,
+              "reference_l2_norm": 0.27738156914711
+            },
+            "temporal_encoder.layer_0": {
+              "relative_l2_parameter_change": 0.7018534427446743,
+              "cosine_similarity": 0.8118589268072567,
+              "absolute_l2_parameter_change": 19.132400512695312,
+              "reference_l2_norm": 27.259822845458984
+            },
+            "temporal_encoder.layer_1": {
+              "relative_l2_parameter_change": 0.4684487127576544,
+              "cosine_similarity": 0.9036851949010806,
+              "absolute_l2_parameter_change": 12.465587615966797,
+              "reference_l2_norm": 26.6103572845459
+            },
+            "temporal_encoder.layer_2": {
+              "relative_l2_parameter_change": 0.44890671387081804,
+              "cosine_similarity": 0.9101054313218544,
+              "absolute_l2_parameter_change": 11.947352409362793,
+              "reference_l2_norm": 26.61433219909668
+            }
+          },
+          "definition": "relative_l2=||current-reference||_2/||reference||_2; cosine over flattened tensors",
+          "is_selected_epoch": false
+        },
+        {
+          "epoch": 12,
+          "encoder_parameter_tensor_count": 39,
+          "overall": {
+            "relative_l2_parameter_change": 0.5720434356360201,
+            "cosine_similarity": 0.8646405909058643,
+            "absolute_l2_parameter_change": 26.97745704650879,
+            "reference_l2_norm": 47.15980529785156
+          },
+          "per_layer": {
+            "input_projection": {
+              "relative_l2_parameter_change": 0.563336873442541,
+              "cosine_similarity": 0.8868451596615737,
+              "absolute_l2_parameter_change": 4.522894382476807,
+              "reference_l2_norm": 8.028756141662598
+            },
+            "position_embedding": {
+              "relative_l2_parameter_change": 5.056502575751439,
+              "cosine_similarity": 0.21781207663189417,
+              "absolute_l2_parameter_change": 1.4025806188583374,
+              "reference_l2_norm": 0.27738156914711
+            },
+            "temporal_encoder.layer_0": {
+              "relative_l2_parameter_change": 0.7312767606040806,
+              "cosine_similarity": 0.8001784587315531,
+              "absolute_l2_parameter_change": 19.93447494506836,
+              "reference_l2_norm": 27.259822845458984
+            },
+            "temporal_encoder.layer_1": {
+              "relative_l2_parameter_change": 0.4747047107724902,
+              "cosine_similarity": 0.9010971041372237,
+              "absolute_l2_parameter_change": 12.632061958312988,
+              "reference_l2_norm": 26.6103572845459
+            },
+            "temporal_encoder.layer_2": {
+              "relative_l2_parameter_change": 0.4577575280886798,
+              "cosine_similarity": 0.9067274026562887,
+              "absolute_l2_parameter_change": 12.182910919189453,
+              "reference_l2_norm": 26.61433219909668
+            }
+          },
+          "definition": "relative_l2=||current-reference||_2/||reference||_2; cosine over flattened tensors",
+          "is_selected_epoch": false
+        },
+        {
+          "epoch": 13,
+          "encoder_parameter_tensor_count": 39,
+          "overall": {
+            "relative_l2_parameter_change": 0.5856077899092914,
+            "cosine_similarity": 0.8595098783254991,
+            "absolute_l2_parameter_change": 27.617149353027344,
+            "reference_l2_norm": 47.15980529785156
+          },
+          "per_layer": {
+            "input_projection": {
+              "relative_l2_parameter_change": 0.5733697036891771,
+              "cosine_similarity": 0.884464000886455,
+              "absolute_l2_parameter_change": 4.603445529937744,
+              "reference_l2_norm": 8.028756141662598
+            },
+            "position_embedding": {
+              "relative_l2_parameter_change": 5.140690383256041,
+              "cosine_similarity": 0.20905535196761754,
+              "absolute_l2_parameter_change": 1.425932765007019,
+              "reference_l2_norm": 0.27738156914711
+            },
+            "temporal_encoder.layer_0": {
+              "relative_l2_parameter_change": 0.7487879581287374,
+              "cosine_similarity": 0.7934317850365453,
+              "absolute_l2_parameter_change": 20.411827087402344,
+              "reference_l2_norm": 27.259822845458984
+            },
+            "temporal_encoder.layer_1": {
+              "relative_l2_parameter_change": 0.4842322229215501,
+              "cosine_similarity": 0.8976327893546553,
+              "absolute_l2_parameter_change": 12.885592460632324,
+              "reference_l2_norm": 26.6103572845459
+            },
+            "temporal_encoder.layer_2": {
+              "relative_l2_parameter_change": 0.4705219630094796,
+              "cosine_similarity": 0.9022284132688526,
+              "absolute_l2_parameter_change": 12.522627830505371,
+              "reference_l2_norm": 26.61433219909668
+            }
+          },
+          "definition": "relative_l2=||current-reference||_2/||reference||_2; cosine over flattened tensors",
+          "is_selected_epoch": false
+        },
+        {
+          "epoch": 14,
+          "encoder_parameter_tensor_count": 39,
+          "overall": {
+            "relative_l2_parameter_change": 0.6070636092879688,
+            "cosine_similarity": 0.8511655849060616,
+            "absolute_l2_parameter_change": 28.62900161743164,
+            "reference_l2_norm": 47.15980529785156
+          },
+          "per_layer": {
+            "input_projection": {
+              "relative_l2_parameter_change": 0.5943555708494397,
+              "cosine_similarity": 0.8789150560275492,
+              "absolute_l2_parameter_change": 4.771935939788818,
+              "reference_l2_norm": 8.028756141662598
+            },
+            "position_embedding": {
+              "relative_l2_parameter_change": 5.26234179088618,
+              "cosine_similarity": 0.19825703258811464,
+              "absolute_l2_parameter_change": 1.4596766233444214,
+              "reference_l2_norm": 0.27738156914711
+            },
+            "temporal_encoder.layer_0": {
+              "relative_l2_parameter_change": 0.7791495632730987,
+              "cosine_similarity": 0.7810483830863221,
+              "absolute_l2_parameter_change": 21.239479064941406,
+              "reference_l2_norm": 27.259822845458984
+            },
+            "temporal_encoder.layer_1": {
+              "relative_l2_parameter_change": 0.49518614175359466,
+              "cosine_similarity": 0.8936469853457013,
+              "absolute_l2_parameter_change": 13.177080154418945,
+              "reference_l2_norm": 26.6103572845459
+            },
+            "temporal_encoder.layer_2": {
+              "relative_l2_parameter_change": 0.4898761786853907,
+              "cosine_similarity": 0.8952652884685804,
+              "absolute_l2_parameter_change": 13.037727355957031,
+              "reference_l2_norm": 26.61433219909668
+            }
+          },
+          "definition": "relative_l2=||current-reference||_2/||reference||_2; cosine over flattened tensors",
+          "is_selected_epoch": false
+        },
+        {
+          "epoch": 15,
+          "encoder_parameter_tensor_count": 39,
+          "overall": {
+            "relative_l2_parameter_change": 0.6235230120378624,
+            "cosine_similarity": 0.844813014234531,
+            "absolute_l2_parameter_change": 29.405223846435547,
+            "reference_l2_norm": 47.15980529785156
+          },
+          "per_layer": {
+            "input_projection": {
+              "relative_l2_parameter_change": 0.598027429451911,
+              "cosine_similarity": 0.8763184949456773,
+              "absolute_l2_parameter_change": 4.801416397094727,
+              "reference_l2_norm": 8.028756141662598
+            },
+            "position_embedding": {
+              "relative_l2_parameter_change": 5.655179690183522,
+              "cosine_similarity": 0.1947260936102912,
+              "absolute_l2_parameter_change": 1.5686426162719727,
+              "reference_l2_norm": 0.27738156914711
+            },
+            "temporal_encoder.layer_0": {
+              "relative_l2_parameter_change": 0.8024143300327917,
+              "cosine_similarity": 0.7720766334397506,
+              "absolute_l2_parameter_change": 21.873672485351562,
+              "reference_l2_norm": 27.259822845458984
+            },
+            "temporal_encoder.layer_1": {
+              "relative_l2_parameter_change": 0.5083480683175726,
+              "cosine_similarity": 0.888845985364924,
+              "absolute_l2_parameter_change": 13.527323722839355,
+              "reference_l2_norm": 26.6103572845459
+            },
+            "temporal_encoder.layer_2": {
+              "relative_l2_parameter_change": 0.5009092293552011,
+              "cosine_similarity": 0.8913106872521782,
+              "absolute_l2_parameter_change": 13.331364631652832,
+              "reference_l2_norm": 26.61433219909668
+            }
+          },
+          "definition": "relative_l2=||current-reference||_2/||reference||_2; cosine over flattened tensors",
+          "is_selected_epoch": false
+        },
+        {
+          "epoch": 16,
+          "encoder_parameter_tensor_count": 39,
+          "overall": {
+            "relative_l2_parameter_change": 0.6386390954697452,
+            "cosine_similarity": 0.8390088589562222,
+            "absolute_l2_parameter_change": 30.11809539794922,
+            "reference_l2_norm": 47.15980529785156
+          },
+          "per_layer": {
+            "input_projection": {
+              "relative_l2_parameter_change": 0.6136321603618394,
+              "cosine_similarity": 0.8712237988549619,
+              "absolute_l2_parameter_change": 4.926702976226807,
+              "reference_l2_norm": 8.028756141662598
+            },
+            "position_embedding": {
+              "relative_l2_parameter_change": 5.879588253666633,
+              "cosine_similarity": 0.18686125856305152,
+              "absolute_l2_parameter_change": 1.6308894157409668,
+              "reference_l2_norm": 0.27738156914711
+            },
+            "temporal_encoder.layer_0": {
+              "relative_l2_parameter_change": 0.8194169912422322,
+              "cosine_similarity": 0.7657778926891697,
+              "absolute_l2_parameter_change": 22.337162017822266,
+              "reference_l2_norm": 27.259822845458984
+            },
+            "temporal_encoder.layer_1": {
+              "relative_l2_parameter_change": 0.5242137560781138,
+              "cosine_similarity": 0.883036785698709,
+              "absolute_l2_parameter_change": 13.949515342712402,
+              "reference_l2_norm": 26.6103572845459
+            },
+            "temporal_encoder.layer_2": {
+              "relative_l2_parameter_change": 0.5133227864543675,
+              "cosine_similarity": 0.8866621218531904,
+              "absolute_l2_parameter_change": 13.6617431640625,
+              "reference_l2_norm": 26.61433219909668
+            }
+          },
+          "definition": "relative_l2=||current-reference||_2/||reference||_2; cosine over flattened tensors",
+          "is_selected_epoch": false
+        },
+        {
+          "epoch": 17,
+          "encoder_parameter_tensor_count": 39,
+          "overall": {
+            "relative_l2_parameter_change": 0.6603315953039233,
+            "cosine_similarity": 0.8307265853672083,
+            "absolute_l2_parameter_change": 31.141109466552734,
+            "reference_l2_norm": 47.15980529785156
+          },
+          "per_layer": {
+            "input_projection": {
+              "relative_l2_parameter_change": 0.6425512614029547,
+              "cosine_similarity": 0.8631272672366325,
+              "absolute_l2_parameter_change": 5.1588873863220215,
+              "reference_l2_norm": 8.028756141662598
+            },
+            "position_embedding": {
+              "relative_l2_parameter_change": 6.819441473385478,
+              "cosine_similarity": 0.17616131627536105,
+              "absolute_l2_parameter_change": 1.8915873765945435,
+              "reference_l2_norm": 0.27738156914711
+            },
+            "temporal_encoder.layer_0": {
+              "relative_l2_parameter_change": 0.8428443664769615,
+              "cosine_similarity": 0.7567242692685394,
+              "absolute_l2_parameter_change": 22.975788116455078,
+              "reference_l2_norm": 27.259822845458984
+            },
+            "temporal_encoder.layer_1": {
+              "relative_l2_parameter_change": 0.5474217773569864,
+              "cosine_similarity": 0.8746407703715648,
+              "absolute_l2_parameter_change": 14.567089080810547,
+              "reference_l2_norm": 26.6103572845459
+            },
+            "temporal_encoder.layer_2": {
+              "relative_l2_parameter_change": 0.5307196184490355,
+              "cosine_similarity": 0.8802076897026048,
+              "absolute_l2_parameter_change": 14.124748229980469,
+              "reference_l2_norm": 26.61433219909668
+            }
+          },
+          "definition": "relative_l2=||current-reference||_2/||reference||_2; cosine over flattened tensors",
+          "is_selected_epoch": false
+        },
+        {
+          "epoch": 18,
+          "encoder_parameter_tensor_count": 39,
+          "overall": {
+            "relative_l2_parameter_change": 0.6834064028291646,
+            "cosine_similarity": 0.8216156252756251,
+            "absolute_l2_parameter_change": 32.229312896728516,
+            "reference_l2_norm": 47.15980529785156
+          },
+          "per_layer": {
+            "input_projection": {
+              "relative_l2_parameter_change": 0.6595240083427953,
+              "cosine_similarity": 0.8577687895527994,
+              "absolute_l2_parameter_change": 5.295157432556152,
+              "reference_l2_norm": 8.028756141662598
+            },
+            "position_embedding": {
+              "relative_l2_parameter_change": 7.366111691355496,
+              "cosine_similarity": 0.15728891178816934,
+              "absolute_l2_parameter_change": 2.0432236194610596,
+              "reference_l2_norm": 0.27738156914711
+            },
+            "temporal_encoder.layer_0": {
+              "relative_l2_parameter_change": 0.8666271853662448,
+              "cosine_similarity": 0.7476053876290976,
+              "absolute_l2_parameter_change": 23.624103546142578,
+              "reference_l2_norm": 27.259822845458984
+            },
+            "temporal_encoder.layer_1": {
+              "relative_l2_parameter_change": 0.5736194432552048,
+              "cosine_similarity": 0.864504899125867,
+              "absolute_l2_parameter_change": 15.2642183303833,
+              "reference_l2_norm": 26.6103572845459
+            },
+            "temporal_encoder.layer_2": {
+              "relative_l2_parameter_change": 0.551503826080413,
+              "cosine_similarity": 0.8723378304269437,
+              "absolute_l2_parameter_change": 14.677906036376953,
+              "reference_l2_norm": 26.61433219909668
+            }
+          },
+          "definition": "relative_l2=||current-reference||_2/||reference||_2; cosine over flattened tensors",
+          "is_selected_epoch": false
+        },
+        {
+          "epoch": 19,
+          "encoder_parameter_tensor_count": 39,
+          "overall": {
+            "relative_l2_parameter_change": 0.7032591691432103,
+            "cosine_similarity": 0.8139023307224754,
+            "absolute_l2_parameter_change": 33.165565490722656,
+            "reference_l2_norm": 47.15980529785156
+          },
+          "per_layer": {
+            "input_projection": {
+              "relative_l2_parameter_change": 0.683615676938685,
+              "cosine_similarity": 0.8516261208376406,
+              "absolute_l2_parameter_change": 5.488583564758301,
+              "reference_l2_norm": 8.028756141662598
+            },
+            "position_embedding": {
+              "relative_l2_parameter_change": 7.6789627501012365,
+              "cosine_similarity": 0.16641525537705995,
+              "absolute_l2_parameter_change": 2.130002737045288,
+              "reference_l2_norm": 0.27738156914711
+            },
+            "temporal_encoder.layer_0": {
+              "relative_l2_parameter_change": 0.8867129004636021,
+              "cosine_similarity": 0.7399457446583048,
+              "absolute_l2_parameter_change": 24.1716365814209,
+              "reference_l2_norm": 27.259822845458984
+            },
+            "temporal_encoder.layer_1": {
+              "relative_l2_parameter_change": 0.5928201867456317,
+              "cosine_similarity": 0.8571350875468658,
+              "absolute_l2_parameter_change": 15.77515697479248,
+              "reference_l2_norm": 26.6103572845459
+            },
+            "temporal_encoder.layer_2": {
+              "relative_l2_parameter_change": 0.572548934592031,
+              "cosine_similarity": 0.864330533279773,
+              "absolute_l2_parameter_change": 15.238007545471191,
+              "reference_l2_norm": 26.61433219909668
+            }
+          },
+          "definition": "relative_l2=||current-reference||_2/||reference||_2; cosine over flattened tensors",
+          "is_selected_epoch": false
+        },
+        {
+          "epoch": 20,
+          "encoder_parameter_tensor_count": 39,
+          "overall": {
+            "relative_l2_parameter_change": 0.7267728789758838,
+            "cosine_similarity": 0.8045718928572743,
+            "absolute_l2_parameter_change": 34.27446746826172,
+            "reference_l2_norm": 47.15980529785156
+          },
+          "per_layer": {
+            "input_projection": {
+              "relative_l2_parameter_change": 0.6884503551056979,
+              "cosine_similarity": 0.8504601902161616,
+              "absolute_l2_parameter_change": 5.527400016784668,
+              "reference_l2_norm": 8.028756141662598
+            },
+            "position_embedding": {
+              "relative_l2_parameter_change": 7.9980694891506,
+              "cosine_similarity": 0.1660786631728159,
+              "absolute_l2_parameter_change": 2.2185170650482178,
+              "reference_l2_norm": 0.27738156914711
+            },
+            "temporal_encoder.layer_0": {
+              "relative_l2_parameter_change": 0.9075001969633637,
+              "cosine_similarity": 0.7315741290608537,
+              "absolute_l2_parameter_change": 24.73829460144043,
+              "reference_l2_norm": 27.259822845458984
+            },
+            "temporal_encoder.layer_1": {
+              "relative_l2_parameter_change": 0.6158336768450053,
+              "cosine_similarity": 0.8480972610736875,
+              "absolute_l2_parameter_change": 16.387554168701172,
+              "reference_l2_norm": 26.6103572845459
+            },
+            "temporal_encoder.layer_2": {
+              "relative_l2_parameter_change": 0.6044055376489538,
+              "cosine_similarity": 0.8522297776430111,
+              "absolute_l2_parameter_change": 16.08584976196289,
+              "reference_l2_norm": 26.61433219909668
+            }
+          },
+          "definition": "relative_l2=||current-reference||_2/||reference||_2; cosine over flattened tensors",
+          "is_selected_epoch": false
+        }
+      ]
+    },
+    "2024": {
+      "selected_epoch": 1,
+      "selected_checkpoint_drift": {
+        "encoder_parameter_tensor_count": 39,
+        "overall": {
+          "relative_l2_parameter_change": 0.15022701920323314,
+          "cosine_similarity": 0.9889642158806558,
+          "absolute_l2_parameter_change": 7.049939155578613,
+          "reference_l2_norm": 46.92856979370117
+        },
+        "per_layer": {
+          "input_projection": {
+            "relative_l2_parameter_change": 0.07928638395279604,
+            "cosine_similarity": 0.9970943518603347,
+            "absolute_l2_parameter_change": 0.6037157773971558,
+            "reference_l2_norm": 7.614368915557861
+          },
+          "position_embedding": {
+            "relative_l2_parameter_change": 1.3580702221913712,
+            "cosine_similarity": 0.585786213287314,
+            "absolute_l2_parameter_change": 0.3370135724544525,
+            "reference_l2_norm": 0.24815621972084045
+          },
+          "temporal_encoder.layer_0": {
+            "relative_l2_parameter_change": 0.2078786897534108,
+            "cosine_similarity": 0.9793508624707569,
+            "absolute_l2_parameter_change": 5.631293773651123,
+            "reference_l2_norm": 27.089326858520508
+          },
+          "temporal_encoder.layer_1": {
+            "relative_l2_parameter_change": 0.11202607129389244,
+            "cosine_similarity": 0.9937809199820778,
+            "absolute_l2_parameter_change": 2.9730513095855713,
+            "reference_l2_norm": 26.538923263549805
+          },
+          "temporal_encoder.layer_2": {
+            "relative_l2_parameter_change": 0.11083203612948682,
+            "cosine_similarity": 0.9939057618236217,
+            "absolute_l2_parameter_change": 2.945136308670044,
+            "reference_l2_norm": 26.572969436645508
+          }
+        },
+        "definition": "relative_l2=||current-reference||_2/||reference||_2; cosine over flattened tensors"
+      },
+      "all_epochs": [
+        {
+          "epoch": 1,
+          "encoder_parameter_tensor_count": 39,
+          "overall": {
+            "relative_l2_parameter_change": 0.15022701920323314,
+            "cosine_similarity": 0.9889642158806558,
+            "absolute_l2_parameter_change": 7.049939155578613,
+            "reference_l2_norm": 46.92856979370117
+          },
+          "per_layer": {
+            "input_projection": {
+              "relative_l2_parameter_change": 0.07928638395279604,
+              "cosine_similarity": 0.9970943518603347,
+              "absolute_l2_parameter_change": 0.6037157773971558,
+              "reference_l2_norm": 7.614368915557861
+            },
+            "position_embedding": {
+              "relative_l2_parameter_change": 1.3580702221913712,
+              "cosine_similarity": 0.585786213287314,
+              "absolute_l2_parameter_change": 0.3370135724544525,
+              "reference_l2_norm": 0.24815621972084045
+            },
+            "temporal_encoder.layer_0": {
+              "relative_l2_parameter_change": 0.2078786897534108,
+              "cosine_similarity": 0.9793508624707569,
+              "absolute_l2_parameter_change": 5.631293773651123,
+              "reference_l2_norm": 27.089326858520508
+            },
+            "temporal_encoder.layer_1": {
+              "relative_l2_parameter_change": 0.11202607129389244,
+              "cosine_similarity": 0.9937809199820778,
+              "absolute_l2_parameter_change": 2.9730513095855713,
+              "reference_l2_norm": 26.538923263549805
+            },
+            "temporal_encoder.layer_2": {
+              "relative_l2_parameter_change": 0.11083203612948682,
+              "cosine_similarity": 0.9939057618236217,
+              "absolute_l2_parameter_change": 2.945136308670044,
+              "reference_l2_norm": 26.572969436645508
+            }
+          },
+          "definition": "relative_l2=||current-reference||_2/||reference||_2; cosine over flattened tensors",
+          "is_selected_epoch": true
+        },
+        {
+          "epoch": 2,
+          "encoder_parameter_tensor_count": 39,
+          "overall": {
+            "relative_l2_parameter_change": 0.194802582790517,
+            "cosine_similarity": 0.9816091411945,
+            "absolute_l2_parameter_change": 9.141806602478027,
+            "reference_l2_norm": 46.92856979370117
+          },
+          "per_layer": {
+            "input_projection": {
+              "relative_l2_parameter_change": 0.10617724225504367,
+              "cosine_similarity": 0.994680908681539,
+              "absolute_l2_parameter_change": 0.8084726929664612,
+              "reference_l2_norm": 7.614368915557861
+            },
+            "position_embedding": {
+              "relative_l2_parameter_change": 2.323354599356459,
+              "cosine_similarity": 0.37861468147935745,
+              "absolute_l2_parameter_change": 0.5765548944473267,
+              "reference_l2_norm": 0.24815621972084045
+            },
+            "temporal_encoder.layer_0": {
+              "relative_l2_parameter_change": 0.25933897074826184,
+              "cosine_similarity": 0.9684306216291851,
+              "absolute_l2_parameter_change": 7.025318145751953,
+              "reference_l2_norm": 27.089326858520508
+            },
+            "temporal_encoder.layer_1": {
+              "relative_l2_parameter_change": 0.15801256558214333,
+              "cosine_similarity": 0.9877042527690963,
+              "absolute_l2_parameter_change": 4.193483352661133,
+              "reference_l2_norm": 26.538923263549805
+            },
+            "temporal_encoder.layer_2": {
+              "relative_l2_parameter_change": 0.1488637326926736,
+              "cosine_similarity": 0.9890535916729347,
+              "absolute_l2_parameter_change": 3.955751419067383,
+              "reference_l2_norm": 26.572969436645508
+            }
+          },
+          "definition": "relative_l2=||current-reference||_2/||reference||_2; cosine over flattened tensors",
+          "is_selected_epoch": false
+        },
+        {
+          "epoch": 3,
+          "encoder_parameter_tensor_count": 39,
+          "overall": {
+            "relative_l2_parameter_change": 0.2449825000611687,
+            "cosine_similarity": 0.9713183414422792,
+            "absolute_l2_parameter_change": 11.496678352355957,
+            "reference_l2_norm": 46.92856979370117
+          },
+          "per_layer": {
+            "input_projection": {
+              "relative_l2_parameter_change": 0.2046560416580429,
+              "cosine_similarity": 0.9806557468280463,
+              "absolute_l2_parameter_change": 1.5583266019821167,
+              "reference_l2_norm": 7.614368915557861
+            },
+            "position_embedding": {
+              "relative_l2_parameter_change": 3.5823201418177892,
+              "cosine_similarity": 0.2385319759628704,
+              "absolute_l2_parameter_change": 0.8889750242233276,
+              "reference_l2_norm": 0.24815621972084045
+            },
+            "temporal_encoder.layer_0": {
+              "relative_l2_parameter_change": 0.31146094354917464,
+              "cosine_similarity": 0.9553829702812187,
+              "absolute_l2_parameter_change": 8.437267303466797,
+              "reference_l2_norm": 27.089326858520508
+            },
+            "temporal_encoder.layer_1": {
+              "relative_l2_parameter_change": 0.20255083732336815,
+              "cosine_similarity": 0.9799489581318038,
+              "absolute_l2_parameter_change": 5.375481128692627,
+              "reference_l2_norm": 26.538923263549805
+            },
+            "temporal_encoder.layer_2": {
+              "relative_l2_parameter_change": 0.20221455611654673,
+              "cosine_similarity": 0.9800373975271801,
+              "absolute_l2_parameter_change": 5.373441219329834,
+              "reference_l2_norm": 26.572969436645508
+            }
+          },
+          "definition": "relative_l2=||current-reference||_2/||reference||_2; cosine over flattened tensors",
+          "is_selected_epoch": false
+        },
+        {
+          "epoch": 4,
+          "encoder_parameter_tensor_count": 39,
+          "overall": {
+            "relative_l2_parameter_change": 0.2811805933372205,
+            "cosine_similarity": 0.9625754249358386,
+            "absolute_l2_parameter_change": 13.195403099060059,
+            "reference_l2_norm": 46.92856979370117
+          },
+          "per_layer": {
+            "input_projection": {
+              "relative_l2_parameter_change": 0.31025255426483994,
+              "cosine_similarity": 0.9580793373842373,
+              "absolute_l2_parameter_change": 2.362377405166626,
+              "reference_l2_norm": 7.614368915557861
+            },
+            "position_embedding": {
+              "relative_l2_parameter_change": 3.9308966136931605,
+              "cosine_similarity": 0.2043323429087646,
+              "absolute_l2_parameter_change": 0.9754764437675476,
+              "reference_l2_norm": 0.24815621972084045
+            },
+            "temporal_encoder.layer_0": {
+              "relative_l2_parameter_change": 0.35992168762795623,
+              "cosine_similarity": 0.941653589904706,
+              "absolute_l2_parameter_change": 9.750036239624023,
+              "reference_l2_norm": 27.089326858520508
+            },
+            "temporal_encoder.layer_1": {
+              "relative_l2_parameter_change": 0.2260602942107608,
+              "cosine_similarity": 0.9750258125247763,
+              "absolute_l2_parameter_change": 5.999396800994873,
+              "reference_l2_norm": 26.538923263549805
+            },
+            "temporal_encoder.layer_2": {
+              "relative_l2_parameter_change": 0.22746143756959303,
+              "cosine_similarity": 0.9748221993295109,
+              "absolute_l2_parameter_change": 6.044325828552246,
+              "reference_l2_norm": 26.572969436645508
+            }
+          },
+          "definition": "relative_l2=||current-reference||_2/||reference||_2; cosine over flattened tensors",
+          "is_selected_epoch": false
+        },
+        {
+          "epoch": 5,
+          "encoder_parameter_tensor_count": 39,
+          "overall": {
+            "relative_l2_parameter_change": 0.33280716056674486,
+            "cosine_similarity": 0.9484718927712205,
+            "absolute_l2_parameter_change": 15.6181640625,
+            "reference_l2_norm": 46.92856979370117
+          },
+          "per_layer": {
+            "input_projection": {
+              "relative_l2_parameter_change": 0.40353423545584055,
+              "cosine_similarity": 0.9338367388780473,
+              "absolute_l2_parameter_change": 3.0726585388183594,
+              "reference_l2_norm": 7.614368915557861
+            },
+            "position_embedding": {
+              "relative_l2_parameter_change": 4.355816519332113,
+              "cosine_similarity": 0.17955229608040502,
+              "absolute_l2_parameter_change": 1.0809229612350464,
+              "reference_l2_norm": 0.24815621972084045
+            },
+            "temporal_encoder.layer_0": {
+              "relative_l2_parameter_change": 0.4532453509070059,
+              "cosine_similarity": 0.9110767546236958,
+              "absolute_l2_parameter_change": 12.278111457824707,
+              "reference_l2_norm": 27.089326858520508
+            },
+            "temporal_encoder.layer_1": {
+              "relative_l2_parameter_change": 0.24291354221444975,
+              "cosine_similarity": 0.9712435924039973,
+              "absolute_l2_parameter_change": 6.446663856506348,
+              "reference_l2_norm": 26.538923263549805
+            },
+            "temporal_encoder.layer_2": {
+              "relative_l2_parameter_change": 0.24099698540520959,
+              "cosine_similarity": 0.9717622907889336,
+              "absolute_l2_parameter_change": 6.404005527496338,
+              "reference_l2_norm": 26.572969436645508
+            }
+          },
+          "definition": "relative_l2=||current-reference||_2/||reference||_2; cosine over flattened tensors",
+          "is_selected_epoch": false
+        },
+        {
+          "epoch": 6,
+          "encoder_parameter_tensor_count": 39,
+          "overall": {
+            "relative_l2_parameter_change": 0.3786906369941968,
+            "cosine_similarity": 0.93469204333313,
+            "absolute_l2_parameter_change": 17.77140998840332,
+            "reference_l2_norm": 46.92856979370117
+          },
+          "per_layer": {
+            "input_projection": {
+              "relative_l2_parameter_change": 0.49200735273074364,
+              "cosine_similarity": 0.9088171714928414,
+              "absolute_l2_parameter_change": 3.7463254928588867,
+              "reference_l2_norm": 7.614368915557861
+            },
+            "position_embedding": {
+              "relative_l2_parameter_change": 4.3902828249371515,
+              "cosine_similarity": 0.1808871994206835,
+              "absolute_l2_parameter_change": 1.0894759893417358,
+              "reference_l2_norm": 0.24815621972084045
+            },
+            "temporal_encoder.layer_0": {
+              "relative_l2_parameter_change": 0.5280378062931959,
+              "cosine_similarity": 0.8844232209602921,
+              "absolute_l2_parameter_change": 14.30418872833252,
+              "reference_l2_norm": 27.089326858520508
+            },
+            "temporal_encoder.layer_1": {
+              "relative_l2_parameter_change": 0.2681699397277814,
+              "cosine_similarity": 0.9652580071324733,
+              "absolute_l2_parameter_change": 7.116941452026367,
+              "reference_l2_norm": 26.538923263549805
+            },
+            "temporal_encoder.layer_2": {
+              "relative_l2_parameter_change": 0.25342485861034353,
+              "cosine_similarity": 0.968837993309951,
+              "absolute_l2_parameter_change": 6.734251022338867,
+              "reference_l2_norm": 26.572969436645508
+            }
+          },
+          "definition": "relative_l2=||current-reference||_2/||reference||_2; cosine over flattened tensors",
+          "is_selected_epoch": false
+        },
+        {
+          "epoch": 7,
+          "encoder_parameter_tensor_count": 39,
+          "overall": {
+            "relative_l2_parameter_change": 0.40476321697136,
+            "cosine_similarity": 0.9263798675091172,
+            "absolute_l2_parameter_change": 18.994958877563477,
+            "reference_l2_norm": 46.92856979370117
+          },
+          "per_layer": {
+            "input_projection": {
+              "relative_l2_parameter_change": 0.5470631566956649,
+              "cosine_similarity": 0.8921222614552845,
+              "absolute_l2_parameter_change": 4.16554069519043,
+              "reference_l2_norm": 7.614368915557861
+            },
+            "position_embedding": {
+              "relative_l2_parameter_change": 4.558886604014704,
+              "cosine_similarity": 0.17324195244723045,
+              "absolute_l2_parameter_change": 1.131316065788269,
+              "reference_l2_norm": 0.24815621972084045
+            },
+            "temporal_encoder.layer_0": {
+              "relative_l2_parameter_change": 0.5650181596916454,
+              "cosine_similarity": 0.8709862263814572,
+              "absolute_l2_parameter_change": 15.305961608886719,
+              "reference_l2_norm": 27.089326858520508
+            },
+            "temporal_encoder.layer_1": {
+              "relative_l2_parameter_change": 0.2879144222608547,
+              "cosine_similarity": 0.960213632465217,
+              "absolute_l2_parameter_change": 7.640938758850098,
+              "reference_l2_norm": 26.538923263549805
+            },
+            "temporal_encoder.layer_2": {
+              "relative_l2_parameter_change": 0.26485367490366885,
+              "cosine_similarity": 0.9660345755898216,
+              "absolute_l2_parameter_change": 7.0379486083984375,
+              "reference_l2_norm": 26.572969436645508
+            }
+          },
+          "definition": "relative_l2=||current-reference||_2/||reference||_2; cosine over flattened tensors",
+          "is_selected_epoch": false
+        },
+        {
+          "epoch": 8,
+          "encoder_parameter_tensor_count": 39,
+          "overall": {
+            "relative_l2_parameter_change": 0.4308707098487625,
+            "cosine_similarity": 0.9177326291795503,
+            "absolute_l2_parameter_change": 20.22014617919922,
+            "reference_l2_norm": 46.92856979370117
+          },
+          "per_layer": {
+            "input_projection": {
+              "relative_l2_parameter_change": 0.5831889291466462,
+              "cosine_similarity": 0.8819595974911709,
+              "absolute_l2_parameter_change": 4.440615653991699,
+              "reference_l2_norm": 7.614368915557861
+            },
+            "position_embedding": {
+              "relative_l2_parameter_change": 4.845926155262905,
+              "cosine_similarity": 0.15423895468175983,
+              "absolute_l2_parameter_change": 1.2025467157363892,
+              "reference_l2_norm": 0.24815621972084045
+            },
+            "temporal_encoder.layer_0": {
+              "relative_l2_parameter_change": 0.5997333306859324,
+              "cosine_similarity": 0.8579888911289317,
+              "absolute_l2_parameter_change": 16.24637222290039,
+              "reference_l2_norm": 27.089326858520508
+            },
+            "temporal_encoder.layer_1": {
+              "relative_l2_parameter_change": 0.31339861128749175,
+              "cosine_similarity": 0.9533354807795764,
+              "absolute_l2_parameter_change": 8.317261695861816,
+              "reference_l2_norm": 26.538923263549805
+            },
+            "temporal_encoder.layer_2": {
+              "relative_l2_parameter_change": 0.2780165166403493,
+              "cosine_similarity": 0.9626964428680027,
+              "absolute_l2_parameter_change": 7.38772439956665,
+              "reference_l2_norm": 26.572969436645508
+            }
+          },
+          "definition": "relative_l2=||current-reference||_2/||reference||_2; cosine over flattened tensors",
+          "is_selected_epoch": false
+        },
+        {
+          "epoch": 9,
+          "encoder_parameter_tensor_count": 39,
+          "overall": {
+            "relative_l2_parameter_change": 0.4504177883299546,
+            "cosine_similarity": 0.9110765019470699,
+            "absolute_l2_parameter_change": 21.137462615966797,
+            "reference_l2_norm": 46.92856979370117
+          },
+          "per_layer": {
+            "input_projection": {
+              "relative_l2_parameter_change": 0.6181379465521127,
+              "cosine_similarity": 0.8711526765306487,
+              "absolute_l2_parameter_change": 4.706730365753174,
+              "reference_l2_norm": 7.614368915557861
+            },
+            "position_embedding": {
+              "relative_l2_parameter_change": 4.923581987238465,
+              "cosine_similarity": 0.15721551719363486,
+              "absolute_l2_parameter_change": 1.2218174934387207,
+              "reference_l2_norm": 0.24815621972084045
+            },
+            "temporal_encoder.layer_0": {
+              "relative_l2_parameter_change": 0.6235913415626664,
+              "cosine_similarity": 0.8493481605754984,
+              "absolute_l2_parameter_change": 16.892669677734375,
+              "reference_l2_norm": 27.089326858520508
+            },
+            "temporal_encoder.layer_1": {
+              "relative_l2_parameter_change": 0.33179089838687387,
+              "cosine_similarity": 0.9480171779537063,
+              "absolute_l2_parameter_change": 8.805373191833496,
+              "reference_l2_norm": 26.538923263549805
+            },
+            "temporal_encoder.layer_2": {
+              "relative_l2_parameter_change": 0.2921309342903895,
+              "cosine_similarity": 0.9589605252262694,
+              "absolute_l2_parameter_change": 7.762786388397217,
+              "reference_l2_norm": 26.572969436645508
+            }
+          },
+          "definition": "relative_l2=||current-reference||_2/||reference||_2; cosine over flattened tensors",
+          "is_selected_epoch": false
+        },
+        {
+          "epoch": 10,
+          "encoder_parameter_tensor_count": 39,
+          "overall": {
+            "relative_l2_parameter_change": 0.4733009793576563,
+            "cosine_similarity": 0.9031911735000694,
+            "absolute_l2_parameter_change": 22.21133804321289,
+            "reference_l2_norm": 46.92856979370117
+          },
+          "per_layer": {
+            "input_projection": {
+              "relative_l2_parameter_change": 0.6502783074841959,
+              "cosine_similarity": 0.8619095609113404,
+              "absolute_l2_parameter_change": 4.951458930969238,
+              "reference_l2_norm": 7.614368915557861
+            },
+            "position_embedding": {
+              "relative_l2_parameter_change": 5.541460218349532,
+              "cosine_similarity": 0.13204435911780088,
+              "absolute_l2_parameter_change": 1.375147819519043,
+              "reference_l2_norm": 0.24815621972084045
+            },
+            "temporal_encoder.layer_0": {
+              "relative_l2_parameter_change": 0.6499295305531541,
+              "cosine_similarity": 0.8397448521317288,
+              "absolute_l2_parameter_change": 17.60615348815918,
+              "reference_l2_norm": 27.089326858520508
+            },
+            "temporal_encoder.layer_1": {
+              "relative_l2_parameter_change": 0.3578415656302243,
+              "cosine_similarity": 0.9402301834623377,
+              "absolute_l2_parameter_change": 9.496729850769043,
+              "reference_l2_norm": 26.538923263549805
+            },
+            "temporal_encoder.layer_2": {
+              "relative_l2_parameter_change": 0.3075390925092785,
+              "cosine_similarity": 0.9547715035661448,
+              "absolute_l2_parameter_change": 8.172226905822754,
+              "reference_l2_norm": 26.572969436645508
+            }
+          },
+          "definition": "relative_l2=||current-reference||_2/||reference||_2; cosine over flattened tensors",
+          "is_selected_epoch": false
+        },
+        {
+          "epoch": 11,
+          "encoder_parameter_tensor_count": 39,
+          "overall": {
+            "relative_l2_parameter_change": 0.49736299897504826,
+            "cosine_similarity": 0.8945338718240183,
+            "absolute_l2_parameter_change": 23.340534210205078,
+            "reference_l2_norm": 46.92856979370117
+          },
+          "per_layer": {
+            "input_projection": {
+              "relative_l2_parameter_change": 0.6704975655492514,
+              "cosine_similarity": 0.8547014280147012,
+              "absolute_l2_parameter_change": 5.1054158210754395,
+              "reference_l2_norm": 7.614368915557861
+            },
+            "position_embedding": {
+              "relative_l2_parameter_change": 6.272352652736527,
+              "cosine_similarity": 0.10895909697010839,
+              "absolute_l2_parameter_change": 1.556523323059082,
+              "reference_l2_norm": 0.24815621972084045
+            },
+            "temporal_encoder.layer_0": {
+              "relative_l2_parameter_change": 0.6740060224146142,
+              "cosine_similarity": 0.8310148415145039,
+              "absolute_l2_parameter_change": 18.25836944580078,
+              "reference_l2_norm": 27.089326858520508
+            },
+            "temporal_encoder.layer_1": {
+              "relative_l2_parameter_change": 0.38318409916775426,
+              "cosine_similarity": 0.9320860528743374,
+              "absolute_l2_parameter_change": 10.169293403625488,
+              "reference_l2_norm": 26.538923263549805
+            },
+            "temporal_encoder.layer_2": {
+              "relative_l2_parameter_change": 0.3355934719261688,
+              "cosine_similarity": 0.9466712765791304,
+              "absolute_l2_parameter_change": 8.917715072631836,
+              "reference_l2_norm": 26.572969436645508
+            }
+          },
+          "definition": "relative_l2=||current-reference||_2/||reference||_2; cosine over flattened tensors",
+          "is_selected_epoch": false
+        },
+        {
+          "epoch": 12,
+          "encoder_parameter_tensor_count": 39,
+          "overall": {
+            "relative_l2_parameter_change": 0.5164888466086487,
+            "cosine_similarity": 0.8874761798251442,
+            "absolute_l2_parameter_change": 24.238082885742188,
+            "reference_l2_norm": 46.92856979370117
+          },
+          "per_layer": {
+            "input_projection": {
+              "relative_l2_parameter_change": 0.6965131140460441,
+              "cosine_similarity": 0.8472398784219185,
+              "absolute_l2_parameter_change": 5.3035078048706055,
+              "reference_l2_norm": 7.614368915557861
+            },
+            "position_embedding": {
+              "relative_l2_parameter_change": 6.517193221213438,
+              "cosine_similarity": 0.10752851970389452,
+              "absolute_l2_parameter_change": 1.6172820329666138,
+              "reference_l2_norm": 0.24815621972084045
+            },
+            "temporal_encoder.layer_0": {
+              "relative_l2_parameter_change": 0.6953712518594295,
+              "cosine_similarity": 0.8221699318885078,
+              "absolute_l2_parameter_change": 18.837139129638672,
+              "reference_l2_norm": 27.089326858520508
+            },
+            "temporal_encoder.layer_1": {
+              "relative_l2_parameter_change": 0.40558399326033223,
+              "cosine_similarity": 0.9248833462688895,
+              "absolute_l2_parameter_change": 10.763762474060059,
+              "reference_l2_norm": 26.538923263549805
+            },
+            "temporal_encoder.layer_2": {
+              "relative_l2_parameter_change": 0.3491110214845955,
+              "cosine_similarity": 0.9425826868922297,
+              "absolute_l2_parameter_change": 9.27691650390625,
+              "reference_l2_norm": 26.572969436645508
+            }
+          },
+          "definition": "relative_l2=||current-reference||_2/||reference||_2; cosine over flattened tensors",
+          "is_selected_epoch": false
+        },
+        {
+          "epoch": 13,
+          "encoder_parameter_tensor_count": 39,
+          "overall": {
+            "relative_l2_parameter_change": 0.5449537934471534,
+            "cosine_similarity": 0.8770928894404033,
+            "absolute_l2_parameter_change": 25.573902130126953,
+            "reference_l2_norm": 46.92856979370117
+          },
+          "per_layer": {
+            "input_projection": {
+              "relative_l2_parameter_change": 0.7234791594871625,
+              "cosine_similarity": 0.8383774781118644,
+              "absolute_l2_parameter_change": 5.5088372230529785,
+              "reference_l2_norm": 7.614368915557861
+            },
+            "position_embedding": {
+              "relative_l2_parameter_change": 7.137336924494229,
+              "cosine_similarity": 0.09247267381720596,
+              "absolute_l2_parameter_change": 1.7711745500564575,
+              "reference_l2_norm": 0.24815621972084045
+            },
+            "temporal_encoder.layer_0": {
+              "relative_l2_parameter_change": 0.7241799024390518,
+              "cosine_similarity": 0.8115319228555598,
+              "absolute_l2_parameter_change": 19.61754608154297,
+              "reference_l2_norm": 27.089326858520508
+            },
+            "temporal_encoder.layer_1": {
+              "relative_l2_parameter_change": 0.43994888903214946,
+              "cosine_similarity": 0.9134019435964758,
+              "absolute_l2_parameter_change": 11.675769805908203,
+              "reference_l2_norm": 26.538923263549805
+            },
+            "temporal_encoder.layer_2": {
+              "relative_l2_parameter_change": 0.37517012229999824,
+              "cosine_similarity": 0.9344360475912754,
+              "absolute_l2_parameter_change": 9.96938419342041,
+              "reference_l2_norm": 26.572969436645508
+            }
+          },
+          "definition": "relative_l2=||current-reference||_2/||reference||_2; cosine over flattened tensors",
+          "is_selected_epoch": false
+        },
+        {
+          "epoch": 14,
+          "encoder_parameter_tensor_count": 39,
+          "overall": {
+            "relative_l2_parameter_change": 0.565031393566093,
+            "cosine_similarity": 0.8695069808226655,
+            "absolute_l2_parameter_change": 26.516115188598633,
+            "reference_l2_norm": 46.92856979370117
+          },
+          "per_layer": {
+            "input_projection": {
+              "relative_l2_parameter_change": 0.7408003349596821,
+              "cosine_similarity": 0.8326437256378598,
+              "absolute_l2_parameter_change": 5.6407270431518555,
+              "reference_l2_norm": 7.614368915557861
+            },
+            "position_embedding": {
+              "relative_l2_parameter_change": 7.082026449483657,
+              "cosine_similarity": 0.09651268623787726,
+              "absolute_l2_parameter_change": 1.7574489116668701,
+              "reference_l2_norm": 0.24815621972084045
+            },
+            "temporal_encoder.layer_0": {
+              "relative_l2_parameter_change": 0.7512933715206833,
+              "cosine_similarity": 0.8009951590814297,
+              "absolute_l2_parameter_change": 20.352031707763672,
+              "reference_l2_norm": 27.089326858520508
+            },
+            "temporal_encoder.layer_1": {
+              "relative_l2_parameter_change": 0.4586450059540583,
+              "cosine_similarity": 0.9068343350230091,
+              "absolute_l2_parameter_change": 12.171944618225098,
+              "reference_l2_norm": 26.538923263549805
+            },
+            "temporal_encoder.layer_2": {
+              "relative_l2_parameter_change": 0.3871850759075097,
+              "cosine_similarity": 0.9305491152657901,
+              "absolute_l2_parameter_change": 10.288657188415527,
+              "reference_l2_norm": 26.572969436645508
+            }
+          },
+          "definition": "relative_l2=||current-reference||_2/||reference||_2; cosine over flattened tensors",
+          "is_selected_epoch": false
+        },
+        {
+          "epoch": 15,
+          "encoder_parameter_tensor_count": 39,
+          "overall": {
+            "relative_l2_parameter_change": 0.5862902608940646,
+            "cosine_similarity": 0.8615289274447344,
+            "absolute_l2_parameter_change": 27.513763427734375,
+            "reference_l2_norm": 46.92856979370117
+          },
+          "per_layer": {
+            "input_projection": {
+              "relative_l2_parameter_change": 0.7567311471987112,
+              "cosine_similarity": 0.8272648533026566,
+              "absolute_l2_parameter_change": 5.762030124664307,
+              "reference_l2_norm": 7.614368915557861
+            },
+            "position_embedding": {
+              "relative_l2_parameter_change": 7.230759309074222,
+              "cosine_similarity": 0.09489725986744353,
+              "absolute_l2_parameter_change": 1.7943578958511353,
+              "reference_l2_norm": 0.24815621972084045
+            },
+            "temporal_encoder.layer_0": {
+              "relative_l2_parameter_change": 0.7809402483726757,
+              "cosine_similarity": 0.790448020440493,
+              "absolute_l2_parameter_change": 21.1551456451416,
+              "reference_l2_norm": 27.089326858520508
+            },
+            "temporal_encoder.layer_1": {
+              "relative_l2_parameter_change": 0.47143525327189323,
+              "cosine_similarity": 0.9019986253177841,
+              "absolute_l2_parameter_change": 12.511384010314941,
+              "reference_l2_norm": 26.538923263549805
+            },
+            "temporal_encoder.layer_2": {
+              "relative_l2_parameter_change": 0.4062376968406797,
+              "cosine_similarity": 0.9242889261045014,
+              "absolute_l2_parameter_change": 10.794941902160645,
+              "reference_l2_norm": 26.572969436645508
+            }
+          },
+          "definition": "relative_l2=||current-reference||_2/||reference||_2; cosine over flattened tensors",
+          "is_selected_epoch": false
+        },
+        {
+          "epoch": 16,
+          "encoder_parameter_tensor_count": 39,
+          "overall": {
+            "relative_l2_parameter_change": 0.6063369311910225,
+            "cosine_similarity": 0.8535754896507695,
+            "absolute_l2_parameter_change": 28.454524993896484,
+            "reference_l2_norm": 46.92856979370117
+          },
+          "per_layer": {
+            "input_projection": {
+              "relative_l2_parameter_change": 0.7695198337175171,
+              "cosine_similarity": 0.8226051879691206,
+              "absolute_l2_parameter_change": 5.859407901763916,
+              "reference_l2_norm": 7.614368915557861
+            },
+            "position_embedding": {
+              "relative_l2_parameter_change": 7.333884409278492,
+              "cosine_similarity": 0.0922261879009795,
+              "absolute_l2_parameter_change": 1.8199490308761597,
+              "reference_l2_norm": 0.24815621972084045
+            },
+            "temporal_encoder.layer_0": {
+              "relative_l2_parameter_change": 0.8017495940358563,
+              "cosine_similarity": 0.7818219169939165,
+              "absolute_l2_parameter_change": 21.718856811523438,
+              "reference_l2_norm": 27.089326858520508
+            },
+            "temporal_encoder.layer_1": {
+              "relative_l2_parameter_change": 0.4897744644815211,
+              "cosine_similarity": 0.8952122434778218,
+              "absolute_l2_parameter_change": 12.998086929321289,
+              "reference_l2_norm": 26.538923263549805
+            },
+            "temporal_encoder.layer_2": {
+              "relative_l2_parameter_change": 0.43133877968737766,
+              "cosine_similarity": 0.9156931396846684,
+              "absolute_l2_parameter_change": 11.461952209472656,
+              "reference_l2_norm": 26.572969436645508
+            }
+          },
+          "definition": "relative_l2=||current-reference||_2/||reference||_2; cosine over flattened tensors",
+          "is_selected_epoch": false
+        },
+        {
+          "epoch": 17,
+          "encoder_parameter_tensor_count": 39,
+          "overall": {
+            "relative_l2_parameter_change": 0.6305364482956205,
+            "cosine_similarity": 0.8445126613363706,
+            "absolute_l2_parameter_change": 29.590173721313477,
+            "reference_l2_norm": 46.92856979370117
+          },
+          "per_layer": {
+            "input_projection": {
+              "relative_l2_parameter_change": 0.7852709169915826,
+              "cosine_similarity": 0.8170495684162462,
+              "absolute_l2_parameter_change": 5.979342460632324,
+              "reference_l2_norm": 7.614368915557861
+            },
+            "position_embedding": {
+              "relative_l2_parameter_change": 7.369621800413872,
+              "cosine_similarity": 0.09063746588044172,
+              "absolute_l2_parameter_change": 1.8288174867630005,
+              "reference_l2_norm": 0.24815621972084045
+            },
+            "temporal_encoder.layer_0": {
+              "relative_l2_parameter_change": 0.8214956139396642,
+              "cosine_similarity": 0.7747573491741208,
+              "absolute_l2_parameter_change": 22.25376319885254,
+              "reference_l2_norm": 27.089326858520508
+            },
+            "temporal_encoder.layer_1": {
+              "relative_l2_parameter_change": 0.5166336676216015,
+              "cosine_similarity": 0.8854420897922306,
+              "absolute_l2_parameter_change": 13.710901260375977,
+              "reference_l2_norm": 26.538923263549805
+            },
+            "temporal_encoder.layer_2": {
+              "relative_l2_parameter_change": 0.4659101863358228,
+              "cosine_similarity": 0.9037369018411076,
+              "absolute_l2_parameter_change": 12.380617141723633,
+              "reference_l2_norm": 26.572969436645508
+            }
+          },
+          "definition": "relative_l2=||current-reference||_2/||reference||_2; cosine over flattened tensors",
+          "is_selected_epoch": false
+        },
+        {
+          "epoch": 18,
+          "encoder_parameter_tensor_count": 39,
+          "overall": {
+            "relative_l2_parameter_change": 0.6591020288256186,
+            "cosine_similarity": 0.83374601654132,
+            "absolute_l2_parameter_change": 30.930715560913086,
+            "reference_l2_norm": 46.92856979370117
+          },
+          "per_layer": {
+            "input_projection": {
+              "relative_l2_parameter_change": 0.8010054050824721,
+              "cosine_similarity": 0.8129597470797906,
+              "absolute_l2_parameter_change": 6.099150657653809,
+              "reference_l2_norm": 7.614368915557861
+            },
+            "position_embedding": {
+              "relative_l2_parameter_change": 7.491869868415506,
+              "cosine_similarity": 0.09266322088456926,
+              "absolute_l2_parameter_change": 1.8591541051864624,
+              "reference_l2_norm": 0.24815621972084045
+            },
+            "temporal_encoder.layer_0": {
+              "relative_l2_parameter_change": 0.8483613116435157,
+              "cosine_similarity": 0.7652369985173983,
+              "absolute_l2_parameter_change": 22.981536865234375,
+              "reference_l2_norm": 27.089326858520508
+            },
+            "temporal_encoder.layer_1": {
+              "relative_l2_parameter_change": 0.5469495234273815,
+              "cosine_similarity": 0.8742404908507996,
+              "absolute_l2_parameter_change": 14.515451431274414,
+              "reference_l2_norm": 26.538923263549805
+            },
+            "temporal_encoder.layer_2": {
+              "relative_l2_parameter_change": 0.5009786899680294,
+              "cosine_similarity": 0.8910458586994613,
+              "absolute_l2_parameter_change": 13.312491416931152,
+              "reference_l2_norm": 26.572969436645508
+            }
+          },
+          "definition": "relative_l2=||current-reference||_2/||reference||_2; cosine over flattened tensors",
+          "is_selected_epoch": false
+        },
+        {
+          "epoch": 19,
+          "encoder_parameter_tensor_count": 39,
+          "overall": {
+            "relative_l2_parameter_change": 0.6879724774169623,
+            "cosine_similarity": 0.8226034652920561,
+            "absolute_l2_parameter_change": 32.28556442260742,
+            "reference_l2_norm": 46.92856979370117
+          },
+          "per_layer": {
+            "input_projection": {
+              "relative_l2_parameter_change": 0.8131567739439843,
+              "cosine_similarity": 0.8081297416114103,
+              "absolute_l2_parameter_change": 6.191675662994385,
+              "reference_l2_norm": 7.614368915557861
+            },
+            "position_embedding": {
+              "relative_l2_parameter_change": 7.489499673401634,
+              "cosine_similarity": 0.09500119377224886,
+              "absolute_l2_parameter_change": 1.8585659265518188,
+              "reference_l2_norm": 0.24815621972084045
+            },
+            "temporal_encoder.layer_0": {
+              "relative_l2_parameter_change": 0.8763729959755986,
+              "cosine_similarity": 0.7551069692379049,
+              "absolute_l2_parameter_change": 23.740354537963867,
+              "reference_l2_norm": 27.089326858520508
+            },
+            "temporal_encoder.layer_1": {
+              "relative_l2_parameter_change": 0.5752550715144611,
+              "cosine_similarity": 0.8633655498608428,
+              "absolute_l2_parameter_change": 15.266650199890137,
+              "reference_l2_norm": 26.538923263549805
+            },
+            "temporal_encoder.layer_2": {
+              "relative_l2_parameter_change": 0.5373759796679403,
+              "cosine_similarity": 0.8775016537674989,
+              "absolute_l2_parameter_change": 14.279675483703613,
+              "reference_l2_norm": 26.572969436645508
+            }
+          },
+          "definition": "relative_l2=||current-reference||_2/||reference||_2; cosine over flattened tensors",
+          "is_selected_epoch": false
+        },
+        {
+          "epoch": 20,
+          "encoder_parameter_tensor_count": 39,
+          "overall": {
+            "relative_l2_parameter_change": 0.7242505980510717,
+            "cosine_similarity": 0.8086757772538952,
+            "absolute_l2_parameter_change": 33.98804473876953,
+            "reference_l2_norm": 46.92856979370117
+          },
+          "per_layer": {
+            "input_projection": {
+              "relative_l2_parameter_change": 0.8276193195235942,
+              "cosine_similarity": 0.8045526080679121,
+              "absolute_l2_parameter_change": 6.3017988204956055,
+              "reference_l2_norm": 7.614368915557861
+            },
+            "position_embedding": {
+              "relative_l2_parameter_change": 8.24426363207406,
+              "cosine_similarity": 0.07654674859217388,
+              "absolute_l2_parameter_change": 2.045865297317505,
+              "reference_l2_norm": 0.24815621972084045
+            },
+            "temporal_encoder.layer_0": {
+              "relative_l2_parameter_change": 0.9054244892610928,
+              "cosine_similarity": 0.7445839714315167,
+              "absolute_l2_parameter_change": 24.527339935302734,
+              "reference_l2_norm": 27.089326858520508
+            },
+            "temporal_encoder.layer_1": {
+              "relative_l2_parameter_change": 0.6204898520120578,
+              "cosine_similarity": 0.8460470891688834,
+              "absolute_l2_parameter_change": 16.467132568359375,
+              "reference_l2_norm": 26.538923263549805
+            },
+            "temporal_encoder.layer_2": {
+              "relative_l2_parameter_change": 0.5812428953460654,
+              "cosine_similarity": 0.860751326041889,
+              "absolute_l2_parameter_change": 15.44534969329834,
+              "reference_l2_norm": 26.572969436645508
+            }
+          },
+          "definition": "relative_l2=||current-reference||_2/||reference||_2; cosine over flattened tensors",
+          "is_selected_epoch": false
+        }
+      ]
+    }
+  }
+}
