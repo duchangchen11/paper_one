@@ -1,0 +1,245 @@
+{
+  "protocol_id": "Intention-Scratch-Matched-v1",
+  "experiment": "Input-Matched Intention Scratch Transformer (M0)",
+  "frozen": true,
+  "frozen_before_m0_test_access": true,
+  "m0_test_accessed_before_freeze": false,
+  "test_archive_hash_recorded_before_freeze": false,
+  "p1_test_predictions_reused_from_separate_prior_frozen_experiment": true,
+  "base_commit": "96e4fe0a175560ba154701c16b628f5014e20db2",
+  "seeds": [
+    42,
+    123,
+    2024
+  ],
+  "method": "M0_scratch_matched",
+  "input": {
+    "source": "concat(target_obs, target_abs_obs)",
+    "shape": "[B,15,8]",
+    "scene_input": false,
+    "future_trajectory_input": false,
+    "normalization": "reuse data/processed/jaad_sequences_scene_15x15 train/val arrays exactly as P1"
+  },
+  "model": {
+    "target_projection": "Linear(8,128)",
+    "position_embedding": [
+      1,
+      15,
+      128
+    ],
+    "transformer": {
+      "layers": 3,
+      "heads": 4,
+      "hidden_dimension": 128,
+      "feedforward_dimension": 512,
+      "activation": "gelu",
+      "norm_first": true,
+      "batch_first": true,
+      "dropout": 0.1
+    },
+    "context": "last temporal encoder output [B,128]",
+    "intention_head": "LayerNorm(128) -> Linear(128,128) -> GELU -> Dropout(0.1) -> Linear(128,1)",
+    "scene_encoder": false,
+    "trajectory_decoder": false,
+    "pretrained_checkpoint_loaded": false
+  },
+  "training": {
+    "train_split": "data/processed/jaad_sequences_scene_15x15/train.npz",
+    "validation_split": "data/processed/jaad_sequences_scene_15x15/val.npz",
+    "test_split": "forbidden until protocol freeze",
+    "maximum_epochs": 20,
+    "batch_size": 256,
+    "optimizer": "AdamW",
+    "learning_rate": 0.001,
+    "weight_decay": 0.0001,
+    "gradient_clip_norm": 5.0,
+    "sampling": "natural shuffle=True; no WeightedRandomSampler",
+    "loss": "inverse-frequency weighted BCE on intention only",
+    "checkpoint_selection": "highest raw validation ROC-AUC; if within 1e-4, lower raw validation Brier",
+    "selection_tolerance": 0.0001,
+    "temperature_fit": "validation split only",
+    "threshold_fit": "validation balanced accuracy only"
+  },
+  "paired_analysis": {
+    "primary_baseline": "P1_target_only from results/trajectory_preserving_joint",
+    "bootstrap_cluster": "scene_id",
+    "bootstrap_repetitions": 2000,
+    "bootstrap_seed": 9124,
+    "delta_definition": "P1 minus M0; positive AUC favors P1, negative Brier favors P1",
+    "transfer_decision_rule": {
+      "positive_mean_delta_auc_required": true,
+      "minimum_positive_seed_delta_auc_count": 2,
+      "minimum_seed_auc_cluster_ci_lower_above_zero_count": 2,
+      "interpretation": "descriptive stability criterion; not a confirmatory significance claim"
+    }
+  },
+  "transfer_decision_rule": {
+    "positive_mean_delta_auc_required": true,
+    "minimum_positive_seed_delta_auc_count": 2,
+    "minimum_seed_auc_cluster_ci_lower_above_zero_count": 2,
+    "interpretation": "descriptive stability criterion; not a confirmatory significance claim"
+  },
+  "architecture_sha256": "68fc9d88182e0b1cabab19ce5448d056fa2358293a2c7cedcb841a82010c40f8",
+  "validation_representation_analysis_sha256": "1b070e9455545cc8c92c06533584de88a71c30511d08aedb05d986a366028ff0",
+  "selected_checkpoints": {
+    "42": {
+      "path": "checkpoints/intention_scratch_matched/M0_scratch_seed42.pt",
+      "checkpoint_sha256": "9112de31a60e6eede99533f27ac8d41af263dda44a6267fdd79e36fda5156aff",
+      "initialization_sha256": "3ff26ae87c812ad2bb62e92f18374236c5b8e6cb15ec5c2d28258e6989eae033",
+      "selected_model_state_sha256": "7fe08f8cdf03899e2d12439bf721855292621edeefaee69c0ed7128543ba3488",
+      "selected_epoch": 2,
+      "validation_auc": 0.740382769082221,
+      "validation_brier": 0.20183541813930367,
+      "parameter_count_total": 614785,
+      "pretrained_checkpoint_loaded": false
+    },
+    "123": {
+      "path": "checkpoints/intention_scratch_matched/M0_scratch_seed123.pt",
+      "checkpoint_sha256": "5c9abdd73705d44080caebb823965ef3b8dae809a055aa07590e9b0f42e7c797",
+      "initialization_sha256": "311dbf2b530f7f9c13b109d315b9fca5d7cfe11e02261a27ba39dbab0d025a90",
+      "selected_model_state_sha256": "c5cd7e6b769576ec9f74e664c1fe4ae54fcdf3cd84160ea759b2d3197b7f27a6",
+      "selected_epoch": 1,
+      "validation_auc": 0.7553791756502466,
+      "validation_brier": 0.26606313042234686,
+      "parameter_count_total": 614785,
+      "pretrained_checkpoint_loaded": false
+    },
+    "2024": {
+      "path": "checkpoints/intention_scratch_matched/M0_scratch_seed2024.pt",
+      "checkpoint_sha256": "50ed1c2a4d782fa943d162759f2358c9540fb868b9893c807c3dc28f1b88b739",
+      "initialization_sha256": "a13eaf8d956ea20f0b385a5a04e7302fa1ff69457640487aa1c9a831e57bf421",
+      "selected_model_state_sha256": "29e8ce627d4df356ea17d35197d0e002bbb503aef923b8217d69b2f739bf92bd",
+      "selected_epoch": 2,
+      "validation_auc": 0.7712451378945231,
+      "validation_brier": 0.29912378020845776,
+      "parameter_count_total": 614785,
+      "pretrained_checkpoint_loaded": false
+    }
+  },
+  "validation_runs": {
+    "42": {
+      "metrics_path": "results/intention_scratch_matched/seed42/metrics.json",
+      "metrics_sha256": "29f08d2b40352e33d4e5c96ba2d3fb681260144e29f91f8aab66c2ecf9721d88",
+      "history_sha256": "cedbbaebbbfc652b5d2768a4db79b05f9e9dc9bb7a952b066b1ceaf81415d857",
+      "validation_metrics_sha256": "fc89b648c1f50ad4f7af068a1b03df731b6bbd69f2bbc14b178bb1d7b63763cf",
+      "initialization_report_sha256": "ccbad9836796402ca90afc9022f42ae522aa17c4a60a9120d94bdfc7bc06f0d4",
+      "class_weights": {
+        "positive_count": 23444,
+        "negative_count": 1112,
+        "positive": 0.5237160894045385,
+        "negative": 11.04136690647482,
+        "sampling": "natural shuffle=True; inverse-frequency weighted BCE; no WeightedRandomSampler"
+      },
+      "epochs_completed": 20,
+      "test_metrics_absent": true,
+      "test_accessed": false
+    },
+    "123": {
+      "metrics_path": "results/intention_scratch_matched/seed123/metrics.json",
+      "metrics_sha256": "b200a620b585bafae2543576eb5aefc584639dcfc9b133786bc1a452768deb64",
+      "history_sha256": "880ce54f9edebe3728c2781cc05a677025e4ffea79c881fe53ebd9d569fbcf99",
+      "validation_metrics_sha256": "fda1e29810aebc7448cec8b9a4ac603cae3bd7cce2aab037c172fe3ed6e8d163",
+      "initialization_report_sha256": "2a70d4381c71a58ecc5b1185f53aaed64b18a5ec8fc814f99c8d888dadf4d2d3",
+      "class_weights": {
+        "positive_count": 23444,
+        "negative_count": 1112,
+        "positive": 0.5237160894045385,
+        "negative": 11.04136690647482,
+        "sampling": "natural shuffle=True; inverse-frequency weighted BCE; no WeightedRandomSampler"
+      },
+      "epochs_completed": 20,
+      "test_metrics_absent": true,
+      "test_accessed": false
+    },
+    "2024": {
+      "metrics_path": "results/intention_scratch_matched/seed2024/metrics.json",
+      "metrics_sha256": "4473ecb4f4340e59fbe0f7283927d93dd5afb5895f1ab9bfa88ba9c9b226d115",
+      "history_sha256": "e3d8b26e6691ba2247f2172d5f24aa5d1464c53cb9d6e9e331404fd0cb7af6be",
+      "validation_metrics_sha256": "5355d4ba3da0d0cde3e5148c1afb9b313387f30fb122b125372fdbbe695403a1",
+      "initialization_report_sha256": "95e9c2b7efad6020204fc4d41e63c693c281ec2f80e7ea9762401c7a96436842",
+      "class_weights": {
+        "positive_count": 23444,
+        "negative_count": 1112,
+        "positive": 0.5237160894045385,
+        "negative": 11.04136690647482,
+        "sampling": "natural shuffle=True; inverse-frequency weighted BCE; no WeightedRandomSampler"
+      },
+      "epochs_completed": 20,
+      "test_metrics_absent": true,
+      "test_accessed": false
+    }
+  },
+  "p1_prior_frozen_protocol_sha256": "e0494823ef0adc5ee40ba1f78dd3596d17b3d76f8fe89bdb5b6fa1f65c45c71f",
+  "p1_baseline_artifacts": {
+    "42": {
+      "metrics_path": "results/trajectory_preserving_joint/P1_target_only/seed42/metrics.json",
+      "metrics_sha256": "18e1b3e3af99e0aff7992d20af3fc671cafe63b0c91fa2812f39edfbcd5c1a42",
+      "predictions_path": "results/trajectory_preserving_joint/P1_target_only/seed42/test_predictions.npz",
+      "predictions_sha256": "f24f9093573b54a98bfa9f4d9e31eaab9ee33f9e49651c83a308c675ee2d3bdf",
+      "checkpoint_path": "checkpoints/trajectory_preserving_joint/P1_target_only_seed42.pt",
+      "checkpoint_sha256": "41d6c6cf40e5acba56b5489afec99bd9417f24129b7f8faf49840fcea72c232b"
+    },
+    "123": {
+      "metrics_path": "results/trajectory_preserving_joint/P1_target_only/seed123/metrics.json",
+      "metrics_sha256": "0b5c2c0e3ffd0af9052ee0fc4be655199ccd9b62e15e4b362449815bf0f3c2d3",
+      "predictions_path": "results/trajectory_preserving_joint/P1_target_only/seed123/test_predictions.npz",
+      "predictions_sha256": "babdd0a7e21184daa300128a08fcc466c52aba69737fa25001ab059878be3def",
+      "checkpoint_path": "checkpoints/trajectory_preserving_joint/P1_target_only_seed123.pt",
+      "checkpoint_sha256": "16bf87ddda64c2377c8d24ef1dcddf6e872568bf3320eea184da171a228d917c"
+    },
+    "2024": {
+      "metrics_path": "results/trajectory_preserving_joint/P1_target_only/seed2024/metrics.json",
+      "metrics_sha256": "6e92299746c4a3c691dee44ddbef1c0b55a1d08b074b1087b665f3d20f8b756c",
+      "predictions_path": "results/trajectory_preserving_joint/P1_target_only/seed2024/test_predictions.npz",
+      "predictions_sha256": "bd3ecf4a9b59cac6293d259161b3244761a8c00750021ddd5ada6a3f81962f0c",
+      "checkpoint_path": "checkpoints/trajectory_preserving_joint/P1_target_only_seed2024.pt",
+      "checkpoint_sha256": "07bb2ed18dddd7f6e5c7d1a0a66048e9b19e6fd29fd8f8436908e12630ba6687"
+    }
+  },
+  "data_and_frozen_input_sha256": {
+    "data/processed/jaad_sequences_scene_15x15/train.npz": "6da2d1d40a918a218a7d054407d95f2791e2338a760b4836f2ca6d06c59ea19a",
+    "data/processed/jaad_sequences_scene_15x15/val.npz": "fb78bb5edcd18d74a15744cfd8ae728c8600b485d4028bed8ee2c9c2d4c5f66c",
+    "results/intention_scratch_matched/architecture_equivalence.json": "2af2319f915f630c18c5d27660e16f4091518e5c10582daa38dfa788cec15c08",
+    "results/intention_scratch_matched/representation_analysis.json": "1b070e9455545cc8c92c06533584de88a71c30511d08aedb05d986a366028ff0",
+    "results/intention_scratch_matched/initialization_report.json": "714774d02dd8573f2749d010816b3d5127758db048cf0af507559d369cf2573d",
+    "results/trajectory_preserving_joint/protocol_frozen.json": "e0494823ef0adc5ee40ba1f78dd3596d17b3d76f8fe89bdb5b6fa1f65c45c71f",
+    "results/trajectory_preserving_joint/protocol_frozen.sha256": "7cfb6370aa34b8913d849819a6beced6c7f107666134cad6c0054af3c3a04bcb",
+    "results/reliability_gated_intent_15x15/test_metrics.json": "aa6a6496a6ccad5dc2e530224b0993f6f0d8c8608c6f4a8ba7e6d7b68a55dacc",
+    "checkpoints/trajectory_transformer_scene_15x15_seed42.pt": "0dd7b14e12c94f002c603938fe9ab838fa18a5233bae2a3a04bb669fe019e0dd",
+    "results/trajectory_preserving_joint/P1_target_only/seed42/metrics.json": "18e1b3e3af99e0aff7992d20af3fc671cafe63b0c91fa2812f39edfbcd5c1a42",
+    "results/trajectory_preserving_joint/P1_target_only/seed42/test_predictions.npz": "f24f9093573b54a98bfa9f4d9e31eaab9ee33f9e49651c83a308c675ee2d3bdf",
+    "checkpoints/intention_scratch_matched/M0_scratch_seed42.pt": "9112de31a60e6eede99533f27ac8d41af263dda44a6267fdd79e36fda5156aff",
+    "results/intention_scratch_matched/seed42/metrics.json": "29f08d2b40352e33d4e5c96ba2d3fb681260144e29f91f8aab66c2ecf9721d88",
+    "checkpoints/trajectory_transformer_scene_15x15_seed123.pt": "cc29da66624a0118d754b7b5b07d5af01af4e9b6b8969b06a3b362cc6024771a",
+    "results/trajectory_preserving_joint/P1_target_only/seed123/metrics.json": "0b5c2c0e3ffd0af9052ee0fc4be655199ccd9b62e15e4b362449815bf0f3c2d3",
+    "results/trajectory_preserving_joint/P1_target_only/seed123/test_predictions.npz": "babdd0a7e21184daa300128a08fcc466c52aba69737fa25001ab059878be3def",
+    "checkpoints/intention_scratch_matched/M0_scratch_seed123.pt": "5c9abdd73705d44080caebb823965ef3b8dae809a055aa07590e9b0f42e7c797",
+    "results/intention_scratch_matched/seed123/metrics.json": "b200a620b585bafae2543576eb5aefc584639dcfc9b133786bc1a452768deb64",
+    "checkpoints/trajectory_transformer_scene_15x15_seed2024.pt": "b14d2b424e3f24fea1d5b7af49024dcef7f87458b9a557daee21d5ac785be75a",
+    "results/trajectory_preserving_joint/P1_target_only/seed2024/metrics.json": "6e92299746c4a3c691dee44ddbef1c0b55a1d08b074b1087b665f3d20f8b756c",
+    "results/trajectory_preserving_joint/P1_target_only/seed2024/test_predictions.npz": "bd3ecf4a9b59cac6293d259161b3244761a8c00750021ddd5ada6a3f81962f0c",
+    "checkpoints/intention_scratch_matched/M0_scratch_seed2024.pt": "50ed1c2a4d782fa943d162759f2358c9540fb868b9893c807c3dc28f1b88b739",
+    "results/intention_scratch_matched/seed2024/metrics.json": "4473ecb4f4340e59fbe0f7283927d93dd5afb5895f1ab9bfa88ba9c9b226d115"
+  },
+  "source_sha256": {
+    "configs/intention_scratch_matched.json": "f989b5e4d7517af78ab81668ee1945f0b008adb6ce8783c0d75b710d78e7dbed",
+    "src/models/intention_scratch_transformer.py": "2c03097553dbd8520e1e1cf043a15737c374647361c0405b7bba49b8924cf5fd",
+    "src/models/trajectory_transformer.py": "2f13ea5fc0929c7c037f7177decaed0732f86b54eaf04f0d4f09d2c7f520ea8a",
+    "src/models/trajectory_preserving_joint.py": "a28f39e1ddeda08ce6b18c646dd0f26253a3b48f67e23b6e9c6f1d35f99b1906",
+    "scripts/train_intention_scratch_matched.py": "574955d1433a1d72593ce6107a4655e52ad8768d096c236c3d8098c56bb61bef",
+    "scripts/audit_intention_scratch_architecture.py": "74499d218d5ff3597cddf9620c221757cd958ca00719285060281f2156c040a7",
+    "scripts/analyze_intention_scratch_representations.py": "1043db0f425fe09d2322b42e0b5a2a989f45980ab9170f0931a1cd7fbbbe3bb6",
+    "scripts/freeze_intention_scratch_protocol.py": "60a13d3cc7271760e5c2bb0a96c826ba81c7e25fb679dcc74254364c1118f725",
+    "scripts/evaluate_intention_scratch_test.py": "de8f31cd177b7dc45c299b150614c3718a34ddcb98952011e4677cdf7f44c986",
+    "scripts/analyze_intention_scratch_matched.py": "470a8ea482a79433f42ea57895a248a4e7d59481c1e4bae777d0b63002b7f3e5",
+    "scripts/trajectory_preserving_utils.py": "c520fb6d940a1134f1a2955bf79f945f1172efe62f9ed3315995dbd5aab82b53",
+    "scripts/reliability_gated_intent_utils.py": "bd2f7eadb3a54726ada64563d425d8879b33af33118fa052b7ce8e8c4d8d8c8f",
+    "scripts/evaluate_trajectory_preserving_joint_test.py": "809af50b1e4f67efe3b16880a0bbeac3d482052b6e466493aa919c211a3e238e",
+    "tests/test_intention_scratch_matched.py": "32189d853c051242d3ecfa671a9076715f19ce361cd0d151714008ed5c698fd3"
+  },
+  "environment": {
+    "python": "3.10.21 (main, Aug 27 2026, 14:42:07) [GCC 14.3.0]",
+    "torch": "2.5.1+cu124",
+    "device": "cuda"
+  }
+}

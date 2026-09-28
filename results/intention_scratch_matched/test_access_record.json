@@ -1,0 +1,13 @@
+{
+  "protocol_sha256": "af9f641db1cd35ed2d0697c248407cf4eb9c5a346694485f0ad05d3644f9fb8b",
+  "m0_test_access_started": true,
+  "test_archive_loaded": true,
+  "test_npz_sha256": "23658152706d460493fa6146f6b401648a509cc8708ab5eb6c0892e300de1935",
+  "sample_count": 18331,
+  "evaluation_count": 1,
+  "evaluated_seeds": [
+    42,
+    123,
+    2024
+  ]
+}

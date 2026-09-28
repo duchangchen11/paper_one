@@ -1,0 +1,76 @@
+{
+  "experiment": "Input-Matched Intention Scratch Transformer (M0)",
+  "protocol_id": "Intention-Scratch-Matched-v1",
+  "base_commit": "96e4fe0a175560ba154701c16b628f5014e20db2",
+  "seeds": [42, 123, 2024],
+  "input": {
+    "source": "concat(target_obs, target_abs_obs)",
+    "shape": "[B,15,8]",
+    "scene_input": false,
+    "future_trajectory_input": false,
+    "normalization": "reuse data/processed/jaad_sequences_scene_15x15 train/val arrays exactly as P1"
+  },
+  "model": {
+    "target_projection": "Linear(8,128)",
+    "position_embedding": [1, 15, 128],
+    "transformer": {
+      "layers": 3,
+      "heads": 4,
+      "hidden_dimension": 128,
+      "feedforward_dimension": 512,
+      "activation": "gelu",
+      "norm_first": true,
+      "batch_first": true,
+      "dropout": 0.1
+    },
+    "context": "last temporal encoder output [B,128]",
+    "intention_head": "LayerNorm(128) -> Linear(128,128) -> GELU -> Dropout(0.1) -> Linear(128,1)",
+    "scene_encoder": false,
+    "trajectory_decoder": false,
+    "pretrained_checkpoint_loaded": false
+  },
+  "training": {
+    "train_split": "data/processed/jaad_sequences_scene_15x15/train.npz",
+    "validation_split": "data/processed/jaad_sequences_scene_15x15/val.npz",
+    "test_split": "forbidden until protocol freeze",
+    "maximum_epochs": 20,
+    "batch_size": 256,
+    "optimizer": "AdamW",
+    "learning_rate": 0.001,
+    "weight_decay": 0.0001,
+    "gradient_clip_norm": 5.0,
+    "sampling": "natural shuffle=True; no WeightedRandomSampler",
+    "loss": "inverse-frequency weighted BCE on intention only",
+    "checkpoint_selection": "highest raw validation ROC-AUC; if within 1e-4, lower raw validation Brier",
+    "selection_tolerance": 0.0001,
+    "temperature_fit": "validation split only",
+    "threshold_fit": "validation balanced accuracy only"
+  },
+  "paired_analysis": {
+    "primary_baseline": "P1_target_only from results/trajectory_preserving_joint",
+    "bootstrap_cluster": "scene_id",
+    "bootstrap_repetitions": 2000,
+    "bootstrap_seed": 9124,
+    "delta_definition": "P1 minus M0; positive AUC favors P1, negative Brier favors P1",
+    "transfer_decision_rule": {
+      "positive_mean_delta_auc_required": true,
+      "minimum_positive_seed_delta_auc_count": 2,
+      "minimum_seed_auc_cluster_ci_lower_above_zero_count": 2,
+      "interpretation": "descriptive stability criterion; not a confirmatory significance claim"
+    }
+  },
+  "forbidden": [
+    "trajectory fine-tuning",
+    "partial unfreezing",
+    "adapter beyond matched P1 intention head",
+    "reliability or adjusted_u",
+    "social input",
+    "scene input",
+    "DGB",
+    "PCGrad",
+    "GradNorm",
+    "predicted future input",
+    "trajectory loss",
+    "test-based tuning"
+  ]
+}

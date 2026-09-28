@@ -1,0 +1,110 @@
+{
+  "protocol_sha256": "af9f641db1cd35ed2d0697c248407cf4eb9c5a346694485f0ad05d3644f9fb8b",
+  "method": "paired scene_id cluster bootstrap, P1 minus M0",
+  "repetitions_per_seed": 2000,
+  "bootstrap_seed": 9124,
+  "seeds_not_pooled": true,
+  "per_seed": {
+    "42": {
+      "sample_count": 18331,
+      "scene_cluster_count": 97,
+      "delta_definition": "P1 minus M0; positive AUC favors P1, negative Brier favors P1",
+      "point_estimate": {
+        "delta_auc": -0.008555251732054958,
+        "delta_brier": 0.10329094906391793
+      },
+      "bootstrap": {
+        "bootstrap_unit": "scene_id video cluster",
+        "seed": 9124,
+        "requested_repetitions": 2000,
+        "valid_repetitions": 2000,
+        "video_count": 97,
+        "delta_roc_auc": {
+          "mean": -0.011732340418919466,
+          "ci_percentile_95": {
+            "lower_95": -0.0784506649129774,
+            "upper_95": 0.04738085857912252
+          }
+        },
+        "delta_brier": {
+          "mean": 0.10394498929861679,
+          "ci_percentile_95": {
+            "lower_95": 0.06113528244913426,
+            "upper_95": 0.1448582209964684
+          }
+        }
+      }
+    },
+    "123": {
+      "sample_count": 18331,
+      "scene_cluster_count": 97,
+      "delta_definition": "P1 minus M0; positive AUC favors P1, negative Brier favors P1",
+      "point_estimate": {
+        "delta_auc": 0.03182560584864802,
+        "delta_brier": -0.037891902093367846
+      },
+      "bootstrap": {
+        "bootstrap_unit": "scene_id video cluster",
+        "seed": 9124,
+        "requested_repetitions": 2000,
+        "valid_repetitions": 2000,
+        "video_count": 97,
+        "delta_roc_auc": {
+          "mean": 0.03140433344739108,
+          "ci_percentile_95": {
+            "lower_95": -0.0204192243810535,
+            "upper_95": 0.08537953923094699
+          }
+        },
+        "delta_brier": {
+          "mean": -0.03720809591300168,
+          "ci_percentile_95": {
+            "lower_95": -0.06493172533485751,
+            "upper_95": -0.012176296610234172
+          }
+        }
+      }
+    },
+    "2024": {
+      "sample_count": 18331,
+      "scene_cluster_count": 97,
+      "delta_definition": "P1 minus M0; positive AUC favors P1, negative Brier favors P1",
+      "point_estimate": {
+        "delta_auc": 0.020539950907244142,
+        "delta_brier": -0.030886033669355162
+      },
+      "bootstrap": {
+        "bootstrap_unit": "scene_id video cluster",
+        "seed": 9124,
+        "requested_repetitions": 2000,
+        "valid_repetitions": 2000,
+        "video_count": 97,
+        "delta_roc_auc": {
+          "mean": 0.019345312185148213,
+          "ci_percentile_95": {
+            "lower_95": -0.06481474783536395,
+            "upper_95": 0.10067840406771975
+          }
+        },
+        "delta_brier": {
+          "mean": -0.03032117203914912,
+          "ci_percentile_95": {
+            "lower_95": -0.0568955155109256,
+            "upper_95": -0.0051318658236182
+          }
+        }
+      }
+    }
+  },
+  "mean_matched_seed_delta_auc": 0.014603435007945734,
+  "positive_delta_auc_seeds": 2,
+  "seeds_with_cluster_95ci_lower_auc_above_zero": 0,
+  "predeclared_descriptive_transfer_rule": {
+    "positive_mean_delta_auc_required": true,
+    "minimum_positive_seed_delta_auc_count": 2,
+    "minimum_seed_auc_cluster_ci_lower_above_zero_count": 2,
+    "interpretation": "descriptive stability criterion; not a confirmatory significance claim"
+  },
+  "predeclared_descriptive_transfer_rule_met": false,
+  "note": "P1's previously frozen test predictions are reused as the matched baseline; M0 was first evaluated only after its own protocol freeze."
+}

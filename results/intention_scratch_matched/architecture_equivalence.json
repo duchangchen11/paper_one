@@ -1,0 +1,652 @@
+{
+  "matched": true,
+  "checks": {
+    "input_shape_match": true,
+    "projection_weight_shape_match": true,
+    "position_embedding_shape_match": true,
+    "transformer_architecture_match": true,
+    "target_context_shape_match": true,
+    "intention_logit_shape_match": true,
+    "intention_head_parameter_shapes_match": true,
+    "matched_parameter_count_equal": true,
+    "m0_has_no_scene_or_trajectory_modules": true
+  },
+  "input_shape": [
+    "B",
+    15,
+    8
+  ],
+  "p1_target_encoder": {
+    "projection": {
+      "weight": [
+        128,
+        8
+      ],
+      "bias": [
+        128
+      ]
+    },
+    "position_embedding": [
+      1,
+      15,
+      128
+    ],
+    "transformer": {
+      "class": "TransformerEncoder",
+      "layer_count": 3,
+      "layers": [
+        {
+          "class": "TransformerEncoderLayer",
+          "d_model": 128,
+          "heads": 4,
+          "feedforward_dimension": 512,
+          "activation": "gelu",
+          "norm_first": true,
+          "batch_first": true,
+          "dropout": 0.1
+        },
+        {
+          "class": "TransformerEncoderLayer",
+          "d_model": 128,
+          "heads": 4,
+          "feedforward_dimension": 512,
+          "activation": "gelu",
+          "norm_first": true,
+          "batch_first": true,
+          "dropout": 0.1
+        },
+        {
+          "class": "TransformerEncoderLayer",
+          "d_model": 128,
+          "heads": 4,
+          "feedforward_dimension": 512,
+          "activation": "gelu",
+          "norm_first": true,
+          "batch_first": true,
+          "dropout": 0.1
+        }
+      ],
+      "identical_layer_specs": true
+    },
+    "context_shape": [
+      "B",
+      128
+    ]
+  },
+  "intention_head": [
+    {
+      "name": "LayerNorm",
+      "normalized_shape": [
+        128
+      ]
+    },
+    {
+      "name": "Linear",
+      "weight": [
+        128,
+        128
+      ],
+      "bias": [
+        128
+      ]
+    },
+    {
+      "name": "GELU"
+    },
+    {
+      "name": "Dropout",
+      "p": 0.1
+    },
+    {
+      "name": "Linear",
+      "weight": [
+        1,
+        128
+      ],
+      "bias": [
+        1
+      ]
+    }
+  ],
+  "p1_matched_target_encoder_plus_intention_head_parameter_count": 614785,
+  "m0_total_parameter_count": 614785,
+  "p1_total_parameter_count_including_unused_scene_and_trajectory_modules": 717471,
+  "matched_tensor_map": [
+    {
+      "p1_tensor": "backbone.input_projection.weight",
+      "m0_tensor": "input_projection.weight",
+      "p1_shape": [
+        128,
+        8
+      ],
+      "m0_shape": [
+        128,
+        8
+      ],
+      "shape_match": true
+    },
+    {
+      "p1_tensor": "backbone.input_projection.bias",
+      "m0_tensor": "input_projection.bias",
+      "p1_shape": [
+        128
+      ],
+      "m0_shape": [
+        128
+      ],
+      "shape_match": true
+    },
+    {
+      "p1_tensor": "backbone.temporal_encoder.layers.0.self_attn.in_proj_weight",
+      "m0_tensor": "temporal_encoder.layers.0.self_attn.in_proj_weight",
+      "p1_shape": [
+        384,
+        128
+      ],
+      "m0_shape": [
+        384,
+        128
+      ],
+      "shape_match": true
+    },
+    {
+      "p1_tensor": "backbone.temporal_encoder.layers.0.self_attn.in_proj_bias",
+      "m0_tensor": "temporal_encoder.layers.0.self_attn.in_proj_bias",
+      "p1_shape": [
+        384
+      ],
+      "m0_shape": [
+        384
+      ],
+      "shape_match": true
+    },
+    {
+      "p1_tensor": "backbone.temporal_encoder.layers.0.self_attn.out_proj.weight",
+      "m0_tensor": "temporal_encoder.layers.0.self_attn.out_proj.weight",
+      "p1_shape": [
+        128,
+        128
+      ],
+      "m0_shape": [
+        128,
+        128
+      ],
+      "shape_match": true
+    },
+    {
+      "p1_tensor": "backbone.temporal_encoder.layers.0.self_attn.out_proj.bias",
+      "m0_tensor": "temporal_encoder.layers.0.self_attn.out_proj.bias",
+      "p1_shape": [
+        128
+      ],
+      "m0_shape": [
+        128
+      ],
+      "shape_match": true
+    },
+    {
+      "p1_tensor": "backbone.temporal_encoder.layers.0.linear1.weight",
+      "m0_tensor": "temporal_encoder.layers.0.linear1.weight",
+      "p1_shape": [
+        512,
+        128
+      ],
+      "m0_shape": [
+        512,
+        128
+      ],
+      "shape_match": true
+    },
+    {
+      "p1_tensor": "backbone.temporal_encoder.layers.0.linear1.bias",
+      "m0_tensor": "temporal_encoder.layers.0.linear1.bias",
+      "p1_shape": [
+        512
+      ],
+      "m0_shape": [
+        512
+      ],
+      "shape_match": true
+    },
+    {
+      "p1_tensor": "backbone.temporal_encoder.layers.0.linear2.weight",
+      "m0_tensor": "temporal_encoder.layers.0.linear2.weight",
+      "p1_shape": [
+        128,
+        512
+      ],
+      "m0_shape": [
+        128,
+        512
+      ],
+      "shape_match": true
+    },
+    {
+      "p1_tensor": "backbone.temporal_encoder.layers.0.linear2.bias",
+      "m0_tensor": "temporal_encoder.layers.0.linear2.bias",
+      "p1_shape": [
+        128
+      ],
+      "m0_shape": [
+        128
+      ],
+      "shape_match": true
+    },
+    {
+      "p1_tensor": "backbone.temporal_encoder.layers.0.norm1.weight",
+      "m0_tensor": "temporal_encoder.layers.0.norm1.weight",
+      "p1_shape": [
+        128
+      ],
+      "m0_shape": [
+        128
+      ],
+      "shape_match": true
+    },
+    {
+      "p1_tensor": "backbone.temporal_encoder.layers.0.norm1.bias",
+      "m0_tensor": "temporal_encoder.layers.0.norm1.bias",
+      "p1_shape": [
+        128
+      ],
+      "m0_shape": [
+        128
+      ],
+      "shape_match": true
+    },
+    {
+      "p1_tensor": "backbone.temporal_encoder.layers.0.norm2.weight",
+      "m0_tensor": "temporal_encoder.layers.0.norm2.weight",
+      "p1_shape": [
+        128
+      ],
+      "m0_shape": [
+        128
+      ],
+      "shape_match": true
+    },
+    {
+      "p1_tensor": "backbone.temporal_encoder.layers.0.norm2.bias",
+      "m0_tensor": "temporal_encoder.layers.0.norm2.bias",
+      "p1_shape": [
+        128
+      ],
+      "m0_shape": [
+        128
+      ],
+      "shape_match": true
+    },
+    {
+      "p1_tensor": "backbone.temporal_encoder.layers.1.self_attn.in_proj_weight",
+      "m0_tensor": "temporal_encoder.layers.1.self_attn.in_proj_weight",
+      "p1_shape": [
+        384,
+        128
+      ],
+      "m0_shape": [
+        384,
+        128
+      ],
+      "shape_match": true
+    },
+    {
+      "p1_tensor": "backbone.temporal_encoder.layers.1.self_attn.in_proj_bias",
+      "m0_tensor": "temporal_encoder.layers.1.self_attn.in_proj_bias",
+      "p1_shape": [
+        384
+      ],
+      "m0_shape": [
+        384
+      ],
+      "shape_match": true
+    },
+    {
+      "p1_tensor": "backbone.temporal_encoder.layers.1.self_attn.out_proj.weight",
+      "m0_tensor": "temporal_encoder.layers.1.self_attn.out_proj.weight",
+      "p1_shape": [
+        128,
+        128
+      ],
+      "m0_shape": [
+        128,
+        128
+      ],
+      "shape_match": true
+    },
+    {
+      "p1_tensor": "backbone.temporal_encoder.layers.1.self_attn.out_proj.bias",
+      "m0_tensor": "temporal_encoder.layers.1.self_attn.out_proj.bias",
+      "p1_shape": [
+        128
+      ],
+      "m0_shape": [
+        128
+      ],
+      "shape_match": true
+    },
+    {
+      "p1_tensor": "backbone.temporal_encoder.layers.1.linear1.weight",
+      "m0_tensor": "temporal_encoder.layers.1.linear1.weight",
+      "p1_shape": [
+        512,
+        128
+      ],
+      "m0_shape": [
+        512,
+        128
+      ],
+      "shape_match": true
+    },
+    {
+      "p1_tensor": "backbone.temporal_encoder.layers.1.linear1.bias",
+      "m0_tensor": "temporal_encoder.layers.1.linear1.bias",
+      "p1_shape": [
+        512
+      ],
+      "m0_shape": [
+        512
+      ],
+      "shape_match": true
+    },
+    {
+      "p1_tensor": "backbone.temporal_encoder.layers.1.linear2.weight",
+      "m0_tensor": "temporal_encoder.layers.1.linear2.weight",
+      "p1_shape": [
+        128,
+        512
+      ],
+      "m0_shape": [
+        128,
+        512
+      ],
+      "shape_match": true
+    },
+    {
+      "p1_tensor": "backbone.temporal_encoder.layers.1.linear2.bias",
+      "m0_tensor": "temporal_encoder.layers.1.linear2.bias",
+      "p1_shape": [
+        128
+      ],
+      "m0_shape": [
+        128
+      ],
+      "shape_match": true
+    },
+    {
+      "p1_tensor": "backbone.temporal_encoder.layers.1.norm1.weight",
+      "m0_tensor": "temporal_encoder.layers.1.norm1.weight",
+      "p1_shape": [
+        128
+      ],
+      "m0_shape": [
+        128
+      ],
+      "shape_match": true
+    },
+    {
+      "p1_tensor": "backbone.temporal_encoder.layers.1.norm1.bias",
+      "m0_tensor": "temporal_encoder.layers.1.norm1.bias",
+      "p1_shape": [
+        128
+      ],
+      "m0_shape": [
+        128
+      ],
+      "shape_match": true
+    },
+    {
+      "p1_tensor": "backbone.temporal_encoder.layers.1.norm2.weight",
+      "m0_tensor": "temporal_encoder.layers.1.norm2.weight",
+      "p1_shape": [
+        128
+      ],
+      "m0_shape": [
+        128
+      ],
+      "shape_match": true
+    },
+    {
+      "p1_tensor": "backbone.temporal_encoder.layers.1.norm2.bias",
+      "m0_tensor": "temporal_encoder.layers.1.norm2.bias",
+      "p1_shape": [
+        128
+      ],
+      "m0_shape": [
+        128
+      ],
+      "shape_match": true
+    },
+    {
+      "p1_tensor": "backbone.temporal_encoder.layers.2.self_attn.in_proj_weight",
+      "m0_tensor": "temporal_encoder.layers.2.self_attn.in_proj_weight",
+      "p1_shape": [
+        384,
+        128
+      ],
+      "m0_shape": [
+        384,
+        128
+      ],
+      "shape_match": true
+    },
+    {
+      "p1_tensor": "backbone.temporal_encoder.layers.2.self_attn.in_proj_bias",
+      "m0_tensor": "temporal_encoder.layers.2.self_attn.in_proj_bias",
+      "p1_shape": [
+        384
+      ],
+      "m0_shape": [
+        384
+      ],
+      "shape_match": true
+    },
+    {
+      "p1_tensor": "backbone.temporal_encoder.layers.2.self_attn.out_proj.weight",
+      "m0_tensor": "temporal_encoder.layers.2.self_attn.out_proj.weight",
+      "p1_shape": [
+        128,
+        128
+      ],
+      "m0_shape": [
+        128,
+        128
+      ],
+      "shape_match": true
+    },
+    {
+      "p1_tensor": "backbone.temporal_encoder.layers.2.self_attn.out_proj.bias",
+      "m0_tensor": "temporal_encoder.layers.2.self_attn.out_proj.bias",
+      "p1_shape": [
+        128
+      ],
+      "m0_shape": [
+        128
+      ],
+      "shape_match": true
+    },
+    {
+      "p1_tensor": "backbone.temporal_encoder.layers.2.linear1.weight",
+      "m0_tensor": "temporal_encoder.layers.2.linear1.weight",
+      "p1_shape": [
+        512,
+        128
+      ],
+      "m0_shape": [
+        512,
+        128
+      ],
+      "shape_match": true
+    },
+    {
+      "p1_tensor": "backbone.temporal_encoder.layers.2.linear1.bias",
+      "m0_tensor": "temporal_encoder.layers.2.linear1.bias",
+      "p1_shape": [
+        512
+      ],
+      "m0_shape": [
+        512
+      ],
+      "shape_match": true
+    },
+    {
+      "p1_tensor": "backbone.temporal_encoder.layers.2.linear2.weight",
+      "m0_tensor": "temporal_encoder.layers.2.linear2.weight",
+      "p1_shape": [
+        128,
+        512
+      ],
+      "m0_shape": [
+        128,
+        512
+      ],
+      "shape_match": true
+    },
+    {
+      "p1_tensor": "backbone.temporal_encoder.layers.2.linear2.bias",
+      "m0_tensor": "temporal_encoder.layers.2.linear2.bias",
+      "p1_shape": [
+        128
+      ],
+      "m0_shape": [
+        128
+      ],
+      "shape_match": true
+    },
+    {
+      "p1_tensor": "backbone.temporal_encoder.layers.2.norm1.weight",
+      "m0_tensor": "temporal_encoder.layers.2.norm1.weight",
+      "p1_shape": [
+        128
+      ],
+      "m0_shape": [
+        128
+      ],
+      "shape_match": true
+    },
+    {
+      "p1_tensor": "backbone.temporal_encoder.layers.2.norm1.bias",
+      "m0_tensor": "temporal_encoder.layers.2.norm1.bias",
+      "p1_shape": [
+        128
+      ],
+      "m0_shape": [
+        128
+      ],
+      "shape_match": true
+    },
+    {
+      "p1_tensor": "backbone.temporal_encoder.layers.2.norm2.weight",
+      "m0_tensor": "temporal_encoder.layers.2.norm2.weight",
+      "p1_shape": [
+        128
+      ],
+      "m0_shape": [
+        128
+      ],
+      "shape_match": true
+    },
+    {
+      "p1_tensor": "backbone.temporal_encoder.layers.2.norm2.bias",
+      "m0_tensor": "temporal_encoder.layers.2.norm2.bias",
+      "p1_shape": [
+        128
+      ],
+      "m0_shape": [
+        128
+      ],
+      "shape_match": true
+    },
+    {
+      "p1_tensor": "intent_adapter.0.weight",
+      "m0_tensor": "intent_adapter.0.weight",
+      "p1_shape": [
+        128
+      ],
+      "m0_shape": [
+        128
+      ],
+      "shape_match": true
+    },
+    {
+      "p1_tensor": "intent_adapter.0.bias",
+      "m0_tensor": "intent_adapter.0.bias",
+      "p1_shape": [
+        128
+      ],
+      "m0_shape": [
+        128
+      ],
+      "shape_match": true
+    },
+    {
+      "p1_tensor": "intent_adapter.1.weight",
+      "m0_tensor": "intent_adapter.1.weight",
+      "p1_shape": [
+        128,
+        128
+      ],
+      "m0_shape": [
+        128,
+        128
+      ],
+      "shape_match": true
+    },
+    {
+      "p1_tensor": "intent_adapter.1.bias",
+      "m0_tensor": "intent_adapter.1.bias",
+      "p1_shape": [
+        128
+      ],
+      "m0_shape": [
+        128
+      ],
+      "shape_match": true
+    },
+    {
+      "p1_tensor": "intent_head.weight",
+      "m0_tensor": "intent_head.weight",
+      "p1_shape": [
+        1,
+        128
+      ],
+      "m0_shape": [
+        1,
+        128
+      ],
+      "shape_match": true
+    },
+    {
+      "p1_tensor": "intent_head.bias",
+      "m0_tensor": "intent_head.bias",
+      "p1_shape": [
+        1
+      ],
+      "m0_shape": [
+        1
+      ],
+      "shape_match": true
+    },
+    {
+      "p1_tensor": "backbone.position_embedding",
+      "m0_tensor": "position_embedding",
+      "p1_shape": [
+        1,
+        15,
+        128
+      ],
+      "m0_shape": [
+        1,
+        15,
+        128
+      ],
+      "shape_match": true
+    }
+  ],
+  "pretrained_weights_loaded_for_audit": false,
+  "random_input_shape": [
+    3,
+    15,
+    8
+  ],
+  "architecture_sha256": "68fc9d88182e0b1cabab19ce5448d056fa2358293a2c7cedcb841a82010c40f8"
+}
