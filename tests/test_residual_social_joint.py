@@ -12,7 +12,7 @@ from src.models.trajectory_transformer import SceneTrajectoryTransformer
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 SEED123_CHECKPOINT = PROJECT_ROOT / "checkpoints/trajectory_transformer_scene_15x15_seed123.pt"
-SEED123_TEST_DATA = PROJECT_ROOT / "data/processed/jaad_sequences_scene_15x15/test.npz"
+SEED123_VALIDATION_DATA = PROJECT_ROOT / "data/processed/jaad_sequences_scene_15x15/val.npz"
 
 
 def make_small_model(**kwargs) -> ResidualSocialJointModel:
@@ -70,11 +70,11 @@ def make_pretrained_backbone(checkpoint_path: Path) -> tuple[SceneTrajectoryTran
     return model, checkpoint
 
 
-def test_pretrained_backbone_reproduces_seed123_prediction():
-    if not SEED123_CHECKPOINT.is_file() or not SEED123_TEST_DATA.is_file():
-        pytest.skip("local seed123 Transformer checkpoint/data are unavailable")
+def test_pretrained_backbone_reproduces_seed123_validation_prediction():
+    if not SEED123_CHECKPOINT.is_file() or not SEED123_VALIDATION_DATA.is_file():
+        pytest.skip("local seed123 Transformer checkpoint/validation data are unavailable")
     backbone, _ = make_pretrained_backbone(SEED123_CHECKPOINT)
-    arrays = np.load(SEED123_TEST_DATA, allow_pickle=False)
+    arrays = np.load(SEED123_VALIDATION_DATA, allow_pickle=False)
     target = torch.from_numpy(
         np.concatenate(
             [arrays["target_obs"][:2], arrays["target_abs_obs"][:2]], axis=-1

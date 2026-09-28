@@ -1,0 +1,394 @@
+{
+  "protocol_id": "J-Preserve-Frozen-v1",
+  "experiment": "Trajectory-Preserving Frozen Backbone Baseline",
+  "frozen": true,
+  "frozen_before_test_access": true,
+  "test_access_before_freeze": false,
+  "test_archive_hash_recorded": false,
+  "base_commit": "671a3ca18986b552717fb3543755a61d1316f874",
+  "seeds": [
+    42,
+    123,
+    2024
+  ],
+  "methods": [
+    "P1_target_only",
+    "P2_target_scene"
+  ],
+  "model_and_input_definition": {
+    "arms": {
+      "P1_target_only": "intention input = frozen target_context",
+      "P2_target_scene": "intention input = concat(frozen target_context, frozen scene_context)"
+    },
+    "trajectory_backbone": {
+      "class": "SceneTrajectoryTransformer",
+      "input_dimension": 8,
+      "scene_dimension": 512,
+      "hidden_dimension": 128,
+      "transformer_layers": 3,
+      "attention_heads": 4,
+      "observed_length": 15,
+      "prediction_length": 15,
+      "decoder_input": "concat(target_context, scene_context)",
+      "frozen": true,
+      "eval_mode_during_intention_training": true
+    },
+    "intention_head": {
+      "layers": "LayerNorm(input_dim) -> Linear(input_dim,128) -> GELU -> Dropout(0.1) -> Linear(128,1)",
+      "trainable_parameters_only": true,
+      "inputs_exclude": [
+        "predicted_future",
+        "social_context",
+        "reliability",
+        "adjusted_u"
+      ]
+    },
+    "forbidden_components": [
+      "DGB",
+      "reliability",
+      "adjusted_u",
+      "PCGrad",
+      "GradNorm",
+      "social input",
+      "trajectory fine-tuning",
+      "test-based tuning"
+    ]
+  },
+  "full_experiment_config": {
+    "experiment": "Trajectory-Preserving Frozen Backbone Baseline",
+    "protocol_id": "J-Preserve-Frozen-v1",
+    "base_commit": "671a3ca18986b552717fb3543755a61d1316f874",
+    "seeds": [
+      42,
+      123,
+      2024
+    ],
+    "arms": {
+      "P1_target_only": "intention input = frozen target_context",
+      "P2_target_scene": "intention input = concat(frozen target_context, frozen scene_context)"
+    },
+    "trajectory_backbone": {
+      "class": "SceneTrajectoryTransformer",
+      "input_dimension": 8,
+      "scene_dimension": 512,
+      "hidden_dimension": 128,
+      "transformer_layers": 3,
+      "attention_heads": 4,
+      "observed_length": 15,
+      "prediction_length": 15,
+      "decoder_input": "concat(target_context, scene_context)",
+      "frozen": true,
+      "eval_mode_during_intention_training": true
+    },
+    "intention_head": {
+      "layers": "LayerNorm(input_dim) -> Linear(input_dim,128) -> GELU -> Dropout(0.1) -> Linear(128,1)",
+      "trainable_parameters_only": true,
+      "inputs_exclude": [
+        "predicted_future",
+        "social_context",
+        "reliability",
+        "adjusted_u"
+      ]
+    },
+    "training": {
+      "train_split": "data/processed/jaad_sequences_scene_15x15/train.npz",
+      "validation_split": "data/processed/jaad_sequences_scene_15x15/val.npz",
+      "test_split": "not loaded until protocol freeze",
+      "maximum_epochs": 20,
+      "batch_size": 256,
+      "optimizer": "AdamW",
+      "learning_rate": 0.001,
+      "weight_decay": 0.0001,
+      "sampling": "natural shuffle with inverse-frequency weighted BCE class weights",
+      "gradient_clip_norm": 5.0,
+      "checkpoint_selection": "highest raw validation ROC-AUC; if within 1e-4, lower raw validation Brier",
+      "selection_tolerance": 0.0001,
+      "temperature_fit": "validation split only",
+      "classification_threshold_fit": "validation balanced accuracy only"
+    },
+    "equivalence_gate": {
+      "validation_samples_per_seed": 1024,
+      "max_abs_prediction_difference": 1e-06,
+      "absolute_ade_fde_difference_pixel": 1e-05,
+      "must_pass_before_training": true
+    },
+    "forbidden": [
+      "DGB",
+      "reliability",
+      "adjusted_u",
+      "PCGrad",
+      "GradNorm",
+      "social input",
+      "trajectory fine-tuning",
+      "test-based tuning"
+    ]
+  },
+  "training_config": {
+    "train_split": "data/processed/jaad_sequences_scene_15x15/train.npz",
+    "validation_split": "data/processed/jaad_sequences_scene_15x15/val.npz",
+    "test_split": "not loaded until protocol freeze",
+    "maximum_epochs": 20,
+    "batch_size": 256,
+    "optimizer": "AdamW",
+    "learning_rate": 0.001,
+    "weight_decay": 0.0001,
+    "sampling": "natural shuffle with inverse-frequency weighted BCE class weights",
+    "gradient_clip_norm": 5.0,
+    "checkpoint_selection": "highest raw validation ROC-AUC; if within 1e-4, lower raw validation Brier",
+    "selection_tolerance": 0.0001,
+    "temperature_fit": "validation split only",
+    "classification_threshold_fit": "validation balanced accuracy only"
+  },
+  "checkpoint_selection_and_calibration": {
+    "selection": "highest raw validation ROC-AUC; if within 1e-4, lower raw validation Brier",
+    "temperature_fit": "validation split only",
+    "threshold_fit": "validation balanced accuracy only"
+  },
+  "equivalence_gate": {
+    "samples_per_seed": 1024,
+    "validation_only": true,
+    "max_abs_difference_threshold": 1e-06,
+    "ade_fde_difference_threshold_pixel": 1e-05,
+    "device": "cuda",
+    "per_seed": {
+      "42": {
+        "samples": 1024,
+        "arms": {
+          "P1_target_only": {
+            "max_abs_difference": 0.0,
+            "mean_abs_difference": 0.0,
+            "trajectory_only_ade_pixel": 9.39052677154541,
+            "preserving_model_ade_pixel": 9.39052677154541,
+            "ade_difference_pixel": 0.0,
+            "trajectory_only_fde_pixel": 17.477664947509766,
+            "preserving_model_fde_pixel": 17.477664947509766,
+            "fde_difference_pixel": 0.0,
+            "pass": true
+          },
+          "P2_target_scene": {
+            "max_abs_difference": 0.0,
+            "mean_abs_difference": 0.0,
+            "trajectory_only_ade_pixel": 9.39052677154541,
+            "preserving_model_ade_pixel": 9.39052677154541,
+            "ade_difference_pixel": 0.0,
+            "trajectory_only_fde_pixel": 17.477664947509766,
+            "preserving_model_fde_pixel": 17.477664947509766,
+            "fde_difference_pixel": 0.0,
+            "pass": true
+          }
+        }
+      },
+      "123": {
+        "samples": 1024,
+        "arms": {
+          "P1_target_only": {
+            "max_abs_difference": 0.0,
+            "mean_abs_difference": 0.0,
+            "trajectory_only_ade_pixel": 9.359440803527832,
+            "preserving_model_ade_pixel": 9.359440803527832,
+            "ade_difference_pixel": 0.0,
+            "trajectory_only_fde_pixel": 16.979021072387695,
+            "preserving_model_fde_pixel": 16.979021072387695,
+            "fde_difference_pixel": 0.0,
+            "pass": true
+          },
+          "P2_target_scene": {
+            "max_abs_difference": 0.0,
+            "mean_abs_difference": 0.0,
+            "trajectory_only_ade_pixel": 9.359440803527832,
+            "preserving_model_ade_pixel": 9.359440803527832,
+            "ade_difference_pixel": 0.0,
+            "trajectory_only_fde_pixel": 16.979021072387695,
+            "preserving_model_fde_pixel": 16.979021072387695,
+            "fde_difference_pixel": 0.0,
+            "pass": true
+          }
+        }
+      },
+      "2024": {
+        "samples": 1024,
+        "arms": {
+          "P1_target_only": {
+            "max_abs_difference": 0.0,
+            "mean_abs_difference": 0.0,
+            "trajectory_only_ade_pixel": 9.474352836608887,
+            "preserving_model_ade_pixel": 9.474352836608887,
+            "ade_difference_pixel": 0.0,
+            "trajectory_only_fde_pixel": 16.78006362915039,
+            "preserving_model_fde_pixel": 16.78006362915039,
+            "fde_difference_pixel": 0.0,
+            "pass": true
+          },
+          "P2_target_scene": {
+            "max_abs_difference": 0.0,
+            "mean_abs_difference": 0.0,
+            "trajectory_only_ade_pixel": 9.474352836608887,
+            "preserving_model_ade_pixel": 9.474352836608887,
+            "ade_difference_pixel": 0.0,
+            "trajectory_only_fde_pixel": 16.78006362915039,
+            "preserving_model_fde_pixel": 16.78006362915039,
+            "fde_difference_pixel": 0.0,
+            "pass": true
+          }
+        }
+      }
+    },
+    "pass": true
+  },
+  "weight_loading_complete": true,
+  "selected_checkpoints": {
+    "P1_target_only": {
+      "42": {
+        "path": "checkpoints/trajectory_preserving_joint/P1_target_only_seed42.pt",
+        "checkpoint_sha256": "41d6c6cf40e5acba56b5489afec99bd9417f24129b7f8faf49840fcea72c232b",
+        "best_epoch": 1,
+        "validation_auc": 0.7113939224367309,
+        "validation_brier": 0.235168252434806,
+        "trajectory_backbone_sha256": "de055f5b482d1e1e5ae69cfa5e10c57fa02a1d8aed464478b6cefc5899cd39b5",
+        "trajectory_checkpoint_path": "checkpoints/trajectory_transformer_scene_15x15_seed42.pt",
+        "trajectory_checkpoint_sha256": "0dd7b14e12c94f002c603938fe9ab838fa18a5233bae2a3a04bb669fe019e0dd"
+      },
+      "123": {
+        "path": "checkpoints/trajectory_preserving_joint/P1_target_only_seed123.pt",
+        "checkpoint_sha256": "16bf87ddda64c2377c8d24ef1dcddf6e872568bf3320eea184da171a228d917c",
+        "best_epoch": 8,
+        "validation_auc": 0.6620322366508117,
+        "validation_brier": 0.2458483629034749,
+        "trajectory_backbone_sha256": "30f6c43033acc1f7dfda8aac6617df43e9829d4a4945480892a82811cb1312c4",
+        "trajectory_checkpoint_path": "checkpoints/trajectory_transformer_scene_15x15_seed123.pt",
+        "trajectory_checkpoint_sha256": "cc29da66624a0118d754b7b5b07d5af01af4e9b6b8969b06a3b362cc6024771a"
+      },
+      "2024": {
+        "path": "checkpoints/trajectory_preserving_joint/P1_target_only_seed2024.pt",
+        "checkpoint_sha256": "07bb2ed18dddd7f6e5c7d1a0a66048e9b19e6fd29fd8f8436908e12630ba6687",
+        "best_epoch": 10,
+        "validation_auc": 0.6414934413008772,
+        "validation_brier": 0.24729772917417844,
+        "trajectory_backbone_sha256": "9adaebd0d20bd734cad7d2e8dd79a98a3b86d90b6f1b6f425f083639e07909e2",
+        "trajectory_checkpoint_path": "checkpoints/trajectory_transformer_scene_15x15_seed2024.pt",
+        "trajectory_checkpoint_sha256": "b14d2b424e3f24fea1d5b7af49024dcef7f87458b9a557daee21d5ac785be75a"
+      }
+    },
+    "P2_target_scene": {
+      "42": {
+        "path": "checkpoints/trajectory_preserving_joint/P2_target_scene_seed42.pt",
+        "checkpoint_sha256": "d743c2ca769d5b616cf6ce9129270f13d98390736e1fb7bfeed3e9a3fd9a7261",
+        "best_epoch": 17,
+        "validation_auc": 0.9429124354690936,
+        "validation_brier": 0.140243245307294,
+        "trajectory_backbone_sha256": "de055f5b482d1e1e5ae69cfa5e10c57fa02a1d8aed464478b6cefc5899cd39b5",
+        "trajectory_checkpoint_path": "checkpoints/trajectory_transformer_scene_15x15_seed42.pt",
+        "trajectory_checkpoint_sha256": "0dd7b14e12c94f002c603938fe9ab838fa18a5233bae2a3a04bb669fe019e0dd"
+      },
+      "123": {
+        "path": "checkpoints/trajectory_preserving_joint/P2_target_scene_seed123.pt",
+        "checkpoint_sha256": "47370c6a83b48716c228099a8f479248e9808656b9faa5f582334972c73141d6",
+        "best_epoch": 8,
+        "validation_auc": 0.7888035791679696,
+        "validation_brier": 0.11029093666393874,
+        "trajectory_backbone_sha256": "30f6c43033acc1f7dfda8aac6617df43e9829d4a4945480892a82811cb1312c4",
+        "trajectory_checkpoint_path": "checkpoints/trajectory_transformer_scene_15x15_seed123.pt",
+        "trajectory_checkpoint_sha256": "cc29da66624a0118d754b7b5b07d5af01af4e9b6b8969b06a3b362cc6024771a"
+      },
+      "2024": {
+        "path": "checkpoints/trajectory_preserving_joint/P2_target_scene_seed2024.pt",
+        "checkpoint_sha256": "5a49619dd905fbebaa56c1cd87cc23aff5c171d7218029cdd630764a22956227",
+        "best_epoch": 15,
+        "validation_auc": 0.8973128809449356,
+        "validation_brier": 0.08722786800879499,
+        "trajectory_backbone_sha256": "9adaebd0d20bd734cad7d2e8dd79a98a3b86d90b6f1b6f425f083639e07909e2",
+        "trajectory_checkpoint_path": "checkpoints/trajectory_transformer_scene_15x15_seed2024.pt",
+        "trajectory_checkpoint_sha256": "b14d2b424e3f24fea1d5b7af49024dcef7f87458b9a557daee21d5ac785be75a"
+      }
+    }
+  },
+  "validation_run_checks": [
+    {
+      "method": "P1_target_only",
+      "seed": 42,
+      "epochs_completed": 20,
+      "best_epoch": 1,
+      "backbone_hash_unchanged_every_epoch": true,
+      "test_metric_absent_before_freeze": true,
+      "checkpoint_sha256": "41d6c6cf40e5acba56b5489afec99bd9417f24129b7f8faf49840fcea72c232b"
+    },
+    {
+      "method": "P1_target_only",
+      "seed": 123,
+      "epochs_completed": 20,
+      "best_epoch": 8,
+      "backbone_hash_unchanged_every_epoch": true,
+      "test_metric_absent_before_freeze": true,
+      "checkpoint_sha256": "16bf87ddda64c2377c8d24ef1dcddf6e872568bf3320eea184da171a228d917c"
+    },
+    {
+      "method": "P1_target_only",
+      "seed": 2024,
+      "epochs_completed": 20,
+      "best_epoch": 10,
+      "backbone_hash_unchanged_every_epoch": true,
+      "test_metric_absent_before_freeze": true,
+      "checkpoint_sha256": "07bb2ed18dddd7f6e5c7d1a0a66048e9b19e6fd29fd8f8436908e12630ba6687"
+    },
+    {
+      "method": "P2_target_scene",
+      "seed": 42,
+      "epochs_completed": 20,
+      "best_epoch": 17,
+      "backbone_hash_unchanged_every_epoch": true,
+      "test_metric_absent_before_freeze": true,
+      "checkpoint_sha256": "d743c2ca769d5b616cf6ce9129270f13d98390736e1fb7bfeed3e9a3fd9a7261"
+    },
+    {
+      "method": "P2_target_scene",
+      "seed": 123,
+      "epochs_completed": 20,
+      "best_epoch": 8,
+      "backbone_hash_unchanged_every_epoch": true,
+      "test_metric_absent_before_freeze": true,
+      "checkpoint_sha256": "47370c6a83b48716c228099a8f479248e9808656b9faa5f582334972c73141d6"
+    },
+    {
+      "method": "P2_target_scene",
+      "seed": 2024,
+      "epochs_completed": 20,
+      "best_epoch": 15,
+      "backbone_hash_unchanged_every_epoch": true,
+      "test_metric_absent_before_freeze": true,
+      "checkpoint_sha256": "5a49619dd905fbebaa56c1cd87cc23aff5c171d7218029cdd630764a22956227"
+    }
+  ],
+  "input_sha256": {
+    "data/processed/jaad_sequences_scene_15x15/train.npz": "6da2d1d40a918a218a7d054407d95f2791e2338a760b4836f2ca6d06c59ea19a",
+    "data/processed/jaad_sequences_scene_15x15/val.npz": "fb78bb5edcd18d74a15744cfd8ae728c8600b485d4028bed8ee2c9c2d4c5f66c",
+    "results/trajectory_preserving_joint/trajectory_reference.json": "b07019e4e6bf47049f01c2784991f6a5a1b0f6f4788e519a3077a37069646cc3",
+    "results/trajectory_preserving_joint/equivalence_test.json": "eca6c5ae7baca6a92724e11e91aa6ba1ed9f72ea2f6cfea089e74e9e09b663d3",
+    "results/trajectory_preserving_joint/weight_loading_report.json": "82be638b23d01000638e3e7d4139bc283fa1ce2abb6cdff94bab794a7393e560",
+    "checkpoints/trajectory_transformer_scene_15x15_seed42.pt": "0dd7b14e12c94f002c603938fe9ab838fa18a5233bae2a3a04bb669fe019e0dd",
+    "checkpoints/trajectory_transformer_scene_15x15_seed123.pt": "cc29da66624a0118d754b7b5b07d5af01af4e9b6b8969b06a3b362cc6024771a",
+    "checkpoints/trajectory_transformer_scene_15x15_seed2024.pt": "b14d2b424e3f24fea1d5b7af49024dcef7f87458b9a557daee21d5ac785be75a"
+  },
+  "source_sha256": {
+    "configs/trajectory_preserving_joint.json": "9cf09e8d054b5be8c646ead53d35d253cd0ce38c0ed7151b0025c1df3e58fc2b",
+    "src/models/trajectory_transformer.py": "2f13ea5fc0929c7c037f7177decaed0732f86b54eaf04f0d4f09d2c7f520ea8a",
+    "src/models/trajectory_preserving_joint.py": "a28f39e1ddeda08ce6b18c646dd0f26253a3b48f67e23b6e9c6f1d35f99b1906",
+    "scripts/trajectory_preserving_utils.py": "c520fb6d940a1134f1a2955bf79f945f1172efe62f9ed3315995dbd5aab82b53",
+    "scripts/train_trajectory_preserving_joint.py": "db03c1de5b810953fbd777b4b2420f22e134678731db61e6bb4146d8bb013223",
+    "scripts/evaluate_trajectory_preserving_joint_test.py": "809af50b1e4f67efe3b16880a0bbeac3d482052b6e466493aa919c211a3e238e",
+    "scripts/freeze_trajectory_preserving_protocol.py": "e49dca88829dfd6059629d4ddbb3eea7571d4e82abd6872c977ef5711b93effb",
+    "scripts/summarize_trajectory_preserving_joint.py": "c8c79708535d814c4cefc8cdb5534aeefcaa0133eabffdddddb82755c4647584",
+    "scripts/audit_trajectory_preserving_reference.py": "8d046fa39a915d7c03a98c984864cbe039752a21fa8f88999405f9f8ddb5f8d0",
+    "scripts/run_trajectory_preserving_equivalence.py": "d09ecc9ea29d154eb48adc8ee831f36dccfc32da88e53d3dcde558c46a2fccfe",
+    "scripts/reliability_gated_intent_utils.py": "bd2f7eadb3a54726ada64563d425d8879b33af33118fa052b7ce8e8c4d8d8c8f"
+  },
+  "historical_comparator_sha256": {
+    "results/reliability_gated_intent_15x15/test_metrics.json": "aa6a6496a6ccad5dc2e530224b0993f6f0d8c8608c6f4a8ba7e6d7b68a55dacc",
+    "results/joint_loss_balance/summary.md": "2282873313409387e80c8b27a65be8957ffe5dae96b8c0c940efadc01cf69c98",
+    "results/trajectory_transformer_scene_15x15_seed42/metrics.json": "345c21a47317b506fcea90020130a0fe22d571c7613de74919662c65b5902014",
+    "results/trajectory_transformer_scene_15x15_seed123/metrics.json": "1cf5ed0d22a875a8050b320e4538fae7a7267e5e420a7cff2db8ec48c46dd8fb",
+    "results/trajectory_transformer_scene_15x15_seed2024/metrics.json": "d0c48311e00bcae24c46b8fd8cf7156f877492ebbce3bb264278bf35ae0a952c",
+    "results/joint_loss_balance/lambda100/seed42/metrics.json": "08503fffefe9563793b27c229068a4a34c4b6b19363ea781c74a04b61c8fe1d8",
+    "results/joint_loss_balance/lambda100/seed123/metrics.json": "0acd2eeac3f499ceaed4ec70033378cbcb35b75247ef6d0435a8668de3c8636f",
+    "results/joint_loss_balance/lambda100/seed2024/metrics.json": "0a6a1898ff0166ab8b8cd68b12579fe796e4f01c0a89cb40333274cca6685d82"
+  }
+}

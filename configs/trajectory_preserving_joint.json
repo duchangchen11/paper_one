@@ -1,0 +1,51 @@
+{
+  "experiment": "Trajectory-Preserving Frozen Backbone Baseline",
+  "protocol_id": "J-Preserve-Frozen-v1",
+  "base_commit": "671a3ca18986b552717fb3543755a61d1316f874",
+  "seeds": [42, 123, 2024],
+  "arms": {
+    "P1_target_only": "intention input = frozen target_context",
+    "P2_target_scene": "intention input = concat(frozen target_context, frozen scene_context)"
+  },
+  "trajectory_backbone": {
+    "class": "SceneTrajectoryTransformer",
+    "input_dimension": 8,
+    "scene_dimension": 512,
+    "hidden_dimension": 128,
+    "transformer_layers": 3,
+    "attention_heads": 4,
+    "observed_length": 15,
+    "prediction_length": 15,
+    "decoder_input": "concat(target_context, scene_context)",
+    "frozen": true,
+    "eval_mode_during_intention_training": true
+  },
+  "intention_head": {
+    "layers": "LayerNorm(input_dim) -> Linear(input_dim,128) -> GELU -> Dropout(0.1) -> Linear(128,1)",
+    "trainable_parameters_only": true,
+    "inputs_exclude": ["predicted_future", "social_context", "reliability", "adjusted_u"]
+  },
+  "training": {
+    "train_split": "data/processed/jaad_sequences_scene_15x15/train.npz",
+    "validation_split": "data/processed/jaad_sequences_scene_15x15/val.npz",
+    "test_split": "not loaded until protocol freeze",
+    "maximum_epochs": 20,
+    "batch_size": 256,
+    "optimizer": "AdamW",
+    "learning_rate": 0.001,
+    "weight_decay": 0.0001,
+    "sampling": "natural shuffle with inverse-frequency weighted BCE class weights",
+    "gradient_clip_norm": 5.0,
+    "checkpoint_selection": "highest raw validation ROC-AUC; if within 1e-4, lower raw validation Brier",
+    "selection_tolerance": 0.0001,
+    "temperature_fit": "validation split only",
+    "classification_threshold_fit": "validation balanced accuracy only"
+  },
+  "equivalence_gate": {
+    "validation_samples_per_seed": 1024,
+    "max_abs_prediction_difference": 1e-6,
+    "absolute_ade_fde_difference_pixel": 1e-5,
+    "must_pass_before_training": true
+  },
+  "forbidden": ["DGB", "reliability", "adjusted_u", "PCGrad", "GradNorm", "social input", "trajectory fine-tuning", "test-based tuning"]
+}

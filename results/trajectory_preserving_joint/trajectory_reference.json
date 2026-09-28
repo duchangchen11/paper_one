@@ -1,0 +1,125 @@
+{
+  "source_commit": "671a3ca18986b552717fb3543755a61d1316f874",
+  "model_class": "src.models.trajectory_transformer.SceneTrajectoryTransformer",
+  "seeds": [
+    42,
+    123,
+    2024
+  ],
+  "reference_metric_source": "pre-existing results from the standalone trajectory-only experiments; no trajectory-only retraining was performed in this phase",
+  "input_semantics": "concat(target_obs, target_abs_obs), feature dimension 8; scene_feat dimension 512",
+  "prediction_semantics": "normalized future coordinates [batch, 15, 2]; ADE/FDE in the cited metrics are pixels",
+  "per_seed": {
+    "42": {
+      "seed": 42,
+      "checkpoint": "checkpoints/trajectory_transformer_scene_15x15_seed42.pt",
+      "checkpoint_sha256": "0dd7b14e12c94f002c603938fe9ab838fa18a5233bae2a3a04bb669fe019e0dd",
+      "metrics_file": "results/trajectory_transformer_scene_15x15_seed42/metrics.json",
+      "metrics_file_sha256": "345c21a47317b506fcea90020130a0fe22d571c7613de74919662c65b5902014",
+      "scene_mode": "real",
+      "architecture": {
+        "hidden_dim": 128,
+        "transformer_layers": 3,
+        "attention_heads": 4,
+        "observed_length": 15,
+        "prediction_length": 15,
+        "target_obs_dimension": 4,
+        "target_abs_obs_dimension": 4,
+        "trajectory_input_dimension": 8,
+        "scene_feature_dimension": 512
+      },
+      "checkpoint_tensor_count": 47,
+      "checkpoint_selection": "lowest validation pixel ADE",
+      "best_epoch": 17,
+      "validation": {
+        "loss": 2.2215200651261096e-05,
+        "trajectory_ade_normalized": 0.006954638287425041,
+        "trajectory_fde_normalized": 0.011755865067243576,
+        "trajectory_ade_pixel": 10.191262245178223,
+        "trajectory_fde_pixel": 18.30415916442871
+      },
+      "existing_official_test_reference": {
+        "loss": 2.512567927028355e-05,
+        "trajectory_ade_normalized": 0.007355143316090107,
+        "trajectory_fde_normalized": 0.012683128006756306,
+        "trajectory_ade_pixel": 11.160493850708008,
+        "trajectory_fde_pixel": 19.780908584594727
+      },
+      "checkpoint_sha_verified_by_strict_model_load": true
+    },
+    "123": {
+      "seed": 123,
+      "checkpoint": "checkpoints/trajectory_transformer_scene_15x15_seed123.pt",
+      "checkpoint_sha256": "cc29da66624a0118d754b7b5b07d5af01af4e9b6b8969b06a3b362cc6024771a",
+      "metrics_file": "results/trajectory_transformer_scene_15x15_seed123/metrics.json",
+      "metrics_file_sha256": "1cf5ed0d22a875a8050b320e4538fae7a7267e5e420a7cff2db8ec48c46dd8fb",
+      "scene_mode": "real",
+      "architecture": {
+        "hidden_dim": 128,
+        "transformer_layers": 3,
+        "attention_heads": 4,
+        "observed_length": 15,
+        "prediction_length": 15,
+        "target_obs_dimension": 4,
+        "target_abs_obs_dimension": 4,
+        "trajectory_input_dimension": 8,
+        "scene_feature_dimension": 512
+      },
+      "checkpoint_tensor_count": 47,
+      "checkpoint_selection": "lowest validation pixel ADE",
+      "best_epoch": 18,
+      "validation": {
+        "loss": 2.1746058546934822e-05,
+        "trajectory_ade_normalized": 0.006857322063297033,
+        "trajectory_fde_normalized": 0.01154685765504837,
+        "trajectory_ade_pixel": 9.93718433380127,
+        "trajectory_fde_pixel": 17.70682144165039
+      },
+      "existing_official_test_reference": {
+        "loss": 2.4488382051536105e-05,
+        "trajectory_ade_normalized": 0.00727852014824748,
+        "trajectory_fde_normalized": 0.012502647936344147,
+        "trajectory_ade_pixel": 11.058475494384766,
+        "trajectory_fde_pixel": 19.59311294555664
+      },
+      "checkpoint_sha_verified_by_strict_model_load": true
+    },
+    "2024": {
+      "seed": 2024,
+      "checkpoint": "checkpoints/trajectory_transformer_scene_15x15_seed2024.pt",
+      "checkpoint_sha256": "b14d2b424e3f24fea1d5b7af49024dcef7f87458b9a557daee21d5ac785be75a",
+      "metrics_file": "results/trajectory_transformer_scene_15x15_seed2024/metrics.json",
+      "metrics_file_sha256": "d0c48311e00bcae24c46b8fd8cf7156f877492ebbce3bb264278bf35ae0a952c",
+      "scene_mode": "real",
+      "architecture": {
+        "hidden_dim": 128,
+        "transformer_layers": 3,
+        "attention_heads": 4,
+        "observed_length": 15,
+        "prediction_length": 15,
+        "target_obs_dimension": 4,
+        "target_abs_obs_dimension": 4,
+        "trajectory_input_dimension": 8,
+        "scene_feature_dimension": 512
+      },
+      "checkpoint_tensor_count": 47,
+      "checkpoint_selection": "lowest validation pixel ADE",
+      "best_epoch": 20,
+      "validation": {
+        "loss": 2.225292419498201e-05,
+        "trajectory_ade_normalized": 0.007026651408523321,
+        "trajectory_fde_normalized": 0.011572758667171001,
+        "trajectory_ade_pixel": 10.251533508300781,
+        "trajectory_fde_pixel": 17.75859832763672
+      },
+      "existing_official_test_reference": {
+        "loss": 2.377712849200782e-05,
+        "trajectory_ade_normalized": 0.007168937474489212,
+        "trajectory_fde_normalized": 0.012251606211066246,
+        "trajectory_ade_pixel": 10.813265800476074,
+        "trajectory_fde_pixel": 19.003450393676758
+      },
+      "checkpoint_sha_verified_by_strict_model_load": true
+    }
+  }
+}
