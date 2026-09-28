@@ -1,0 +1,41 @@
+{
+  "status": "passed",
+  "seed": 123,
+  "epochs": 2,
+  "device": "cuda",
+  "checks": {
+    "epoch1_lambda_fixed_at_initial_100": true,
+    "epoch2_lambda_changed": true,
+    "lambda_within_10_300": true,
+    "finite_lambda_and_gradient_statistics": true,
+    "ordinary_backward_and_optimizer_steps_completed": true,
+    "model_parameters_changed": true,
+    "test_split_not_loaded_or_evaluated": true,
+    "epoch2_controller_updated": true
+  },
+  "epoch1_lambda": {
+    "mean": 100.0,
+    "std": 0.0,
+    "median": 100.0,
+    "min": 100.0,
+    "max": 100.0,
+    "training_batch_count": 48,
+    "start": 100.0,
+    "end": 100.0
+  },
+  "epoch2_lambda": {
+    "mean": 113.00442503355269,
+    "std": 10.515907704067008,
+    "median": 117.72281349146553,
+    "min": 100.0,
+    "max": 127.43227268705122,
+    "training_batch_count": 48,
+    "start": 100.0,
+    "end": 118.34457269749805
+  },
+  "training_steps": 96,
+  "initial_model_state_sha256": "9884ca5c859d799b37f4c6287824dc027cd19bd64cecd6f92b574c5ab4b8e394",
+  "final_model_state_sha256": "28264e5f96e28ed40a6c3e594f2e6e6a530a958f722c08c2f06332614da4c0b3",
+  "fixed_mode_objective_unit_test_required": true,
+  "test_evaluation_status": "withheld_until_protocol_freeze"
+}

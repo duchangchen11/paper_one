@@ -1,0 +1,202 @@
+{
+  "frozen": true,
+  "protocol_name": "DGB-20 validation-selected joint intention/trajectory experiment",
+  "frozen_at_local": "2026-09-28T17:06:45+08:00",
+  "base_commit": "ad05ef51711d74f423cecd0b7e8d89debb0a3ae4",
+  "source_state": "Implementation frozen as an uncommitted working-tree patch based on base_commit; source SHA256 values identify the exact code used.",
+  "source_sha256": {
+    "scripts/train_joint_transformer_gate.py": "6c16fac1ad855a240803b3c7e3a883dec97e5f6928bf5855099131102e8fa8d7",
+    "src/models/joint_transformer_gate.py": "e6d480d8277db193e9d5217e47e6d7000b5dcc0c4637a6223e603f5b48d54621",
+    "scripts/evaluate_joint_dynamic_balance_test.py": "6d6a9caf7488240f55a5ab557c396faffbc6b0a01467b3bfdd090aced98600e1",
+    "scripts/summarize_joint_dynamic_balance.py": "f2b5c33801ba7a2e1407b868ca3303a48a3efa209bd9af4f3609afa88f286d8e",
+    "scripts/freeze_joint_dynamic_balance_protocol.py": "853694b6a27694da5bb12edbe6fecacdb85a14d63fd19192281b4f2585f0649a",
+    "configs/joint_dynamic_balance.json": "ae7ea8ce7a819f9fb4e22f3b9f59a2bfed41bd23f0a74c6dd625a195df7b3eee",
+    "tests/test_joint_dynamic_balance.py": "b6c107e6fadfb34a8248a81ce65dc5b557cc14ea8379e9db5d657b4d6327160a"
+  },
+  "data_sha256": {
+    "data/processed/jaad_sequences_scene_15x15/train.npz": "6da2d1d40a918a218a7d054407d95f2791e2338a760b4836f2ca6d06c59ea19a",
+    "data/processed/jaad_sequences_scene_15x15/val.npz": "fb78bb5edcd18d74a15744cfd8ae728c8600b485d4028bed8ee2c9c2d4c5f66c",
+    "data/processed/jaad_sequences_scene_15x15/test.npz": "23658152706d460493fa6146f6b401648a509cc8708ab5eb6c0892e300de1935",
+    "data/processed/jaad_ambiguous_scene_15x15/train.npz": "8538fd3f47c056b767021eb095ba3fbbfa587466226b6bd860cd32f67260611e"
+  },
+  "seeds": [
+    42,
+    123,
+    2024
+  ],
+  "method": {
+    "name": "Dynamic Gradient Balance DGB-20",
+    "trajectory_weight_mode": "dynamic_gradient",
+    "initial_lambda": 100.0,
+    "target_weighted_shared_gradient_ratio": 20.0,
+    "log_space_ema_beta": 0.9,
+    "lambda_bounds": [
+      10.0,
+      300.0
+    ],
+    "warmup_epochs": 1,
+    "update_interval_training_batches": 10,
+    "gradient_epsilon": 1e-12,
+    "update_timing": "sample on each tenth batch; after a valid update the new lambda starts on the following batch",
+    "gradient_scope_manifest": "results/joint_dynamic_balance/shared_parameter_names.json"
+  },
+  "fixed_training_settings": {
+    "data_root": "data/processed/jaad_sequences_scene_15x15",
+    "ambiguous_root": "data/processed/jaad_ambiguous_scene_15x15",
+    "epochs": 15,
+    "batch_size": 512,
+    "hidden_dim": 128,
+    "optimizer": "AdamW",
+    "learning_rate": 0.001,
+    "weight_decay": 0.0001,
+    "prior_weight": 0.5,
+    "ambiguous_weight": 0.2,
+    "gate_mode": "uncertainty",
+    "architecture_changed": false,
+    "JAAD_splits_changed": false,
+    "test_split_used_for_training_or_selection": false
+  },
+  "checkpoint_selection_rule": "validation AUC + 0.1 * validation F1 - 0.01 * validation ADE_pixel",
+  "validation_only_review": {
+    "42": {
+      "best_epoch": 13,
+      "validation_at_best_checkpoint": {
+        "intent_accuracy": 0.8930197268588771,
+        "intent_balanced_accuracy": 0.8015739780663496,
+        "intent_f1": 0.9381850065760632,
+        "intent_brier": 0.0856077756671301,
+        "trajectory_ade_normalized": 0.008431322872638702,
+        "trajectory_fde_normalized": 0.01348094642162323,
+        "trajectory_ade_pixel": 12.979028701782227,
+        "trajectory_fde_pixel": 21.729589462280273,
+        "gate_mean": 0.4034053385257721,
+        "entropy_mean": 0.08686383813619614,
+        "intent_auc": 0.8645111560975878,
+        "loss": 0.6546105057600325
+      },
+      "lambda_min": 36.997203453147456,
+      "lambda_max": 112.77650933925423,
+      "lambda_mean": 65.38926009308267,
+      "controller_updates_applied": 56,
+      "controller_bound_hits": 0,
+      "checkpoint_sha256": "5eebe7780ca8e66910038e5c0cfe064901b5f52f8ea435275df0541ad52601da"
+    },
+    "123": {
+      "best_epoch": 12,
+      "validation_at_best_checkpoint": {
+        "intent_accuracy": 0.8660849772382397,
+        "intent_balanced_accuracy": 0.7904165089396906,
+        "intent_f1": 0.9212931995540691,
+        "intent_brier": 0.10774956273096231,
+        "trajectory_ade_normalized": 0.008710958994925022,
+        "trajectory_fde_normalized": 0.013543473556637764,
+        "trajectory_ade_pixel": 13.401166915893555,
+        "trajectory_fde_pixel": 21.96921157836914,
+        "gate_mean": 0.5518887042999268,
+        "entropy_mean": 0.07820776849985123,
+        "intent_auc": 0.8648883293010089,
+        "loss": 0.7416448569623401
+      },
+      "lambda_min": 43.15485921471934,
+      "lambda_max": 131.83831642991782,
+      "lambda_mean": 70.06417821056782,
+      "controller_updates_applied": 56,
+      "controller_bound_hits": 0,
+      "checkpoint_sha256": "973d301c4cc4e65080ee680ebe3a853fb308c30c72f5e0e0ca3033daa7f136c7"
+    },
+    "2024": {
+      "best_epoch": 9,
+      "validation_at_best_checkpoint": {
+        "intent_accuracy": 0.8660849772382397,
+        "intent_balanced_accuracy": 0.7904165089396906,
+        "intent_f1": 0.9212931995540691,
+        "intent_brier": 0.09523218025514606,
+        "trajectory_ade_normalized": 0.011957382783293724,
+        "trajectory_fde_normalized": 0.017021462321281433,
+        "trajectory_ade_pixel": 18.742630004882812,
+        "trajectory_fde_pixel": 25.867170333862305,
+        "gate_mean": 0.47022101283073425,
+        "entropy_mean": 0.1065182015299797,
+        "intent_auc": 0.8857933255429924,
+        "loss": 0.5580360953878379
+      },
+      "lambda_min": 23.72508986819129,
+      "lambda_max": 100.0,
+      "lambda_mean": 42.11073488226562,
+      "controller_updates_applied": 56,
+      "controller_bound_hits": 0,
+      "checkpoint_sha256": "8cde93593a93b8d8ad86a3e7654faa4d65e6bc175c37be34c912bc7e962a3695"
+    }
+  },
+  "smoke_test": {
+    "status": "passed",
+    "seed": 123,
+    "epochs": 2,
+    "device": "cuda",
+    "checks": {
+      "epoch1_lambda_fixed_at_initial_100": true,
+      "epoch2_lambda_changed": true,
+      "lambda_within_10_300": true,
+      "finite_lambda_and_gradient_statistics": true,
+      "ordinary_backward_and_optimizer_steps_completed": true,
+      "model_parameters_changed": true,
+      "test_split_not_loaded_or_evaluated": true,
+      "epoch2_controller_updated": true
+    },
+    "epoch1_lambda": {
+      "mean": 100.0,
+      "std": 0.0,
+      "median": 100.0,
+      "min": 100.0,
+      "max": 100.0,
+      "training_batch_count": 48,
+      "start": 100.0,
+      "end": 100.0
+    },
+    "epoch2_lambda": {
+      "mean": 113.00442503355269,
+      "std": 10.515907704067008,
+      "median": 117.72281349146553,
+      "min": 100.0,
+      "max": 127.43227268705122,
+      "training_batch_count": 48,
+      "start": 100.0,
+      "end": 118.34457269749805
+    },
+    "training_steps": 96,
+    "initial_model_state_sha256": "9884ca5c859d799b37f4c6287824dc027cd19bd64cecd6f92b574c5ab4b8e394",
+    "final_model_state_sha256": "28264e5f96e28ed40a6c3e594f2e6e6a530a958f722c08c2f06332614da4c0b3",
+    "fixed_mode_objective_unit_test_required": true,
+    "test_evaluation_status": "withheld_until_protocol_freeze"
+  },
+  "fixed100_reference_artifacts": {
+    "42": {
+      "metrics": "results/joint_loss_balance/lambda100/seed42/metrics.json",
+      "metrics_sha256": "08503fffefe9563793b27c229068a4a34c4b6b19363ea781c74a04b61c8fe1d8",
+      "gradient_history": "results/joint_loss_balance/lambda100/seed42/gradient_history.json",
+      "gradient_history_sha256": "8e975d872f965312fbc4c348d1048d4d2752a4a9439904a93f1f9677bfc42b88"
+    },
+    "123": {
+      "metrics": "results/joint_loss_balance/lambda100/seed123/metrics.json",
+      "metrics_sha256": "0acd2eeac3f499ceaed4ec70033378cbcb35b75247ef6d0435a8668de3c8636f",
+      "gradient_history": "results/joint_loss_balance/lambda100/seed123/gradient_history.json",
+      "gradient_history_sha256": "69613904db8ed7a1c9077ab893d424218e44e1f3a881cda7c3cfec550c557e74"
+    },
+    "2024": {
+      "metrics": "results/joint_loss_balance/lambda100/seed2024/metrics.json",
+      "metrics_sha256": "0a6a1898ff0166ab8b8cd68b12579fe796e4f01c0a89cb40333274cca6685d82",
+      "gradient_history": "results/joint_loss_balance/lambda100/seed2024/gradient_history.json",
+      "gradient_history_sha256": "14c0977bddbf9827c075eee7437c63484c1b570fd81bca9f27729f8a7a4577de"
+    }
+  },
+  "test_access_audit": {
+    "before_freeze": "A one-time schema preflight read the processed test archive to list field names and array shapes; no labels, feature values, predictions, metrics, or aggregates were inspected or used for a decision. The training script then withheld the test split for all three formal runs.",
+    "after_freeze": "Official test metrics and per-sample predictions may now be generated once from the frozen best checkpoints; no DGB changes may follow from test results."
+  },
+  "unit_tests": {
+    "command": "PYTEST_DISABLE_PLUGIN_AUTOLOAD=1 python -m pytest tests -q",
+    "passed": 94,
+    "failed": 0
+  },
+  "no_sweep_or_post_test_tuning": true
+}

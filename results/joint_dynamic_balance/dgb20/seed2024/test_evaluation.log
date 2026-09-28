@@ -1,0 +1,18 @@
+/home/lrj/anaconda3/envs/ped_intent/lib/python3.10/site-packages/torch/nn/modules/transformer.py:379: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  warnings.warn(
+{
+  "seed": 2024,
+  "test": {
+    "intent_accuracy": 0.8773662102449402,
+    "intent_balanced_accuracy": 0.6096410212623186,
+    "intent_f1": 0.9323869104908566,
+    "intent_brier": 0.10363339941927037,
+    "trajectory_ade_normalized": 0.012548704631626606,
+    "trajectory_fde_normalized": 0.018730513751506805,
+    "trajectory_ade_pixel": 19.82845115661621,
+    "trajectory_fde_pixel": 30.505369186401367,
+    "gate_mean": 0.0,
+    "entropy_mean": 0.0,
+    "intent_auc": 0.7768267085337279
+  }
+}

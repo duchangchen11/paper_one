@@ -1,0 +1,38 @@
+{
+  "method": "DGB-20",
+  "trajectory_weight_mode": "dynamic_gradient",
+  "initial_lambda": 100.0,
+  "target_weighted_gradient_ratio": 20.0,
+  "log_space_ema_beta": 0.9,
+  "lambda_min": 10.0,
+  "lambda_max": 300.0,
+  "warmup_epochs": 1,
+  "update_interval_training_batches": 10,
+  "gradient_epsilon": 1e-12,
+  "shared_parameter_prefixes": [
+    "target_projection.",
+    "position_embedding",
+    "target_encoder.",
+    "neighbor_encoder.",
+    "scene_encoder.",
+    "proposal_fusion.",
+    "proposal_head.",
+    "gate.",
+    "fusion."
+  ],
+  "excluded_parameter_prefixes": ["intent_head.", "traj_head."],
+  "training": {
+    "epochs": 15,
+    "batch_size": 512,
+    "hidden_dim": 128,
+    "optimizer": "AdamW",
+    "learning_rate": 0.001,
+    "weight_decay": 0.0001,
+    "prior_weight": 0.5,
+    "ambiguous_weight": 0.2,
+    "gate_mode": "uncertainty",
+    "seeds": [42, 123, 2024]
+  },
+  "checkpoint_selection": "validation AUC + 0.1 * validation F1 - 0.01 * validation ADE_pixel",
+  "test_protocol": "withhold test split until all three validation-only runs are reviewed and protocol_frozen.json plus SHA256 are written"
+}

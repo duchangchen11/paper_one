@@ -4,7 +4,9 @@
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
+import math
 import random
 import sys
 from pathlib import Path
@@ -41,6 +43,253 @@ SHARED_GRADIENT_PREFIXES = (
     "gate.",
     "fusion.",
 )
+
+
+class DynamicGradientBalance:
+    """Log-space EMA controller for the shared intent/trajectory gradient ratio."""
+
+    def __init__(
+        self,
+        initial_lambda: float = 100.0,
+        target_ratio: float = 20.0,
+        beta: float = 0.9,
+        lambda_min: float = 10.0,
+        lambda_max: float = 300.0,
+        warmup_epochs: int = 1,
+        update_interval: int = 10,
+        eps: float = 1e-12,
+    ) -> None:
+        if not (0.0 <= beta < 1.0):
+            raise ValueError("beta must be in [0, 1)")
+        if not (0.0 < lambda_min <= initial_lambda <= lambda_max):
+            raise ValueError("lambda bounds must contain the initial lambda")
+        if target_ratio <= 0 or update_interval < 1 or warmup_epochs < 0 or eps <= 0:
+            raise ValueError("target_ratio, update_interval, and eps must be positive")
+        self.lambda_value = float(initial_lambda)
+        self.target_ratio = float(target_ratio)
+        self.beta = float(beta)
+        self.lambda_min = float(lambda_min)
+        self.lambda_max = float(lambda_max)
+        self.warmup_epochs = int(warmup_epochs)
+        self.update_interval = int(update_interval)
+        self.eps = float(eps)
+        self.update_attempts = 0
+        self.update_count = 0
+        self.skipped_invalid_count = 0
+        self.lower_bound_hits = 0
+        self.upper_bound_hits = 0
+
+    def should_measure(self, batch_index: int) -> bool:
+        return batch_index > 0 and batch_index % self.update_interval == 0
+
+    def observe(
+        self, epoch: int, batch_index: int, intent_norm: float, trajectory_norm: float
+    ) -> dict[str, float | int | bool | str]:
+        """Record one aligned gradient sample and, when allowed, update lambda.
+
+        The updated value applies starting with the *next* training batch. Epoch 1
+        is a fixed-lambda warm-up, though its scheduled gradient samples are logged.
+        """
+        before = self.lambda_value
+        record: dict[str, float | int | bool | str] = {
+            "epoch": int(epoch),
+            "batch_index": int(batch_index),
+            "lambda_used": before,
+            "lambda_next": before,
+            "controller_update": False,
+            "update_status": "warmup" if epoch <= self.warmup_epochs else "interval_sample",
+        }
+        if not self.should_measure(batch_index):
+            raise ValueError("observe must be called only at a configured measurement interval")
+        values_finite = math.isfinite(intent_norm) and math.isfinite(trajectory_norm)
+        if epoch <= self.warmup_epochs:
+            record["update_status"] = "warmup"
+            return record
+        self.update_attempts += 1
+        if (
+            not values_finite
+            or intent_norm <= self.eps
+            or trajectory_norm <= self.eps
+        ):
+            self.skipped_invalid_count += 1
+            record["update_status"] = "invalid_gradient_norm"
+            return record
+
+        raw_ratio = intent_norm / (trajectory_norm + self.eps)
+        lambda_target = raw_ratio / self.target_ratio
+        if not math.isfinite(lambda_target) or lambda_target <= 0:
+            self.skipped_invalid_count += 1
+            record["update_status"] = "invalid_lambda_target"
+            return record
+
+        smoothed_log_lambda = (
+            self.beta * math.log(before)
+            + (1.0 - self.beta) * math.log(lambda_target)
+        )
+        clipped_log_lambda = min(
+            math.log(self.lambda_max), max(math.log(self.lambda_min), smoothed_log_lambda)
+        )
+        if clipped_log_lambda >= math.log(self.lambda_max):
+            next_lambda = self.lambda_max
+        elif clipped_log_lambda <= math.log(self.lambda_min):
+            next_lambda = self.lambda_min
+        else:
+            next_lambda = math.exp(clipped_log_lambda)
+        hit_min = next_lambda <= self.lambda_min * (1.0 + 1e-12)
+        hit_max = next_lambda >= self.lambda_max * (1.0 - 1e-12)
+        self.lambda_value = float(next_lambda)
+        self.update_count += 1
+        self.lower_bound_hits += int(hit_min)
+        self.upper_bound_hits += int(hit_max)
+        record.update(
+            {
+                "lambda_target": float(lambda_target),
+                "lambda_next": self.lambda_value,
+                "controller_update": True,
+                "update_status": "clipped_min" if hit_min else "clipped_max" if hit_max else "updated",
+                "hit_lambda_min": hit_min,
+                "hit_lambda_max": hit_max,
+            }
+        )
+        return record
+
+
+def shared_named_parameters(model: nn.Module) -> list[tuple[str, nn.Parameter]]:
+    """Return the exact shared parameter scope used by the preceding audit."""
+    return [
+        (name, parameter)
+        for name, parameter in model.named_parameters()
+        if parameter.requires_grad and name.startswith(SHARED_GRADIENT_PREFIXES)
+    ]
+
+
+def measure_aligned_task_gradients(
+    intent_loss: torch.Tensor,
+    trajectory_loss: torch.Tensor,
+    named_parameters: list[tuple[str, nn.Parameter]],
+) -> dict[str, float]:
+    """Measure task gradients on one existing graph without touching .grad buffers."""
+    parameters = [parameter for _, parameter in named_parameters]
+    if not parameters:
+        raise RuntimeError("No shared parameters selected for dynamic gradient balance")
+    intent_gradients = torch.autograd.grad(
+        intent_loss, parameters, retain_graph=True, allow_unused=True
+    )
+    trajectory_gradients = torch.autograd.grad(
+        trajectory_loss, parameters, retain_graph=True, allow_unused=True
+    )
+    intent_norm, intent_vector = _flat_gradient_norm(intent_gradients, parameters)
+    trajectory_norm, trajectory_vector = _flat_gradient_norm(trajectory_gradients, parameters)
+    eps = torch.finfo(intent_vector.dtype).eps
+    cosine = torch.dot(intent_vector, trajectory_vector) / (
+        intent_norm * trajectory_norm
+    ).clamp_min(eps)
+    intent_norm_value = float(intent_norm.detach().cpu())
+    trajectory_norm_value = float(trajectory_norm.detach().cpu())
+    return {
+        "intent_gradient_norm": intent_norm_value,
+        "trajectory_gradient_norm_unweighted": trajectory_norm_value,
+        "raw_gradient_ratio": intent_norm_value / (trajectory_norm_value + 1e-12),
+        "gradient_cosine_intent_vs_trajectory": float(cosine.detach().cpu()),
+    }
+
+
+def compose_training_objective(
+    main_intent_bce: torch.Tensor,
+    proposal_intent_bce: torch.Tensor,
+    trajectory_loss: torch.Tensor,
+    ambiguity_regularizer: torch.Tensor,
+    prior_weight: float,
+    trajectory_weight: float,
+    ambiguous_weight: float,
+) -> torch.Tensor:
+    """Keep the legacy fixed-objective summation order for reproducibility."""
+    loss = main_intent_bce + prior_weight * proposal_intent_bce
+    loss = loss + trajectory_weight * trajectory_loss
+    loss = loss + ambiguous_weight * ambiguity_regularizer
+    return loss
+
+
+def state_dict_sha256(state_dict: dict[str, torch.Tensor]) -> str:
+    digest = hashlib.sha256()
+    for name, tensor in sorted(state_dict.items()):
+        digest.update(name.encode("utf-8"))
+        digest.update(tensor.detach().cpu().contiguous().numpy().tobytes())
+    return digest.hexdigest()
+
+
+def summarize_dynamic_epoch(
+    epoch: int,
+    epoch_start_lambda: float,
+    epoch_end_lambda: float,
+    lambda_values: list[float],
+    gradient_samples: list[dict[str, float | int | bool | str]],
+    update_records: list[dict[str, float | int | bool | str]],
+    train_metrics: dict[str, float | int],
+    controller: DynamicGradientBalance,
+) -> dict[str, object]:
+    def values(key: str) -> list[float]:
+        return [float(sample[key]) for sample in gradient_samples]
+
+    def stats(data: list[float]) -> dict[str, float]:
+        if not data:
+            return {"mean": 0.0, "std": 0.0, "median": 0.0, "min": 0.0, "max": 0.0}
+        return {
+            "mean": float(np.mean(data)),
+            "std": float(np.std(data)),
+            "median": float(np.median(data)),
+            "min": float(np.min(data)),
+            "max": float(np.max(data)),
+        }
+
+    weighted_ratios = values("weighted_gradient_ratio")
+    lambda_stats = stats(lambda_values)
+    actual_updates = [r for r in update_records if r.get("controller_update")]
+    lower_hits = sum(bool(r.get("hit_lambda_min", False)) for r in actual_updates)
+    upper_hits = sum(bool(r.get("hit_lambda_max", False)) for r in actual_updates)
+    update_count = len(actual_updates)
+    gradient_summary = {
+        "measurement_count": len(gradient_samples),
+        "mean_intent_gradient_norm": float(np.mean(values("intent_gradient_norm"))) if gradient_samples else 0.0,
+        "mean_trajectory_gradient_norm_unweighted": float(np.mean(values("trajectory_gradient_norm_unweighted"))) if gradient_samples else 0.0,
+        "mean_trajectory_gradient_norm_weighted": float(np.mean(values("weighted_trajectory_gradient_norm"))) if gradient_samples else 0.0,
+        "mean_raw_gradient_ratio": float(np.mean(values("raw_gradient_ratio"))) if gradient_samples else 0.0,
+        "weighted_gradient_ratio": stats(weighted_ratios),
+        "gradient_cosine_mean": float(np.mean(values("gradient_cosine_intent_vs_trajectory"))) if gradient_samples else 0.0,
+    }
+    return {
+        "epoch": epoch,
+        "train_intent_loss": float(train_metrics["intent_loss"]),
+        "raw_trajectory_loss": float(train_metrics["trajectory_loss"]),
+        "weighted_trajectory_loss": float(train_metrics["weighted_trajectory_loss"]),
+        "total_loss": float(train_metrics["total_loss"]),
+        "gradient_statistics": gradient_summary,
+        "lambda_statistics": {
+            **lambda_stats,
+            "training_batch_count": len(lambda_values),
+            "start": float(epoch_start_lambda),
+            "end": float(epoch_end_lambda),
+        },
+        "lambda_per_training_batch": [float(value) for value in lambda_values],
+        "controller_updates": {
+            "measurement_attempts": len(update_records),
+            "updates_applied": update_count,
+            "invalid_skips": sum(r.get("update_status", "").startswith("invalid") for r in update_records),
+            "lower_bound_hits": lower_hits,
+            "upper_bound_hits": upper_hits,
+            "lower_bound_hit_percent": 100.0 * lower_hits / update_count if update_count else 0.0,
+            "upper_bound_hit_percent": 100.0 * upper_hits / update_count if update_count else 0.0,
+        },
+        "gradient_samples": gradient_samples,
+        "update_records": update_records,
+        "cumulative_controller_state": {
+            "update_attempts": controller.update_attempts,
+            "updates_applied": controller.update_count,
+            "invalid_skips": controller.skipped_invalid_count,
+            "lower_bound_hits": controller.lower_bound_hits,
+            "upper_bound_hits": controller.upper_bound_hits,
+        },
+    }
 
 
 def balanced_sample_indices(labels: torch.Tensor, count: int, seed: int) -> torch.Tensor:
@@ -271,22 +520,39 @@ def main() -> None:
     parser.add_argument("--learning-rate", type=float, default=1e-3)
     parser.add_argument("--prior-weight", type=float, default=0.5)
     parser.add_argument("--traj-weight", type=float, default=1.0)
+    parser.add_argument(
+        "--traj-weight-mode", choices=("fixed", "dynamic_gradient"), default="fixed"
+    )
     parser.add_argument("--ambiguous-weight", type=float, default=0.2)
     parser.add_argument("--seed", type=int, default=123)
+    parser.add_argument("--dgb-target-ratio", type=float, default=20.0)
+    parser.add_argument("--dgb-beta", type=float, default=0.9)
+    parser.add_argument("--dgb-lambda-min", type=float, default=10.0)
+    parser.add_argument("--dgb-lambda-max", type=float, default=300.0)
+    parser.add_argument("--dgb-warmup-epochs", type=int, default=1)
+    parser.add_argument("--dgb-update-interval", type=int, default=10)
+    parser.add_argument("--skip-test", action="store_true", help="Do not load or evaluate the test split")
+    parser.add_argument("--smoke-test", action="store_true", help="Validate the two-epoch DGB smoke protocol")
     args = parser.parse_args()
+    if args.traj_weight_mode == "dynamic_gradient" and args.traj_weight <= 0:
+        parser.error("dynamic_gradient requires --traj-weight to provide a positive initial lambda")
+    if args.smoke_test and (args.traj_weight_mode != "dynamic_gradient" or args.seed != 123 or args.epochs != 2):
+        parser.error("--smoke-test requires dynamic_gradient, seed 123, and exactly 2 epochs")
     set_seed(args.seed)
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     args.output_root.mkdir(parents=True, exist_ok=True)
     args.checkpoint.parent.mkdir(parents=True, exist_ok=True)
     train_set = JAADSequenceDataset(args.data_root / "train.npz")
     val_set = JAADSequenceDataset(args.data_root / "val.npz")
-    test_set = JAADSequenceDataset(args.data_root / "test.npz")
+    test_set = None if args.skip_test else JAADSequenceDataset(args.data_root / "test.npz")
     ambiguous_set = JAADSequenceDataset(args.ambiguous_root / "train.npz")
     counts = torch.bincount(train_set.intent_label.to(torch.int64), minlength=2).float()
     weights = torch.where(train_set.intent_label == 0, 1.0 / counts[0], 1.0 / counts[1])
     train_loader = DataLoader(train_set, batch_size=args.batch_size, sampler=WeightedRandomSampler(weights.double(), len(train_set), replacement=True))
     val_loader = DataLoader(val_set, batch_size=args.batch_size, shuffle=False)
-    test_loader = DataLoader(test_set, batch_size=args.batch_size, shuffle=False)
+    test_loader = (
+        None if test_set is None else DataLoader(test_set, batch_size=args.batch_size, shuffle=False)
+    )
     ambiguous_loader = DataLoader(ambiguous_set, batch_size=args.batch_size, shuffle=True)
     audit_count = min(args.batch_size, len(train_set))
     audit_main_indices = balanced_sample_indices(
@@ -298,7 +564,8 @@ def main() -> None:
     )[: min(audit_count, len(ambiguous_set))]
     audit_main_batch = stack_dataset_batch(train_set, audit_main_indices)
     audit_ambiguous_batch = stack_dataset_batch(ambiguous_set, audit_ambiguous_indices)
-    raw = {split: np.load(args.data_root / f"{split}.npz", allow_pickle=False) for split in ("train", "val", "test")}
+    split_names = ("train", "val") if args.skip_test else ("train", "val", "test")
+    raw = {split: np.load(args.data_root / f"{split}.npz", allow_pickle=False) for split in split_names}
     sizes = {split: torch.from_numpy(raw[split]["image_size"].astype(np.float32)) for split in raw}
     model = JointTransformerSceneGate(
         input_dim=8,
@@ -308,6 +575,7 @@ def main() -> None:
         gate_mode=args.gate_mode,
         max_obs_len=train_set.target_obs.shape[1],
     ).to(device)
+    initial_state_sha256 = state_dict_sha256(model.state_dict())
     if args.init_trajectory_checkpoint is not None:
         pretrained = torch.load(args.init_trajectory_checkpoint, map_location="cpu", weights_only=False)["model"]
         current = model.state_dict()
@@ -334,20 +602,72 @@ def main() -> None:
     best_epoch = 0
     history = []
     gradient_history = {
-        "diagnostic_only": True,
+        "diagnostic_only": args.traj_weight_mode == "fixed",
         "optimizer_created_for_diagnostics": False,
         "parameters_updated_by_diagnostics": False,
-        "gradient_scope": "shared target, scene, social, proposal, gate, and fusion parameters; task output heads excluded",
-        "gradient_sampling": "one fixed class-balanced main training subset and one fixed ambiguous-training subset per run, measured after each epoch; diagnostic RNG state is restored",
+        "gradient_scope": "same shared target, scene, social, proposal, gate, and fusion parameter prefixes as the preceding audit; intent_head and traj_head excluded",
+        "gradient_sampling": "fixed mode: prior fixed class-balanced diagnostic subset after each epoch; DGB mode: every 10th actual training batch on its existing forward graph",
         "gradient_ratio_definition": "intent_gradient_norm / (lambda_trajectory * unweighted_trajectory_gradient_norm)",
         "seed": args.seed,
-        "lambda_trajectory": args.traj_weight,
+        "lambda_trajectory_initial": args.traj_weight,
+        "trajectory_weight_mode": args.traj_weight_mode,
         "epochs": [],
     }
     gradient_history_path = args.output_root / "gradient_history.json"
+    controller = None
+    shared_parameters = None
+    if args.traj_weight_mode == "dynamic_gradient":
+        controller = DynamicGradientBalance(
+            initial_lambda=args.traj_weight,
+            target_ratio=args.dgb_target_ratio,
+            beta=args.dgb_beta,
+            lambda_min=args.dgb_lambda_min,
+            lambda_max=args.dgb_lambda_max,
+            warmup_epochs=args.dgb_warmup_epochs,
+            update_interval=args.dgb_update_interval,
+        )
+        shared_parameters = shared_named_parameters(model)
+        parameter_manifest_path = PROJECT_ROOT / "results/joint_dynamic_balance/shared_parameter_names.json"
+        parameter_manifest_path.parent.mkdir(parents=True, exist_ok=True)
+        parameter_manifest_path.write_text(
+            json.dumps(
+                {
+                    "source_commit": "ad05ef51711d74f423cecd0b7e8d89debb0a3ae4",
+                    "prefixes": list(SHARED_GRADIENT_PREFIXES),
+                    "excluded_prefixes": ["intent_head.", "traj_head."],
+                    "parameter_count": len(shared_parameters),
+                    "scalar_count": int(sum(parameter.numel() for _, parameter in shared_parameters)),
+                    "parameter_names": [name for name, _ in shared_parameters],
+                },
+                ensure_ascii=False,
+                indent=2,
+            ),
+            encoding="utf-8",
+        )
+        gradient_history.update(
+            {
+                "controller": {
+                    "name": "DGB-20",
+                    "target_ratio": args.dgb_target_ratio,
+                    "beta": args.dgb_beta,
+                    "lambda_min": args.dgb_lambda_min,
+                    "lambda_max": args.dgb_lambda_max,
+                    "warmup_epochs": args.dgb_warmup_epochs,
+                    "update_interval_training_batches": args.dgb_update_interval,
+                    "eps": controller.eps,
+                    "ema": "log-space; update after the measured batch and apply lambda to the next batch",
+                },
+                "shared_parameter_names_path": str(parameter_manifest_path),
+            }
+        )
+    training_steps = 0
     for epoch in range(1, args.epochs + 1):
         model.train()
         amb_iter = iter(ambiguous_loader)
+        epoch_start_lambda = controller.lambda_value if controller is not None else args.traj_weight
+        epoch_lambda_values: list[float] = []
+        epoch_gradient_samples: list[dict[str, float | int | bool | str]] = []
+        epoch_update_records: list[dict[str, float | int | bool | str]] = []
         epoch_sums = {
             key: torch.zeros((), device=device)
             for key in (
@@ -361,7 +681,7 @@ def main() -> None:
             )
         }
         epoch_items = 0
-        for batch in train_loader:
+        for batch_index, batch in enumerate(train_loader, start=1):
             try:
                 amb_batch = next(amb_iter)
             except StopIteration:
@@ -384,12 +704,62 @@ def main() -> None:
                 + args.prior_weight * proposal_intent_bce
                 + args.ambiguous_weight * ambiguity_regularizer
             )
-            # Preserve the baseline objective's operation/order: supervised
-            # intent + weighted trajectory, then the ambiguity regularizer.
-            loss = main_intent_bce + args.prior_weight * proposal_intent_bce
-            loss = loss + args.traj_weight * trajectory_loss
             weighted_ambiguity_regularizer = args.ambiguous_weight * ambiguity_regularizer
-            loss = loss + weighted_ambiguity_regularizer
+            lambda_used = controller.lambda_value if controller is not None else args.traj_weight
+            measured_gradient = None
+            update_record = None
+            if controller is not None:
+                epoch_lambda_values.append(float(lambda_used))
+                if controller.should_measure(batch_index):
+                    # Clear the prior batch's .grad buffers before measuring. autograd.grad
+                    # itself does not write them; the same retained graph is then used by
+                    # the ordinary total-loss backward below.
+                    optimizer.zero_grad(set_to_none=True)
+                    measured_gradient = measure_aligned_task_gradients(
+                        intent_loss, trajectory_loss, shared_parameters
+                    )
+                    update_record = controller.observe(
+                        epoch,
+                        batch_index,
+                        measured_gradient["intent_gradient_norm"],
+                        measured_gradient["trajectory_gradient_norm_unweighted"],
+                    )
+                    measured_gradient.update(
+                        {
+                            "epoch": epoch,
+                            "batch_index": batch_index,
+                            "lambda_used": float(lambda_used),
+                            "weighted_trajectory_gradient_norm": float(
+                                lambda_used * measured_gradient["trajectory_gradient_norm_unweighted"]
+                            ),
+                            "weighted_gradient_ratio": float(
+                                measured_gradient["intent_gradient_norm"]
+                                / (
+                                    lambda_used
+                                    * measured_gradient["trajectory_gradient_norm_unweighted"]
+                                    + controller.eps
+                                )
+                            ),
+                            "lambda_next": float(update_record["lambda_next"]),
+                            "controller_update": bool(update_record["controller_update"]),
+                        }
+                    )
+                    epoch_gradient_samples.append(measured_gradient)
+                    epoch_update_records.append(update_record)
+                loss = compose_training_objective(
+                    main_intent_bce,
+                    proposal_intent_bce,
+                    trajectory_loss,
+                    ambiguity_regularizer,
+                    args.prior_weight,
+                    lambda_used,
+                    args.ambiguous_weight,
+                )
+            else:
+                # Preserve the legacy fixed-mode summation and backward path exactly.
+                loss = main_intent_bce + args.prior_weight * proposal_intent_bce
+                loss = loss + args.traj_weight * trajectory_loss
+                loss = loss + weighted_ambiguity_regularizer
             count = target.shape[0]
             epoch_items += count
             epoch_sums["main_intent_bce"] += main_intent_bce.detach() * count
@@ -397,40 +767,56 @@ def main() -> None:
             epoch_sums["weighted_ambiguity_regularizer"] += weighted_ambiguity_regularizer.detach() * count
             epoch_sums["intent_loss"] += intent_loss.detach() * count
             epoch_sums["trajectory_loss"] += trajectory_loss.detach() * count
-            epoch_sums["weighted_trajectory_loss"] += args.traj_weight * trajectory_loss.detach() * count
+            epoch_sums["weighted_trajectory_loss"] += lambda_used * trajectory_loss.detach() * count
             epoch_sums["total_loss"] += loss.detach() * count
-            optimizer.zero_grad(set_to_none=True)
+            if measured_gradient is None:
+                optimizer.zero_grad(set_to_none=True)
             loss.backward()
             nn.utils.clip_grad_norm_(model.parameters(), 5.0)
             optimizer.step()
+            training_steps += 1
         train_metrics = {
             key: float((value / epoch_items).detach().cpu())
             for key, value in epoch_sums.items()
         }
         train_metrics["sample_count"] = epoch_items
-        gradient_metrics = measure_shared_gradient_balance(
-            model,
-            audit_main_batch,
-            audit_ambiguous_batch,
-            device,
-            prior_weight=args.prior_weight,
-            trajectory_weight=args.traj_weight,
-            ambiguous_weight=args.ambiguous_weight,
-        )
-        gradient_record = {
-            "epoch": epoch,
-            "lambda_trajectory": args.traj_weight,
-            "intent_loss": train_metrics["intent_loss"],
-            "trajectory_loss": train_metrics["trajectory_loss"],
-            "total_loss": train_metrics["total_loss"],
-            **gradient_metrics,
-        }
+        if controller is None:
+            gradient_metrics = measure_shared_gradient_balance(
+                model,
+                audit_main_batch,
+                audit_ambiguous_batch,
+                device,
+                prior_weight=args.prior_weight,
+                trajectory_weight=args.traj_weight,
+                ambiguous_weight=args.ambiguous_weight,
+            )
+            gradient_record = {
+                "epoch": epoch,
+                "lambda_trajectory": args.traj_weight,
+                "intent_loss": train_metrics["intent_loss"],
+                "trajectory_loss": train_metrics["trajectory_loss"],
+                "total_loss": train_metrics["total_loss"],
+                **gradient_metrics,
+            }
+        else:
+            gradient_record = summarize_dynamic_epoch(
+                epoch=epoch,
+                epoch_start_lambda=epoch_start_lambda,
+                epoch_end_lambda=controller.lambda_value,
+                lambda_values=epoch_lambda_values,
+                gradient_samples=epoch_gradient_samples,
+                update_records=epoch_update_records,
+                train_metrics=train_metrics,
+                controller=controller,
+            )
+            gradient_record["lambda_trajectory"] = controller.lambda_value
         gradient_history["epochs"].append(gradient_record)
         gradient_history_path.write_text(
             json.dumps(gradient_history, ensure_ascii=False, indent=2), encoding="utf-8"
         )
         with torch.no_grad():
-            val = run_epoch(model, val_loader, sizes["val"], device, None, args.prior_weight, args.traj_weight)
+            val_lambda = controller.lambda_value if controller is not None else args.traj_weight
+            val = run_epoch(model, val_loader, sizes["val"], device, None, args.prior_weight, val_lambda)
         score = val["intent_auc"] + 0.1 * val["intent_f1"] - 0.01 * val["trajectory_ade_pixel"]
         scheduler.step(score)
         record = {
@@ -446,10 +832,14 @@ def main() -> None:
             best_score = score
             best_epoch = epoch
             torch.save({"model": model.state_dict(), "args": vars(args)}, args.checkpoint)
-    checkpoint = torch.load(args.checkpoint, map_location=device, weights_only=False)
-    model.load_state_dict(checkpoint["model"])
-    with torch.no_grad():
-        test = run_epoch(model, test_loader, sizes["test"], device, None, args.prior_weight, args.traj_weight)
+    if not args.skip_test:
+        checkpoint = torch.load(args.checkpoint, map_location=device, weights_only=False)
+        model.load_state_dict(checkpoint["model"])
+        with torch.no_grad():
+            test = run_epoch(model, test_loader, sizes["test"], device, None, args.prior_weight, args.traj_weight)
+    else:
+        test = None
+    final_state_sha256 = state_dict_sha256(model.state_dict())
     result = {
         "device": str(device),
         "seed": args.seed,
@@ -460,9 +850,76 @@ def main() -> None:
         "best_epoch": best_epoch,
         "history": history,
         "test": test,
+        "test_evaluation_status": "withheld_until_protocol_freeze" if args.skip_test else "evaluated",
+        "training_steps": training_steps,
+        "initial_model_state_sha256": initial_state_sha256,
+        "final_model_state_sha256": final_state_sha256,
+        "dynamic_controller_final_lambda": None if controller is None else controller.lambda_value,
+        "dynamic_controller_cumulative_updates": None if controller is None else {
+            "attempts": controller.update_attempts,
+            "applied": controller.update_count,
+            "invalid_skips": controller.skipped_invalid_count,
+            "lower_bound_hits": controller.lower_bound_hits,
+            "upper_bound_hits": controller.upper_bound_hits,
+        },
     }
     (args.output_root / "metrics.json").write_text(json.dumps(result, ensure_ascii=False, indent=2), encoding="utf-8")
-    print(json.dumps({"best_epoch": best_epoch, "test": test}, ensure_ascii=False, indent=2))
+    print(json.dumps({"best_epoch": best_epoch, "test": test, "test_evaluation_status": result["test_evaluation_status"]}, ensure_ascii=False, indent=2))
+    if args.smoke_test:
+        epoch_records = gradient_history["epochs"]
+        epoch1_lambdas = epoch_records[0]["lambda_statistics"]
+        epoch2_lambdas = epoch_records[1]["lambda_statistics"]
+        all_lambdas = [
+            float(value)
+            for epoch_record in epoch_records
+            for value in (
+                epoch_record["lambda_statistics"]["min"],
+                epoch_record["lambda_statistics"]["max"],
+                epoch_record["lambda_statistics"]["start"],
+                epoch_record["lambda_statistics"]["end"],
+            )
+        ]
+        all_norms = [
+            float(sample[key])
+            for epoch_record in epoch_records
+            for sample in epoch_record["gradient_samples"]
+            for key in (
+                "intent_gradient_norm",
+                "trajectory_gradient_norm_unweighted",
+                "weighted_trajectory_gradient_norm",
+                "weighted_gradient_ratio",
+                "gradient_cosine_intent_vs_trajectory",
+            )
+        ]
+        checks = {
+            "epoch1_lambda_fixed_at_initial_100": epoch1_lambdas["min"] == 100.0 and epoch1_lambdas["max"] == 100.0,
+            "epoch2_lambda_changed": not math.isclose(epoch2_lambdas["end"], 100.0, rel_tol=0.0, abs_tol=1e-9),
+            "lambda_within_10_300": all(10.0 <= value <= 300.0 for value in all_lambdas),
+            "finite_lambda_and_gradient_statistics": all(math.isfinite(value) for value in all_lambdas + all_norms),
+            "ordinary_backward_and_optimizer_steps_completed": training_steps > 0,
+            "model_parameters_changed": initial_state_sha256 != final_state_sha256,
+            "test_split_not_loaded_or_evaluated": args.skip_test and test is None,
+            "epoch2_controller_updated": epoch_records[1]["controller_updates"]["updates_applied"] > 0,
+        }
+        report = {
+            "status": "passed" if all(checks.values()) else "failed",
+            "seed": args.seed,
+            "epochs": args.epochs,
+            "device": str(device),
+            "checks": checks,
+            "epoch1_lambda": epoch1_lambdas,
+            "epoch2_lambda": epoch2_lambdas,
+            "training_steps": training_steps,
+            "initial_model_state_sha256": initial_state_sha256,
+            "final_model_state_sha256": final_state_sha256,
+            "fixed_mode_objective_unit_test_required": True,
+            "test_evaluation_status": result["test_evaluation_status"],
+        }
+        (args.output_root / "report.json").write_text(
+            json.dumps(report, ensure_ascii=False, indent=2), encoding="utf-8"
+        )
+        if report["status"] != "passed":
+            raise RuntimeError(f"DGB smoke checks failed: {checks}")
 
 
 if __name__ == "__main__":
