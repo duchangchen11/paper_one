@@ -32,6 +32,34 @@ def set_seed(seed: int) -> None:
     torch.cuda.manual_seed_all(seed)
 
 
+COMPONENT_ABLATIONS = (
+    "full",
+    "no_scene",
+    "no_social",
+    "no_proposal_loss",
+    "no_adaptive_gate",
+    "no_ambiguity",
+)
+
+
+def component_loss_weights(
+    component_ablation: str, prior_weight: float, ambiguous_weight: float
+) -> tuple[float, float]:
+    """Return loss weights for one predeclared component intervention."""
+    if component_ablation not in COMPONENT_ABLATIONS:
+        raise ValueError(f"Unknown component ablation: {component_ablation}")
+    if component_ablation == "no_proposal_loss":
+        prior_weight = 0.0
+    if component_ablation == "no_ambiguity":
+        ambiguous_weight = 0.0
+    return float(prior_weight), float(ambiguous_weight)
+
+
+def requested_split_names(skip_test: bool) -> tuple[str, ...]:
+    """Select splits without opening test data during training-only phases."""
+    return ("train", "val") if skip_test else ("train", "val", "test")
+
+
 SHARED_GRADIENT_PREFIXES = (
     "target_projection.",
     "position_embedding",
@@ -574,6 +602,7 @@ def main() -> None:
     parser.add_argument("--initial-state-checkpoint", type=Path, default=None)
     parser.add_argument("--init-trajectory-checkpoint", type=Path, default=None)
     parser.add_argument("--gate-mode", choices=("uncertainty", "always", "none"), default="uncertainty")
+    parser.add_argument("--component-ablation", choices=COMPONENT_ABLATIONS, default="full")
     parser.add_argument("--epochs", type=int, default=15)
     parser.add_argument("--batch-size", type=int, default=512)
     parser.add_argument("--hidden-dim", type=int, default=128)
@@ -631,7 +660,7 @@ def main() -> None:
     )[: min(audit_count, len(ambiguous_set))]
     audit_main_batch = stack_dataset_batch(train_set, audit_main_indices)
     audit_ambiguous_batch = stack_dataset_batch(ambiguous_set, audit_ambiguous_indices)
-    split_names = ("train", "val") if args.skip_test else ("train", "val", "test")
+    split_names = requested_split_names(args.skip_test)
     raw = {split: np.load(args.data_root / f"{split}.npz", allow_pickle=False) for split in split_names}
     sizes = {split: torch.from_numpy(raw[split]["image_size"].astype(np.float32)) for split in raw}
     model = JointTransformerSceneGate(
@@ -641,7 +670,12 @@ def main() -> None:
         pred_len=train_set.future_gt.shape[1],
         gate_mode=args.gate_mode,
         max_obs_len=train_set.target_obs.shape[1],
+        component_flags_all_enabled=args.component_ablation == "full",
+        component_ablation=None if args.component_ablation == "full" else args.component_ablation,
     ).to(device)
+    effective_prior_weight, effective_ambiguous_weight = component_loss_weights(
+        args.component_ablation, args.prior_weight, args.ambiguous_weight
+    )
     declared_initial_state_sha256 = None
     if args.initial_state_checkpoint is not None:
         initial_payload = torch.load(args.initial_state_checkpoint, map_location="cpu", weights_only=False)
@@ -671,6 +705,57 @@ def main() -> None:
                 loaded.append(mapped_key)
         model.load_state_dict(current)
         print(f"initialized_trajectory_parameters={len(loaded)} from={args.init_trajectory_checkpoint}")
+
+    # Deterministic validation-only probe. This never opens the official-test split.
+    was_training = model.training
+    model.eval()
+    probe_batch = stack_dataset_batch(val_set, list(range(min(8, len(val_set)))))
+    probe_target = torch.cat([probe_batch["target_obs"], probe_batch["target_abs_obs"]], dim=-1).to(device)
+    with torch.no_grad():
+        probe_output = model(
+            probe_target,
+            probe_batch["neighbor_obs"].to(device),
+            probe_batch["neighbor_mask"].to(device),
+            probe_batch["neighbor_visible_mask"].to(device),
+            probe_batch["scene_feat"].to(device),
+        )
+    component_probe = {
+        "component_ablation": args.component_ablation,
+        "validation_probe_samples": int(probe_target.shape[0]),
+        "intent_logits_finite": bool(torch.isfinite(probe_output["intent_logit"]).all().item()),
+        "proposal_logits_finite": bool(torch.isfinite(probe_output["prior_logit"]).all().item()),
+        "future_predictions_finite": bool(torch.isfinite(probe_output["future_pred"]).all().item()),
+        "proposal_output_present": "prior_logit" in probe_output,
+        "effective_scene_context_mean_abs": float(probe_output["effective_scene_context"].abs().mean().cpu()),
+        "effective_social_context_mean_abs": float(probe_output["effective_social_context"].abs().mean().cpu()),
+        "scene_downstream_tensor_zero": bool(
+            args.component_ablation != "no_scene"
+            or torch.count_nonzero(probe_output["effective_scene_context"]).item() == 0
+        ),
+        "social_downstream_tensor_zero": bool(
+            args.component_ablation != "no_social"
+            or torch.count_nonzero(probe_output["effective_social_context"]).item() == 0
+        ),
+        "fixed_neutral_gate": bool(
+            args.component_ablation != "no_adaptive_gate"
+            or torch.allclose(probe_output["gate"], torch.full_like(probe_output["gate"], 0.5))
+        ),
+        "both_gate_fusion_contexts_present": bool(
+            args.component_ablation != "no_adaptive_gate"
+            or (
+                "effective_scene_context" in probe_output
+                and "effective_social_context" in probe_output
+                and hasattr(model, "gate")
+            )
+        ),
+        "effective_prior_weight": effective_prior_weight,
+        "effective_ambiguous_weight": effective_ambiguous_weight,
+        "weighted_proposal_loss_zero": effective_prior_weight == 0.0,
+        "weighted_ambiguity_contribution_zero": effective_ambiguous_weight == 0.0,
+        "validation_only_probe": True,
+        "test_split_loaded": not args.skip_test,
+    }
+    model.train(was_training)
     optimizer = torch.optim.AdamW(model.parameters(), lr=args.learning_rate, weight_decay=1e-4)
     scheduler = torch.optim.lr_scheduler.ReduceLROnPlateau(optimizer, mode="max", factor=0.5, patience=2)
     best_score = -float("inf")
@@ -780,10 +865,10 @@ def main() -> None:
             )
             intent_loss = (
                 main_intent_bce
-                + args.prior_weight * proposal_intent_bce
-                + args.ambiguous_weight * ambiguity_regularizer
+                + effective_prior_weight * proposal_intent_bce
+                + effective_ambiguous_weight * ambiguity_regularizer
             )
-            weighted_ambiguity_regularizer = args.ambiguous_weight * ambiguity_regularizer
+            weighted_ambiguity_regularizer = effective_ambiguous_weight * ambiguity_regularizer
             lambda_used = controller.lambda_value if controller is not None else args.traj_weight
             measured_gradient = None
             update_record = None
@@ -830,19 +915,19 @@ def main() -> None:
                     proposal_intent_bce,
                     trajectory_loss,
                     ambiguity_regularizer,
-                    args.prior_weight,
+                    effective_prior_weight,
                     lambda_used,
-                    args.ambiguous_weight,
+                    effective_ambiguous_weight,
                 )
             else:
                 # Preserve the legacy fixed-mode summation and backward path exactly.
-                loss = main_intent_bce + args.prior_weight * proposal_intent_bce
+                loss = main_intent_bce + effective_prior_weight * proposal_intent_bce
                 loss = loss + args.traj_weight * trajectory_loss
                 loss = loss + weighted_ambiguity_regularizer
             count = target.shape[0]
             epoch_items += count
             epoch_sums["main_intent_bce"] += main_intent_bce.detach() * count
-            epoch_sums["weighted_proposal_intent_bce"] += args.prior_weight * proposal_intent_bce.detach() * count
+            epoch_sums["weighted_proposal_intent_bce"] += effective_prior_weight * proposal_intent_bce.detach() * count
             epoch_sums["weighted_ambiguity_regularizer"] += weighted_ambiguity_regularizer.detach() * count
             epoch_sums["intent_loss"] += intent_loss.detach() * count
             epoch_sums["trajectory_loss"] += trajectory_loss.detach() * count
@@ -867,9 +952,9 @@ def main() -> None:
                 audit_main_batch,
                 audit_ambiguous_batch,
                 device,
-                prior_weight=args.prior_weight,
+                prior_weight=effective_prior_weight,
                 trajectory_weight=args.traj_weight,
-                ambiguous_weight=args.ambiguous_weight,
+                ambiguous_weight=effective_ambiguous_weight,
             )
             gradient_record = {
                 "epoch": epoch,
@@ -897,7 +982,7 @@ def main() -> None:
         )
         with torch.no_grad():
             val_lambda = controller.lambda_value if controller is not None else args.traj_weight
-            val = run_epoch(model, val_loader, sizes["val"], device, None, args.prior_weight, val_lambda)
+            val = run_epoch(model, val_loader, sizes["val"], device, None, effective_prior_weight, val_lambda)
         scheduler_monitor_metric, scheduler_monitor_value = validation_scheduler_monitor(args.selection_mode, val)
         if args.selection_mode == "intent_auc":
             scheduler.step(scheduler_monitor_value)
@@ -953,7 +1038,7 @@ def main() -> None:
         checkpoint = torch.load(args.checkpoint, map_location=device, weights_only=False)
         model.load_state_dict(checkpoint["model"])
         with torch.no_grad():
-            test = run_epoch(model, test_loader, sizes["test"], device, None, args.prior_weight, args.traj_weight)
+            test = run_epoch(model, test_loader, sizes["test"], device, None, effective_prior_weight, args.traj_weight)
     else:
         test = None
     final_state_sha256 = state_dict_sha256(model.state_dict())
@@ -964,6 +1049,11 @@ def main() -> None:
         "prior_weight": args.prior_weight,
         "traj_weight": args.traj_weight,
         "ambiguous_weight": args.ambiguous_weight,
+        "effective_prior_weight": effective_prior_weight,
+        "effective_ambiguous_weight": effective_ambiguous_weight,
+        "component_ablation": args.component_ablation,
+        "component_flags_all_enabled": args.component_ablation == "full",
+        "component_probe": component_probe,
         "selection_mode": args.selection_mode,
         "selection_tolerance": args.selection_tolerance,
         "scheduler_monitor_metric": "intent_auc" if args.selection_mode == "intent_auc" else "composite_auc_f1_ade",

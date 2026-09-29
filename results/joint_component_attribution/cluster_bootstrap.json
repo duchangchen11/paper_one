@@ -1,0 +1,336 @@
+{
+  "protocol_sha256": "910dedc0eda685d211a816e7e65e4f116c238ad9e3f82ef0f90025babc1ff532",
+  "bootstrap_unit": "scene_id video cluster",
+  "paired": true,
+  "requested_repetitions": 2000,
+  "bootstrap_seed": 20260929,
+  "seeds_pooled": false,
+  "comparison_sign": "Ablation - Full; positive AUC delta means removal helped, negative means the component helped",
+  "comparisons": {
+    "A1_no_scene": {
+      "42": {
+        "bootstrap_unit": "scene_id video cluster",
+        "seed": 20260971,
+        "requested_repetitions": 2000,
+        "valid_repetitions": 2000,
+        "video_count": 97,
+        "delta_roc_auc": {
+          "mean": -0.08307683049321496,
+          "ci_percentile_95": {
+            "lower_95": -0.20820967965781156,
+            "upper_95": 0.051333583363472796
+          }
+        },
+        "delta_brier": {
+          "mean": 0.12591243750306189,
+          "ci_percentile_95": {
+            "lower_95": 0.08498595387245698,
+            "upper_95": 0.17147275214528032
+          }
+        }
+      },
+      "123": {
+        "bootstrap_unit": "scene_id video cluster",
+        "seed": 20261052,
+        "requested_repetitions": 2000,
+        "valid_repetitions": 2000,
+        "video_count": 97,
+        "delta_roc_auc": {
+          "mean": -0.08850968885215073,
+          "ci_percentile_95": {
+            "lower_95": -0.2494532933686052,
+            "upper_95": 0.09405473588418131
+          }
+        },
+        "delta_brier": {
+          "mean": 0.06612146275126403,
+          "ci_percentile_95": {
+            "lower_95": 0.030160621209635724,
+            "upper_95": 0.10304118905988752
+          }
+        }
+      },
+      "2024": {
+        "bootstrap_unit": "scene_id video cluster",
+        "seed": 20262953,
+        "requested_repetitions": 2000,
+        "valid_repetitions": 2000,
+        "video_count": 97,
+        "delta_roc_auc": {
+          "mean": -0.09887727563973835,
+          "ci_percentile_95": {
+            "lower_95": -0.23076432640863503,
+            "upper_95": 0.04064056459624926
+          }
+        },
+        "delta_brier": {
+          "mean": 0.10620827735541971,
+          "ci_percentile_95": {
+            "lower_95": 0.06714200515532072,
+            "upper_95": 0.14138971159765712
+          }
+        }
+      }
+    },
+    "A2_no_social": {
+      "42": {
+        "bootstrap_unit": "scene_id video cluster",
+        "seed": 20261071,
+        "requested_repetitions": 2000,
+        "valid_repetitions": 2000,
+        "video_count": 97,
+        "delta_roc_auc": {
+          "mean": -0.016934424331925782,
+          "ci_percentile_95": {
+            "lower_95": -0.0592857050596349,
+            "upper_95": 0.01839214269477217
+          }
+        },
+        "delta_brier": {
+          "mean": 0.05125974688429724,
+          "ci_percentile_95": {
+            "lower_95": 0.02439710396262811,
+            "upper_95": 0.0805726070107555
+          }
+        }
+      },
+      "123": {
+        "bootstrap_unit": "scene_id video cluster",
+        "seed": 20261152,
+        "requested_repetitions": 2000,
+        "valid_repetitions": 2000,
+        "video_count": 97,
+        "delta_roc_auc": {
+          "mean": 0.005552124017706035,
+          "ci_percentile_95": {
+            "lower_95": -0.00776904495868661,
+            "upper_95": 0.02178642893752379
+          }
+        },
+        "delta_brier": {
+          "mean": 0.022158050283084967,
+          "ci_percentile_95": {
+            "lower_95": 0.009315014084841405,
+            "upper_95": 0.034893291795025476
+          }
+        }
+      },
+      "2024": {
+        "bootstrap_unit": "scene_id video cluster",
+        "seed": 20263053,
+        "requested_repetitions": 2000,
+        "valid_repetitions": 2000,
+        "video_count": 97,
+        "delta_roc_auc": {
+          "mean": -0.015326467568018635,
+          "ci_percentile_95": {
+            "lower_95": -0.13543480593456078,
+            "upper_95": 0.08393153047945116
+          }
+        },
+        "delta_brier": {
+          "mean": 0.010330571494307756,
+          "ci_percentile_95": {
+            "lower_95": -0.004210736939234527,
+            "upper_95": 0.02788811648574125
+          }
+        }
+      }
+    },
+    "A3_no_proposal_loss": {
+      "42": {
+        "bootstrap_unit": "scene_id video cluster",
+        "seed": 20261171,
+        "requested_repetitions": 2000,
+        "valid_repetitions": 2000,
+        "video_count": 97,
+        "delta_roc_auc": {
+          "mean": 0.005862559638525074,
+          "ci_percentile_95": {
+            "lower_95": -0.02948524789281448,
+            "upper_95": 0.03773040318930375
+          }
+        },
+        "delta_brier": {
+          "mean": -0.002760112527331012,
+          "ci_percentile_95": {
+            "lower_95": -0.01654496294582711,
+            "upper_95": 0.00923203383150875
+          }
+        }
+      },
+      "123": {
+        "bootstrap_unit": "scene_id video cluster",
+        "seed": 20261252,
+        "requested_repetitions": 2000,
+        "valid_repetitions": 2000,
+        "video_count": 97,
+        "delta_roc_auc": {
+          "mean": 0.01190251290008245,
+          "ci_percentile_95": {
+            "lower_95": -0.0038208949629057213,
+            "upper_95": 0.03210179562985161
+          }
+        },
+        "delta_brier": {
+          "mean": 0.0028844457801213918,
+          "ci_percentile_95": {
+            "lower_95": -0.0009475341058857476,
+            "upper_95": 0.007411147771083442
+          }
+        }
+      },
+      "2024": {
+        "bootstrap_unit": "scene_id video cluster",
+        "seed": 20263153,
+        "requested_repetitions": 2000,
+        "valid_repetitions": 2000,
+        "video_count": 97,
+        "delta_roc_auc": {
+          "mean": -0.0022326406029945884,
+          "ci_percentile_95": {
+            "lower_95": -0.06810865024269737,
+            "upper_95": 0.06851878620747708
+          }
+        },
+        "delta_brier": {
+          "mean": 0.005509364075210266,
+          "ci_percentile_95": {
+            "lower_95": -0.009049883685482398,
+            "upper_95": 0.020139162792678782
+          }
+        }
+      }
+    },
+    "A4_no_adaptive_gate": {
+      "42": {
+        "bootstrap_unit": "scene_id video cluster",
+        "seed": 20261271,
+        "requested_repetitions": 2000,
+        "valid_repetitions": 2000,
+        "video_count": 97,
+        "delta_roc_auc": {
+          "mean": -0.011470012231278989,
+          "ci_percentile_95": {
+            "lower_95": -0.05016730221463841,
+            "upper_95": 0.022745409510589117
+          }
+        },
+        "delta_brier": {
+          "mean": 0.02716331884154864,
+          "ci_percentile_95": {
+            "lower_95": 0.005873070954768317,
+            "upper_95": 0.05390484320401173
+          }
+        }
+      },
+      "123": {
+        "bootstrap_unit": "scene_id video cluster",
+        "seed": 20261352,
+        "requested_repetitions": 2000,
+        "valid_repetitions": 2000,
+        "video_count": 97,
+        "delta_roc_auc": {
+          "mean": 0.0034520226668394425,
+          "ci_percentile_95": {
+            "lower_95": -0.000770643541555771,
+            "upper_95": 0.00827074264170421
+          }
+        },
+        "delta_brier": {
+          "mean": 0.00029512641487621703,
+          "ci_percentile_95": {
+            "lower_95": -0.0015969388142243399,
+            "upper_95": 0.002555229654547377
+          }
+        }
+      },
+      "2024": {
+        "bootstrap_unit": "scene_id video cluster",
+        "seed": 20263253,
+        "requested_repetitions": 2000,
+        "valid_repetitions": 2000,
+        "video_count": 97,
+        "delta_roc_auc": {
+          "mean": -0.005930086795387606,
+          "ci_percentile_95": {
+            "lower_95": -0.09387679395520068,
+            "upper_95": 0.08053134153233243
+          }
+        },
+        "delta_brier": {
+          "mean": 0.014611815494439562,
+          "ci_percentile_95": {
+            "lower_95": 0.0006375123651556845,
+            "upper_95": 0.03284529099770036
+          }
+        }
+      }
+    },
+    "A5_no_ambiguity": {
+      "42": {
+        "bootstrap_unit": "scene_id video cluster",
+        "seed": 20261371,
+        "requested_repetitions": 2000,
+        "valid_repetitions": 2000,
+        "video_count": 97,
+        "delta_roc_auc": {
+          "mean": 0.014557914450666093,
+          "ci_percentile_95": {
+            "lower_95": -0.06547788408871896,
+            "upper_95": 0.0996219896410359
+          }
+        },
+        "delta_brier": {
+          "mean": 0.013070975709196107,
+          "ci_percentile_95": {
+            "lower_95": -0.010451482738192812,
+            "upper_95": 0.042010835356549654
+          }
+        }
+      },
+      "123": {
+        "bootstrap_unit": "scene_id video cluster",
+        "seed": 20261452,
+        "requested_repetitions": 2000,
+        "valid_repetitions": 2000,
+        "video_count": 97,
+        "delta_roc_auc": {
+          "mean": 0.03139007634761543,
+          "ci_percentile_95": {
+            "lower_95": -0.03757174500035201,
+            "upper_95": 0.10869875374836786
+          }
+        },
+        "delta_brier": {
+          "mean": 0.005192677772963073,
+          "ci_percentile_95": {
+            "lower_95": -0.012134422118601157,
+            "upper_95": 0.026189143477726926
+          }
+        }
+      },
+      "2024": {
+        "bootstrap_unit": "scene_id video cluster",
+        "seed": 20263353,
+        "requested_repetitions": 2000,
+        "valid_repetitions": 2000,
+        "video_count": 97,
+        "delta_roc_auc": {
+          "mean": 0.014301752238075846,
+          "ci_percentile_95": {
+            "lower_95": -0.03776680831650564,
+            "upper_95": 0.06809837050396894
+          }
+        },
+        "delta_brier": {
+          "mean": 0.0028165851774685055,
+          "ci_percentile_95": {
+            "lower_95": -0.009584456188622534,
+            "upper_95": 0.015807517273797467
+          }
+        }
+      }
+    }
+  }
+}

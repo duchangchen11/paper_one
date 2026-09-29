@@ -1,0 +1,46 @@
+{
+  "status": "post_freeze_read_only_report_render",
+  "protocol_sha256": "910dedc0eda685d211a816e7e65e4f116c238ad9e3f82ef0f90025babc1ff532",
+  "reason": "The generic historical target-only resolver can match a different intent_target_only_15x15 experiment; the requested M0 is the matched intention_scratch_matched control.",
+  "m0_source": "results/intention_scratch_matched/seed{seed}/test_predictions.npz raw_probability",
+  "m0_prediction_sha256_by_seed": {
+    "42": "6f0a79e05aea01ce95fd1b7b15b4bc70b580edc36f12c229fa93bb59d424883a",
+    "123": "570e08a150035e42bec7da8b33a27e28ef65f98fa7f57bf235019a963592cc97",
+    "2024": "b6618e06358f5a8b6f670edc7e20f34cf0fa985ec61c3c5cf096e50bc0ae676e"
+  },
+  "m0_recomputed_metrics": {
+    "roc_auc": {
+      "mean": 0.6732299115698037,
+      "sample_std": 0.007882643391970858,
+      "n": 3
+    },
+    "brier": {
+      "mean": 0.24015605030913142,
+      "sample_std": 0.035949775954602706,
+      "n": 3
+    },
+    "f1": {
+      "mean": 0.4881936091273749,
+      "sample_std": 0.45783781858966816,
+      "n": 3
+    },
+    "balanced_accuracy": {
+      "mean": 0.5422290858248394,
+      "sample_std": 0.06928450147737153,
+      "n": 3
+    },
+    "accuracy": {
+      "mean": 0.47600603713199857,
+      "sample_std": 0.37255386538870233,
+      "n": 3
+    }
+  },
+  "reporting_only": true,
+  "renderer_opened_test_archive": false,
+  "model_inference_repeated": false,
+  "component_bootstrap_values_changed": false,
+  "bootstrap_computation": "already completed from frozen predictions after protocol freeze; this renderer reuses cluster_bootstrap.json",
+  "A0_A1_A5_test_metrics_and_bootstrap_values_changed": false,
+  "interpretation_note": "No Scene point estimate nearly equals the M0-to-J0 AUC gap, but all three paired cluster-bootstrap AUC CIs cross zero; the report therefore does not claim a confirmed single-component explanation.",
+  "renderer_sha256": "47c0806f0630b39e3edae59ec00d569c2f0a14a5cfb43b62b7c6dd6ee7d7ed27"
+}

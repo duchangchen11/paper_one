@@ -1,0 +1,50 @@
+{
+  "policy": "all A1-A5 arms use the corresponding exact Clean J0 initial_state_seed*.pt; A0 reuses completed Clean J0",
+  "per_seed": {
+    "42": {
+      "initial_state_path": "checkpoints/joint_traj_supervision_clean/initial_state_seed42.pt",
+      "initial_state_file_sha256": "f637a337c76c2a39d60832fd113af0ca7abf2a923a5a220ed42a16af34e6fb23",
+      "initial_model_state_sha256": "415177a3ab4080e2d5222d66a46d0c34187ae27987b50c26fe62550edd1dfd6f",
+      "baseline_clean_j0_initial_model_state_sha256": "415177a3ab4080e2d5222d66a46d0c34187ae27987b50c26fe62550edd1dfd6f",
+      "exact_match": true,
+      "arms": {
+        "A0_full_clean_j0": "existing matched baseline",
+        "A1_no_scene": "planned",
+        "A2_no_social": "planned",
+        "A3_no_proposal_loss": "planned",
+        "A4_no_adaptive_gate": "planned",
+        "A5_no_ambiguity": "planned"
+      }
+    },
+    "123": {
+      "initial_state_path": "checkpoints/joint_traj_supervision_clean/initial_state_seed123.pt",
+      "initial_state_file_sha256": "6b090910e37481b37dfd313758cebef65912dbe059b14c2870bfc2fb3eac8cf3",
+      "initial_model_state_sha256": "9884ca5c859d799b37f4c6287824dc027cd19bd64cecd6f92b574c5ab4b8e394",
+      "baseline_clean_j0_initial_model_state_sha256": "9884ca5c859d799b37f4c6287824dc027cd19bd64cecd6f92b574c5ab4b8e394",
+      "exact_match": true,
+      "arms": {
+        "A0_full_clean_j0": "existing matched baseline",
+        "A1_no_scene": "planned",
+        "A2_no_social": "planned",
+        "A3_no_proposal_loss": "planned",
+        "A4_no_adaptive_gate": "planned",
+        "A5_no_ambiguity": "planned"
+      }
+    },
+    "2024": {
+      "initial_state_path": "checkpoints/joint_traj_supervision_clean/initial_state_seed2024.pt",
+      "initial_state_file_sha256": "2f852be9007638238befb902e078d513780bce243bd395d4e630eb613d9f352a",
+      "initial_model_state_sha256": "0995d8d1d2d20a6c9457b78ce74a4351ecb07f9792eba14e81907b3b298d9069",
+      "baseline_clean_j0_initial_model_state_sha256": "0995d8d1d2d20a6c9457b78ce74a4351ecb07f9792eba14e81907b3b298d9069",
+      "exact_match": true,
+      "arms": {
+        "A0_full_clean_j0": "existing matched baseline",
+        "A1_no_scene": "planned",
+        "A2_no_social": "planned",
+        "A3_no_proposal_loss": "planned",
+        "A4_no_adaptive_gate": "planned",
+        "A5_no_ambiguity": "planned"
+      }
+    }
+  }
+}

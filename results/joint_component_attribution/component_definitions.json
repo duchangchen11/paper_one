@@ -1,0 +1,95 @@
+{
+  "study": "Clean J0 single-component intention architecture attribution",
+  "baseline": "A0 Full Clean J0, traj_weight=0",
+  "primary_endpoint": "official test ROC-AUC, accessed only after protocol_frozen.json and SHA256 are written",
+  "seeds": [
+    42,
+    123,
+    2024
+  ],
+  "training_protocol": {
+    "epochs": 15,
+    "batch_size": 512,
+    "hidden_dim": 128,
+    "learning_rate": 0.001,
+    "optimizer": "AdamW",
+    "weight_decay": 0.0001,
+    "gradient_clip": 5.0,
+    "gate_mode": "uncertainty",
+    "prior_weight": 0.5,
+    "traj_weight": 0.0,
+    "traj_weight_mode": "fixed",
+    "ambiguous_weight": 0.2,
+    "selection_mode": "intent_auc",
+    "selection_tolerance": 0.0001,
+    "scheduler": "ReduceLROnPlateau(mode=max,factor=0.5,patience=2)",
+    "scheduler_monitor": "raw_validation_auc",
+    "checkpoint_primary": "raw_validation_auc",
+    "checkpoint_tie_break": "raw_validation_brier_within_1e-4",
+    "trajectory_metrics_used_for_selection": false
+  },
+  "sampling": "class-balanced WeightedRandomSampler with replacement; same integer seed and epoch sampler fingerprint as A0",
+  "initialization": "load the corresponding checkpoints/joint_traj_supervision_clean/initial_state_seed{seed}.pt for every arm",
+  "variants": {
+    "A1_no_scene": {
+      "intervention": "replace scene_context by zeros_like before proposal_fusion, gate input, and main fusion",
+      "retained": [
+        "scene_encoder module",
+        "parameter registration",
+        "fusion dimensions"
+      ]
+    },
+    "A2_no_social": {
+      "intervention": "replace social_context by zeros_like before proposal_fusion and main fusion",
+      "retained": [
+        "neighbor GRU",
+        "parameter registration",
+        "fusion dimensions"
+      ]
+    },
+    "A3_no_proposal_loss": {
+      "intervention": "prior_weight=0",
+      "retained": [
+        "proposal forward",
+        "prior entropy",
+        "uncertainty gate",
+        "fusion"
+      ]
+    },
+    "A4_no_adaptive_gate": {
+      "intervention": "replace sample-dependent gate by fixed g=0.5",
+      "retained": [
+        "scene/social contexts",
+        "both fusion branches",
+        "all registered modules"
+      ],
+      "rationale": "neutral scale for the implemented g*social_context path; avoids deleting social input with g=0 or g=1"
+    },
+    "A5_no_ambiguity": {
+      "intervention": "ambiguous_weight=0",
+      "retained": [
+        "architecture",
+        "ordinary training paths"
+      ]
+    }
+  },
+  "effect_signs": {
+    "primary_reported_delta": "Ablation - Full for bootstrap, as predeclared in primary endpoint section",
+    "component_contribution": "Full - Ablation; positive means removing the component reduced AUC",
+    "brier_delta": "Ablation - Full; positive means calibration worsened after removal"
+  },
+  "inference": "exploratory component attribution; five comparisons; no confirmatory significance claims",
+  "forbidden_this_round": [
+    "proposal branch removal",
+    "fusion removal",
+    "target encoder removal",
+    "pairwise ablations",
+    "trajectory auxiliary supervision",
+    "reliability inputs",
+    "DGB",
+    "adapters",
+    "PCGrad",
+    "GradNorm",
+    "lambda sweeps"
+  ]
+}

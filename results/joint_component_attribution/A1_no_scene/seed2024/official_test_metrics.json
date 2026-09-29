@@ -1,0 +1,18 @@
+{
+  "protocol_sha256": "910dedc0eda685d211a816e7e65e4f116c238ad9e3f82ef0f90025babc1ff532",
+  "status": "official_test_evaluated_after_protocol_freeze",
+  "metrics": {
+    "roc_auc": 0.6823672988853331,
+    "brier": 0.19885786959143834,
+    "f1": 0.8541687386043428,
+    "balanced_accuracy": 0.6282502779309809,
+    "accuracy": 0.7600240030549342,
+    "sample_count": 18331,
+    "positive_count": 16009,
+    "negative_count": 2322
+  },
+  "test_predictions": "test_predictions.npz",
+  "test_predictions_sha256": "96d89a1c563c4fd79a7d9ddcfd4ab61e8bf503415eb463cdb3636cead63fec9b",
+  "trajectory_metrics_interpreted": false,
+  "trajectory_outputs_saved_for_forward_sanity_only": true
+}

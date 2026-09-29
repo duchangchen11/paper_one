@@ -1,0 +1,19 @@
+{
+  "protocol_sha256": "910dedc0eda685d211a816e7e65e4f116c238ad9e3f82ef0f90025babc1ff532",
+  "status": "reused_preexisting_clean_j0_official_test_predictions_after_freeze",
+  "source_path": "results/joint_traj_supervision_clean/J0_clean/seed42/test_predictions.npz",
+  "source_sha256": "271cf0719183f50a178906c56ce2e45b15036de3b6871bf1fb3c3541d125040c",
+  "metrics": {
+    "roc_auc": 0.7698061905208466,
+    "brier": 0.09492048265680922,
+    "f1": 0.930295633306211,
+    "balanced_accuracy": 0.6076109131981047,
+    "accuracy": 0.8738203044023785,
+    "sample_count": 18331,
+    "positive_count": 16009,
+    "negative_count": 2322
+  },
+  "test_predictions": "test_predictions.npz",
+  "test_predictions_sha256": "fa96f5dac23910abc750cf0e0c011d91720fd09555e9cc44a79b314cdcd1eec6",
+  "retrained": false
+}

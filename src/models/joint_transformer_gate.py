@@ -16,10 +16,25 @@ class JointTransformerSceneGate(nn.Module):
         dropout: float = 0.1,
         gate_mode: str = "uncertainty",
         max_obs_len: int = 32,
+        component_flags_all_enabled: bool = True,
+        component_ablation: str | None = None,
     ):
         super().__init__()
         if gate_mode not in {"uncertainty", "always", "none"}:
             raise ValueError(f"Unsupported gate_mode: {gate_mode}")
+        valid_ablations = {
+            "no_scene",
+            "no_social",
+            "no_proposal_loss",
+            "no_adaptive_gate",
+            "no_ambiguity",
+        }
+        if component_flags_all_enabled and component_ablation not in (None, "full"):
+            raise ValueError("all-enabled component flags cannot be combined with an ablation")
+        if not component_flags_all_enabled and component_ablation not in valid_ablations:
+            raise ValueError("a supported component_ablation is required when flags are disabled")
+        self.component_flags_all_enabled = bool(component_flags_all_enabled)
+        self.component_ablation = None if self.component_flags_all_enabled else component_ablation
         self.gate_mode = gate_mode
         self.pred_len = pred_len
         self.target_projection = nn.Linear(input_dim, hidden_dim)
@@ -67,6 +82,8 @@ class JointTransformerSceneGate(nn.Module):
         target_encoded = self.target_projection(target_obs) + self.position_embedding[:, :obs_len]
         target_context = self.target_encoder(target_encoded)[:, -1]
         scene_context = self.scene_encoder(scene_feat)
+        if self.component_ablation == "no_scene":
+            scene_context = torch.zeros_like(scene_context)
 
         batch_size, max_neighbors, obs_len, feature_dim = neighbor_obs.shape
         neighbor_input = neighbor_obs.reshape(batch_size * max_neighbors, obs_len, feature_dim)
@@ -77,6 +94,8 @@ class JointTransformerSceneGate(nn.Module):
         denominator = slot_mask.sum(dim=1, keepdim=True).clamp_min(1).to(masked_context.dtype)
         social_context = masked_context.sum(dim=1) / denominator
         social_context = social_context * slot_mask.any(dim=1, keepdim=True).to(social_context.dtype)
+        if self.component_ablation == "no_social":
+            social_context = torch.zeros_like(social_context)
 
         proposal_context = self.proposal_fusion(
             torch.cat([target_context, scene_context, social_context], dim=-1)
@@ -84,7 +103,11 @@ class JointTransformerSceneGate(nn.Module):
         prior_logit = self.proposal_head(proposal_context).squeeze(-1)
         prior_prob = torch.sigmoid(prior_logit).clamp(1e-6, 1.0 - 1e-6)
         entropy = -prior_prob * torch.log(prior_prob) - (1.0 - prior_prob) * torch.log(1.0 - prior_prob)
-        if self.gate_mode == "uncertainty":
+        if self.component_ablation == "no_adaptive_gate":
+            # Neutral interpolation weight: retain the social and non-social
+            # branches while removing sample-dependent uncertainty modulation.
+            gate = torch.full_like(entropy, 0.5)
+        elif self.gate_mode == "uncertainty":
             gate = self.gate(torch.cat([target_context, scene_context, entropy.unsqueeze(-1)], dim=-1)).squeeze(-1)
         elif self.gate_mode == "always":
             gate = torch.ones_like(entropy)
@@ -101,5 +124,7 @@ class JointTransformerSceneGate(nn.Module):
             "prior_logit": prior_logit,
             "entropy": entropy,
             "gate": gate,
+            "effective_scene_context": scene_context,
+            "effective_social_context": social_context,
             "neighbor_visible_mask": neighbor_visible_mask,
         }

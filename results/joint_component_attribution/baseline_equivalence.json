@@ -1,0 +1,53 @@
+{
+  "status": "passed",
+  "scope": "A0 Clean J0 real selected checkpoint and complete validation split; no test split accessed",
+  "component_flags_all_enabled": true,
+  "all_seeds_passed": true,
+  "per_seed": {
+    "42": {
+      "checkpoint": "checkpoints/joint_traj_supervision_clean/formal/J0_clean_seed42.pt",
+      "checkpoint_sha256": "442ad5f26b52049f07f3008cb44ebfd9362a20a50fef292c13f2476a40dc3537",
+      "same_checkpoint_same_validation_input": true,
+      "reference_forward": "literal tensor-flow transcription of pre-ablation JointTransformerSceneGate.forward",
+      "max_abs_intent_logit_diff": 0.0,
+      "max_abs_future_pred_diff": 0.0,
+      "intent_logits_equivalent_lt_1e-6": true,
+      "future_predictions_equivalent_lt_1e-6": true,
+      "validation_samples": 2636,
+      "validation_order_sha256": "4e0fc69fc6bffd2fda0a7e6f0331a0419013d088063fcca7688d89078d5e5885",
+      "reference_intent_sha256": "6984a8ba78951086d9bbef45a7a3d6a62a15906c83b457b675fdc7ea1a70d551",
+      "reference_future_sha256": "b797e176b81117c8094724e76a5829d1a91aa1c346bcf07c5dc6b77f947f70c6"
+    },
+    "123": {
+      "checkpoint": "checkpoints/joint_traj_supervision_clean/formal/J0_clean_seed123.pt",
+      "checkpoint_sha256": "859c3d5968270e09be588308606fdb712fa04269b43625802d134d9774785a4b",
+      "same_checkpoint_same_validation_input": true,
+      "reference_forward": "literal tensor-flow transcription of pre-ablation JointTransformerSceneGate.forward",
+      "max_abs_intent_logit_diff": 0.0,
+      "max_abs_future_pred_diff": 0.0,
+      "intent_logits_equivalent_lt_1e-6": true,
+      "future_predictions_equivalent_lt_1e-6": true,
+      "validation_samples": 2636,
+      "validation_order_sha256": "4e0fc69fc6bffd2fda0a7e6f0331a0419013d088063fcca7688d89078d5e5885",
+      "reference_intent_sha256": "0cbf877c05b91edee296fd7bd9ac2b8f929ac5ca2f0c28db1f56288303fa4e9c",
+      "reference_future_sha256": "653b7291dc3f147483c07a5ef9e17044567f43eaad571de46cfd5ed4a15e4df9"
+    },
+    "2024": {
+      "checkpoint": "checkpoints/joint_traj_supervision_clean/formal/J0_clean_seed2024.pt",
+      "checkpoint_sha256": "4c97b82ce61936c0a6d11979b76ba97b13c8d0a9afd995b16f87f9a39d378df4",
+      "same_checkpoint_same_validation_input": true,
+      "reference_forward": "literal tensor-flow transcription of pre-ablation JointTransformerSceneGate.forward",
+      "max_abs_intent_logit_diff": 0.0,
+      "max_abs_future_pred_diff": 0.0,
+      "intent_logits_equivalent_lt_1e-6": true,
+      "future_predictions_equivalent_lt_1e-6": true,
+      "validation_samples": 2636,
+      "validation_order_sha256": "4e0fc69fc6bffd2fda0a7e6f0331a0419013d088063fcca7688d89078d5e5885",
+      "reference_intent_sha256": "1133697f806e7b4347a68d01adf82d4793b96ff351b6edb10416e77ad0e29d00",
+      "reference_future_sha256": "9c226bbd54559319eb68a90688f1d3d9db1387b881cf8d14322b17a297a68568"
+    }
+  },
+  "validation_archive_sha256": "fb78bb5edcd18d74a15744cfd8ae728c8600b485d4028bed8ee2c9c2d4c5f66c",
+  "reference_outputs_path": "results/joint_component_attribution/baseline_equivalence_reference.npz",
+  "reference_outputs_sha256": "2ae76e01f8061e2b90168f7c8f2a823818d9ac2ededbb11f35abda49ddff6b04"
+}

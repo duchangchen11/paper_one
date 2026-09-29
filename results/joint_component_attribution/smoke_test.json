@@ -1,0 +1,225 @@
+{
+  "status": "passed",
+  "seed": 123,
+  "epochs": 2,
+  "test_split_loaded": false,
+  "sampler_reference": "A0 Clean J0 seed123 first two epoch fingerprints",
+  "variants": {
+    "A1_no_scene": {
+      "status": "passed",
+      "checks": {
+        "two_epochs": true,
+        "test_unloaded": true,
+        "finite_validation_auc": true,
+        "matched_sampler": true,
+        "matched_initialization": true,
+        "intent_and_future_finite": true,
+        "no_scene_tensor_zero": true,
+        "no_social_tensor_zero": true,
+        "proposal_output_present": true,
+        "no_proposal_weight_zero": true,
+        "neutral_gate_and_both_modules_present": true,
+        "no_ambiguity_weight_zero": true,
+        "checkpoint_saved": true,
+        "run_path": "results/joint_component_attribution/smoke/A1_no_scene/seed123"
+      },
+      "sampler_sha256_by_epoch": [
+        "926b936449d72ea0ccb8a4306ca3fc613297061cb5bc126b31cace2e45b0cf6c",
+        "a9055a66c46cc120ea2bd411151aad1c15305e8258486bb59aa959d0856a4134"
+      ],
+      "component_probe": {
+        "component_ablation": "no_scene",
+        "validation_probe_samples": 8,
+        "intent_logits_finite": true,
+        "proposal_logits_finite": true,
+        "future_predictions_finite": true,
+        "proposal_output_present": true,
+        "effective_scene_context_mean_abs": 0.0,
+        "effective_social_context_mean_abs": 0.04927356168627739,
+        "scene_downstream_tensor_zero": true,
+        "social_downstream_tensor_zero": true,
+        "fixed_neutral_gate": true,
+        "both_gate_fusion_contexts_present": true,
+        "effective_prior_weight": 0.5,
+        "effective_ambiguous_weight": 0.2,
+        "weighted_proposal_loss_zero": false,
+        "weighted_ambiguity_contribution_zero": false,
+        "validation_only_probe": true,
+        "test_split_loaded": false
+      }
+    },
+    "A2_no_social": {
+      "status": "passed",
+      "checks": {
+        "two_epochs": true,
+        "test_unloaded": true,
+        "finite_validation_auc": true,
+        "matched_sampler": true,
+        "matched_initialization": true,
+        "intent_and_future_finite": true,
+        "no_scene_tensor_zero": true,
+        "no_social_tensor_zero": true,
+        "proposal_output_present": true,
+        "no_proposal_weight_zero": true,
+        "neutral_gate_and_both_modules_present": true,
+        "no_ambiguity_weight_zero": true,
+        "checkpoint_saved": true,
+        "run_path": "results/joint_component_attribution/smoke/A2_no_social/seed123"
+      },
+      "sampler_sha256_by_epoch": [
+        "926b936449d72ea0ccb8a4306ca3fc613297061cb5bc126b31cace2e45b0cf6c",
+        "a9055a66c46cc120ea2bd411151aad1c15305e8258486bb59aa959d0856a4134"
+      ],
+      "component_probe": {
+        "component_ablation": "no_social",
+        "validation_probe_samples": 8,
+        "intent_logits_finite": true,
+        "proposal_logits_finite": true,
+        "future_predictions_finite": true,
+        "proposal_output_present": true,
+        "effective_scene_context_mean_abs": 0.3940806984901428,
+        "effective_social_context_mean_abs": 0.0,
+        "scene_downstream_tensor_zero": true,
+        "social_downstream_tensor_zero": true,
+        "fixed_neutral_gate": true,
+        "both_gate_fusion_contexts_present": true,
+        "effective_prior_weight": 0.5,
+        "effective_ambiguous_weight": 0.2,
+        "weighted_proposal_loss_zero": false,
+        "weighted_ambiguity_contribution_zero": false,
+        "validation_only_probe": true,
+        "test_split_loaded": false
+      }
+    },
+    "A3_no_proposal_loss": {
+      "status": "passed",
+      "checks": {
+        "two_epochs": true,
+        "test_unloaded": true,
+        "finite_validation_auc": true,
+        "matched_sampler": true,
+        "matched_initialization": true,
+        "intent_and_future_finite": true,
+        "no_scene_tensor_zero": true,
+        "no_social_tensor_zero": true,
+        "proposal_output_present": true,
+        "no_proposal_weight_zero": true,
+        "neutral_gate_and_both_modules_present": true,
+        "no_ambiguity_weight_zero": true,
+        "checkpoint_saved": true,
+        "run_path": "results/joint_component_attribution/smoke/A3_no_proposal_loss/seed123"
+      },
+      "sampler_sha256_by_epoch": [
+        "926b936449d72ea0ccb8a4306ca3fc613297061cb5bc126b31cace2e45b0cf6c",
+        "a9055a66c46cc120ea2bd411151aad1c15305e8258486bb59aa959d0856a4134"
+      ],
+      "component_probe": {
+        "component_ablation": "no_proposal_loss",
+        "validation_probe_samples": 8,
+        "intent_logits_finite": true,
+        "proposal_logits_finite": true,
+        "future_predictions_finite": true,
+        "proposal_output_present": true,
+        "effective_scene_context_mean_abs": 0.3940806984901428,
+        "effective_social_context_mean_abs": 0.04927356168627739,
+        "scene_downstream_tensor_zero": true,
+        "social_downstream_tensor_zero": true,
+        "fixed_neutral_gate": true,
+        "both_gate_fusion_contexts_present": true,
+        "effective_prior_weight": 0.0,
+        "effective_ambiguous_weight": 0.2,
+        "weighted_proposal_loss_zero": true,
+        "weighted_ambiguity_contribution_zero": false,
+        "validation_only_probe": true,
+        "test_split_loaded": false
+      }
+    },
+    "A4_no_adaptive_gate": {
+      "status": "passed",
+      "checks": {
+        "two_epochs": true,
+        "test_unloaded": true,
+        "finite_validation_auc": true,
+        "matched_sampler": true,
+        "matched_initialization": true,
+        "intent_and_future_finite": true,
+        "no_scene_tensor_zero": true,
+        "no_social_tensor_zero": true,
+        "proposal_output_present": true,
+        "no_proposal_weight_zero": true,
+        "neutral_gate_and_both_modules_present": true,
+        "no_ambiguity_weight_zero": true,
+        "checkpoint_saved": true,
+        "run_path": "results/joint_component_attribution/smoke/A4_no_adaptive_gate/seed123"
+      },
+      "sampler_sha256_by_epoch": [
+        "926b936449d72ea0ccb8a4306ca3fc613297061cb5bc126b31cace2e45b0cf6c",
+        "a9055a66c46cc120ea2bd411151aad1c15305e8258486bb59aa959d0856a4134"
+      ],
+      "component_probe": {
+        "component_ablation": "no_adaptive_gate",
+        "validation_probe_samples": 8,
+        "intent_logits_finite": true,
+        "proposal_logits_finite": true,
+        "future_predictions_finite": true,
+        "proposal_output_present": true,
+        "effective_scene_context_mean_abs": 0.3940806984901428,
+        "effective_social_context_mean_abs": 0.04927356168627739,
+        "scene_downstream_tensor_zero": true,
+        "social_downstream_tensor_zero": true,
+        "fixed_neutral_gate": true,
+        "both_gate_fusion_contexts_present": true,
+        "effective_prior_weight": 0.5,
+        "effective_ambiguous_weight": 0.2,
+        "weighted_proposal_loss_zero": false,
+        "weighted_ambiguity_contribution_zero": false,
+        "validation_only_probe": true,
+        "test_split_loaded": false
+      }
+    },
+    "A5_no_ambiguity": {
+      "status": "passed",
+      "checks": {
+        "two_epochs": true,
+        "test_unloaded": true,
+        "finite_validation_auc": true,
+        "matched_sampler": true,
+        "matched_initialization": true,
+        "intent_and_future_finite": true,
+        "no_scene_tensor_zero": true,
+        "no_social_tensor_zero": true,
+        "proposal_output_present": true,
+        "no_proposal_weight_zero": true,
+        "neutral_gate_and_both_modules_present": true,
+        "no_ambiguity_weight_zero": true,
+        "checkpoint_saved": true,
+        "run_path": "results/joint_component_attribution/smoke/A5_no_ambiguity/seed123"
+      },
+      "sampler_sha256_by_epoch": [
+        "926b936449d72ea0ccb8a4306ca3fc613297061cb5bc126b31cace2e45b0cf6c",
+        "a9055a66c46cc120ea2bd411151aad1c15305e8258486bb59aa959d0856a4134"
+      ],
+      "component_probe": {
+        "component_ablation": "no_ambiguity",
+        "validation_probe_samples": 8,
+        "intent_logits_finite": true,
+        "proposal_logits_finite": true,
+        "future_predictions_finite": true,
+        "proposal_output_present": true,
+        "effective_scene_context_mean_abs": 0.3940806984901428,
+        "effective_social_context_mean_abs": 0.04927356168627739,
+        "scene_downstream_tensor_zero": true,
+        "social_downstream_tensor_zero": true,
+        "fixed_neutral_gate": true,
+        "both_gate_fusion_contexts_present": true,
+        "effective_prior_weight": 0.5,
+        "effective_ambiguous_weight": 0.0,
+        "weighted_proposal_loss_zero": false,
+        "weighted_ambiguity_contribution_zero": true,
+        "validation_only_probe": true,
+        "test_split_loaded": false
+      }
+    }
+  },
+  "all_test_splits_unloaded": true
+}
