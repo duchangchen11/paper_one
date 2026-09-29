@@ -1,0 +1,15 @@
+{
+  "protocol_sha256_unchanged": "1b43c5063cced64ea4a2606f1d02c0ef98fc7531dd026b24bf0b1403faf3c9e3",
+  "amendment": "report classification only; no protocol, model, checkpoint, metric, prediction, or bootstrap changes",
+  "reason": "The first report renderer labeled the +0.009599 mean clean ΔAUC as no_support because it treated values <=0.01 as approximately zero. The frozen support rules also classify a small positive effect as weak support. The report now uses weak positive trend only, with an explicit caveat that all paired AUC intervals include zero and no reliable/practically meaningful benefit is established.",
+  "historical_renderer_sha256_from_frozen_protocol": "144cac69267adb79d6f2d9e9777869fc47b7a2fc9b560e7e95eae9cd4c422894",
+  "amended_renderer_sha256": "3983a7f877dd2cfe515606ad4838321589cd55498196097d34dd29f21f4776ff",
+  "test_archive_reopened": false,
+  "test_inference_repeated": false,
+  "bootstrap_recomputed": false,
+  "changed_outputs": [
+    "results/joint_traj_supervision_clean/summary.md",
+    "results/joint_traj_supervision_clean/support_decision.json"
+  ],
+  "numerical_results_changed": false
+}

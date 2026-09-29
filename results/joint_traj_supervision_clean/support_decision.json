@@ -1,0 +1,13 @@
+{
+  "label": "weak_support",
+  "mean_clean_delta_auc": 0.00959913052783786,
+  "positive_seed_count": 3,
+  "bootstrap_ci_lower_positive_seed_count": 0,
+  "clean_J100_auc_sample_sd": 0.0160208632525517,
+  "historical_J100_auc_sample_sd": 0.013494576663298292,
+  "clean_to_historical_seed_sd_ratio": 1.1872075465786374,
+  "seed_sd_stability_rule": "clean J100 AUC sample SD <= 2.0 * historical J100 AUC sample SD reference (0.0135), cutoff 0.0270, recorded before clean test access",
+  "seed_sd_stability_pass": true,
+  "seed_sd_cutoff": 0.027,
+  "interpretation": "The point estimate is positive and all three seed deltas have the same direction, but the effect is small (+0.0096) and every paired AUC confidence interval includes zero; this is only a weak descriptive trend, not reliable or practically meaningful evidence."
+}

@@ -1,0 +1,49 @@
+{
+  "seed": 123,
+  "epochs_per_arm": 2,
+  "J0_clean": {
+    "arm": "J0_clean",
+    "seed": 123,
+    "status": "completed_no_test",
+    "best_epoch": 1,
+    "initial_model_state_sha256": "9884ca5c859d799b37f4c6287824dc027cd19bd64cecd6f92b574c5ab4b8e394",
+    "checkpoint_sha256": "d54bac95bc2b0948bceab3218f6e6b36f7d1f2822a100cde2de46928f744a8d7",
+    "metrics_sha256": "086d45dca7d9ad32f219dcbd59ee7d6e3455d52a8000448db5ab85118bd5f72f",
+    "gradient_history_sha256": "c1fa5fcccc2baf30ff7ded00d57dc4e0dc0ade7d715d32584b82fef5a130990a",
+    "validation_history_sha256": "e27da59c5832716d91a3af7dd11692fb0f28b7e40d2336368350d4e51a61cfb2",
+    "sampler_sha256_by_epoch": [
+      "926b936449d72ea0ccb8a4306ca3fc613297061cb5bc126b31cace2e45b0cf6c",
+      "a9055a66c46cc120ea2bd411151aad1c15305e8258486bb59aa959d0856a4134"
+    ],
+    "selection_mode": "intent_auc",
+    "scheduler_monitor_metric": "intent_auc",
+    "training_log_sha256": "d47823bcaf6eeaa2a208f3b887200107bfba09d91c9b272ab7f838fbd1696c1e"
+  },
+  "J100_clean": {
+    "arm": "J100_clean",
+    "seed": 123,
+    "status": "completed_no_test",
+    "best_epoch": 1,
+    "initial_model_state_sha256": "9884ca5c859d799b37f4c6287824dc027cd19bd64cecd6f92b574c5ab4b8e394",
+    "checkpoint_sha256": "d370304fd066ae5370aa8bf1ec8b7ad1001e04f9dccb5d884025b555ba0341e4",
+    "metrics_sha256": "fac6f1bb940c8f6584410ec7e68e27fe48f7b60349c42a595fdd68da74dbebe7",
+    "gradient_history_sha256": "d66012ed1c352f4c405e7174290407800bf25c51afa31a83500b36edc3a87f62",
+    "validation_history_sha256": "d227b38beeb120213e7a3dc0d2cc05a8d43f6f0e508635acf71eeb6ed804e574",
+    "sampler_sha256_by_epoch": [
+      "926b936449d72ea0ccb8a4306ca3fc613297061cb5bc126b31cace2e45b0cf6c",
+      "a9055a66c46cc120ea2bd411151aad1c15305e8258486bb59aa959d0856a4134"
+    ],
+    "selection_mode": "intent_auc",
+    "scheduler_monitor_metric": "intent_auc",
+    "training_log_sha256": "a11c7b87dcab58ff4554e96b4c7f34f26a074bacd971be2dd3490d9f04b91315"
+  },
+  "initial_hash_exact_match": true,
+  "max_abs_initial_parameter_difference": 0.0,
+  "same_main_sampler_sequences": true,
+  "scheduler_and_selection_are_intent_auc_only": true,
+  "J0_future_output_and_zero_weighted_trajectory_loss": true,
+  "J100_trajectory_loss_and_backward_gradient_nonzero": true,
+  "validation_finite": true,
+  "test_accessed": false,
+  "pass": true
+}

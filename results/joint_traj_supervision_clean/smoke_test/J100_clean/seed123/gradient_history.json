@@ -1,0 +1,43 @@
+{
+  "diagnostic_only": true,
+  "optimizer_created_for_diagnostics": false,
+  "parameters_updated_by_diagnostics": false,
+  "gradient_scope": "same shared target, scene, social, proposal, gate, and fusion parameter prefixes as the preceding audit; intent_head and traj_head excluded",
+  "gradient_sampling": "fixed mode: prior fixed class-balanced diagnostic subset after each epoch; DGB mode: every 10th actual training batch on its existing forward graph",
+  "gradient_ratio_definition": "intent_gradient_norm / (lambda_trajectory * unweighted_trajectory_gradient_norm)",
+  "seed": 123,
+  "lambda_trajectory_initial": 100.0,
+  "trajectory_weight_mode": "fixed",
+  "epochs": [
+    {
+      "epoch": 1,
+      "lambda_trajectory": 100.0,
+      "intent_loss": 0.6345066428184509,
+      "trajectory_loss": 0.0020117100793868303,
+      "total_loss": 0.835677444934845,
+      "audit_main_samples": 512,
+      "audit_ambiguous_samples": 512,
+      "shared_parameter_count": 830530,
+      "intent_gradient_norm": 2.2681779861450195,
+      "trajectory_gradient_norm_unweighted": 0.0006155227310955524,
+      "trajectory_gradient_norm_weighted": 0.061552271246910095,
+      "intent_over_weighted_trajectory_gradient_ratio": 36.84962463378906,
+      "gradient_cosine_intent_vs_trajectory": -0.13016213476657867
+    },
+    {
+      "epoch": 2,
+      "lambda_trajectory": 100.0,
+      "intent_loss": 0.19713205099105835,
+      "trajectory_loss": 0.0003933745319955051,
+      "total_loss": 0.2364695519208908,
+      "audit_main_samples": 512,
+      "audit_ambiguous_samples": 512,
+      "shared_parameter_count": 830530,
+      "intent_gradient_norm": 3.260023832321167,
+      "trajectory_gradient_norm_unweighted": 0.0007091104635037482,
+      "trajectory_gradient_norm_weighted": 0.07091104984283447,
+      "intent_over_weighted_trajectory_gradient_ratio": 45.973426818847656,
+      "gradient_cosine_intent_vs_trajectory": -0.12259984761476517
+    }
+  ]
+}

@@ -1,0 +1,123 @@
+{
+  "status": "official_test_evaluated_once",
+  "protocol_sha256": "1b43c5063cced64ea4a2606f1d02c0ef98fc7531dd026b24bf0b1403faf3c9e3",
+  "test_archive_sha256": "23658152706d460493fa6146f6b401648a509cc8708ab5eb6c0892e300de1935",
+  "test_sample_count": 18331,
+  "prediction_pairing": "all six runs use identical ordered sample IDs, labels, future ground truth, and image sizes",
+  "per_seed": {
+    "42": {
+      "J0_clean": {
+        "metrics": {
+          "intent_accuracy": 0.8738203044023785,
+          "intent_balanced_accuracy": 0.6076109131981047,
+          "intent_f1": 0.930295633306211,
+          "intent_brier": 0.09492048265680922,
+          "trajectory_ade_normalized": 0.34020712971687317,
+          "trajectory_fde_normalized": 0.260839581489563,
+          "trajectory_ade_pixel": 514.0156860351562,
+          "trajectory_fde_pixel": 366.9908447265625,
+          "gate_mean": 0.6403443813323975,
+          "entropy_mean": 0.19930899143218994,
+          "intent_auc": 0.7698061905208466
+        },
+        "prediction_path": "results/joint_traj_supervision_clean/J0_clean/seed42/test_predictions.npz",
+        "prediction_sha256": "271cf0719183f50a178906c56ce2e45b15036de3b6871bf1fb3c3541d125040c",
+        "metrics_path": "results/joint_traj_supervision_clean/J0_clean/seed42/official_test_metrics.json"
+      },
+      "J100_clean": {
+        "metrics": {
+          "intent_accuracy": 0.876220609895805,
+          "intent_balanced_accuracy": 0.5579896676336615,
+          "intent_f1": 0.9328320653621859,
+          "intent_brier": 0.11291173498888851,
+          "trajectory_ade_normalized": 0.009798930026590824,
+          "trajectory_fde_normalized": 0.016307976096868515,
+          "trajectory_ade_pixel": 15.734968185424805,
+          "trajectory_fde_pixel": 27.552480697631836,
+          "gate_mean": 0.6709952354431152,
+          "entropy_mean": 0.07640441507101059,
+          "intent_auc": 0.7729874060397444
+        },
+        "prediction_path": "results/joint_traj_supervision_clean/J100_clean/seed42/test_predictions.npz",
+        "prediction_sha256": "0c92d041ef28ac9453adac399202556540d1b7e037b45e672fc02547a6b596ec",
+        "metrics_path": "results/joint_traj_supervision_clean/J100_clean/seed42/official_test_metrics.json"
+      }
+    },
+    "123": {
+      "J0_clean": {
+        "metrics": {
+          "intent_accuracy": 0.8700561889695052,
+          "intent_balanced_accuracy": 0.5947781230293102,
+          "intent_f1": 0.9283177851339152,
+          "intent_brier": 0.0987040428551027,
+          "trajectory_ade_normalized": 0.3942511975765228,
+          "trajectory_fde_normalized": 0.549369215965271,
+          "trajectory_ade_pixel": 612.028564453125,
+          "trajectory_fde_pixel": 720.3611450195312,
+          "gate_mean": 0.4723820388317108,
+          "entropy_mean": 0.3411315381526947,
+          "intent_auc": 0.7413247145810369
+        },
+        "prediction_path": "results/joint_traj_supervision_clean/J0_clean/seed123/test_predictions.npz",
+        "prediction_sha256": "630265c8bde899366be3d03659b1252ae8ba6ad94fbd70f41cff19315aa30eaf",
+        "metrics_path": "results/joint_traj_supervision_clean/J0_clean/seed123/official_test_metrics.json"
+      },
+      "J100_clean": {
+        "metrics": {
+          "intent_accuracy": 0.8342152637608423,
+          "intent_balanced_accuracy": 0.6812200383193153,
+          "intent_f1": 0.9032504536627296,
+          "intent_brier": 0.11410769850829854,
+          "trajectory_ade_normalized": 0.02168555185198784,
+          "trajectory_fde_normalized": 0.03570844233036041,
+          "trajectory_ade_pixel": 37.95642852783203,
+          "trajectory_fde_pixel": 65.74046325683594,
+          "gate_mean": 0.5552777051925659,
+          "entropy_mean": 0.3908223509788513,
+          "intent_auc": 0.7585733697706325
+        },
+        "prediction_path": "results/joint_traj_supervision_clean/J100_clean/seed123/test_predictions.npz",
+        "prediction_sha256": "492ac46187c52bde6a4dd9a6409b60e5130ee829fdda66275d33ec436a3b3392",
+        "metrics_path": "results/joint_traj_supervision_clean/J100_clean/seed123/official_test_metrics.json"
+      }
+    },
+    "2024": {
+      "J0_clean": {
+        "metrics": {
+          "intent_accuracy": 0.8816758496535922,
+          "intent_balanced_accuracy": 0.5664517869981512,
+          "intent_f1": 0.9358720397362741,
+          "intent_brier": 0.09242497291119581,
+          "trajectory_ade_normalized": 0.34224021434783936,
+          "trajectory_fde_normalized": 0.29026705026626587,
+          "trajectory_ade_pixel": 525.221923828125,
+          "trajectory_fde_pixel": 419.47894287109375,
+          "gate_mean": 0.4982033371925354,
+          "entropy_mean": 0.29162511229515076,
+          "intent_auc": 0.7821955393415924
+        },
+        "prediction_path": "results/joint_traj_supervision_clean/J0_clean/seed2024/test_predictions.npz",
+        "prediction_sha256": "5e18148bb90e4e57b1ef78b43e661a3051460c7d742cc6e142622426e16167ca",
+        "metrics_path": "results/joint_traj_supervision_clean/J0_clean/seed2024/official_test_metrics.json"
+      },
+      "J100_clean": {
+        "metrics": {
+          "intent_accuracy": 0.8833669739785064,
+          "intent_balanced_accuracy": 0.6086582084614441,
+          "intent_f1": 0.9359995210441238,
+          "intent_brier": 0.10226537450142223,
+          "trajectory_ade_normalized": 0.010502896271646023,
+          "trajectory_fde_normalized": 0.01588483154773712,
+          "trajectory_ade_pixel": 16.712717056274414,
+          "trajectory_fde_pixel": 26.569608688354492,
+          "gate_mean": 0.6496989727020264,
+          "entropy_mean": 0.09992778301239014,
+          "intent_auc": 0.7905630602166126
+        },
+        "prediction_path": "results/joint_traj_supervision_clean/J100_clean/seed2024/test_predictions.npz",
+        "prediction_sha256": "bee95cd798f7f6dec19f9cff97edab464c1720d0473aae134467c393b1fa8562",
+        "metrics_path": "results/joint_traj_supervision_clean/J100_clean/seed2024/official_test_metrics.json"
+      }
+    }
+  }
+}

@@ -45,6 +45,59 @@ SHARED_GRADIENT_PREFIXES = (
 )
 
 
+def intent_auc_selection_decision(
+    current_auc: float,
+    current_brier: float,
+    best_auc_seen: float | None,
+    selected_auc: float | None,
+    selected_brier: float | None,
+    tolerance: float = 1e-4,
+) -> tuple[bool, str, float]:
+    """Select by raw validation AUC; within tolerance, prefer lower raw Brier.
+
+    best_auc_seen is a high-water mark. The selected checkpoint may be at most
+    ``tolerance`` below it when the Brier tie-break chooses another epoch.
+    """
+    if not math.isfinite(current_auc) or not math.isfinite(current_brier):
+        raise ValueError("intent_auc selection requires finite AUC and Brier")
+    new_high = best_auc_seen is None or current_auc > best_auc_seen
+    next_best_auc = current_auc if best_auc_seen is None else max(best_auc_seen, current_auc)
+    if selected_auc is None or selected_brier is None:
+        return True, "first_valid_checkpoint", next_best_auc
+    if new_high and current_auc - selected_auc > tolerance:
+        return True, "higher_auc_outside_tie_tolerance", next_best_auc
+    if abs(next_best_auc - current_auc) <= tolerance and current_brier < selected_brier:
+        return True, "auc_within_1e-4_tie_lower_brier", next_best_auc
+    if new_high and current_auc - selected_auc <= tolerance and current_auc - selected_auc >= -tolerance:
+        return False, "auc_within_1e-4_tie_brier_not_lower", next_best_auc
+    return False, "lower_auc_or_outside_tie_tolerance", next_best_auc
+
+
+def validation_scheduler_monitor(selection_mode: str, validation_metrics: dict) -> tuple[str, float]:
+    if selection_mode == "intent_auc":
+        return "intent_auc", float(validation_metrics["intent_auc"])
+    if selection_mode == "composite":
+        value = validation_metrics["intent_auc"] + 0.1 * validation_metrics["intent_f1"] - 0.01 * validation_metrics["trajectory_ade_pixel"]
+        return "composite_auc_f1_ade", float(value)
+    raise ValueError(f"Unknown selection mode: {selection_mode}")
+
+
+class FingerprintingWeightedRandomSampler(WeightedRandomSampler):
+    """Same inverse-class weighted sampling, with a reproducibility fingerprint."""
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.last_indices: list[int] | None = None
+        self.last_sha256: str | None = None
+
+    def __iter__(self):
+        indices = list(super().__iter__())
+        self.last_indices = indices
+        digest = hashlib.sha256(np.asarray(indices, dtype=np.int64).tobytes()).hexdigest()
+        self.last_sha256 = digest
+        return iter(indices)
+
+
 class DynamicGradientBalance:
     """Log-space EMA controller for the shared intent/trajectory gradient ratio."""
 
@@ -467,7 +520,7 @@ def run_epoch(model, loader, image_sizes, device, optimizer, prior_weight, traj_
     training = optimizer is not None
     model.train(training)
     loss_fn = nn.BCEWithLogitsLoss()
-    total_loss = total_items = 0.0
+    total_loss = total_intent_objective = total_trajectory_loss = total_items = 0.0
     labels, logits, predictions, targets, scales, gates, entropies = [], [], [], [], [], [], []
     for batch in loader:
         target = torch.cat([batch["target_obs"], batch["target_abs_obs"]], dim=-1).to(device)
@@ -479,9 +532,11 @@ def run_epoch(model, loader, image_sizes, device, optimizer, prior_weight, traj_
             batch["scene_feat"].to(device),
         )
         label = batch["intent_label"].to(device)
-        loss = loss_fn(output["intent_logit"], label)
-        loss = loss + prior_weight * loss_fn(output["prior_logit"], label)
-        loss = loss + traj_weight * nn.functional.smooth_l1_loss(output["future_pred"], batch["future_gt"].to(device))
+        main_intent_bce = loss_fn(output["intent_logit"], label)
+        proposal_intent_bce = loss_fn(output["prior_logit"], label)
+        intent_objective = main_intent_bce + prior_weight * proposal_intent_bce
+        trajectory_loss = nn.functional.smooth_l1_loss(output["future_pred"], batch["future_gt"].to(device))
+        loss = intent_objective + traj_weight * trajectory_loss
         if ambiguous_weight:
             loss = ambiguous_weight * 0.5 * (
                 output["prior_logit"].square().mean() + output["intent_logit"].square().mean()
@@ -494,6 +549,8 @@ def run_epoch(model, loader, image_sizes, device, optimizer, prior_weight, traj_
         count = target.shape[0]
         total_items += count
         total_loss += loss.item() * count
+        total_intent_objective += float(intent_objective.detach()) * count
+        total_trajectory_loss += float(trajectory_loss.detach()) * count
         labels.extend(label.detach().cpu().numpy().tolist())
         logits.extend(output["intent_logit"].detach().cpu().numpy().tolist())
         predictions.append(output["future_pred"].detach().cpu().numpy())
@@ -503,6 +560,8 @@ def run_epoch(model, loader, image_sizes, device, optimizer, prior_weight, traj_
         entropies.append(output["entropy"].detach().cpu().numpy())
     metrics = compute_metrics(labels, logits, predictions, targets, scales, gates, entropies)
     metrics["loss"] = float(total_loss / total_items)
+    metrics["intent_objective"] = float(total_intent_objective / total_items)
+    metrics["trajectory_loss"] = float(total_trajectory_loss / total_items)
     return metrics
 
 
@@ -512,6 +571,7 @@ def main() -> None:
     parser.add_argument("--ambiguous-root", type=Path, required=True)
     parser.add_argument("--output-root", type=Path, required=True)
     parser.add_argument("--checkpoint", type=Path, required=True)
+    parser.add_argument("--initial-state-checkpoint", type=Path, default=None)
     parser.add_argument("--init-trajectory-checkpoint", type=Path, default=None)
     parser.add_argument("--gate-mode", choices=("uncertainty", "always", "none"), default="uncertainty")
     parser.add_argument("--epochs", type=int, default=15)
@@ -525,6 +585,8 @@ def main() -> None:
     )
     parser.add_argument("--ambiguous-weight", type=float, default=0.2)
     parser.add_argument("--seed", type=int, default=123)
+    parser.add_argument("--selection-mode", choices=("composite", "intent_auc"), default="composite")
+    parser.add_argument("--selection-tolerance", type=float, default=1e-4)
     parser.add_argument("--dgb-target-ratio", type=float, default=20.0)
     parser.add_argument("--dgb-beta", type=float, default=0.9)
     parser.add_argument("--dgb-lambda-min", type=float, default=10.0)
@@ -536,6 +598,10 @@ def main() -> None:
     args = parser.parse_args()
     if args.traj_weight_mode == "dynamic_gradient" and args.traj_weight <= 0:
         parser.error("dynamic_gradient requires --traj-weight to provide a positive initial lambda")
+    if args.initial_state_checkpoint is not None and args.init_trajectory_checkpoint is not None:
+        parser.error("--initial-state-checkpoint and --init-trajectory-checkpoint are mutually exclusive")
+    if args.selection_tolerance < 0:
+        parser.error("--selection-tolerance must be non-negative")
     if args.smoke_test and (args.traj_weight_mode != "dynamic_gradient" or args.seed != 123 or args.epochs != 2):
         parser.error("--smoke-test requires dynamic_gradient, seed 123, and exactly 2 epochs")
     set_seed(args.seed)
@@ -548,7 +614,8 @@ def main() -> None:
     ambiguous_set = JAADSequenceDataset(args.ambiguous_root / "train.npz")
     counts = torch.bincount(train_set.intent_label.to(torch.int64), minlength=2).float()
     weights = torch.where(train_set.intent_label == 0, 1.0 / counts[0], 1.0 / counts[1])
-    train_loader = DataLoader(train_set, batch_size=args.batch_size, sampler=WeightedRandomSampler(weights.double(), len(train_set), replacement=True))
+    train_sampler = FingerprintingWeightedRandomSampler(weights.double(), len(train_set), replacement=True)
+    train_loader = DataLoader(train_set, batch_size=args.batch_size, sampler=train_sampler)
     val_loader = DataLoader(val_set, batch_size=args.batch_size, shuffle=False)
     test_loader = (
         None if test_set is None else DataLoader(test_set, batch_size=args.batch_size, shuffle=False)
@@ -575,7 +642,15 @@ def main() -> None:
         gate_mode=args.gate_mode,
         max_obs_len=train_set.target_obs.shape[1],
     ).to(device)
+    declared_initial_state_sha256 = None
+    if args.initial_state_checkpoint is not None:
+        initial_payload = torch.load(args.initial_state_checkpoint, map_location="cpu", weights_only=False)
+        initial_state = initial_payload["model"] if "model" in initial_payload else initial_payload
+        model.load_state_dict(initial_state, strict=True)
+        declared_initial_state_sha256 = initial_payload.get("sha256") if isinstance(initial_payload, dict) else None
     initial_state_sha256 = state_dict_sha256(model.state_dict())
+    if declared_initial_state_sha256 is not None and initial_state_sha256 != declared_initial_state_sha256:
+        raise RuntimeError("Loaded initial-state weights do not match their declared SHA256")
     if args.init_trajectory_checkpoint is not None:
         pretrained = torch.load(args.init_trajectory_checkpoint, map_location="cpu", weights_only=False)["model"]
         current = model.state_dict()
@@ -599,6 +674,9 @@ def main() -> None:
     optimizer = torch.optim.AdamW(model.parameters(), lr=args.learning_rate, weight_decay=1e-4)
     scheduler = torch.optim.lr_scheduler.ReduceLROnPlateau(optimizer, mode="max", factor=0.5, patience=2)
     best_score = -float("inf")
+    best_auc_seen = None
+    selected_validation_auc = None
+    selected_validation_brier = None
     best_epoch = 0
     history = []
     gradient_history = {
@@ -662,6 +740,7 @@ def main() -> None:
         )
     training_steps = 0
     for epoch in range(1, args.epochs + 1):
+        epoch_learning_rate = float(optimizer.param_groups[0]["lr"])
         model.train()
         amb_iter = iter(ambiguous_loader)
         epoch_start_lambda = controller.lambda_value if controller is not None else args.traj_weight
@@ -780,6 +859,8 @@ def main() -> None:
             for key, value in epoch_sums.items()
         }
         train_metrics["sample_count"] = epoch_items
+        train_metrics["sampler_sha256"] = train_sampler.last_sha256
+        train_metrics["first_sample_indices"] = (train_sampler.last_indices or [])[:32]
         if controller is None:
             gradient_metrics = measure_shared_gradient_balance(
                 model,
@@ -817,21 +898,57 @@ def main() -> None:
         with torch.no_grad():
             val_lambda = controller.lambda_value if controller is not None else args.traj_weight
             val = run_epoch(model, val_loader, sizes["val"], device, None, args.prior_weight, val_lambda)
-        score = val["intent_auc"] + 0.1 * val["intent_f1"] - 0.01 * val["trajectory_ade_pixel"]
-        scheduler.step(score)
+        scheduler_monitor_metric, scheduler_monitor_value = validation_scheduler_monitor(args.selection_mode, val)
+        if args.selection_mode == "intent_auc":
+            scheduler.step(scheduler_monitor_value)
+            selected_this_epoch, tie_break_reason, best_auc_seen = intent_auc_selection_decision(
+                float(val["intent_auc"]), float(val["intent_brier"]), best_auc_seen,
+                selected_validation_auc, selected_validation_brier, args.selection_tolerance,
+            )
+            selection_score = scheduler_monitor_value
+            if selected_this_epoch:
+                best_epoch = epoch
+                selected_validation_auc = float(val["intent_auc"])
+                selected_validation_brier = float(val["intent_brier"])
+                torch.save({"model": model.state_dict(), "args": vars(args)}, args.checkpoint)
+        else:
+            selection_score = scheduler_monitor_value
+            scheduler.step(scheduler_monitor_value)
+            selected_this_epoch = bool(selection_score > best_score)
+            tie_break_reason = "higher_composite_score" if selected_this_epoch else "composite_score_not_higher"
+            if selected_this_epoch:
+                best_score = float(selection_score)
+                best_epoch = epoch
+                selected_validation_auc = float(val["intent_auc"])
+                selected_validation_brier = float(val["intent_brier"])
+                torch.save({"model": model.state_dict(), "args": vars(args)}, args.checkpoint)
+        if args.selection_mode == "intent_auc" and selected_this_epoch:
+            best_score = float(selection_score)
         record = {
             "epoch": epoch,
-            "learning_rate": optimizer.param_groups[0]["lr"],
+            "learning_rate": epoch_learning_rate,
+            "learning_rate_next": float(optimizer.param_groups[0]["lr"]),
             "train": train_metrics,
             "gradient": gradient_record,
             "val": val,
+            "scheduler_monitor_metric": scheduler_monitor_metric,
+            "scheduler_monitor_value": scheduler_monitor_value,
+            "selection": {
+                "mode": args.selection_mode,
+                "primary_metric": "raw_validation_intent_auc" if args.selection_mode == "intent_auc" else "composite_auc_f1_ade",
+                "current_validation_auc": float(val["intent_auc"]),
+                "current_validation_brier": float(val["intent_brier"]),
+                "best_validation_auc_seen": best_auc_seen,
+                "selected_checkpoint_validation_auc": selected_validation_auc,
+                "selected_checkpoint_validation_brier": selected_validation_brier,
+                "selected_checkpoint": bool(selected_this_epoch),
+                "tie_break_reason": tie_break_reason,
+                "selection_used_trajectory_metric": args.selection_mode != "intent_auc",
+                "tolerance": args.selection_tolerance if args.selection_mode == "intent_auc" else None,
+            },
         }
         history.append(record)
         print(json.dumps(record, ensure_ascii=False))
-        if score > best_score:
-            best_score = score
-            best_epoch = epoch
-            torch.save({"model": model.state_dict(), "args": vars(args)}, args.checkpoint)
     if not args.skip_test:
         checkpoint = torch.load(args.checkpoint, map_location=device, weights_only=False)
         model.load_state_dict(checkpoint["model"])
@@ -847,7 +964,13 @@ def main() -> None:
         "prior_weight": args.prior_weight,
         "traj_weight": args.traj_weight,
         "ambiguous_weight": args.ambiguous_weight,
+        "selection_mode": args.selection_mode,
+        "selection_tolerance": args.selection_tolerance,
+        "scheduler_monitor_metric": "intent_auc" if args.selection_mode == "intent_auc" else "composite_auc_f1_ade",
         "best_epoch": best_epoch,
+        "best_validation_auc_seen": best_auc_seen,
+        "selected_checkpoint_validation_auc": selected_validation_auc,
+        "selected_checkpoint_validation_brier": selected_validation_brier,
         "history": history,
         "test": test,
         "test_evaluation_status": "withheld_until_protocol_freeze" if args.skip_test else "evaluated",

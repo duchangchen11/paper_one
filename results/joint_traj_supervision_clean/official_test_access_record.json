@@ -1,0 +1,19 @@
+{
+  "protocol_sha256": "1b43c5063cced64ea4a2606f1d02c0ef98fc7531dd026b24bf0b1403faf3c9e3",
+  "status": "complete_one_time_official_test_evaluation",
+  "test_access_count": 1,
+  "started_at_utc": "2026-09-29T05:53:38.213511+00:00",
+  "test_archive": "data/processed/jaad_sequences_scene_15x15/test.npz",
+  "test_archive_sha256": "23658152706d460493fa6146f6b401648a509cc8708ab5eb6c0892e300de1935",
+  "sample_count": 18331,
+  "per_seed_arm_status": {
+    "J0_clean/seed42": "evaluated_once",
+    "J100_clean/seed42": "evaluated_once",
+    "J0_clean/seed123": "evaluated_once",
+    "J100_clean/seed123": "evaluated_once",
+    "J0_clean/seed2024": "evaluated_once",
+    "J100_clean/seed2024": "evaluated_once"
+  },
+  "warning": "Marker is written before the single read. Any interruption consumes this test access; do not rerun.",
+  "completed_at_utc": "2026-09-29T05:53:42.074327+00:00"
+}

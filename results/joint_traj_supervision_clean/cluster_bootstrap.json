@@ -1,0 +1,73 @@
+{
+  "protocol_sha256": "1b43c5063cced64ea4a2606f1d02c0ef98fc7531dd026b24bf0b1403faf3c9e3",
+  "bootstrap_unit": "scene_id cluster",
+  "requested_repetitions_per_seed": 2000,
+  "bootstrap_seed": 9124,
+  "delta_definition": "J100_clean minus J0_clean",
+  "seeds_pooled": false,
+  "per_seed": {
+    "42": {
+      "bootstrap_unit": "scene_id video cluster",
+      "seed": 9124,
+      "requested_repetitions": 2000,
+      "valid_repetitions": 2000,
+      "video_count": 97,
+      "delta_roc_auc": {
+        "mean": 0.0044941861326090494,
+        "ci_percentile_95": {
+          "lower_95": -0.062019728523693446,
+          "upper_95": 0.07661936031949795
+        }
+      },
+      "delta_brier": {
+        "mean": 0.017787753215156882,
+        "ci_percentile_95": {
+          "lower_95": 0.0002744425158213314,
+          "upper_95": 0.03914815002510685
+        }
+      }
+    },
+    "123": {
+      "bootstrap_unit": "scene_id video cluster",
+      "seed": 9124,
+      "requested_repetitions": 2000,
+      "valid_repetitions": 2000,
+      "video_count": 97,
+      "delta_roc_auc": {
+        "mean": 0.017379021117736818,
+        "ci_percentile_95": {
+          "lower_95": -0.00837309852983822,
+          "upper_95": 0.04822784001861149
+        }
+      },
+      "delta_brier": {
+        "mean": 0.015273350022479476,
+        "ci_percentile_95": {
+          "lower_95": 0.0014953091727531245,
+          "upper_95": 0.029034583706341086
+        }
+      }
+    },
+    "2024": {
+      "bootstrap_unit": "scene_id video cluster",
+      "seed": 9124,
+      "requested_repetitions": 2000,
+      "valid_repetitions": 2000,
+      "video_count": 97,
+      "delta_roc_auc": {
+        "mean": 0.009304610690657168,
+        "ci_percentile_95": {
+          "lower_95": -0.051282767068277384,
+          "upper_95": 0.07487859973550712
+        }
+      },
+      "delta_brier": {
+        "mean": 0.009905866857554223,
+        "ci_percentile_95": {
+          "lower_95": -0.0032398979484157637,
+          "upper_95": 0.025831686827823278
+        }
+      }
+    }
+  }
+}

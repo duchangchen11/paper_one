@@ -1,0 +1,445 @@
+{
+  "split": "validation",
+  "selection_use": false,
+  "definition": "A point is Pareto-efficient if no epoch has at least its AUC and at most its ADE with one strict improvement.",
+  "per_seed": {
+    "42": {
+      "selected_epoch": 15,
+      "selected_validation_auc": 0.8591470673754781,
+      "selected_validation_brier": 0.08021443358237242,
+      "auc_ade_tradeoff_observed": true,
+      "pareto_points": [
+        {
+          "epoch": 7,
+          "validation_auc": 0.8223239904101998,
+          "validation_ade_pixel": 14.517769813537598,
+          "validation_fde_pixel": 24.06793212890625,
+          "pareto_efficient": true
+        },
+        {
+          "epoch": 13,
+          "validation_auc": 0.8192448855313617,
+          "validation_ade_pixel": 12.715120315551758,
+          "validation_fde_pixel": 23.207088470458984,
+          "pareto_efficient": true
+        },
+        {
+          "epoch": 15,
+          "validation_auc": 0.8591470673754781,
+          "validation_ade_pixel": 14.544535636901855,
+          "validation_fde_pixel": 28.13351821899414,
+          "pareto_efficient": true
+        }
+      ],
+      "all_epochs": [
+        {
+          "epoch": 1,
+          "validation_auc": 0.8128013956780065,
+          "validation_ade_pixel": 31.790159225463867,
+          "validation_fde_pixel": 51.71902084350586,
+          "pareto_efficient": false
+        },
+        {
+          "epoch": 2,
+          "validation_auc": 0.8061220011301482,
+          "validation_ade_pixel": 25.832887649536133,
+          "validation_fde_pixel": 41.39700698852539,
+          "pareto_efficient": false
+        },
+        {
+          "epoch": 3,
+          "validation_auc": 0.7881795289586728,
+          "validation_ade_pixel": 31.81437110900879,
+          "validation_fde_pixel": 50.663185119628906,
+          "pareto_efficient": false
+        },
+        {
+          "epoch": 4,
+          "validation_auc": 0.8074277061834462,
+          "validation_ade_pixel": 22.345922470092773,
+          "validation_fde_pixel": 35.375144958496094,
+          "pareto_efficient": false
+        },
+        {
+          "epoch": 5,
+          "validation_auc": 0.809559077667506,
+          "validation_ade_pixel": 15.992705345153809,
+          "validation_fde_pixel": 22.744455337524414,
+          "pareto_efficient": false
+        },
+        {
+          "epoch": 6,
+          "validation_auc": 0.8124585109476237,
+          "validation_ade_pixel": 17.350873947143555,
+          "validation_fde_pixel": 34.52972412109375,
+          "pareto_efficient": false
+        },
+        {
+          "epoch": 7,
+          "validation_auc": 0.8223239904101998,
+          "validation_ade_pixel": 14.517769813537598,
+          "validation_fde_pixel": 24.06793212890625,
+          "pareto_efficient": true
+        },
+        {
+          "epoch": 8,
+          "validation_auc": 0.811143205121875,
+          "validation_ade_pixel": 16.512666702270508,
+          "validation_fde_pixel": 27.290254592895508,
+          "pareto_efficient": false
+        },
+        {
+          "epoch": 9,
+          "validation_auc": 0.8257459800194211,
+          "validation_ade_pixel": 17.69085693359375,
+          "validation_fde_pixel": 29.0694522857666,
+          "pareto_efficient": false
+        },
+        {
+          "epoch": 10,
+          "validation_auc": 0.8143361477312003,
+          "validation_ade_pixel": 17.561857223510742,
+          "validation_fde_pixel": 30.594680786132812,
+          "pareto_efficient": false
+        },
+        {
+          "epoch": 11,
+          "validation_auc": 0.8218878410331528,
+          "validation_ade_pixel": 14.678227424621582,
+          "validation_fde_pixel": 24.239351272583008,
+          "pareto_efficient": false
+        },
+        {
+          "epoch": 12,
+          "validation_auc": 0.8385479243129961,
+          "validation_ade_pixel": 16.298044204711914,
+          "validation_fde_pixel": 28.455223083496094,
+          "pareto_efficient": false
+        },
+        {
+          "epoch": 13,
+          "validation_auc": 0.8192448855313617,
+          "validation_ade_pixel": 12.715120315551758,
+          "validation_fde_pixel": 23.207088470458984,
+          "pareto_efficient": true
+        },
+        {
+          "epoch": 14,
+          "validation_auc": 0.8212706485184637,
+          "validation_ade_pixel": 20.593711853027344,
+          "validation_fde_pixel": 35.01701736450195,
+          "pareto_efficient": false
+        },
+        {
+          "epoch": 15,
+          "validation_auc": 0.8591470673754781,
+          "validation_ade_pixel": 14.544535636901855,
+          "validation_fde_pixel": 28.13351821899414,
+          "pareto_efficient": true
+        }
+      ]
+    },
+    "123": {
+      "selected_epoch": 1,
+      "selected_validation_auc": 0.848007428254799,
+      "selected_validation_brier": 0.09769904449430529,
+      "auc_ade_tradeoff_observed": true,
+      "pareto_points": [
+        {
+          "epoch": 1,
+          "validation_auc": 0.848007428254799,
+          "validation_ade_pixel": 32.55550765991211,
+          "validation_fde_pixel": 53.78202819824219,
+          "pareto_efficient": true
+        },
+        {
+          "epoch": 2,
+          "validation_auc": 0.8343606159855603,
+          "validation_ade_pixel": 29.669790267944336,
+          "validation_fde_pixel": 52.60753631591797,
+          "pareto_efficient": true
+        },
+        {
+          "epoch": 9,
+          "validation_auc": 0.8308535909632043,
+          "validation_ade_pixel": 13.228158950805664,
+          "validation_fde_pixel": 19.51142692565918,
+          "pareto_efficient": true
+        },
+        {
+          "epoch": 11,
+          "validation_auc": 0.8263233979053857,
+          "validation_ade_pixel": 12.067106246948242,
+          "validation_fde_pixel": 18.993038177490234,
+          "pareto_efficient": true
+        },
+        {
+          "epoch": 14,
+          "validation_auc": 0.8217698886859011,
+          "validation_ade_pixel": 12.008438110351562,
+          "validation_fde_pixel": 19.682191848754883,
+          "pareto_efficient": true
+        },
+        {
+          "epoch": 15,
+          "validation_auc": 0.8298304229277418,
+          "validation_ade_pixel": 12.189948081970215,
+          "validation_fde_pixel": 19.50347137451172,
+          "pareto_efficient": true
+        }
+      ],
+      "all_epochs": [
+        {
+          "epoch": 1,
+          "validation_auc": 0.848007428254799,
+          "validation_ade_pixel": 32.55550765991211,
+          "validation_fde_pixel": 53.78202819824219,
+          "pareto_efficient": true
+        },
+        {
+          "epoch": 2,
+          "validation_auc": 0.8343606159855603,
+          "validation_ade_pixel": 29.669790267944336,
+          "validation_fde_pixel": 52.60753631591797,
+          "pareto_efficient": true
+        },
+        {
+          "epoch": 3,
+          "validation_auc": 0.7931979898725566,
+          "validation_ade_pixel": 28.232940673828125,
+          "validation_fde_pixel": 39.75483703613281,
+          "pareto_efficient": false
+        },
+        {
+          "epoch": 4,
+          "validation_auc": 0.8227464243980316,
+          "validation_ade_pixel": 23.250370025634766,
+          "validation_fde_pixel": 40.32230758666992,
+          "pareto_efficient": false
+        },
+        {
+          "epoch": 5,
+          "validation_auc": 0.8307040932207574,
+          "validation_ade_pixel": 17.76038360595703,
+          "validation_fde_pixel": 26.688234329223633,
+          "pareto_efficient": false
+        },
+        {
+          "epoch": 6,
+          "validation_auc": 0.8236598693197715,
+          "validation_ade_pixel": 14.41954231262207,
+          "validation_fde_pixel": 22.877883911132812,
+          "pareto_efficient": false
+        },
+        {
+          "epoch": 7,
+          "validation_auc": 0.8031347893590524,
+          "validation_ade_pixel": 17.798357009887695,
+          "validation_fde_pixel": 33.06581497192383,
+          "pareto_efficient": false
+        },
+        {
+          "epoch": 8,
+          "validation_auc": 0.8209291353270023,
+          "validation_ade_pixel": 14.333821296691895,
+          "validation_fde_pixel": 21.2061767578125,
+          "pareto_efficient": false
+        },
+        {
+          "epoch": 9,
+          "validation_auc": 0.8308535909632043,
+          "validation_ade_pixel": 13.228158950805664,
+          "validation_fde_pixel": 19.51142692565918,
+          "pareto_efficient": true
+        },
+        {
+          "epoch": 10,
+          "validation_auc": 0.8238052524454538,
+          "validation_ade_pixel": 13.110759735107422,
+          "validation_fde_pixel": 22.809162139892578,
+          "pareto_efficient": false
+        },
+        {
+          "epoch": 11,
+          "validation_auc": 0.8263233979053857,
+          "validation_ade_pixel": 12.067106246948242,
+          "validation_fde_pixel": 18.993038177490234,
+          "pareto_efficient": true
+        },
+        {
+          "epoch": 12,
+          "validation_auc": 0.8169269847539733,
+          "validation_ade_pixel": 12.143112182617188,
+          "validation_fde_pixel": 18.893905639648438,
+          "pareto_efficient": false
+        },
+        {
+          "epoch": 13,
+          "validation_auc": 0.8036408872210976,
+          "validation_ade_pixel": 13.092901229858398,
+          "validation_fde_pixel": 23.997432708740234,
+          "pareto_efficient": false
+        },
+        {
+          "epoch": 14,
+          "validation_auc": 0.8217698886859011,
+          "validation_ade_pixel": 12.008438110351562,
+          "validation_fde_pixel": 19.682191848754883,
+          "pareto_efficient": true
+        },
+        {
+          "epoch": 15,
+          "validation_auc": 0.8298304229277418,
+          "validation_ade_pixel": 12.189948081970215,
+          "validation_fde_pixel": 19.50347137451172,
+          "pareto_efficient": true
+        }
+      ]
+    },
+    "2024": {
+      "selected_epoch": 11,
+      "selected_validation_auc": 0.922634918283711,
+      "selected_validation_brier": 0.08185348617280115,
+      "auc_ade_tradeoff_observed": true,
+      "pareto_points": [
+        {
+          "epoch": 9,
+          "validation_auc": 0.8921449222886046,
+          "validation_ade_pixel": 14.335457801818848,
+          "validation_fde_pixel": 21.98944664001465,
+          "pareto_efficient": true
+        },
+        {
+          "epoch": 11,
+          "validation_auc": 0.922634918283711,
+          "validation_ade_pixel": 14.462553977966309,
+          "validation_fde_pixel": 23.13203239440918,
+          "pareto_efficient": true
+        },
+        {
+          "epoch": 13,
+          "validation_auc": 0.8778726882711478,
+          "validation_ade_pixel": 13.921326637268066,
+          "validation_fde_pixel": 24.180591583251953,
+          "pareto_efficient": true
+        },
+        {
+          "epoch": 14,
+          "validation_auc": 0.8900464677386615,
+          "validation_ade_pixel": 14.255592346191406,
+          "validation_fde_pixel": 24.17992401123047,
+          "pareto_efficient": true
+        }
+      ],
+      "all_epochs": [
+        {
+          "epoch": 1,
+          "validation_auc": 0.826796578833314,
+          "validation_ade_pixel": 29.173147201538086,
+          "validation_fde_pixel": 47.76183319091797,
+          "pareto_efficient": false
+        },
+        {
+          "epoch": 2,
+          "validation_auc": 0.8544591473416834,
+          "validation_ade_pixel": 23.65359115600586,
+          "validation_fde_pixel": 32.38886642456055,
+          "pareto_efficient": false
+        },
+        {
+          "epoch": 3,
+          "validation_auc": 0.8152646795810771,
+          "validation_ade_pixel": 26.685062408447266,
+          "validation_fde_pixel": 48.19577407836914,
+          "pareto_efficient": false
+        },
+        {
+          "epoch": 4,
+          "validation_auc": 0.8178486589092425,
+          "validation_ade_pixel": 20.044626235961914,
+          "validation_fde_pixel": 28.710926055908203,
+          "pareto_efficient": false
+        },
+        {
+          "epoch": 5,
+          "validation_auc": 0.8523894951090922,
+          "validation_ade_pixel": 17.617216110229492,
+          "validation_fde_pixel": 27.45500373840332,
+          "pareto_efficient": false
+        },
+        {
+          "epoch": 6,
+          "validation_auc": 0.8658264619233365,
+          "validation_ade_pixel": 17.899425506591797,
+          "validation_fde_pixel": 24.247058868408203,
+          "pareto_efficient": false
+        },
+        {
+          "epoch": 7,
+          "validation_auc": 0.8302638292269459,
+          "validation_ade_pixel": 23.53456687927246,
+          "validation_fde_pixel": 40.386592864990234,
+          "pareto_efficient": false
+        },
+        {
+          "epoch": 8,
+          "validation_auc": 0.8658552642406886,
+          "validation_ade_pixel": 15.399222373962402,
+          "validation_fde_pixel": 25.149019241333008,
+          "pareto_efficient": false
+        },
+        {
+          "epoch": 9,
+          "validation_auc": 0.8921449222886046,
+          "validation_ade_pixel": 14.335457801818848,
+          "validation_fde_pixel": 21.98944664001465,
+          "pareto_efficient": true
+        },
+        {
+          "epoch": 10,
+          "validation_auc": 0.875984079176199,
+          "validation_ade_pixel": 15.614919662475586,
+          "validation_fde_pixel": 23.804950714111328,
+          "pareto_efficient": false
+        },
+        {
+          "epoch": 11,
+          "validation_auc": 0.922634918283711,
+          "validation_ade_pixel": 14.462553977966309,
+          "validation_fde_pixel": 23.13203239440918,
+          "pareto_efficient": true
+        },
+        {
+          "epoch": 12,
+          "validation_auc": 0.8834918832326624,
+          "validation_ade_pixel": 15.126812934875488,
+          "validation_fde_pixel": 22.211917877197266,
+          "pareto_efficient": false
+        },
+        {
+          "epoch": 13,
+          "validation_auc": 0.8778726882711478,
+          "validation_ade_pixel": 13.921326637268066,
+          "validation_fde_pixel": 24.180591583251953,
+          "pareto_efficient": true
+        },
+        {
+          "epoch": 14,
+          "validation_auc": 0.8900464677386615,
+          "validation_ade_pixel": 14.255592346191406,
+          "validation_fde_pixel": 24.17992401123047,
+          "pareto_efficient": true
+        },
+        {
+          "epoch": 15,
+          "validation_auc": 0.8676766679284825,
+          "validation_ade_pixel": 15.119677543640137,
+          "validation_fde_pixel": 26.14734649658203,
+          "pareto_efficient": false
+        }
+      ]
+    }
+  },
+  "auc_ade_tradeoff_observed_any_seed": true,
+  "interpretation": "Descriptive validation-only epoch trade-off; not used for checkpoint selection or test tuning."
+}

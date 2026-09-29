@@ -1,0 +1,24 @@
+{
+  "seed": 123,
+  "arm": "J0_clean",
+  "traj_weight": 0.0,
+  "metrics": {
+    "intent_accuracy": 0.8700561889695052,
+    "intent_balanced_accuracy": 0.5947781230293102,
+    "intent_f1": 0.9283177851339152,
+    "intent_brier": 0.0987040428551027,
+    "trajectory_ade_normalized": 0.3942511975765228,
+    "trajectory_fde_normalized": 0.549369215965271,
+    "trajectory_ade_pixel": 612.028564453125,
+    "trajectory_fde_pixel": 720.3611450195312,
+    "gate_mean": 0.4723820388317108,
+    "entropy_mean": 0.3411315381526947,
+    "intent_auc": 0.7413247145810369
+  },
+  "raw_probability": "sigmoid(intent_logit); no calibration",
+  "classification_threshold": 0.5,
+  "selected_checkpoint_epoch": 1,
+  "protocol_sha256": "1b43c5063cced64ea4a2606f1d02c0ef98fc7531dd026b24bf0b1403faf3c9e3",
+  "test_archive_sha256": "23658152706d460493fa6146f6b401648a509cc8708ab5eb6c0892e300de1935",
+  "prediction_file": "test_predictions.npz"
+}

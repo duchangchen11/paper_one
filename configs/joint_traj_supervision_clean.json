@@ -1,0 +1,67 @@
+{
+  "experiment": "Clean attribution of trajectory auxiliary supervision to crossing-intention prediction",
+  "protocol_id": "Joint-Trajectory-Supervision-Clean-v1",
+  "base_commit": "6e98ef1dd68fa7970dc4cd2c53feef2ab80ddd11",
+  "seeds": [42, 123, 2024],
+  "arms": {
+    "J0_clean": {"traj_weight": 0.0},
+    "J100_clean": {"traj_weight": 100.0}
+  },
+  "training": {
+    "data_root": "data/processed/jaad_sequences_scene_15x15",
+    "ambiguous_root": "data/processed/jaad_ambiguous_scene_15x15",
+    "epochs": 15,
+    "batch_size": 512,
+    "hidden_dim": 128,
+    "learning_rate": 0.001,
+    "optimizer": "AdamW",
+    "weight_decay": 0.0001,
+    "prior_weight": 0.5,
+    "ambiguous_weight": 0.2,
+    "gate_mode": "uncertainty",
+    "gradient_clip_norm": 5.0
+  },
+  "common_hyperparameters_source": "Read epochs, batch size, hidden dim, learning rate, prior weight, ambiguous weight, gate mode, and data roots from frozen historical lambda100 checkpoint args; assert expected published values before execution.",
+  "selection": {
+    "mode": "intent_auc",
+    "primary_metric": "raw validation ROC-AUC",
+    "tie_break": "lower raw validation Brier when raw AUC difference is at most 1e-4",
+    "tolerance": 0.0001,
+    "forbidden_metrics": ["trajectory ADE", "trajectory FDE", "trajectory loss", "F1", "balanced accuracy"]
+  },
+  "scheduler": {
+    "name": "ReduceLROnPlateau",
+    "mode": "max",
+    "factor": 0.5,
+    "patience": 2,
+    "monitor": "raw validation ROC-AUC"
+  },
+  "initialization": {
+    "strategy": "Create exactly one initial state per seed; load the same file in both arms.",
+    "required": ["exact initial SHA256 match", "max absolute parameter difference equals zero"]
+  },
+  "data_order": {
+    "main_sampler": "inverse-class WeightedRandomSampler, replacement=True, num_samples=len(train)",
+    "ambiguous_loader": "shuffle=True",
+    "record": "full main-sampler sequence SHA256 and first 32 indices for each epoch; pairwise equality required"
+  },
+  "test_policy": "Do not open, inspect, hash, or evaluate test.npz before all six formal runs and protocol freeze.",
+  "primary_endpoint": "raw official-test intention ROC-AUC; paired delta J100-clean minus J0-clean",
+  "secondary_endpoints": ["Brier", "F1", "balanced accuracy", "accuracy"],
+  "trajectory_metrics_role": "diagnostic only; never used for scheduler or checkpoint selection",
+  "bootstrap": {"unit": "scene_id", "repetitions_per_seed": 2000, "seed": 9124, "pool_seeds": false},
+  "historical_reference": {
+    "J0": "results/joint_traj_supervision_attribution/j0",
+    "J100": "results/joint_loss_balance/lambda100",
+    "use": "secondary contextual comparison only; not the clean primary comparator"
+  },
+  "support_rules": {
+    "strong": "mean clean delta AUC > 0.03, at least 2/3 seed deltas > 0, at least 2/3 per-seed scene-bootstrap 95% AUC CI lower bounds > 0, and no clear seed-SD explosion",
+    "moderate": "mean clean delta AUC > 0.02, at least 2/3 seed directions positive, but most bootstrap intervals cross zero",
+    "weak": "mean clean delta AUC > 0 but direction is unstable or effect is small",
+    "no_support": "mean clean delta AUC approximately zero (absolute value <= 0.01) or no stable difference",
+    "negative": "mean clean delta AUC < 0",
+    "seed_sd_interpretation": "Operationalize no abnormal explosion before clean test access as clean J100 AUC sample SD <= 2.0 times the historical J100 AUC sample SD (historically 0.0135; cutoff 0.0270). Report both values and the ratio."
+  },
+  "forbidden": ["architecture change", "reliability", "DGB", "PCGrad", "GradNorm", "adapter", "pretrained clone", "partial unfreeze", "distillation", "component ablation", "lambda sweep", "test-based tuning"]
+}

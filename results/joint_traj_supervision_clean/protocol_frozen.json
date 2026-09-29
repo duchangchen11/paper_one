@@ -1,0 +1,243 @@
+{
+  "protocol_id": "Joint-Trajectory-Supervision-Clean-v1",
+  "experiment": "Clean attribution of trajectory auxiliary supervision to crossing-intention prediction",
+  "status": "frozen_before_first_access_to_test_archive",
+  "base_commit": "6e98ef1dd68fa7970dc4cd2c53feef2ab80ddd11",
+  "working_tree_changes_are_frozen_by_sha256": true,
+  "seeds": [
+    42,
+    123,
+    2024
+  ],
+  "arms": {
+    "J0_clean": {
+      "traj_weight": 0.0
+    },
+    "J100_clean": {
+      "traj_weight": 100.0
+    }
+  },
+  "training": {
+    "data_root": "data/processed/jaad_sequences_scene_15x15",
+    "ambiguous_root": "data/processed/jaad_ambiguous_scene_15x15",
+    "epochs": 15,
+    "batch_size": 512,
+    "hidden_dim": 128,
+    "learning_rate": 0.001,
+    "optimizer": "AdamW",
+    "weight_decay": 0.0001,
+    "prior_weight": 0.5,
+    "ambiguous_weight": 0.2,
+    "gate_mode": "uncertainty",
+    "gradient_clip_norm": 5.0
+  },
+  "scheduler": {
+    "name": "ReduceLROnPlateau",
+    "mode": "max",
+    "factor": 0.5,
+    "patience": 2,
+    "monitor": "raw validation ROC-AUC"
+  },
+  "selection": {
+    "mode": "intent_auc",
+    "primary_metric": "raw validation ROC-AUC",
+    "tie_break": "lower raw validation Brier when raw AUC difference is at most 1e-4",
+    "tolerance": 0.0001,
+    "forbidden_metrics": [
+      "trajectory ADE",
+      "trajectory FDE",
+      "trajectory loss",
+      "F1",
+      "balanced accuracy"
+    ]
+  },
+  "initialization": {
+    "strategy": "Create exactly one initial state per seed; load the same file in both arms.",
+    "required": [
+      "exact initial SHA256 match",
+      "max absolute parameter difference equals zero"
+    ]
+  },
+  "primary_endpoint": "raw official-test intention ROC-AUC; paired delta J100-clean minus J0-clean",
+  "secondary_endpoints": [
+    "Brier",
+    "F1",
+    "balanced accuracy",
+    "accuracy"
+  ],
+  "bootstrap": {
+    "unit": "scene_id",
+    "repetitions_per_seed": 2000,
+    "seed": 9124,
+    "pool_seeds": false
+  },
+  "trajectory_metrics_role": "diagnostic only; never used for scheduler or checkpoint selection",
+  "historical_reference_policy": {
+    "J0": "results/joint_traj_supervision_attribution/j0",
+    "J100": "results/joint_loss_balance/lambda100",
+    "use": "secondary contextual comparison only; not the clean primary comparator"
+  },
+  "pre_registered_support_rules": {
+    "strong": "mean clean delta AUC > 0.03, at least 2/3 seed deltas > 0, at least 2/3 per-seed scene-bootstrap 95% AUC CI lower bounds > 0, and no clear seed-SD explosion",
+    "moderate": "mean clean delta AUC > 0.02, at least 2/3 seed directions positive, but most bootstrap intervals cross zero",
+    "weak": "mean clean delta AUC > 0 but direction is unstable or effect is small",
+    "no_support": "mean clean delta AUC approximately zero (absolute value <= 0.01) or no stable difference",
+    "negative": "mean clean delta AUC < 0",
+    "seed_sd_interpretation": "Operationalize no abnormal explosion before clean test access as clean J100 AUC sample SD <= 2.0 times the historical J100 AUC sample SD (historically 0.0135; cutoff 0.0270). Report both values and the ratio."
+  },
+  "test_access_before_freeze": {
+    "clean_test_archive_opened_or_hashed": false,
+    "clean_test_dataset_loaded_or_evaluated": false,
+    "clean_test_metrics_or_predictions_examined": false,
+    "test_access_count_for_this_protocol": 0,
+    "planned_test_archive_path": "data/processed/jaad_sequences_scene_15x15/test.npz",
+    "expected_archive_sha256_from_prior_frozen_protocol": "23658152706d460493fa6146f6b401648a509cc8708ab5eb6c0892e300de1935",
+    "historical_pre_freeze_metadata_note": "The earlier historical J100 metrics JSON was read only to verify that a test result field existed; no historical metric value was used in this protocol or training. Current clean test archive and clean test metrics remained untouched."
+  },
+  "formal_run_manifest_sha256": "943f0eac1c6052a5d518a2f14a36e6105a77a4efab82bbba3d7737c98b79b97b",
+  "config_audit_sha256": "0a1b8789917de0a4c0fe27a3eda788b42e5f8e468755da3906ee34fa057d83a7",
+  "gradient_sanity_audit_sha256": "5da480d556ad68546dbeb28b1aaca0db64bd10754a7b66021b2607cbbc74b028",
+  "smoke_test_sha256": "81accb5cb5b74f04680ce68acc7a90bf2d8b1e28e42f0c9d74e5c13c69821b41",
+  "initialization_match_sha256": "71a25ac31b2bea47f22530e1a58852d895c5a86e4acfc53276c874816b7320ac",
+  "selected_checkpoints": {
+    "J0_clean": {
+      "42": {
+        "checkpoint_path": "checkpoints/joint_traj_supervision_clean/formal/J0_clean_seed42.pt",
+        "checkpoint_sha256": "442ad5f26b52049f07f3008cb44ebfd9362a20a50fef292c13f2476a40dc3537",
+        "selected_model_state_sha256": "1d97d9be3a459fbfcdbc0418d4d52a5be0bc1835af2ba2148f433954baa50822",
+        "initial_state_sha256": "415177a3ab4080e2d5222d66a46d0c34187ae27987b50c26fe62550edd1dfd6f",
+        "selected_epoch": 3,
+        "selected_validation_auc": 0.8497341957570073,
+        "selected_validation_brier": 0.08947914893904418,
+        "trajectory_weight": 0.0,
+        "test_metrics_absent_before_freeze": true
+      },
+      "123": {
+        "checkpoint_path": "checkpoints/joint_traj_supervision_clean/formal/J0_clean_seed123.pt",
+        "checkpoint_sha256": "859c3d5968270e09be588308606fdb712fa04269b43625802d134d9774785a4b",
+        "selected_model_state_sha256": "4683eb0824a30da8c2f2b2831d7dd6f345940dfb8d35aba0a8baaaf9f395676d",
+        "initial_state_sha256": "9884ca5c859d799b37f4c6287824dc027cd19bd64cecd6f92b574c5ab4b8e394",
+        "selected_epoch": 1,
+        "selected_validation_auc": 0.8700686318076335,
+        "selected_validation_brier": 0.07705118859860627,
+        "trajectory_weight": 0.0,
+        "test_metrics_absent_before_freeze": true
+      },
+      "2024": {
+        "checkpoint_path": "checkpoints/joint_traj_supervision_clean/formal/J0_clean_seed2024.pt",
+        "checkpoint_sha256": "4c97b82ce61936c0a6d11979b76ba97b13c8d0a9afd995b16f87f9a39d378df4",
+        "selected_model_state_sha256": "23dd294b0d118794f0a9dd96acf071c5333faa8e2f282adb2a4e6972bf61858c",
+        "initial_state_sha256": "0995d8d1d2d20a6c9457b78ce74a4351ecb07f9792eba14e81907b3b298d9069",
+        "selected_epoch": 1,
+        "selected_validation_auc": 0.8773583611755735,
+        "selected_validation_brier": 0.06635092733516564,
+        "trajectory_weight": 0.0,
+        "test_metrics_absent_before_freeze": true
+      }
+    },
+    "J100_clean": {
+      "42": {
+        "checkpoint_path": "checkpoints/joint_traj_supervision_clean/formal/J100_clean_seed42.pt",
+        "checkpoint_sha256": "c87fcdf87eac2ac97163f7c359922c825c8e8059e6e29bb42e23ccda58e5468e",
+        "selected_model_state_sha256": "d657eb68c2a4800e62ca0e9f0ab96a225fd50e81453f86837a8b6904cd03e2ab",
+        "initial_state_sha256": "415177a3ab4080e2d5222d66a46d0c34187ae27987b50c26fe62550edd1dfd6f",
+        "selected_epoch": 15,
+        "selected_validation_auc": 0.8591470673754781,
+        "selected_validation_brier": 0.08021443358237242,
+        "trajectory_weight": 100.0,
+        "test_metrics_absent_before_freeze": true
+      },
+      "123": {
+        "checkpoint_path": "checkpoints/joint_traj_supervision_clean/formal/J100_clean_seed123.pt",
+        "checkpoint_sha256": "e057fe06dd823a3e940233268f9c36f34aaa496b923ca7bdb5ba984da6f0d852",
+        "selected_model_state_sha256": "5f7a2c4ea9bf98ea9f3e17bae569a5eee327e6f87b026d6c14f02d064ce05001",
+        "initial_state_sha256": "9884ca5c859d799b37f4c6287824dc027cd19bd64cecd6f92b574c5ab4b8e394",
+        "selected_epoch": 1,
+        "selected_validation_auc": 0.848007428254799,
+        "selected_validation_brier": 0.09769904449430529,
+        "trajectory_weight": 100.0,
+        "test_metrics_absent_before_freeze": true
+      },
+      "2024": {
+        "checkpoint_path": "checkpoints/joint_traj_supervision_clean/formal/J100_clean_seed2024.pt",
+        "checkpoint_sha256": "4bc525f756e9c86fb39565746fffc525e1d06026b4d74aafab9095f220e2cf55",
+        "selected_model_state_sha256": "8a9db4a1e09041afba0ef207094e86f8f79f0288e5b776bbdb074d52636a17c8",
+        "initial_state_sha256": "0995d8d1d2d20a6c9457b78ce74a4351ecb07f9792eba14e81907b3b298d9069",
+        "selected_epoch": 11,
+        "selected_validation_auc": 0.922634918283711,
+        "selected_validation_brier": 0.08185348617280115,
+        "trajectory_weight": 100.0,
+        "test_metrics_absent_before_freeze": true
+      }
+    }
+  },
+  "paired_sampling_fingerprints_match": true,
+  "test_access_count": 0,
+  "sha256": {
+    "frozen_pretest_artifacts": {
+      "checkpoints/joint_traj_supervision_clean/formal/J0_clean_seed123.pt": "859c3d5968270e09be588308606fdb712fa04269b43625802d134d9774785a4b",
+      "checkpoints/joint_traj_supervision_clean/formal/J0_clean_seed2024.pt": "4c97b82ce61936c0a6d11979b76ba97b13c8d0a9afd995b16f87f9a39d378df4",
+      "checkpoints/joint_traj_supervision_clean/formal/J0_clean_seed42.pt": "442ad5f26b52049f07f3008cb44ebfd9362a20a50fef292c13f2476a40dc3537",
+      "checkpoints/joint_traj_supervision_clean/formal/J100_clean_seed123.pt": "e057fe06dd823a3e940233268f9c36f34aaa496b923ca7bdb5ba984da6f0d852",
+      "checkpoints/joint_traj_supervision_clean/formal/J100_clean_seed2024.pt": "4bc525f756e9c86fb39565746fffc525e1d06026b4d74aafab9095f220e2cf55",
+      "checkpoints/joint_traj_supervision_clean/formal/J100_clean_seed42.pt": "c87fcdf87eac2ac97163f7c359922c825c8e8059e6e29bb42e23ccda58e5468e",
+      "checkpoints/joint_traj_supervision_clean/initial_state_seed123.pt": "6b090910e37481b37dfd313758cebef65912dbe059b14c2870bfc2fb3eac8cf3",
+      "checkpoints/joint_traj_supervision_clean/initial_state_seed2024.pt": "2f852be9007638238befb902e078d513780bce243bd395d4e630eb613d9f352a",
+      "checkpoints/joint_traj_supervision_clean/initial_state_seed42.pt": "f637a337c76c2a39d60832fd113af0ca7abf2a923a5a220ed42a16af34e6fb23",
+      "configs/joint_traj_supervision_clean.json": "6b933b8207830c5ae4cd88abfb16ba348f06db74a0f724bb51aadc5ab810941b",
+      "data/processed/jaad_ambiguous_scene_15x15/train.npz": "8538fd3f47c056b767021eb095ba3fbbfa587466226b6bd860cd32f67260611e",
+      "data/processed/jaad_sequences_scene_15x15/train.npz": "6da2d1d40a918a218a7d054407d95f2791e2338a760b4836f2ca6d06c59ea19a",
+      "data/processed/jaad_sequences_scene_15x15/val.npz": "fb78bb5edcd18d74a15744cfd8ae728c8600b485d4028bed8ee2c9c2d4c5f66c",
+      "results/joint_traj_supervision_attribution/protocol_frozen.json": "c9398b6ca3809f90310f854005e5d0187db35780e6f6743fcdb221cf4054f7b2",
+      "results/joint_traj_supervision_attribution/protocol_frozen.sha256": "6cca940e9f8f065fb813dd5a79c9dfa69b934eb3a720ae1c0a95f0511cc2755c",
+      "results/joint_traj_supervision_clean/J0_clean/seed123/gradient_history.json": "34262390fa3acfaaecb5ca2121472714b51b6ac3ddbb0c1ba598929cfb113e21",
+      "results/joint_traj_supervision_clean/J0_clean/seed123/metrics.json": "7a9260908fdef3cad0ccc0901cc95008084b452339b22874135c7b5d429693d0",
+      "results/joint_traj_supervision_clean/J0_clean/seed123/training.log": "5cad03c9dd67a58db992d027a83c3efcb979a0cb2e678b947bb9f3f5c0063b4f",
+      "results/joint_traj_supervision_clean/J0_clean/seed123/validation_history.json": "4a7f861eb9c984309a3859a87e2ded53ed970f887a7bf8c6a3f6f5656357e6c2",
+      "results/joint_traj_supervision_clean/J0_clean/seed2024/gradient_history.json": "ad62eb2c8c741597c84c779170b79be1b65a8099a2323b210ef88ee3951cdc2c",
+      "results/joint_traj_supervision_clean/J0_clean/seed2024/metrics.json": "8ebe08ff6c9d6c162bfd1c120008f13eac35fc5c5c1e35e1806db016f16b1c54",
+      "results/joint_traj_supervision_clean/J0_clean/seed2024/training.log": "cb0e19c653c99b97d7e514eeecd7f2afcd431699280b7e04489f410320fa8d77",
+      "results/joint_traj_supervision_clean/J0_clean/seed2024/validation_history.json": "d3ec7777334e5d047a6d3692aa2ee8a3181248e090b862b34eee8ad9d664ad1e",
+      "results/joint_traj_supervision_clean/J0_clean/seed42/gradient_history.json": "2bad67b9be1ad6b915e938041aa07cd3ae4b0e078a6d3027ab1ae46dc1657391",
+      "results/joint_traj_supervision_clean/J0_clean/seed42/metrics.json": "dc820fe62e3802971fbb01f173bdc88af26872cc21b4865e490e89ebb364ae82",
+      "results/joint_traj_supervision_clean/J0_clean/seed42/training.log": "a3b022a7e821ff0e4cc1afb14d20111dbfc247b40e169c4bf2681999d2584a2c",
+      "results/joint_traj_supervision_clean/J0_clean/seed42/validation_history.json": "221bf3cae45df388c92ee0c8eae4c5c58c2514975a1af571f2352cd30ce0de1e",
+      "results/joint_traj_supervision_clean/J100_clean/seed123/gradient_history.json": "73fb2801dfaeb4b4a7971a54de63548b93d8f340d72ec28218a0ffb7f06d8ddb",
+      "results/joint_traj_supervision_clean/J100_clean/seed123/metrics.json": "9d61112aeac086799de80779eea8200cabe0bf63244dd75ceeacd0a6f6d920e5",
+      "results/joint_traj_supervision_clean/J100_clean/seed123/training.log": "b6ee7f475ba4e724158fd7a215ef7ef59a6d33ecc58bcdf22d515234f6737722",
+      "results/joint_traj_supervision_clean/J100_clean/seed123/validation_history.json": "098dece564912a1005cb5745a7ab071b7962fc5213ef6797c030466c2f169f9a",
+      "results/joint_traj_supervision_clean/J100_clean/seed2024/gradient_history.json": "087512506831b6a9dc0b7f4510ccef279a641c81c3f81b72213ef93ccdbfdb76",
+      "results/joint_traj_supervision_clean/J100_clean/seed2024/metrics.json": "3b2634e3303e61800ed8fd5300d75fa9ef5335ae678c5d096b03eeb0b1a73806",
+      "results/joint_traj_supervision_clean/J100_clean/seed2024/training.log": "22cb31bf3eea6642420623888e4cf89b4406498417375c3f7617c3ad5671d047",
+      "results/joint_traj_supervision_clean/J100_clean/seed2024/validation_history.json": "2c86947b8275b23006d876ad082b36d6ad7245031f7c49a818221ea8b7dbae1e",
+      "results/joint_traj_supervision_clean/J100_clean/seed42/gradient_history.json": "5030bdeaf61519598130b7b95586f965cd92b4a160d2fe8d22eaac9cd1eadd61",
+      "results/joint_traj_supervision_clean/J100_clean/seed42/metrics.json": "5b2139014bec83397d6b4f142325e8a8896a03d9527a2ccac41177e7b61362e1",
+      "results/joint_traj_supervision_clean/J100_clean/seed42/training.log": "75d858acdb81286645fa043106d00672b22cc34f231989da94e6a4cfc26a6bab",
+      "results/joint_traj_supervision_clean/J100_clean/seed42/validation_history.json": "596d9db9511b6b815692decd719be0ab5f84aced03b791964d0b229f0a8f6a9a",
+      "results/joint_traj_supervision_clean/clean_j0_vs_j100_config_audit.json": "0a1b8789917de0a4c0fe27a3eda788b42e5f8e468755da3906ee34fa057d83a7",
+      "results/joint_traj_supervision_clean/formal_run_manifest.json": "943f0eac1c6052a5d518a2f14a36e6105a77a4efab82bbba3d7737c98b79b97b",
+      "results/joint_traj_supervision_clean/gradient_sanity_audit.json": "5da480d556ad68546dbeb28b1aaca0db64bd10754a7b66021b2607cbbc74b028",
+      "results/joint_traj_supervision_clean/initialization_match.json": "71a25ac31b2bea47f22530e1a58852d895c5a86e4acfc53276c874816b7320ac",
+      "results/joint_traj_supervision_clean/smoke_test.json": "81accb5cb5b74f04680ce68acc7a90bf2d8b1e28e42f0c9d74e5c13c69821b41",
+      "results/trajectory_preserving_joint/P1_target_only/seed123/test_predictions.npz": "babdd0a7e21184daa300128a08fcc466c52aba69737fa25001ab059878be3def",
+      "results/trajectory_preserving_joint/P1_target_only/seed2024/test_predictions.npz": "bd3ecf4a9b59cac6293d259161b3244761a8c00750021ddd5ada6a3f81962f0c",
+      "results/trajectory_preserving_joint/P1_target_only/seed42/test_predictions.npz": "f24f9093573b54a98bfa9f4d9e31eaab9ee33f9e49651c83a308c675ee2d3bdf",
+      "scripts/analyze_joint_traj_supervision_clean_diagnostics.py": "43b298f539db95be89d0e89ea0c8f93373d793f9cf12003e3d4073b713be387c",
+      "scripts/evaluate_joint_traj_supervision_clean_test.py": "a26865ea33808d626610f2ac81626ca5b29a078c5124626d9fc884a8ebb17b14",
+      "scripts/freeze_joint_traj_supervision_clean_protocol.py": "469a60247ff92f65542828fe9989347e940a3c5681690a42a541f7d2dc89fc76",
+      "scripts/joint_traj_supervision_clean_utils.py": "5412b80ee75980c04bdf446663f2fb696bbaa4203fed760a7e6dc4e3fa8fca6c",
+      "scripts/reliability_gated_intent_utils.py": "bd2f7eadb3a54726ada64563d425d8879b33af33118fa052b7ce8e8c4d8d8c8f",
+      "scripts/run_joint_traj_supervision_clean.py": "9dd75e2340dd91b9eecd10cdb42c784b8d8a9b33e8046f27ad6c40eaa6a00839",
+      "scripts/summarize_joint_traj_supervision_clean.py": "144cac69267adb79d6f2d9e9777869fc47b7a2fc9b560e7e95eae9cd4c422894",
+      "scripts/train_joint_transformer_gate.py": "77f15b01f530ea9cb7d7d8550651c565f57dee171e7d5d1c9321286a231ab436",
+      "src/data/jaad_sequence_dataset.py": "220b0551182b160204cc2d8372a8a3d135f972271baa5b77534b13a930abf285",
+      "src/models/joint_transformer_gate.py": "e6d480d8277db193e9d5217e47e6d7000b5dcc0c4637a6223e603f5b48d54621",
+      "tests/test_joint_traj_supervision_clean.py": "6510c53f041b7af0898474cb36e1d446c8e5f68a613b9034bacfc560b1b8d3e8"
+    }
+  },
+  "environment": {
+    "python": "3.10.21 (main, Aug 27 2026, 14:42:07) [GCC 14.3.0]",
+    "torch": "2.5.1+cu124",
+    "device_available": "cuda"
+  }
+}
