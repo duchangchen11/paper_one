@@ -1,0 +1,125 @@
+{
+  "audit_seed": 29092026,
+  "splits_opened": [
+    "train",
+    "validation"
+  ],
+  "scene_dimension": 512,
+  "per_split_static_consistency": {
+    "train": {
+      "sample_count": 24556,
+      "video_count": 144,
+      "videos_with_exactly_constant_feature": 144,
+      "fraction_videos_exactly_constant": 1.0,
+      "max_within_video_l2_deviation_from_first_sample": 0.0,
+      "zero_feature_video_count": 0,
+      "zero_feature_sample_count": 0,
+      "target_tracks_with_multiple_windows": 264
+    },
+    "validation": {
+      "sample_count": 2636,
+      "video_count": 25,
+      "videos_with_exactly_constant_feature": 25,
+      "fraction_videos_exactly_constant": 1.0,
+      "max_within_video_l2_deviation_from_first_sample": 0.0,
+      "zero_feature_video_count": 0,
+      "zero_feature_sample_count": 0,
+      "target_tracks_with_multiple_windows": 40
+    }
+  },
+  "same_video_sample_pairs": {
+    "population_pair_count": 4657889,
+    "sampled_pair_count": 12000,
+    "cosine": {
+      "mean": 1.0,
+      "std": 7.39709089259674e-17,
+      "min": 0.9999999999999998,
+      "max": 1.0,
+      "quantiles_0_05_25_50_75_95_100": [
+        0.9999999999999998,
+        0.9999999999999998,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "fraction_ge_0_999": 1.0
+    },
+    "exact_feature_match_fraction": 1.0,
+    "zero_vector_pair_fraction": 0.0
+  },
+  "same_pedestrian_different_window_pairs": {
+    "population_pair_count": 1929241,
+    "sampled_pair_count": 12000,
+    "cosine": {
+      "mean": 1.0,
+      "std": 7.552373218596415e-17,
+      "min": 0.9999999999999998,
+      "max": 1.0,
+      "quantiles_0_05_25_50_75_95_100": [
+        0.9999999999999998,
+        0.9999999999999998,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "fraction_ge_0_999": 1.0
+    },
+    "exact_feature_match_fraction": 1.0,
+    "zero_vector_pair_fraction": 0.0
+  },
+  "different_pedestrians_same_video_pairs": {
+    "population_pair_count": 246,
+    "sampled_pair_count": 246,
+    "cosine": {
+      "mean": 1.0,
+      "std": 9.496835792969244e-17,
+      "min": 0.9999999999999998,
+      "max": 1.0,
+      "quantiles_0_05_25_50_75_95_100": [
+        0.9999999999999998,
+        0.9999999999999998,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "fraction_ge_0_999": 1.0
+    },
+    "exact_feature_match_fraction": 1.0,
+    "zero_vector_pair_fraction": 0.0
+  },
+  "different_video_unique_embedding_pairs": {
+    "population_pair_count": 14196,
+    "sampled_pair_count": 14196,
+    "cosine": {
+      "mean": 0.7694329582516801,
+      "std": 0.05984352064287313,
+      "min": 0.4738399437036846,
+      "max": 0.9321009258430113,
+      "quantiles_0_05_25_50_75_95_100": [
+        0.4738399437036846,
+        0.6679910291990663,
+        0.732717008246463,
+        0.7726923643236063,
+        0.8115820791751926,
+        0.860669848482372,
+        0.9321009258430113
+      ],
+      "fraction_ge_0_999": 0.0
+    },
+    "exact_feature_match_fraction": 0.0,
+    "zero_vector_pair_fraction": 0.0,
+    "unique_videos": 169,
+    "exact_identical_cross_video_pair_count": 0,
+    "pair_cosine_ge_0_999_count": 0,
+    "pair_cosine_ge_0_99_count": 0
+  },
+  "different_video_pair_scope": "one stored embedding per unique video; train and validation videos combined, no labels used",
+  "cosine_zero_vector_convention": "cosine=0 when either vector has zero norm; exact matches are reported separately",
+  "scene_ids_seen_in_both_splits": []
+}

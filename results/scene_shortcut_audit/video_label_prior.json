@@ -1,0 +1,1070 @@
+{
+  "splits": {
+    "train": {
+      "sample_count": 24556,
+      "unique_video_count": 144,
+      "unique_pedestrian_clip_count": 264,
+      "target_label_inconsistency_count": 0,
+      "positive_rate_by_video": [
+        {
+          "video_id": "video_0003",
+          "unique_pedestrian_count": 1,
+          "crossing_positive_count": 1,
+          "crossing_positive_rate": 1.0
+        },
+        {
+          "video_id": "video_0004",
+          "unique_pedestrian_count": 1,
+          "crossing_positive_count": 0,
+          "crossing_positive_rate": 0.0
+        },
+        {
+          "video_id": "video_0007",
+          "unique_pedestrian_count": 1,
+          "crossing_positive_count": 0,
+          "crossing_positive_rate": 0.0
+        },
+        {
+          "video_id": "video_0008",
+          "unique_pedestrian_count": 1,
+          "crossing_positive_count": 0,
+          "crossing_positive_rate": 0.0
+        },
+        {
+          "video_id": "video_0009",
+          "unique_pedestrian_count": 1,
+          "crossing_positive_count": 0,
+          "crossing_positive_rate": 0.0
+        },
+        {
+          "video_id": "video_0011",
+          "unique_pedestrian_count": 1,
+          "crossing_positive_count": 1,
+          "crossing_positive_rate": 1.0
+        },
+        {
+          "video_id": "video_0012",
+          "unique_pedestrian_count": 1,
+          "crossing_positive_count": 1,
+          "crossing_positive_rate": 1.0
+        },
+        {
+          "video_id": "video_0014",
+          "unique_pedestrian_count": 1,
+          "crossing_positive_count": 1,
+          "crossing_positive_rate": 1.0
+        },
+        {
+          "video_id": "video_0020",
+          "unique_pedestrian_count": 2,
+          "crossing_positive_count": 1,
+          "crossing_positive_rate": 0.5
+        },
+        {
+          "video_id": "video_0025",
+          "unique_pedestrian_count": 6,
+          "crossing_positive_count": 6,
+          "crossing_positive_rate": 1.0
+        },
+        {
+          "video_id": "video_0027",
+          "unique_pedestrian_count": 1,
+          "crossing_positive_count": 1,
+          "crossing_positive_rate": 1.0
+        },
+        {
+          "video_id": "video_0030",
+          "unique_pedestrian_count": 1,
+          "crossing_positive_count": 1,
+          "crossing_positive_rate": 1.0
+        },
+        {
+          "video_id": "video_0031",
+          "unique_pedestrian_count": 2,
+          "crossing_positive_count": 2,
+          "crossing_positive_rate": 1.0
+        },
+        {
+          "video_id": "video_0035",
+          "unique_pedestrian_count": 1,
+          "crossing_positive_count": 0,
+          "crossing_positive_rate": 0.0
+        },
+        {
+          "video_id": "video_0037",
+          "unique_pedestrian_count": 1,
+          "crossing_positive_count": 0,
+          "crossing_positive_rate": 0.0
+        },
+        {
+          "video_id": "video_0038",
+          "unique_pedestrian_count": 1,
+          "crossing_positive_count": 1,
+          "crossing_positive_rate": 1.0
+        },
+        {
+          "video_id": "video_0039",
+          "unique_pedestrian_count": 2,
+          "crossing_positive_count": 2,
+          "crossing_positive_rate": 1.0
+        },
+        {
+          "video_id": "video_0047",
+          "unique_pedestrian_count": 1,
+          "crossing_positive_count": 1,
+          "crossing_positive_rate": 1.0
+        },
+        {
+          "video_id": "video_0049",
+          "unique_pedestrian_count": 2,
+          "crossing_positive_count": 2,
+          "crossing_positive_rate": 1.0
+        },
+        {
+          "video_id": "video_0050",
+          "unique_pedestrian_count": 1,
+          "crossing_positive_count": 1,
+          "crossing_positive_rate": 1.0
+        },
+        {
+          "video_id": "video_0056",
+          "unique_pedestrian_count": 1,
+          "crossing_positive_count": 1,
+          "crossing_positive_rate": 1.0
+        },
+        {
+          "video_id": "video_0057",
+          "unique_pedestrian_count": 1,
+          "crossing_positive_count": 1,
+          "crossing_positive_rate": 1.0
+        },
+        {
+          "video_id": "video_0060",
+          "unique_pedestrian_count": 1,
+          "crossing_positive_count": 1,
+          "crossing_positive_rate": 1.0
+        },
+        {
+          "video_id": "video_0077",
+          "unique_pedestrian_count": 1,
+          "crossing_positive_count": 1,
+          "crossing_positive_rate": 1.0
+        },
+        {
+          "video_id": "video_0078",
+          "unique_pedestrian_count": 2,
+          "crossing_positive_count": 2,
+          "crossing_positive_rate": 1.0
+        },
+        {
+          "video_id": "video_0079",
+          "unique_pedestrian_count": 1,
+          "crossing_positive_count": 1,
+          "crossing_positive_rate": 1.0
+        },
+        {
+          "video_id": "video_0080",
+          "unique_pedestrian_count": 2,
+          "crossing_positive_count": 2,
+          "crossing_positive_rate": 1.0
+        },
+        {
+          "video_id": "video_0081",
+          "unique_pedestrian_count": 2,
+          "crossing_positive_count": 2,
+          "crossing_positive_rate": 1.0
+        },
+        {
+          "video_id": "video_0083",
+          "unique_pedestrian_count": 1,
+          "crossing_positive_count": 1,
+          "crossing_positive_rate": 1.0
+        },
+        {
+          "video_id": "video_0085",
+          "unique_pedestrian_count": 1,
+          "crossing_positive_count": 1,
+          "crossing_positive_rate": 1.0
+        },
+        {
+          "video_id": "video_0086",
+          "unique_pedestrian_count": 1,
+          "crossing_positive_count": 0,
+          "crossing_positive_rate": 0.0
+        },
+        {
+          "video_id": "video_0088",
+          "unique_pedestrian_count": 1,
+          "crossing_positive_count": 1,
+          "crossing_positive_rate": 1.0
+        },
+        {
+          "video_id": "video_0094",
+          "unique_pedestrian_count": 2,
+          "crossing_positive_count": 2,
+          "crossing_positive_rate": 1.0
+        },
+        {
+          "video_id": "video_0095",
+          "unique_pedestrian_count": 1,
+          "crossing_positive_count": 1,
+          "crossing_positive_rate": 1.0
+        },
+        {
+          "video_id": "video_0098",
+          "unique_pedestrian_count": 2,
+          "crossing_positive_count": 2,
+          "crossing_positive_rate": 1.0
+        },
+        {
+          "video_id": "video_0108",
+          "unique_pedestrian_count": 1,
+          "crossing_positive_count": 1,
+          "crossing_positive_rate": 1.0
+        },
+        {
+          "video_id": "video_0109",
+          "unique_pedestrian_count": 3,
+          "crossing_positive_count": 3,
+          "crossing_positive_rate": 1.0
+        },
+        {
+          "video_id": "video_0111",
+          "unique_pedestrian_count": 2,
+          "crossing_positive_count": 2,
+          "crossing_positive_rate": 1.0
+        },
+        {
+          "video_id": "video_0112",
+          "unique_pedestrian_count": 2,
+          "crossing_positive_count": 2,
+          "crossing_positive_rate": 1.0
+        },
+        {
+          "video_id": "video_0114",
+          "unique_pedestrian_count": 2,
+          "crossing_positive_count": 2,
+          "crossing_positive_rate": 1.0
+        },
+        {
+          "video_id": "video_0119",
+          "unique_pedestrian_count": 1,
+          "crossing_positive_count": 1,
+          "crossing_positive_rate": 1.0
+        },
+        {
+          "video_id": "video_0120",
+          "unique_pedestrian_count": 1,
+          "crossing_positive_count": 1,
+          "crossing_positive_rate": 1.0
+        },
+        {
+          "video_id": "video_0122",
+          "unique_pedestrian_count": 2,
+          "crossing_positive_count": 2,
+          "crossing_positive_rate": 1.0
+        },
+        {
+          "video_id": "video_0126",
+          "unique_pedestrian_count": 1,
+          "crossing_positive_count": 1,
+          "crossing_positive_rate": 1.0
+        },
+        {
+          "video_id": "video_0130",
+          "unique_pedestrian_count": 1,
+          "crossing_positive_count": 1,
+          "crossing_positive_rate": 1.0
+        },
+        {
+          "video_id": "video_0131",
+          "unique_pedestrian_count": 2,
+          "crossing_positive_count": 2,
+          "crossing_positive_rate": 1.0
+        },
+        {
+          "video_id": "video_0132",
+          "unique_pedestrian_count": 2,
+          "crossing_positive_count": 2,
+          "crossing_positive_rate": 1.0
+        },
+        {
+          "video_id": "video_0133",
+          "unique_pedestrian_count": 1,
+          "crossing_positive_count": 1,
+          "crossing_positive_rate": 1.0
+        },
+        {
+          "video_id": "video_0134",
+          "unique_pedestrian_count": 2,
+          "crossing_positive_count": 2,
+          "crossing_positive_rate": 1.0
+        },
+        {
+          "video_id": "video_0136",
+          "unique_pedestrian_count": 1,
+          "crossing_positive_count": 1,
+          "crossing_positive_rate": 1.0
+        },
+        {
+          "video_id": "video_0137",
+          "unique_pedestrian_count": 1,
+          "crossing_positive_count": 1,
+          "crossing_positive_rate": 1.0
+        },
+        {
+          "video_id": "video_0138",
+          "unique_pedestrian_count": 4,
+          "crossing_positive_count": 4,
+          "crossing_positive_rate": 1.0
+        },
+        {
+          "video_id": "video_0139",
+          "unique_pedestrian_count": 4,
+          "crossing_positive_count": 4,
+          "crossing_positive_rate": 1.0
+        },
+        {
+          "video_id": "video_0140",
+          "unique_pedestrian_count": 1,
+          "crossing_positive_count": 1,
+          "crossing_positive_rate": 1.0
+        },
+        {
+          "video_id": "video_0143",
+          "unique_pedestrian_count": 3,
+          "crossing_positive_count": 3,
+          "crossing_positive_rate": 1.0
+        },
+        {
+          "video_id": "video_0145",
+          "unique_pedestrian_count": 3,
+          "crossing_positive_count": 3,
+          "crossing_positive_rate": 1.0
+        },
+        {
+          "video_id": "video_0146",
+          "unique_pedestrian_count": 3,
+          "crossing_positive_count": 3,
+          "crossing_positive_rate": 1.0
+        },
+        {
+          "video_id": "video_0147",
+          "unique_pedestrian_count": 2,
+          "crossing_positive_count": 1,
+          "crossing_positive_rate": 0.5
+        },
+        {
+          "video_id": "video_0149",
+          "unique_pedestrian_count": 4,
+          "crossing_positive_count": 4,
+          "crossing_positive_rate": 1.0
+        },
+        {
+          "video_id": "video_0154",
+          "unique_pedestrian_count": 2,
+          "crossing_positive_count": 2,
+          "crossing_positive_rate": 1.0
+        },
+        {
+          "video_id": "video_0157",
+          "unique_pedestrian_count": 2,
+          "crossing_positive_count": 2,
+          "crossing_positive_rate": 1.0
+        },
+        {
+          "video_id": "video_0158",
+          "unique_pedestrian_count": 1,
+          "crossing_positive_count": 1,
+          "crossing_positive_rate": 1.0
+        },
+        {
+          "video_id": "video_0159",
+          "unique_pedestrian_count": 3,
+          "crossing_positive_count": 3,
+          "crossing_positive_rate": 1.0
+        },
+        {
+          "video_id": "video_0161",
+          "unique_pedestrian_count": 1,
+          "crossing_positive_count": 1,
+          "crossing_positive_rate": 1.0
+        },
+        {
+          "video_id": "video_0166",
+          "unique_pedestrian_count": 1,
+          "crossing_positive_count": 1,
+          "crossing_positive_rate": 1.0
+        },
+        {
+          "video_id": "video_0167",
+          "unique_pedestrian_count": 1,
+          "crossing_positive_count": 1,
+          "crossing_positive_rate": 1.0
+        },
+        {
+          "video_id": "video_0168",
+          "unique_pedestrian_count": 1,
+          "crossing_positive_count": 1,
+          "crossing_positive_rate": 1.0
+        },
+        {
+          "video_id": "video_0169",
+          "unique_pedestrian_count": 1,
+          "crossing_positive_count": 1,
+          "crossing_positive_rate": 1.0
+        },
+        {
+          "video_id": "video_0171",
+          "unique_pedestrian_count": 1,
+          "crossing_positive_count": 1,
+          "crossing_positive_rate": 1.0
+        },
+        {
+          "video_id": "video_0174",
+          "unique_pedestrian_count": 2,
+          "crossing_positive_count": 2,
+          "crossing_positive_rate": 1.0
+        },
+        {
+          "video_id": "video_0175",
+          "unique_pedestrian_count": 4,
+          "crossing_positive_count": 4,
+          "crossing_positive_rate": 1.0
+        },
+        {
+          "video_id": "video_0176",
+          "unique_pedestrian_count": 1,
+          "crossing_positive_count": 1,
+          "crossing_positive_rate": 1.0
+        },
+        {
+          "video_id": "video_0184",
+          "unique_pedestrian_count": 2,
+          "crossing_positive_count": 2,
+          "crossing_positive_rate": 1.0
+        },
+        {
+          "video_id": "video_0185",
+          "unique_pedestrian_count": 1,
+          "crossing_positive_count": 1,
+          "crossing_positive_rate": 1.0
+        },
+        {
+          "video_id": "video_0190",
+          "unique_pedestrian_count": 3,
+          "crossing_positive_count": 3,
+          "crossing_positive_rate": 1.0
+        },
+        {
+          "video_id": "video_0191",
+          "unique_pedestrian_count": 4,
+          "crossing_positive_count": 4,
+          "crossing_positive_rate": 1.0
+        },
+        {
+          "video_id": "video_0192",
+          "unique_pedestrian_count": 1,
+          "crossing_positive_count": 0,
+          "crossing_positive_rate": 0.0
+        },
+        {
+          "video_id": "video_0194",
+          "unique_pedestrian_count": 1,
+          "crossing_positive_count": 0,
+          "crossing_positive_rate": 0.0
+        },
+        {
+          "video_id": "video_0196",
+          "unique_pedestrian_count": 1,
+          "crossing_positive_count": 1,
+          "crossing_positive_rate": 1.0
+        },
+        {
+          "video_id": "video_0198",
+          "unique_pedestrian_count": 1,
+          "crossing_positive_count": 1,
+          "crossing_positive_rate": 1.0
+        },
+        {
+          "video_id": "video_0204",
+          "unique_pedestrian_count": 1,
+          "crossing_positive_count": 1,
+          "crossing_positive_rate": 1.0
+        },
+        {
+          "video_id": "video_0205",
+          "unique_pedestrian_count": 1,
+          "crossing_positive_count": 1,
+          "crossing_positive_rate": 1.0
+        },
+        {
+          "video_id": "video_0207",
+          "unique_pedestrian_count": 1,
+          "crossing_positive_count": 0,
+          "crossing_positive_rate": 0.0
+        },
+        {
+          "video_id": "video_0208",
+          "unique_pedestrian_count": 2,
+          "crossing_positive_count": 0,
+          "crossing_positive_rate": 0.0
+        },
+        {
+          "video_id": "video_0209",
+          "unique_pedestrian_count": 3,
+          "crossing_positive_count": 0,
+          "crossing_positive_rate": 0.0
+        },
+        {
+          "video_id": "video_0214",
+          "unique_pedestrian_count": 2,
+          "crossing_positive_count": 2,
+          "crossing_positive_rate": 1.0
+        },
+        {
+          "video_id": "video_0215",
+          "unique_pedestrian_count": 2,
+          "crossing_positive_count": 2,
+          "crossing_positive_rate": 1.0
+        },
+        {
+          "video_id": "video_0219",
+          "unique_pedestrian_count": 2,
+          "crossing_positive_count": 2,
+          "crossing_positive_rate": 1.0
+        },
+        {
+          "video_id": "video_0225",
+          "unique_pedestrian_count": 1,
+          "crossing_positive_count": 1,
+          "crossing_positive_rate": 1.0
+        },
+        {
+          "video_id": "video_0227",
+          "unique_pedestrian_count": 1,
+          "crossing_positive_count": 1,
+          "crossing_positive_rate": 1.0
+        },
+        {
+          "video_id": "video_0228",
+          "unique_pedestrian_count": 1,
+          "crossing_positive_count": 1,
+          "crossing_positive_rate": 1.0
+        },
+        {
+          "video_id": "video_0229",
+          "unique_pedestrian_count": 1,
+          "crossing_positive_count": 1,
+          "crossing_positive_rate": 1.0
+        },
+        {
+          "video_id": "video_0231",
+          "unique_pedestrian_count": 4,
+          "crossing_positive_count": 4,
+          "crossing_positive_rate": 1.0
+        },
+        {
+          "video_id": "video_0232",
+          "unique_pedestrian_count": 1,
+          "crossing_positive_count": 1,
+          "crossing_positive_rate": 1.0
+        },
+        {
+          "video_id": "video_0233",
+          "unique_pedestrian_count": 2,
+          "crossing_positive_count": 2,
+          "crossing_positive_rate": 1.0
+        },
+        {
+          "video_id": "video_0235",
+          "unique_pedestrian_count": 2,
+          "crossing_positive_count": 2,
+          "crossing_positive_rate": 1.0
+        },
+        {
+          "video_id": "video_0236",
+          "unique_pedestrian_count": 2,
+          "crossing_positive_count": 2,
+          "crossing_positive_rate": 1.0
+        },
+        {
+          "video_id": "video_0237",
+          "unique_pedestrian_count": 2,
+          "crossing_positive_count": 0,
+          "crossing_positive_rate": 0.0
+        },
+        {
+          "video_id": "video_0240",
+          "unique_pedestrian_count": 2,
+          "crossing_positive_count": 2,
+          "crossing_positive_rate": 1.0
+        },
+        {
+          "video_id": "video_0241",
+          "unique_pedestrian_count": 1,
+          "crossing_positive_count": 1,
+          "crossing_positive_rate": 1.0
+        },
+        {
+          "video_id": "video_0242",
+          "unique_pedestrian_count": 3,
+          "crossing_positive_count": 3,
+          "crossing_positive_rate": 1.0
+        },
+        {
+          "video_id": "video_0247",
+          "unique_pedestrian_count": 3,
+          "crossing_positive_count": 3,
+          "crossing_positive_rate": 1.0
+        },
+        {
+          "video_id": "video_0248",
+          "unique_pedestrian_count": 1,
+          "crossing_positive_count": 1,
+          "crossing_positive_rate": 1.0
+        },
+        {
+          "video_id": "video_0249",
+          "unique_pedestrian_count": 1,
+          "crossing_positive_count": 1,
+          "crossing_positive_rate": 1.0
+        },
+        {
+          "video_id": "video_0254",
+          "unique_pedestrian_count": 1,
+          "crossing_positive_count": 0,
+          "crossing_positive_rate": 0.0
+        },
+        {
+          "video_id": "video_0255",
+          "unique_pedestrian_count": 1,
+          "crossing_positive_count": 1,
+          "crossing_positive_rate": 1.0
+        },
+        {
+          "video_id": "video_0256",
+          "unique_pedestrian_count": 1,
+          "crossing_positive_count": 0,
+          "crossing_positive_rate": 0.0
+        },
+        {
+          "video_id": "video_0257",
+          "unique_pedestrian_count": 2,
+          "crossing_positive_count": 2,
+          "crossing_positive_rate": 1.0
+        },
+        {
+          "video_id": "video_0258",
+          "unique_pedestrian_count": 2,
+          "crossing_positive_count": 2,
+          "crossing_positive_rate": 1.0
+        },
+        {
+          "video_id": "video_0259",
+          "unique_pedestrian_count": 1,
+          "crossing_positive_count": 1,
+          "crossing_positive_rate": 1.0
+        },
+        {
+          "video_id": "video_0260",
+          "unique_pedestrian_count": 1,
+          "crossing_positive_count": 1,
+          "crossing_positive_rate": 1.0
+        },
+        {
+          "video_id": "video_0261",
+          "unique_pedestrian_count": 1,
+          "crossing_positive_count": 1,
+          "crossing_positive_rate": 1.0
+        },
+        {
+          "video_id": "video_0262",
+          "unique_pedestrian_count": 1,
+          "crossing_positive_count": 0,
+          "crossing_positive_rate": 0.0
+        },
+        {
+          "video_id": "video_0264",
+          "unique_pedestrian_count": 2,
+          "crossing_positive_count": 1,
+          "crossing_positive_rate": 0.5
+        },
+        {
+          "video_id": "video_0266",
+          "unique_pedestrian_count": 5,
+          "crossing_positive_count": 5,
+          "crossing_positive_rate": 1.0
+        },
+        {
+          "video_id": "video_0268",
+          "unique_pedestrian_count": 1,
+          "crossing_positive_count": 1,
+          "crossing_positive_rate": 1.0
+        },
+        {
+          "video_id": "video_0269",
+          "unique_pedestrian_count": 1,
+          "crossing_positive_count": 1,
+          "crossing_positive_rate": 1.0
+        },
+        {
+          "video_id": "video_0275",
+          "unique_pedestrian_count": 1,
+          "crossing_positive_count": 1,
+          "crossing_positive_rate": 1.0
+        },
+        {
+          "video_id": "video_0276",
+          "unique_pedestrian_count": 1,
+          "crossing_positive_count": 1,
+          "crossing_positive_rate": 1.0
+        },
+        {
+          "video_id": "video_0281",
+          "unique_pedestrian_count": 2,
+          "crossing_positive_count": 2,
+          "crossing_positive_rate": 1.0
+        },
+        {
+          "video_id": "video_0286",
+          "unique_pedestrian_count": 1,
+          "crossing_positive_count": 1,
+          "crossing_positive_rate": 1.0
+        },
+        {
+          "video_id": "video_0289",
+          "unique_pedestrian_count": 1,
+          "crossing_positive_count": 0,
+          "crossing_positive_rate": 0.0
+        },
+        {
+          "video_id": "video_0290",
+          "unique_pedestrian_count": 2,
+          "crossing_positive_count": 2,
+          "crossing_positive_rate": 1.0
+        },
+        {
+          "video_id": "video_0293",
+          "unique_pedestrian_count": 5,
+          "crossing_positive_count": 5,
+          "crossing_positive_rate": 1.0
+        },
+        {
+          "video_id": "video_0297",
+          "unique_pedestrian_count": 8,
+          "crossing_positive_count": 8,
+          "crossing_positive_rate": 1.0
+        },
+        {
+          "video_id": "video_0298",
+          "unique_pedestrian_count": 5,
+          "crossing_positive_count": 5,
+          "crossing_positive_rate": 1.0
+        },
+        {
+          "video_id": "video_0301",
+          "unique_pedestrian_count": 2,
+          "crossing_positive_count": 2,
+          "crossing_positive_rate": 1.0
+        },
+        {
+          "video_id": "video_0302",
+          "unique_pedestrian_count": 3,
+          "crossing_positive_count": 3,
+          "crossing_positive_rate": 1.0
+        },
+        {
+          "video_id": "video_0310",
+          "unique_pedestrian_count": 3,
+          "crossing_positive_count": 3,
+          "crossing_positive_rate": 1.0
+        },
+        {
+          "video_id": "video_0311",
+          "unique_pedestrian_count": 5,
+          "crossing_positive_count": 5,
+          "crossing_positive_rate": 1.0
+        },
+        {
+          "video_id": "video_0312",
+          "unique_pedestrian_count": 1,
+          "crossing_positive_count": 1,
+          "crossing_positive_rate": 1.0
+        },
+        {
+          "video_id": "video_0315",
+          "unique_pedestrian_count": 1,
+          "crossing_positive_count": 1,
+          "crossing_positive_rate": 1.0
+        },
+        {
+          "video_id": "video_0317",
+          "unique_pedestrian_count": 4,
+          "crossing_positive_count": 4,
+          "crossing_positive_rate": 1.0
+        },
+        {
+          "video_id": "video_0319",
+          "unique_pedestrian_count": 1,
+          "crossing_positive_count": 1,
+          "crossing_positive_rate": 1.0
+        },
+        {
+          "video_id": "video_0320",
+          "unique_pedestrian_count": 2,
+          "crossing_positive_count": 2,
+          "crossing_positive_rate": 1.0
+        },
+        {
+          "video_id": "video_0321",
+          "unique_pedestrian_count": 1,
+          "crossing_positive_count": 1,
+          "crossing_positive_rate": 1.0
+        },
+        {
+          "video_id": "video_0324",
+          "unique_pedestrian_count": 4,
+          "crossing_positive_count": 4,
+          "crossing_positive_rate": 1.0
+        },
+        {
+          "video_id": "video_0325",
+          "unique_pedestrian_count": 1,
+          "crossing_positive_count": 1,
+          "crossing_positive_rate": 1.0
+        },
+        {
+          "video_id": "video_0326",
+          "unique_pedestrian_count": 2,
+          "crossing_positive_count": 2,
+          "crossing_positive_rate": 1.0
+        },
+        {
+          "video_id": "video_0328",
+          "unique_pedestrian_count": 1,
+          "crossing_positive_count": 1,
+          "crossing_positive_rate": 1.0
+        },
+        {
+          "video_id": "video_0331",
+          "unique_pedestrian_count": 6,
+          "crossing_positive_count": 5,
+          "crossing_positive_rate": 0.8333333333333334
+        },
+        {
+          "video_id": "video_0335",
+          "unique_pedestrian_count": 2,
+          "crossing_positive_count": 1,
+          "crossing_positive_rate": 0.5
+        },
+        {
+          "video_id": "video_0341",
+          "unique_pedestrian_count": 1,
+          "crossing_positive_count": 1,
+          "crossing_positive_rate": 1.0
+        },
+        {
+          "video_id": "video_0345",
+          "unique_pedestrian_count": 3,
+          "crossing_positive_count": 2,
+          "crossing_positive_rate": 0.6666666666666666
+        }
+      ],
+      "video_positive_rate_unweighted_mean": 0.8645833333333334,
+      "video_positive_rate_unweighted_variance": 0.10762683256172838,
+      "video_positive_rate_unweighted_std": 0.32806528704166243,
+      "video_positive_rate_min": 0.0,
+      "video_positive_rate_max": 1.0,
+      "pedestrian_group_weighted_positive_rate": 0.8977272727272727,
+      "leave_one_pedestrian_out_video_prior": {
+        "auc": 0.7510448517146017,
+        "brier": 0.038241035186510536,
+        "smoothing_alpha": 1.0,
+        "global_train_positive_rate_prior": 0.9547157517510996,
+        "scope": "descriptive in-split audit; all rows of the queried pedestrian are excluded, but other validation pedestrians from the same video contribute"
+      }
+    },
+    "validation": {
+      "sample_count": 2636,
+      "unique_video_count": 25,
+      "unique_pedestrian_clip_count": 40,
+      "target_label_inconsistency_count": 0,
+      "positive_rate_by_video": [
+        {
+          "video_id": "video_0006",
+          "unique_pedestrian_count": 2,
+          "crossing_positive_count": 2,
+          "crossing_positive_rate": 1.0
+        },
+        {
+          "video_id": "video_0021",
+          "unique_pedestrian_count": 1,
+          "crossing_positive_count": 0,
+          "crossing_positive_rate": 0.0
+        },
+        {
+          "video_id": "video_0044",
+          "unique_pedestrian_count": 1,
+          "crossing_positive_count": 1,
+          "crossing_positive_rate": 1.0
+        },
+        {
+          "video_id": "video_0072",
+          "unique_pedestrian_count": 2,
+          "crossing_positive_count": 2,
+          "crossing_positive_rate": 1.0
+        },
+        {
+          "video_id": "video_0073",
+          "unique_pedestrian_count": 1,
+          "crossing_positive_count": 1,
+          "crossing_positive_rate": 1.0
+        },
+        {
+          "video_id": "video_0082",
+          "unique_pedestrian_count": 1,
+          "crossing_positive_count": 1,
+          "crossing_positive_rate": 1.0
+        },
+        {
+          "video_id": "video_0089",
+          "unique_pedestrian_count": 2,
+          "crossing_positive_count": 2,
+          "crossing_positive_rate": 1.0
+        },
+        {
+          "video_id": "video_0099",
+          "unique_pedestrian_count": 1,
+          "crossing_positive_count": 1,
+          "crossing_positive_rate": 1.0
+        },
+        {
+          "video_id": "video_0102",
+          "unique_pedestrian_count": 1,
+          "crossing_positive_count": 1,
+          "crossing_positive_rate": 1.0
+        },
+        {
+          "video_id": "video_0123",
+          "unique_pedestrian_count": 1,
+          "crossing_positive_count": 1,
+          "crossing_positive_rate": 1.0
+        },
+        {
+          "video_id": "video_0156",
+          "unique_pedestrian_count": 1,
+          "crossing_positive_count": 1,
+          "crossing_positive_rate": 1.0
+        },
+        {
+          "video_id": "video_0160",
+          "unique_pedestrian_count": 1,
+          "crossing_positive_count": 1,
+          "crossing_positive_rate": 1.0
+        },
+        {
+          "video_id": "video_0170",
+          "unique_pedestrian_count": 1,
+          "crossing_positive_count": 1,
+          "crossing_positive_rate": 1.0
+        },
+        {
+          "video_id": "video_0172",
+          "unique_pedestrian_count": 3,
+          "crossing_positive_count": 3,
+          "crossing_positive_rate": 1.0
+        },
+        {
+          "video_id": "video_0193",
+          "unique_pedestrian_count": 1,
+          "crossing_positive_count": 1,
+          "crossing_positive_rate": 1.0
+        },
+        {
+          "video_id": "video_0217",
+          "unique_pedestrian_count": 1,
+          "crossing_positive_count": 1,
+          "crossing_positive_rate": 1.0
+        },
+        {
+          "video_id": "video_0226",
+          "unique_pedestrian_count": 2,
+          "crossing_positive_count": 2,
+          "crossing_positive_rate": 1.0
+        },
+        {
+          "video_id": "video_0252",
+          "unique_pedestrian_count": 1,
+          "crossing_positive_count": 0,
+          "crossing_positive_rate": 0.0
+        },
+        {
+          "video_id": "video_0263",
+          "unique_pedestrian_count": 2,
+          "crossing_positive_count": 2,
+          "crossing_positive_rate": 1.0
+        },
+        {
+          "video_id": "video_0273",
+          "unique_pedestrian_count": 1,
+          "crossing_positive_count": 1,
+          "crossing_positive_rate": 1.0
+        },
+        {
+          "video_id": "video_0274",
+          "unique_pedestrian_count": 5,
+          "crossing_positive_count": 5,
+          "crossing_positive_rate": 1.0
+        },
+        {
+          "video_id": "video_0291",
+          "unique_pedestrian_count": 2,
+          "crossing_positive_count": 2,
+          "crossing_positive_rate": 1.0
+        },
+        {
+          "video_id": "video_0303",
+          "unique_pedestrian_count": 1,
+          "crossing_positive_count": 1,
+          "crossing_positive_rate": 1.0
+        },
+        {
+          "video_id": "video_0306",
+          "unique_pedestrian_count": 1,
+          "crossing_positive_count": 1,
+          "crossing_positive_rate": 1.0
+        },
+        {
+          "video_id": "video_0340",
+          "unique_pedestrian_count": 4,
+          "crossing_positive_count": 1,
+          "crossing_positive_rate": 0.25
+        }
+      ],
+      "video_positive_rate_unweighted_mean": 0.89,
+      "video_positive_rate_unweighted_variance": 0.09040000000000001,
+      "video_positive_rate_unweighted_std": 0.3006659275674582,
+      "video_positive_rate_min": 0.0,
+      "video_positive_rate_max": 1.0,
+      "pedestrian_group_weighted_positive_rate": 0.875,
+      "leave_one_pedestrian_out_video_prior": {
+        "auc": 0.8997295325246739,
+        "brier": 0.0805856304101683,
+        "smoothing_alpha": 1.0,
+        "global_train_positive_rate_prior": 0.9547157517510996,
+        "scope": "descriptive in-split audit; all rows of the queried pedestrian are excluded, but other validation pedestrians from the same video contribute"
+      }
+    }
+  },
+  "validation_prediction": {
+    "global_train_prevalence_only": {
+      "probability": 0.9547157517510996,
+      "auc": 0.5,
+      "brier": 0.11038203343525352
+    },
+    "video_id_seen_in_train": [],
+    "warning": "official train/validation splits contain distinct videos; a learned per-video prior cannot transfer to unseen video IDs without using validation labels"
+  },
+  "test_split_loaded": false
+}

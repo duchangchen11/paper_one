@@ -1,0 +1,142 @@
+{
+  "validation_rows": 2636,
+  "seeds": {
+    "42": {
+      "checkpoint": "checkpoints/joint_traj_supervision_clean/formal/J0_clean_seed42.pt",
+      "checkpoint_sha256": "442ad5f26b52049f07f3008cb44ebfd9362a20a50fef292c13f2476a40dc3537",
+      "original": {
+        "auc": 0.8497341957570071,
+        "brier": 0.08947914884514058
+      },
+      "same_video_swap": {
+        "auc": 0.8497341957570071,
+        "brier": 0.08947914884514058,
+        "delta_auc": 0.0,
+        "delta_brier": 0.0,
+        "mean_absolute_probability_shift": 0.0,
+        "fraction_probabilities_bitwise_equal": 1.0
+      },
+      "cross_video_swap": {
+        "auc": 0.3189986942949467,
+        "brier": 0.18798356432483945,
+        "delta_auc": -0.5307355014620605,
+        "delta_brier": 0.09850441547969888,
+        "mean_absolute_probability_shift": 0.26683029532432556,
+        "fraction_probabilities_bitwise_equal": 0.0
+      }
+    },
+    "123": {
+      "checkpoint": "checkpoints/joint_traj_supervision_clean/formal/J0_clean_seed123.pt",
+      "checkpoint_sha256": "859c3d5968270e09be588308606fdb712fa04269b43625802d134d9774785a4b",
+      "original": {
+        "auc": 0.8700686318076334,
+        "brier": 0.07705118886040818
+      },
+      "same_video_swap": {
+        "auc": 0.8700686318076334,
+        "brier": 0.07705118886040818,
+        "delta_auc": 0.0,
+        "delta_brier": 0.0,
+        "mean_absolute_probability_shift": 0.0,
+        "fraction_probabilities_bitwise_equal": 1.0
+      },
+      "cross_video_swap": {
+        "auc": 0.25619798438640096,
+        "brier": 0.14720919041316516,
+        "delta_auc": -0.6138706474212324,
+        "delta_brier": 0.07015800155275698,
+        "mean_absolute_probability_shift": 0.18559563159942627,
+        "fraction_probabilities_bitwise_equal": 0.0
+      }
+    },
+    "2024": {
+      "checkpoint": "checkpoints/joint_traj_supervision_clean/formal/J0_clean_seed2024.pt",
+      "checkpoint_sha256": "4c97b82ce61936c0a6d11979b76ba97b13c8d0a9afd995b16f87f9a39d378df4",
+      "original": {
+        "auc": 0.8773583611755734,
+        "brier": 0.0663509275135327
+      },
+      "same_video_swap": {
+        "auc": 0.8773583611755734,
+        "brier": 0.0663509275135327,
+        "delta_auc": 0.0,
+        "delta_brier": 0.0,
+        "mean_absolute_probability_shift": 0.0,
+        "fraction_probabilities_bitwise_equal": 1.0
+      },
+      "cross_video_swap": {
+        "auc": 0.4083194807902259,
+        "brier": 0.12439039928389771,
+        "delta_auc": -0.4690388803853475,
+        "delta_brier": 0.058039471770365,
+        "mean_absolute_probability_shift": 0.11496502161026001,
+        "fraction_probabilities_bitwise_equal": 0.0
+      }
+    }
+  },
+  "same_video_mapping": {
+    "mode": "same_video",
+    "algorithm_seed": 29092037,
+    "mapping_sha256": "2af270c0ea04169489aaa173742d34dc788fbb457ddd260b5e0984483d757e5b",
+    "rows": 2636,
+    "label_independent": true,
+    "mapping_rule": "random permutation-based within-video derangement",
+    "donor_scene_id_counts": 25
+  },
+  "cross_video_mapping": {
+    "mode": "cross_video",
+    "algorithm_seed": 29092055,
+    "mapping_sha256": "2efd24ed1ef3cf48be48deab1556b9904bcb4370abd21d2ef649ebdbb5d5e427",
+    "rows": 2636,
+    "label_independent": true,
+    "mapping_rule": "random video-level derangement plus random donor row",
+    "unique_donor_videos": 25,
+    "mean_donor_samples_per_source_video": 105.44
+  },
+  "delta_convention": "swapped metric minus original metric; negative ΔAUC and positive ΔBrier indicate degradation",
+  "test_split_loaded": false,
+  "same_video_swap_across_seed_summary": {
+    "auc": {
+      "mean": 0.865720396246738,
+      "std": 0.011689140063547723
+    },
+    "brier": {
+      "mean": 0.0776270884063605,
+      "std": 0.009450834203258863
+    },
+    "delta_auc": {
+      "mean": 0.0,
+      "std": 0.0
+    },
+    "delta_brier": {
+      "mean": 0.0,
+      "std": 0.0
+    },
+    "mean_absolute_probability_shift": {
+      "mean": 0.0,
+      "std": 0.0
+    }
+  },
+  "cross_video_swap_across_seed_summary": {
+    "auc": {
+      "mean": 0.32783871982385787,
+      "std": 0.062417128821868444
+    },
+    "brier": {
+      "mean": 0.15319438467396743,
+      "std": 0.026304493567142595
+    },
+    "delta_auc": {
+      "mean": -0.5378816764228801,
+      "std": 0.05934285156676241
+    },
+    "delta_brier": {
+      "mean": 0.07556729626760696,
+      "std": 0.016956773854598005
+    },
+    "mean_absolute_probability_shift": {
+      "mean": 0.18913031617800394,
+      "std": 0.0620490979594092
+    }
+  }
+}

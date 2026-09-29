@@ -1,0 +1,29 @@
+{
+  "train": {
+    "split": "train",
+    "method": "cosine nearest-centroid; row-level random holdout within each already-known video",
+    "known_video_classes": 144,
+    "heldout_sample_rows": 12307,
+    "top1_accuracy": 1.0,
+    "top5_accuracy": 1.0,
+    "mean_top1_cosine_margin": 0.1264743913505439,
+    "unique_centroid_vectors": 144,
+    "exact_duplicate_centroid_video_excess": 0,
+    "label_used": false,
+    "generalization_scope": "within-split retrieval among video identities represented in both centroid and query rows; not unseen-video generalization"
+  },
+  "validation": {
+    "split": "validation",
+    "method": "cosine nearest-centroid; row-level random holdout within each already-known video",
+    "known_video_classes": 25,
+    "heldout_sample_rows": 1324,
+    "top1_accuracy": 1.0,
+    "top5_accuracy": 1.0,
+    "mean_top1_cosine_margin": 0.14909978304909496,
+    "unique_centroid_vectors": 25,
+    "exact_duplicate_centroid_video_excess": 0,
+    "label_used": false,
+    "generalization_scope": "within-split retrieval among video identities represented in both centroid and query rows; not unseen-video generalization"
+  },
+  "test_split_loaded": false
+}

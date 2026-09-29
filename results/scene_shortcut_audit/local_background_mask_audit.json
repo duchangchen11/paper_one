@@ -1,0 +1,16 @@
+{
+  "status": "not_run_raw_frames_unavailable",
+  "split": "validation only",
+  "video_roots_checked": [
+    "/home/lrj/ped_intent_project/data/processed/jaad_sequences_scene_15x15/JAAD_clips",
+    "/home/lrj/ped_intent_project/data/processed/JAAD_clips",
+    "/home/lrj/ped_intent_project/JAAD_clips"
+  ],
+  "note": "No JAAD RGB clips were accessible in the workspace or mounted media locations. A 3.7-TB NTFS partition is detected as /dev/sda2 but is unmounted; it was not mounted or modified. No masks or R0/R1/R2 metrics are fabricated.",
+  "comparison_requested": {
+    "R0": "frame at the selected sample's obs_end_frame",
+    "R1": "retain 4x-expanded pedestrian-box vicinity; neutral-mask the remainder",
+    "R2": "neutral-mask the same vicinity; retain far background"
+  },
+  "test_split_loaded": false
+}
