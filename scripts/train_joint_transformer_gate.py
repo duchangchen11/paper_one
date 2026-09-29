@@ -411,6 +411,26 @@ def stack_dataset_batch(dataset: JAADSequenceDataset, indices: torch.Tensor) -> 
     return {key: getattr(dataset, key)[indices] for key in keys}
 
 
+def apply_scene_feature_override(
+    dataset: JAADSequenceDataset, feature_path: Path, feature_key: str = "scene_feat"
+) -> str:
+    """Replace only the stored scene tensor; preserve all original sample arrays."""
+    with np.load(feature_path, allow_pickle=False) as archive:
+        if feature_key not in archive.files:
+            raise KeyError(f"{feature_path} must contain {feature_key}")
+        features = np.asarray(archive[feature_key], dtype=np.float32)
+    if features.shape != tuple(dataset.scene_feat.shape):
+        raise ValueError(
+            f"scene feature shape mismatch for {feature_path}: "
+            f"got {features.shape}, expected {tuple(dataset.scene_feat.shape)}"
+        )
+    if not np.isfinite(features).all():
+        raise ValueError(f"scene features contain non-finite values: {feature_path}")
+    dataset.scene_feat = torch.from_numpy(features.copy())
+    digest = hashlib.sha256(np.ascontiguousarray(features).tobytes()).hexdigest()
+    return digest
+
+
 def _flat_gradient_norm(gradients, parameters) -> tuple[torch.Tensor, torch.Tensor]:
     squared_norm = None
     flattened = []
@@ -596,6 +616,18 @@ def run_epoch(model, loader, image_sizes, device, optimizer, prior_weight, traj_
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--data-root", type=Path, required=True)
+    parser.add_argument(
+        "--scene-feature-root",
+        type=Path,
+        default=None,
+        help="Optional directory with train_features.npz/val_features.npz scene overrides; requires --skip-test",
+    )
+    parser.add_argument(
+        "--scene-feature-key",
+        type=str,
+        default="scene_feat",
+        help="Array key in train_features.npz/val_features.npz when using --scene-feature-root",
+    )
     parser.add_argument("--ambiguous-root", type=Path, required=True)
     parser.add_argument("--output-root", type=Path, required=True)
     parser.add_argument("--checkpoint", type=Path, required=True)
@@ -625,6 +657,8 @@ def main() -> None:
     parser.add_argument("--skip-test", action="store_true", help="Do not load or evaluate the test split")
     parser.add_argument("--smoke-test", action="store_true", help="Validate the two-epoch DGB smoke protocol")
     args = parser.parse_args()
+    if args.scene_feature_root is not None and not args.skip_test:
+        parser.error("--scene-feature-root is only permitted together with --skip-test")
     if args.traj_weight_mode == "dynamic_gradient" and args.traj_weight <= 0:
         parser.error("dynamic_gradient requires --traj-weight to provide a positive initial lambda")
     if args.initial_state_checkpoint is not None and args.init_trajectory_checkpoint is not None:
@@ -640,6 +674,17 @@ def main() -> None:
     train_set = JAADSequenceDataset(args.data_root / "train.npz")
     val_set = JAADSequenceDataset(args.data_root / "val.npz")
     test_set = None if args.skip_test else JAADSequenceDataset(args.data_root / "test.npz")
+    scene_feature_override_sha256 = None
+    if args.scene_feature_root is not None:
+        override_hashes = {
+            "train": apply_scene_feature_override(
+                train_set, args.scene_feature_root / "train_features.npz", args.scene_feature_key
+            ),
+            "validation": apply_scene_feature_override(
+                val_set, args.scene_feature_root / "val_features.npz", args.scene_feature_key
+            ),
+        }
+        scene_feature_override_sha256 = override_hashes
     ambiguous_set = JAADSequenceDataset(args.ambiguous_root / "train.npz")
     counts = torch.bincount(train_set.intent_label.to(torch.int64), minlength=2).float()
     weights = torch.where(train_set.intent_label == 0, 1.0 / counts[0], 1.0 / counts[1])
@@ -721,6 +766,7 @@ def main() -> None:
         )
     component_probe = {
         "component_ablation": args.component_ablation,
+        "scene_feature_override_sha256": scene_feature_override_sha256,
         "validation_probe_samples": int(probe_target.shape[0]),
         "intent_logits_finite": bool(torch.isfinite(probe_output["intent_logit"]).all().item()),
         "proposal_logits_finite": bool(torch.isfinite(probe_output["prior_logit"]).all().item()),

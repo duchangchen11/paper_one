@@ -1,0 +1,264 @@
+{
+  "validation_only": true,
+  "unique_videos": 25,
+  "representations": {
+    "old_static": {
+      "within_video_different_windows": {
+        "count": 6364,
+        "cosine_mean": 0.9999999976023273,
+        "cosine_std": 6.349430920113677e-08,
+        "quantiles": [
+          0.9999998807907104,
+          1.0,
+          1.0,
+          1.0,
+          1.0000001192092896
+        ]
+      },
+      "same_pedestrian_different_window": {
+        "count": 1192,
+        "cosine_mean": 0.999999996599735,
+        "cosine_std": 6.224920803064865e-08,
+        "quantiles": [
+          0.9999998807907104,
+          1.0,
+          1.0,
+          1.0,
+          1.0000001192092896
+        ]
+      },
+      "different_pedestrians_same_video": {
+        "count": 480,
+        "cosine_mean": 0.9999999850988388,
+        "cosine_std": 6.263216442325956e-08,
+        "quantiles": [
+          0.9999998807907104,
+          1.0,
+          1.0,
+          1.0,
+          1.0000001192092896
+        ]
+      },
+      "same_video_distinct_frame_cosine": {
+        "count": 12000,
+        "cosine_mean": 1.0000000047683715,
+        "cosine_std": 6.261609071096848e-08,
+        "quantiles": [
+          0.9999998807907104,
+          1.0,
+          1.0,
+          1.0,
+          1.0000001192092896
+        ]
+      },
+      "different_video_cosine": {
+        "count": 12000,
+        "cosine_mean": 0.7712874046911796,
+        "cosine_std": 0.055234341900257715,
+        "quantiles": [
+          0.5787690877914429,
+          0.7332364320755005,
+          0.7693995237350464,
+          0.8084196448326111,
+          0.900621771812439
+        ]
+      },
+      "video_identity_pairwise_cosine_auc": 1.0,
+      "same_video_distinct_frame_exact_duplicate_fraction": 1.0
+    },
+    "R0_current_full": {
+      "within_video_different_windows": {
+        "count": 6364,
+        "cosine_mean": 0.9278946608904396,
+        "cosine_std": 0.04439708650125348,
+        "quantiles": [
+          0.7067736983299255,
+          0.8990822434425354,
+          0.9346695244312286,
+          0.9631887376308441,
+          1.0000001192092896
+        ]
+      },
+      "same_pedestrian_different_window": {
+        "count": 1192,
+        "cosine_mean": 0.938196791498453,
+        "cosine_std": 0.041852385292290274,
+        "quantiles": [
+          0.7421504855155945,
+          0.9138635098934174,
+          0.9472865760326385,
+          0.969865009188652,
+          0.9995026588439941
+        ]
+      },
+      "different_pedestrians_same_video": {
+        "count": 480,
+        "cosine_mean": 0.9657582759857177,
+        "cosine_std": 0.04474650286060855,
+        "quantiles": [
+          0.8578497767448425,
+          0.9220699071884155,
+          0.9999998807907104,
+          1.0,
+          1.0000001192092896
+        ]
+      },
+      "same_video_distinct_frame_cosine": {
+        "count": 12000,
+        "cosine_mean": 0.9367256500571967,
+        "cosine_std": 0.043863196270448955,
+        "quantiles": [
+          0.725033164024353,
+          0.9091360867023468,
+          0.9454901814460754,
+          0.9714761972427368,
+          0.9995026588439941
+        ]
+      },
+      "different_video_cosine": {
+        "count": 12000,
+        "cosine_mean": 0.7748604970475038,
+        "cosine_std": 0.05499247164805907,
+        "quantiles": [
+          0.5327749252319336,
+          0.7389249205589294,
+          0.7762686610221863,
+          0.8158674389123917,
+          0.9191921353340149
+        ]
+      },
+      "video_identity_pairwise_cosine_auc": 0.9881163263888889,
+      "same_video_distinct_frame_exact_duplicate_fraction": 0.0
+    },
+    "R1_local_4x": {
+      "within_video_different_windows": {
+        "count": 6364,
+        "cosine_mean": 0.86300539800875,
+        "cosine_std": 0.12513167413923473,
+        "quantiles": [
+          0.40997838973999023,
+          0.8162553608417511,
+          0.899151474237442,
+          0.953692838549614,
+          1.0000001192092896
+        ]
+      },
+      "same_pedestrian_different_window": {
+        "count": 1192,
+        "cosine_mean": 0.9060089600166218,
+        "cosine_std": 0.1012109179354675,
+        "quantiles": [
+          0.5160303115844727,
+          0.8701310902833939,
+          0.9346251785755157,
+          0.9779858142137527,
+          1.0000001192092896
+        ]
+      },
+      "different_pedestrians_same_video": {
+        "count": 480,
+        "cosine_mean": 0.8614125351111094,
+        "cosine_std": 0.12206821018033816,
+        "quantiles": [
+          0.5741223096847534,
+          0.8583475351333618,
+          0.9092056751251221,
+          0.9472886323928833,
+          1.0000001192092896
+        ]
+      },
+      "same_video_distinct_frame_cosine": {
+        "count": 12000,
+        "cosine_mean": 0.8931628492102027,
+        "cosine_std": 0.11475500708154895,
+        "quantiles": [
+          0.4098018407821655,
+          0.8582525849342346,
+          0.9291019141674042,
+          0.9718557894229889,
+          1.0000001192092896
+        ]
+      },
+      "different_video_cosine": {
+        "count": 12000,
+        "cosine_mean": 0.7073876087268194,
+        "cosine_std": 0.1285941628604679,
+        "quantiles": [
+          0.3009527325630188,
+          0.6175726354122162,
+          0.7330055236816406,
+          0.7991075813770294,
+          1.0000001192092896
+        ]
+      },
+      "video_identity_pairwise_cosine_auc": 0.8723138576388888,
+      "same_video_distinct_frame_exact_duplicate_fraction": 0.13025
+    },
+    "R2_background_4x": {
+      "within_video_different_windows": {
+        "count": 6364,
+        "cosine_mean": 0.9184564542350793,
+        "cosine_std": 0.0496845000086037,
+        "quantiles": [
+          0.7078733444213867,
+          0.885602667927742,
+          0.925603836774826,
+          0.9578000456094742,
+          1.0
+        ]
+      },
+      "same_pedestrian_different_window": {
+        "count": 1192,
+        "cosine_mean": 0.9332921131945296,
+        "cosine_std": 0.04630581305159653,
+        "quantiles": [
+          0.7509430646896362,
+          0.9071023166179657,
+          0.9437609314918518,
+          0.9691906571388245,
+          0.9995026588439941
+        ]
+      },
+      "different_pedestrians_same_video": {
+        "count": 480,
+        "cosine_mean": 0.9511089089016119,
+        "cosine_std": 0.045234506701437124,
+        "quantiles": [
+          0.8468313813209534,
+          0.9106891751289368,
+          0.9655551910400391,
+          0.9879972338676453,
+          0.9958189129829407
+        ]
+      },
+      "same_video_distinct_frame_cosine": {
+        "count": 12000,
+        "cosine_mean": 0.9303796883871158,
+        "cosine_std": 0.049755274532223503,
+        "quantiles": [
+          0.6825158596038818,
+          0.8987577557563782,
+          0.9424197673797607,
+          0.96901935338974,
+          0.9995026588439941
+        ]
+      },
+      "different_video_cosine": {
+        "count": 12000,
+        "cosine_mean": 0.7706487041662137,
+        "cosine_std": 0.05466208500479213,
+        "quantiles": [
+          0.5374054908752441,
+          0.7327643781900406,
+          0.7718690633773804,
+          0.8125140368938446,
+          0.922597348690033
+        ]
+      },
+      "video_identity_pairwise_cosine_auc": 0.9802787951388888,
+      "same_video_distinct_frame_exact_duplicate_fraction": 0.0
+    }
+  },
+  "video_identity_pair_seed": 29092028,
+  "test_split_loaded": false
+}

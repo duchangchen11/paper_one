@@ -1,0 +1,148 @@
+{
+  "raw_video_root": "/media/lrj/54926A1D926A0438/ped_intent_project/data/raw/JAAD/JAAD_clips",
+  "scene_id_to_video_rule": "unchanged scene_id stem plus .mp4 (fallback .avi/.mov)",
+  "official_test_accessed": false,
+  "frame_source": "each sample's actual obs_end_frame; R0 is the current RGB frame, not the clip's first frame",
+  "backbone": "torchvision ResNet-18 with ImageNet pretrained weights; fc=Identity; eval; global average pooled 512-D features",
+  "weights_enum": "IMAGENET1K_V1",
+  "weights_url": "https://download.pytorch.org/models/resnet18-f37072fd.pth",
+  "weights_sha256": "f37072fd47e89c5e827621c5baffa7500819f7896bbacec160b1a16c560e07ec",
+  "torch_version": "2.5.1+cu124",
+  "torchvision_version": "0.20.1+cu124",
+  "transform": {
+    "resize": [
+      256
+    ],
+    "center_crop": [
+      224
+    ],
+    "interpolation": "InterpolationMode.BILINEAR",
+    "mean": [
+      0.485,
+      0.456,
+      0.406
+    ],
+    "std": [
+      0.229,
+      0.224,
+      0.225
+    ]
+  },
+  "mask": {
+    "main_scale": 4,
+    "sensitivity_scales_val_only": [
+      2,
+      6
+    ],
+    "bbox": "normalized center-x,center-y,width,height; centered expansion; clip to image",
+    "fill_rgb_before_normalization": [
+      124,
+      116,
+      104
+    ],
+    "R1": "retain expanded target ROI; fill outside",
+    "R2": "retain complement; fill the identical ROI"
+  },
+  "splits": {
+    "train": {
+      "source_archive": "/home/lrj/ped_intent_project/data/processed/jaad_sequences_scene_15x15/train.npz",
+      "source_sha256": "6da2d1d40a918a218a7d054407d95f2791e2338a760b4836f2ca6d06c59ea19a",
+      "feature_archive": "/home/lrj/ped_intent_project/data/processed/scene_shortcut_audit_features/train_features.npz",
+      "feature_archive_sha256": "04ee0b5117af1e25a1a7385f3cb7cab96a871d6725b2a972bd903030d88f2f3d",
+      "feature_arrays": {
+        "old_static": {
+          "shape": [
+            24556,
+            512
+          ],
+          "dtype": "float16"
+        },
+        "R0_current_full": {
+          "shape": [
+            24556,
+            512
+          ],
+          "dtype": "float16"
+        },
+        "R1_local_4x": {
+          "shape": [
+            24556,
+            512
+          ],
+          "dtype": "float16"
+        },
+        "R2_background_4x": {
+          "shape": [
+            24556,
+            512
+          ],
+          "dtype": "float16"
+        }
+      }
+    },
+    "val": {
+      "source_archive": "/home/lrj/ped_intent_project/data/processed/jaad_sequences_scene_15x15/val.npz",
+      "source_sha256": "fb78bb5edcd18d74a15744cfd8ae728c8600b485d4028bed8ee2c9c2d4c5f66c",
+      "feature_archive": "/home/lrj/ped_intent_project/data/processed/scene_shortcut_audit_features/val_features.npz",
+      "feature_archive_sha256": "ba16bf6001eb73b930a60d58ff6e4ee4377baa51824ab2a826ac555d16ccb410",
+      "feature_arrays": {
+        "old_static": {
+          "shape": [
+            2636,
+            512
+          ],
+          "dtype": "float16"
+        },
+        "R0_current_full": {
+          "shape": [
+            2636,
+            512
+          ],
+          "dtype": "float16"
+        },
+        "R1_local_4x": {
+          "shape": [
+            2636,
+            512
+          ],
+          "dtype": "float16"
+        },
+        "R2_background_4x": {
+          "shape": [
+            2636,
+            512
+          ],
+          "dtype": "float16"
+        },
+        "R1_local_2x": {
+          "shape": [
+            2636,
+            512
+          ],
+          "dtype": "float16"
+        },
+        "R2_background_2x": {
+          "shape": [
+            2636,
+            512
+          ],
+          "dtype": "float16"
+        },
+        "R1_local_6x": {
+          "shape": [
+            2636,
+            512
+          ],
+          "dtype": "float16"
+        },
+        "R2_background_6x": {
+          "shape": [
+            2636,
+            512
+          ],
+          "dtype": "float16"
+        }
+      }
+    }
+  }
+}

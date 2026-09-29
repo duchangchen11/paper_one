@@ -1,0 +1,140 @@
+{
+  "evaluation_split": "validation",
+  "predeclared_primary_scale": "4x",
+  "2x_and_6x_are_sensitivity_only": true,
+  "per_seed": {
+    "42": {
+      "R1_local_2x": {
+        "auc": 0.6274392819719439,
+        "brier": 0.8084221195553947,
+        "delta_auc_from_old_static": -0.22229491378506328,
+        "mean_abs_probability_delta": 0.7898626923561096,
+        "probability_correlation": 0.13694586501032394
+      },
+      "R1_local_4x": {
+        "auc": 0.6813256746599956,
+        "brier": 0.6852043281542165,
+        "delta_auc_from_old_static": -0.16840852109701154,
+        "mean_abs_probability_delta": 0.7025328874588013,
+        "probability_correlation": 0.20832960844725462
+      },
+      "R1_local_6x": {
+        "auc": 0.6980680502751307,
+        "brier": 0.5687979004735452,
+        "delta_auc_from_old_static": -0.1516661454818764,
+        "mean_abs_probability_delta": 0.6132528781890869,
+        "probability_correlation": 0.23003720544716255
+      },
+      "R2_background_2x": {
+        "auc": 0.7841808072329476,
+        "brier": 0.14648019317455083,
+        "delta_auc_from_old_static": -0.06555338852405956,
+        "mean_abs_probability_delta": 0.14694051444530487,
+        "probability_correlation": 0.6881739138494862
+      },
+      "R2_background_4x": {
+        "auc": 0.757292472445783,
+        "brier": 0.195874530218272,
+        "delta_auc_from_old_static": -0.09244172331122413,
+        "mean_abs_probability_delta": 0.20894624292850494,
+        "probability_correlation": 0.602541218350415
+      },
+      "R2_background_6x": {
+        "auc": 0.7728457238159505,
+        "brier": 0.20819921599418523,
+        "delta_auc_from_old_static": -0.07688847194105664,
+        "mean_abs_probability_delta": 0.2162127047777176,
+        "probability_correlation": 0.6128709275305484
+      }
+    },
+    "123": {
+      "R1_local_2x": {
+        "auc": 0.5914432429763492,
+        "brier": 0.7529792904330571,
+        "delta_auc_from_old_static": -0.2786253888312842,
+        "mean_abs_probability_delta": 0.7560506463050842,
+        "probability_correlation": 0.15906336441801316
+      },
+      "R1_local_4x": {
+        "auc": 0.651971998661378,
+        "brier": 0.5462353132774275,
+        "delta_auc_from_old_static": -0.21809663314625538,
+        "mean_abs_probability_delta": 0.5990272760391235,
+        "probability_correlation": 0.1772356873290623
+      },
+      "R1_local_6x": {
+        "auc": 0.6776142903383312,
+        "brier": 0.37267595981172563,
+        "delta_auc_from_old_static": -0.19245434146930218,
+        "mean_abs_probability_delta": 0.43989306688308716,
+        "probability_correlation": 0.2693138892598739
+      },
+      "R2_background_2x": {
+        "auc": 0.7955954399073937,
+        "brier": 0.1276952573142883,
+        "delta_auc_from_old_static": -0.07447319190023971,
+        "mean_abs_probability_delta": 0.12096498906612396,
+        "probability_correlation": 0.7542336400931525
+      },
+      "R2_background_4x": {
+        "auc": 0.7740417057555259,
+        "brier": 0.15535202127501802,
+        "delta_auc_from_old_static": -0.0960269260521075,
+        "mean_abs_probability_delta": 0.16944321990013123,
+        "probability_correlation": 0.6630635048641669
+      },
+      "R2_background_6x": {
+        "auc": 0.7745827778600701,
+        "brier": 0.16857416665398758,
+        "delta_auc_from_old_static": -0.09548585394756326,
+        "mean_abs_probability_delta": 0.1849801242351532,
+        "probability_correlation": 0.6305389145174647
+      }
+    },
+    "2024": {
+      "R1_local_2x": {
+        "auc": 0.48460447560580877,
+        "brier": 0.6681152381030306,
+        "delta_auc_from_old_static": -0.39275388556976465,
+        "mean_abs_probability_delta": 0.7277012467384338,
+        "probability_correlation": 0.13043215402720548
+      },
+      "R1_local_4x": {
+        "auc": 0.6354463261958447,
+        "brier": 0.4316230786544911,
+        "delta_auc_from_old_static": -0.24191203497972869,
+        "mean_abs_probability_delta": 0.522746741771698,
+        "probability_correlation": 0.2467695158082221
+      },
+      "R1_local_6x": {
+        "auc": 0.6832760030064133,
+        "brier": 0.28560277979741444,
+        "delta_auc_from_old_static": -0.19408235816916009,
+        "mean_abs_probability_delta": 0.36943989992141724,
+        "probability_correlation": 0.24148942007279173
+      },
+      "R2_background_2x": {
+        "auc": 0.7893041908743286,
+        "brier": 0.11796214993439444,
+        "delta_auc_from_old_static": -0.08805417030124485,
+        "mean_abs_probability_delta": 0.11720817536115646,
+        "probability_correlation": 0.7442910194595831
+      },
+      "R2_background_4x": {
+        "auc": 0.7670688018784597,
+        "brier": 0.13880552615471548,
+        "delta_auc_from_old_static": -0.1102895592971137,
+        "mean_abs_probability_delta": 0.16379821300506592,
+        "probability_correlation": 0.6795333636875162
+      },
+      "R2_background_6x": {
+        "auc": 0.7821708169434433,
+        "brier": 0.14519267831537502,
+        "delta_auc_from_old_static": -0.09518754423213016,
+        "mean_abs_probability_delta": 0.1820683628320694,
+        "probability_correlation": 0.6503699490184025
+      }
+    }
+  },
+  "test_split_loaded": false
+}

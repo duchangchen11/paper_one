@@ -1,0 +1,43 @@
+{
+  "per_seed": {
+    "42": {
+      "shared_initial_state_path": "/home/lrj/ped_intent_project/checkpoints/joint_traj_supervision_clean/initial_state_seed42.pt",
+      "declared_sha256": "415177a3ab4080e2d5222d66a46d0c34187ae27987b50c26fe62550edd1dfd6f",
+      "max_abs_parameter_difference_B0_B1_B2": 0.0,
+      "exact_match": true
+    },
+    "123": {
+      "shared_initial_state_path": "/home/lrj/ped_intent_project/checkpoints/joint_traj_supervision_clean/initial_state_seed123.pt",
+      "declared_sha256": "9884ca5c859d799b37f4c6287824dc027cd19bd64cecd6f92b574c5ab4b8e394",
+      "max_abs_parameter_difference_B0_B1_B2": 0.0,
+      "exact_match": true
+    },
+    "2024": {
+      "shared_initial_state_path": "/home/lrj/ped_intent_project/checkpoints/joint_traj_supervision_clean/initial_state_seed2024.pt",
+      "declared_sha256": "0995d8d1d2d20a6c9457b78ce74a4351ecb07f9792eba14e81907b3b298d9069",
+      "max_abs_parameter_difference_B0_B1_B2": 0.0,
+      "exact_match": true
+    }
+  },
+  "all_arms_exactly_matched_within_seed": true,
+  "max_abs_parameter_difference": 0.0,
+  "note": "Different seeds have their own initial state; matching is required across B0/B1/B2 within each seed.",
+  "trainer_reported_state_sha256": {
+    "42": {
+      "B0": "415177a3ab4080e2d5222d66a46d0c34187ae27987b50c26fe62550edd1dfd6f",
+      "B1": "415177a3ab4080e2d5222d66a46d0c34187ae27987b50c26fe62550edd1dfd6f",
+      "B2": "415177a3ab4080e2d5222d66a46d0c34187ae27987b50c26fe62550edd1dfd6f"
+    },
+    "123": {
+      "B0": "9884ca5c859d799b37f4c6287824dc027cd19bd64cecd6f92b574c5ab4b8e394",
+      "B1": "9884ca5c859d799b37f4c6287824dc027cd19bd64cecd6f92b574c5ab4b8e394",
+      "B2": "9884ca5c859d799b37f4c6287824dc027cd19bd64cecd6f92b574c5ab4b8e394"
+    },
+    "2024": {
+      "B0": "0995d8d1d2d20a6c9457b78ce74a4351ecb07f9792eba14e81907b3b298d9069",
+      "B1": "0995d8d1d2d20a6c9457b78ce74a4351ecb07f9792eba14e81907b3b298d9069",
+      "B2": "0995d8d1d2d20a6c9457b78ce74a4351ecb07f9792eba14e81907b3b298d9069"
+    }
+  },
+  "trainer_hashes_match_per_seed": true
+}

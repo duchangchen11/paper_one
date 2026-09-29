@@ -1,0 +1,45 @@
+{
+  "model": "LayerNorm(512)-Linear(512,128)-GELU-Dropout(0.1)-Linear(128,1)",
+  "training_split": "train only",
+  "evaluation_split": "validation only",
+  "training_protocol": {
+    "epochs": 30,
+    "batch_size": 1024,
+    "optimizer": "Adam",
+    "learning_rate": 0.001,
+    "loss": "unweighted BCEWithLogitsLoss",
+    "checkpoint_selection": "none; final epoch evaluated"
+  },
+  "feature_inputs": [
+    "scene_feat only"
+  ],
+  "seeds": [
+    {
+      "seed": 42,
+      "auc": 0.8513046078221608,
+      "brier": 0.09604679811103559
+    },
+    {
+      "seed": 123,
+      "auc": 0.8383648238669716,
+      "brier": 0.10014941595004183
+    },
+    {
+      "seed": 2024,
+      "auc": 0.830280973463465,
+      "brier": 0.10670903393913082
+    }
+  ],
+  "mean_auc": 0.8399834683841991,
+  "std_auc": 0.00865884164565895,
+  "mean_brier": 0.10096841600006941,
+  "std_brier": 0.004391194903815158,
+  "constant_train_prevalence_baseline_on_validation": {
+    "probability": 0.9547157517510996,
+    "auc": 0.5,
+    "brier": 0.11038203343525352
+  },
+  "test_split_loaded": false,
+  "interpretation_guard": "diagnostic only; static scene features are repeated per video, so rows are not independent visual observations",
+  "representation": "R2_background_4x"
+}

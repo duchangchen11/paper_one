@@ -1,16 +1,22 @@
 {
-  "status": "not_run_raw_frames_unavailable",
-  "split": "validation only",
-  "video_roots_checked": [
-    "/home/lrj/ped_intent_project/data/processed/jaad_sequences_scene_15x15/JAAD_clips",
-    "/home/lrj/ped_intent_project/data/processed/JAAD_clips",
-    "/home/lrj/ped_intent_project/JAAD_clips"
+  "status": "completed",
+  "video_root": "/media/lrj/54926A1D926A0438/ped_intent_project/data/raw/JAAD/JAAD_clips",
+  "train_samples": 24556,
+  "validation_samples": 2636,
+  "primary_bbox_expansion": "4x",
+  "sensitivity_scales_validation_only": [2, 6],
+  "R0_R1_R2_from_same_obs_end_frame": true,
+  "feature_dimension": 512,
+  "test_split_loaded": false,
+  "result_files": [
+    "raw_video_mapping_audit.json",
+    "frame_index_mapping.md",
+    "dynamic_scene_feature_similarity.json",
+    "scene_probe_current_full.json",
+    "scene_probe_local.json",
+    "scene_probe_background.json",
+    "a0_current_scene_intervention.json",
+    "local_scale_sensitivity.json"
   ],
-  "note": "No JAAD RGB clips were accessible in the workspace or mounted media locations. A 3.7-TB NTFS partition is detected as /dev/sda2 but is unmounted; it was not mounted or modified. No masks or R0/R1/R2 metrics are fabricated.",
-  "comparison_requested": {
-    "R0": "frame at the selected sample's obs_end_frame",
-    "R1": "retain 4x-expanded pedestrian-box vicinity; neutral-mask the remainder",
-    "R2": "neutral-mask the same vicinity; retain far background"
-  },
-  "test_split_loaded": false
+  "interpretation": "See scene_locality_summary.md; the new full matched B0/B1/B2 runs are reported there."
 }

@@ -1,0 +1,104 @@
+{
+  "checkpoint": "existing Clean J0 trained on old static scene feature",
+  "evaluation_split": "validation",
+  "interpretation": "distribution intervention, not a fair re-trained model comparison",
+  "per_seed": {
+    "42": {
+      "old_static": {
+        "auc": 0.8497341957570071,
+        "brier": 0.08947914884514058,
+        "mean_abs_probability_delta": 0.0,
+        "probability_correlation": 1.0
+      },
+      "R0_current_full": {
+        "auc": 0.8303433784843947,
+        "brier": 0.09666193515836963,
+        "delta_auc": -0.019390817272612493,
+        "delta_brier": 0.00718278631322905,
+        "mean_abs_probability_delta": 0.1289864182472229,
+        "probability_correlation": 0.6719001155659704
+      },
+      "R1_local_4x": {
+        "auc": 0.6813256746599956,
+        "brier": 0.6852043281542165,
+        "delta_auc": -0.16840852109701154,
+        "delta_brier": 0.5957251793090759,
+        "mean_abs_probability_delta": 0.7025328874588013,
+        "probability_correlation": 0.20832960844725462
+      },
+      "R2_background_4x": {
+        "auc": 0.757292472445783,
+        "brier": 0.195874530218272,
+        "delta_auc": -0.09244172331122413,
+        "delta_brier": 0.10639538137313143,
+        "mean_abs_probability_delta": 0.20894624292850494,
+        "probability_correlation": 0.602541218350415
+      }
+    },
+    "123": {
+      "old_static": {
+        "auc": 0.8700686318076334,
+        "brier": 0.07705118886040818,
+        "mean_abs_probability_delta": 0.0,
+        "probability_correlation": 1.0
+      },
+      "R0_current_full": {
+        "auc": 0.8381179468610961,
+        "brier": 0.0914202760371224,
+        "delta_auc": -0.0319506849465373,
+        "delta_brier": 0.014369087176714215,
+        "mean_abs_probability_delta": 0.10019784420728683,
+        "probability_correlation": 0.791506231327624
+      },
+      "R1_local_4x": {
+        "auc": 0.651971998661378,
+        "brier": 0.5462353132774275,
+        "delta_auc": -0.21809663314625538,
+        "delta_brier": 0.4691841244170193,
+        "mean_abs_probability_delta": 0.5990272760391235,
+        "probability_correlation": 0.1772356873290623
+      },
+      "R2_background_4x": {
+        "auc": 0.7740417057555259,
+        "brier": 0.15535202127501802,
+        "delta_auc": -0.0960269260521075,
+        "delta_brier": 0.07830083241460983,
+        "mean_abs_probability_delta": 0.16944321990013123,
+        "probability_correlation": 0.6630635048641669
+      }
+    },
+    "2024": {
+      "old_static": {
+        "auc": 0.8773583611755734,
+        "brier": 0.0663509275135327,
+        "mean_abs_probability_delta": 0.0,
+        "probability_correlation": 1.0
+      },
+      "R0_current_full": {
+        "auc": 0.8467113239739517,
+        "brier": 0.08402051196996334,
+        "delta_auc": -0.030647037201621763,
+        "delta_brier": 0.01766958445643063,
+        "mean_abs_probability_delta": 0.08340968936681747,
+        "probability_correlation": 0.7745969919862804
+      },
+      "R1_local_4x": {
+        "auc": 0.6354463261958447,
+        "brier": 0.4316230786544911,
+        "delta_auc": -0.24191203497972869,
+        "delta_brier": 0.3652721511409584,
+        "mean_abs_probability_delta": 0.522746741771698,
+        "probability_correlation": 0.2467695158082221
+      },
+      "R2_background_4x": {
+        "auc": 0.7670688018784597,
+        "brier": 0.13880552615471548,
+        "delta_auc": -0.1102895592971137,
+        "delta_brier": 0.07245459864118277,
+        "mean_abs_probability_delta": 0.16379821300506592,
+        "probability_correlation": 0.6795333636875162
+      }
+    }
+  },
+  "test_split_loaded": false
+}

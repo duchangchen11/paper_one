@@ -1,0 +1,264 @@
+{
+  "video_root": "/media/lrj/54926A1D926A0438/ped_intent_project/data/raw/JAAD/JAAD_clips",
+  "total_video_count": 346,
+  "extensions": {
+    ".mp4": 346,
+    ".avi": 0,
+    ".mov": 0
+  },
+  "scene_id_mapping": "Use scene_id unchanged as the video filename stem, normally scene_id.mp4 (e.g. video_0171 -> video_0171.mp4).",
+  "validation_video_count": 25,
+  "validation_videos": [
+    {
+      "scene_id": "video_0006",
+      "video_path": "/media/lrj/54926A1D926A0438/ped_intent_project/data/raw/JAAD/JAAD_clips/video_0006.mp4",
+      "exists": true,
+      "frame_count": 330,
+      "fps": 29.97002997002997,
+      "width": 1920,
+      "height": 1080,
+      "randomly_selected": false
+    },
+    {
+      "scene_id": "video_0021",
+      "video_path": "/media/lrj/54926A1D926A0438/ped_intent_project/data/raw/JAAD/JAAD_clips/video_0021.mp4",
+      "exists": true,
+      "frame_count": 180,
+      "fps": 29.97002997002997,
+      "width": 1920,
+      "height": 1080,
+      "randomly_selected": false
+    },
+    {
+      "scene_id": "video_0044",
+      "video_path": "/media/lrj/54926A1D926A0438/ped_intent_project/data/raw/JAAD/JAAD_clips/video_0044.mp4",
+      "exists": true,
+      "frame_count": 210,
+      "fps": 29.97002997002997,
+      "width": 1920,
+      "height": 1080,
+      "randomly_selected": true
+    },
+    {
+      "scene_id": "video_0072",
+      "video_path": "/media/lrj/54926A1D926A0438/ped_intent_project/data/raw/JAAD/JAAD_clips/video_0072.mp4",
+      "exists": true,
+      "frame_count": 210,
+      "fps": 30.0,
+      "width": 1920,
+      "height": 1080,
+      "randomly_selected": true
+    },
+    {
+      "scene_id": "video_0073",
+      "video_path": "/media/lrj/54926A1D926A0438/ped_intent_project/data/raw/JAAD/JAAD_clips/video_0073.mp4",
+      "exists": true,
+      "frame_count": 120,
+      "fps": 30.0,
+      "width": 1920,
+      "height": 1080,
+      "randomly_selected": false
+    },
+    {
+      "scene_id": "video_0082",
+      "video_path": "/media/lrj/54926A1D926A0438/ped_intent_project/data/raw/JAAD/JAAD_clips/video_0082.mp4",
+      "exists": true,
+      "frame_count": 180,
+      "fps": 30.0,
+      "width": 1920,
+      "height": 1080,
+      "randomly_selected": false
+    },
+    {
+      "scene_id": "video_0089",
+      "video_path": "/media/lrj/54926A1D926A0438/ped_intent_project/data/raw/JAAD/JAAD_clips/video_0089.mp4",
+      "exists": true,
+      "frame_count": 360,
+      "fps": 30.0,
+      "width": 1920,
+      "height": 1080,
+      "randomly_selected": true
+    },
+    {
+      "scene_id": "video_0099",
+      "video_path": "/media/lrj/54926A1D926A0438/ped_intent_project/data/raw/JAAD/JAAD_clips/video_0099.mp4",
+      "exists": true,
+      "frame_count": 180,
+      "fps": 30.0,
+      "width": 1920,
+      "height": 1080,
+      "randomly_selected": true
+    },
+    {
+      "scene_id": "video_0102",
+      "video_path": "/media/lrj/54926A1D926A0438/ped_intent_project/data/raw/JAAD/JAAD_clips/video_0102.mp4",
+      "exists": true,
+      "frame_count": 360,
+      "fps": 30.0,
+      "width": 1920,
+      "height": 1080,
+      "randomly_selected": false
+    },
+    {
+      "scene_id": "video_0123",
+      "video_path": "/media/lrj/54926A1D926A0438/ped_intent_project/data/raw/JAAD/JAAD_clips/video_0123.mp4",
+      "exists": true,
+      "frame_count": 150,
+      "fps": 30.0,
+      "width": 1920,
+      "height": 1080,
+      "randomly_selected": true
+    },
+    {
+      "scene_id": "video_0156",
+      "video_path": "/media/lrj/54926A1D926A0438/ped_intent_project/data/raw/JAAD/JAAD_clips/video_0156.mp4",
+      "exists": true,
+      "frame_count": 150,
+      "fps": 30.0,
+      "width": 1920,
+      "height": 1080,
+      "randomly_selected": false
+    },
+    {
+      "scene_id": "video_0160",
+      "video_path": "/media/lrj/54926A1D926A0438/ped_intent_project/data/raw/JAAD/JAAD_clips/video_0160.mp4",
+      "exists": true,
+      "frame_count": 210,
+      "fps": 30.0,
+      "width": 1920,
+      "height": 1080,
+      "randomly_selected": false
+    },
+    {
+      "scene_id": "video_0170",
+      "video_path": "/media/lrj/54926A1D926A0438/ped_intent_project/data/raw/JAAD/JAAD_clips/video_0170.mp4",
+      "exists": true,
+      "frame_count": 120,
+      "fps": 30.0,
+      "width": 1920,
+      "height": 1080,
+      "randomly_selected": false
+    },
+    {
+      "scene_id": "video_0172",
+      "video_path": "/media/lrj/54926A1D926A0438/ped_intent_project/data/raw/JAAD/JAAD_clips/video_0172.mp4",
+      "exists": true,
+      "frame_count": 180,
+      "fps": 30.0,
+      "width": 1920,
+      "height": 1080,
+      "randomly_selected": true
+    },
+    {
+      "scene_id": "video_0193",
+      "video_path": "/media/lrj/54926A1D926A0438/ped_intent_project/data/raw/JAAD/JAAD_clips/video_0193.mp4",
+      "exists": true,
+      "frame_count": 240,
+      "fps": 30.0,
+      "width": 1920,
+      "height": 1080,
+      "randomly_selected": false
+    },
+    {
+      "scene_id": "video_0217",
+      "video_path": "/media/lrj/54926A1D926A0438/ped_intent_project/data/raw/JAAD/JAAD_clips/video_0217.mp4",
+      "exists": true,
+      "frame_count": 240,
+      "fps": 30.0,
+      "width": 1920,
+      "height": 1080,
+      "randomly_selected": true
+    },
+    {
+      "scene_id": "video_0226",
+      "video_path": "/media/lrj/54926A1D926A0438/ped_intent_project/data/raw/JAAD/JAAD_clips/video_0226.mp4",
+      "exists": true,
+      "frame_count": 330,
+      "fps": 30.0,
+      "width": 1920,
+      "height": 1080,
+      "randomly_selected": false
+    },
+    {
+      "scene_id": "video_0252",
+      "video_path": "/media/lrj/54926A1D926A0438/ped_intent_project/data/raw/JAAD/JAAD_clips/video_0252.mp4",
+      "exists": true,
+      "frame_count": 150,
+      "fps": 30.0,
+      "width": 1920,
+      "height": 1080,
+      "randomly_selected": true
+    },
+    {
+      "scene_id": "video_0263",
+      "video_path": "/media/lrj/54926A1D926A0438/ped_intent_project/data/raw/JAAD/JAAD_clips/video_0263.mp4",
+      "exists": true,
+      "frame_count": 120,
+      "fps": 30.0,
+      "width": 1920,
+      "height": 1080,
+      "randomly_selected": false
+    },
+    {
+      "scene_id": "video_0273",
+      "video_path": "/media/lrj/54926A1D926A0438/ped_intent_project/data/raw/JAAD/JAAD_clips/video_0273.mp4",
+      "exists": true,
+      "frame_count": 120,
+      "fps": 30.0,
+      "width": 1920,
+      "height": 1080,
+      "randomly_selected": true
+    },
+    {
+      "scene_id": "video_0274",
+      "video_path": "/media/lrj/54926A1D926A0438/ped_intent_project/data/raw/JAAD/JAAD_clips/video_0274.mp4",
+      "exists": true,
+      "frame_count": 270,
+      "fps": 30.0,
+      "width": 1920,
+      "height": 1080,
+      "randomly_selected": false
+    },
+    {
+      "scene_id": "video_0291",
+      "video_path": "/media/lrj/54926A1D926A0438/ped_intent_project/data/raw/JAAD/JAAD_clips/video_0291.mp4",
+      "exists": true,
+      "frame_count": 210,
+      "fps": 30.0,
+      "width": 1920,
+      "height": 1080,
+      "randomly_selected": false
+    },
+    {
+      "scene_id": "video_0303",
+      "video_path": "/media/lrj/54926A1D926A0438/ped_intent_project/data/raw/JAAD/JAAD_clips/video_0303.mp4",
+      "exists": true,
+      "frame_count": 180,
+      "fps": 30.0,
+      "width": 1920,
+      "height": 1080,
+      "randomly_selected": true
+    },
+    {
+      "scene_id": "video_0306",
+      "video_path": "/media/lrj/54926A1D926A0438/ped_intent_project/data/raw/JAAD/JAAD_clips/video_0306.mp4",
+      "exists": true,
+      "frame_count": 240,
+      "fps": 30.0,
+      "width": 1920,
+      "height": 1080,
+      "randomly_selected": false
+    },
+    {
+      "scene_id": "video_0340",
+      "video_path": "/media/lrj/54926A1D926A0438/ped_intent_project/data/raw/JAAD/JAAD_clips/video_0340.mp4",
+      "exists": true,
+      "frame_count": 150,
+      "fps": 30.0,
+      "width": 1920,
+      "height": 1080,
+      "randomly_selected": false
+    }
+  ],
+  "test_split_loaded": false
+}
