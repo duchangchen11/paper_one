@@ -1,0 +1,52 @@
+{
+  "experiment": "JAAD target-only Mamba temporal baseline comparison",
+  "stage": "train_validation_baselines_only",
+  "base_commit": "cb53ed12693f760bfd08637ae4beabb02bad0055",
+  "seeds": [42, 123, 2024],
+  "data_root": "data/processed/jaad_sequences_scene_15x15",
+  "input": "concat(target_obs, target_abs_obs), [B,15,8]",
+  "model": {
+    "input_dim": 8,
+    "d_model": 128,
+    "num_layers": 3,
+    "dropout": 0.1,
+    "observed_length": 15,
+    "prediction_length": 15,
+    "mamba": {"d_state": 16, "d_conv": 4, "expand": 2},
+    "transformer": {"nhead": 4, "feedforward_dimension": 512, "norm_first": true},
+    "trajectory_decoder": "LayerNorm(128), Linear(128,128), GELU, Dropout(0.1), Linear(128,30)",
+    "matched_decoder_initialization": "CPU RNG fork with seed + 104729, identical TT/MT decoder weights"
+  },
+  "trajectory_training": {
+    "epochs": 20,
+    "batch_size": 512,
+    "optimizer": "AdamW",
+    "learning_rate": 0.001,
+    "weight_decay": 0.0001,
+    "gradient_clip_norm": 5.0,
+    "loss": "SmoothL1Loss(beta=1.0) on normalized future coordinates",
+    "scheduler": {"mode": "min", "factor": 0.5, "patience": 2},
+    "selection": "minimum validation pixel ADE"
+  },
+  "intention_training": {
+    "epochs": 20,
+    "batch_size": 256,
+    "optimizer": "AdamW",
+    "learning_rate": 0.001,
+    "weight_decay": 0.0001,
+    "gradient_clip_norm": 5.0,
+    "sampling": "natural shuffle=True",
+    "loss": "inverse-frequency weighted BCE",
+    "selection": "highest raw validation ROC-AUC; within 1e-4 select lower raw Brier",
+    "selection_tolerance": 0.0001,
+    "calibration": "same validation-only temperature and BAcc threshold fit as existing M0; raw metrics remain primary"
+  },
+  "decision_rules": {
+    "trajectory_minimum_mean_relative_improvement": 0.02,
+    "trajectory_minimum_improved_seed_count": 2,
+    "allowed_trajectory_layer_sweep": [3, 2],
+    "intention_maximum_mean_auc_degradation": 0.02
+  },
+  "test_accessed": false,
+  "forbidden_model_inputs": ["scene_feat", "neighbor", "future_gt", "reliability", "uncertainty"]
+}
