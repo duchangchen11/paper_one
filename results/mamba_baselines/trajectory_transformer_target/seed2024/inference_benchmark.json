@@ -1,0 +1,26 @@
+{
+  "dtype": "float32",
+  "device": "cuda",
+  "warmup_iterations": 10,
+  "measured_iterations": 30,
+  "excludes_host_to_device_transfer": true,
+  "sequence_length": 15,
+  "measurements": {
+    "single_sample": {
+      "batch_size": 1,
+      "mean_ms": 0.8587680041790009,
+      "median_ms": 0.8468320071697235,
+      "p90_ms": 0.9745408236980438,
+      "amortized_ms_per_sample": 0.8587680041790009,
+      "gpu_peak_allocated_mb": 19.67626953125
+    },
+    "batch": {
+      "batch_size": 512,
+      "mean_ms": 1.9984544197718301,
+      "median_ms": 2.0413440465927124,
+      "p90_ms": 2.060553550720215,
+      "amortized_ms_per_sample": 0.0039032312886168557,
+      "gpu_peak_allocated_mb": 55.59423828125
+    }
+  }
+}

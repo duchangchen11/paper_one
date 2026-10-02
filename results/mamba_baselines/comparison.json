@@ -1,0 +1,151 @@
+{
+  "trajectory": {
+    "trajectory_mamba": {
+      "per_seed": {
+        "42": {
+          "ade_pixel": -0.8802652359008789,
+          "fde_pixel": -1.959238052368164
+        },
+        "123": {
+          "ade_pixel": -0.8755245208740234,
+          "fde_pixel": -2.0652389526367188
+        },
+        "2024": {
+          "ade_pixel": -0.7555007934570312,
+          "fde_pixel": -2.314481735229492
+        }
+      },
+      "ade_pixel": {
+        "tt": {
+          "mean": 10.019121805826822,
+          "std": 0.09265212878455083,
+          "per_seed": {
+            "42": 9.961688995361328,
+            "123": 10.126008033752441,
+            "2024": 9.9696683883667
+          }
+        },
+        "mt": {
+          "mean": 9.182024955749512,
+          "std": 0.08899529198542531,
+          "per_seed": {
+            "42": 9.08142375946045,
+            "123": 9.250483512878418,
+            "2024": 9.214167594909668
+          }
+        },
+        "delta_mt_minus_tt": {
+          "mean": -0.8370968500773112,
+          "std": 0.07070400226809237,
+          "per_seed": {
+            "42": -0.8802652359008789,
+            "123": -0.8755245208740234,
+            "2024": -0.7555007934570312
+          }
+        },
+        "relative_mean_improvement": 0.08354992246830256,
+        "improved_seed_count": 3,
+        "passes": true
+      },
+      "fde_pixel": {
+        "tt": {
+          "mean": 18.564973831176758,
+          "std": 0.09907702545930286,
+          "per_seed": {
+            "42": 18.451087951660156,
+            "123": 18.631338119506836,
+            "2024": 18.61249542236328
+          }
+        },
+        "mt": {
+          "mean": 16.451987584431965,
+          "std": 0.13841679529906833,
+          "per_seed": {
+            "42": 16.491849899291992,
+            "123": 16.566099166870117,
+            "2024": 16.29801368713379
+          }
+        },
+        "delta_mt_minus_tt": {
+          "mean": -2.1129862467447915,
+          "std": 0.18237152086935635,
+          "per_seed": {
+            "42": -1.959238052368164,
+            "123": -2.0652389526367188,
+            "2024": -2.314481735229492
+          }
+        },
+        "relative_mean_improvement": 0.11381574065008307,
+        "improved_seed_count": 3,
+        "passes": true
+      },
+      "decision": "GO"
+    }
+  },
+  "intention": {
+    "mi_auc": {
+      "mean": 0.6343344653101232,
+      "std": 0.09374953633881007,
+      "per_seed": {
+        "42": 0.6060172155565431,
+        "123": 0.5580078671472539,
+        "2024": 0.7389783132265726
+      }
+    },
+    "m0_auc": {
+      "mean": 0.7556690275423303,
+      "std": 0.015433225935174651,
+      "per_seed": {
+        "42": 0.740382769082221,
+        "123": 0.7553791756502466,
+        "2024": 0.7712451378945231
+      }
+    },
+    "mean_delta_mi_minus_m0": -0.12133456223220718,
+    "decision": "STOP"
+  },
+  "selected_validation_trajectory_variant": "trajectory_mamba",
+  "mamba_trajectory_decision": "GO",
+  "mamba_intention_decision": "STOP",
+  "needs_layer2_sweep": false,
+  "m0_validation_reference": [
+    {
+      "seed": 42,
+      "metrics": {
+        "roc_auc": 0.740382769082221,
+        "brier": 0.20183541813930367,
+        "f1": 0.936668011294877,
+        "balanced_accuracy": 0.5,
+        "accuracy": 0.8808801213960546
+      },
+      "path": "results/intention_scratch_matched/seed42/metrics_validation.json",
+      "sha256": "fc89b648c1f50ad4f7af068a1b03df731b6bbd69f2bbc14b178bb1d7b63763cf"
+    },
+    {
+      "seed": 123,
+      "metrics": {
+        "roc_auc": 0.7553791756502466,
+        "brier": 0.26606313042234686,
+        "f1": 0.01453612654980761,
+        "balanced_accuracy": 0.5036606373815676,
+        "accuracy": 0.1255690440060698
+      },
+      "path": "results/intention_scratch_matched/seed123/metrics_validation.json",
+      "sha256": "fda1e29810aebc7448cec8b9a4ac603cae3bd7cce2aab037c172fe3ed6e8d163"
+    },
+    {
+      "seed": 2024,
+      "metrics": {
+        "roc_auc": 0.7712451378945231,
+        "brier": 0.29912378020845776,
+        "f1": 0.3044906900328587,
+        "balanced_accuracy": 0.5897932816537468,
+        "accuracy": 0.27731411229135056
+      },
+      "path": "results/intention_scratch_matched/seed2024/metrics_validation.json",
+      "sha256": "5355d4ba3da0d0cde3e5148c1afb9b313387f30fb122b125372fdbbe695403a1"
+    }
+  ],
+  "test_accessed": false,
+  "intent_guided_stage_started": false
+}

@@ -1,0 +1,150 @@
+{
+  "method": "trajectory_mamba",
+  "seed": 42,
+  "num_layers": 3,
+  "best_epoch": 17,
+  "selected_validation_metrics": {
+    "ade_pixel": 9.08142375946045,
+    "fde_pixel": 16.491849899291992,
+    "normalized_loss": 1.9893327622793384e-05
+  },
+  "selected_validation_calibration": null,
+  "parameter_count": {
+    "total": 372254,
+    "trainable": 372254
+  },
+  "initialization": {
+    "method": "trajectory_mamba",
+    "seed": 42,
+    "num_layers": 3,
+    "parameter_count": {
+      "total": 372254,
+      "trainable": 372254
+    },
+    "model_sha256_before_training": "b02e3eb5e972d81b42ee27110e78bb0c8dd64970efcd75848b8d1782baa17a6c",
+    "decoder_initialization_sha256": "b4a27d04624249973cc6e6d2b6fd75b655f8d80fdd51887b32848f63cd72e9b4",
+    "pretrained_checkpoint_loaded": false,
+    "input_shape": [
+      15,
+      8
+    ],
+    "trainable_parameter_names": [
+      "encoder.input_projection.weight",
+      "encoder.input_projection.bias",
+      "encoder.blocks.0.norm.weight",
+      "encoder.blocks.0.norm.bias",
+      "encoder.blocks.0.mixer.A_log",
+      "encoder.blocks.0.mixer.D",
+      "encoder.blocks.0.mixer.in_proj.weight",
+      "encoder.blocks.0.mixer.conv1d.weight",
+      "encoder.blocks.0.mixer.conv1d.bias",
+      "encoder.blocks.0.mixer.x_proj.weight",
+      "encoder.blocks.0.mixer.dt_proj.weight",
+      "encoder.blocks.0.mixer.dt_proj.bias",
+      "encoder.blocks.0.mixer.out_proj.weight",
+      "encoder.blocks.1.norm.weight",
+      "encoder.blocks.1.norm.bias",
+      "encoder.blocks.1.mixer.A_log",
+      "encoder.blocks.1.mixer.D",
+      "encoder.blocks.1.mixer.in_proj.weight",
+      "encoder.blocks.1.mixer.conv1d.weight",
+      "encoder.blocks.1.mixer.conv1d.bias",
+      "encoder.blocks.1.mixer.x_proj.weight",
+      "encoder.blocks.1.mixer.dt_proj.weight",
+      "encoder.blocks.1.mixer.dt_proj.bias",
+      "encoder.blocks.1.mixer.out_proj.weight",
+      "encoder.blocks.2.norm.weight",
+      "encoder.blocks.2.norm.bias",
+      "encoder.blocks.2.mixer.A_log",
+      "encoder.blocks.2.mixer.D",
+      "encoder.blocks.2.mixer.in_proj.weight",
+      "encoder.blocks.2.mixer.conv1d.weight",
+      "encoder.blocks.2.mixer.conv1d.bias",
+      "encoder.blocks.2.mixer.x_proj.weight",
+      "encoder.blocks.2.mixer.dt_proj.weight",
+      "encoder.blocks.2.mixer.dt_proj.bias",
+      "encoder.blocks.2.mixer.out_proj.weight",
+      "encoder.final_norm.weight",
+      "encoder.final_norm.bias",
+      "decoder.0.weight",
+      "decoder.0.bias",
+      "decoder.1.weight",
+      "decoder.1.bias",
+      "decoder.4.weight",
+      "decoder.4.bias"
+    ]
+  },
+  "checkpoint_path": "checkpoints/mamba_baselines/trajectory_mamba/seed42.pt",
+  "checkpoint_sha256": "c07402df9d0d2cf21796e985aa92cb411ffea7cd4c9357c57f7080902a6aba06",
+  "data_provenance": {
+    "train_path": "data/processed/jaad_sequences_scene_15x15/train.npz",
+    "validation_path": "data/processed/jaad_sequences_scene_15x15/val.npz",
+    "train_sha256": "6da2d1d40a918a218a7d054407d95f2791e2338a760b4836f2ca6d06c59ea19a",
+    "validation_sha256": "fb78bb5edcd18d74a15744cfd8ae728c8600b485d4028bed8ee2c9c2d4c5f66c",
+    "train_samples": 24556,
+    "validation_samples": 2636,
+    "target_shape": [
+      15,
+      8
+    ],
+    "future_shape": [
+      15,
+      2
+    ],
+    "data_splits_loaded": [
+      "train",
+      "val"
+    ],
+    "test_accessed": false,
+    "split": "existing JAAD default video split, arrays unchanged",
+    "scene_feat_consumed_by_model": false
+  },
+  "config_sha256": "5379abb631379f8a2df479867fa3b87c7ad7f8d3a132f72422ddfad1f41b90fe",
+  "training": {
+    "epochs": 20,
+    "batch_size": 512,
+    "optimizer": "AdamW",
+    "learning_rate": 0.001,
+    "weight_decay": 0.0001,
+    "gradient_clip_norm": 5.0,
+    "loss": "SmoothL1Loss(beta=1.0) on normalized future coordinates",
+    "scheduler": {
+      "mode": "min",
+      "factor": 0.5,
+      "patience": 2
+    },
+    "selection": "minimum validation pixel ADE"
+  },
+  "class_weights": null,
+  "environment": {
+    "python": "3.10.21",
+    "packages": {
+      "torch": "2.5.1+cu124",
+      "mamba-ssm": "2.2.6.post3",
+      "triton": "3.1.0",
+      "causal-conv1d": null,
+      "einops": "0.8.1",
+      "transformers": "4.46.3"
+    },
+    "host_libc": [
+      "glibc",
+      "2.31"
+    ],
+    "torch_cxx11_abi": false,
+    "torch_cuda": "12.4",
+    "cuda_available": true,
+    "gpu": "NVIDIA GeForce RTX 3080",
+    "cudnn": 90100,
+    "float_dtype": "float32",
+    "amp": false,
+    "torch_cpu_threads": 4,
+    "optional_causal_conv1d_installed": false,
+    "cuda_matmul_tf32": false,
+    "cudnn_tf32": true
+  },
+  "training_seconds": 31.001452902000892,
+  "training_gpu_peak_allocated_mb": 321.69970703125,
+  "all_losses_and_gradients_finite": true,
+  "test_accessed": false,
+  "test_evaluation_status": "withheld_until_protocol_freeze"
+}

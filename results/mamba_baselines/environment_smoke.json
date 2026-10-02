@@ -1,0 +1,45 @@
+{
+  "python": "3.10.21",
+  "packages": {
+    "torch": "2.5.1+cu124",
+    "mamba-ssm": "2.2.6.post3",
+    "triton": "3.1.0",
+    "causal-conv1d": null,
+    "einops": "0.8.1",
+    "transformers": "4.46.3"
+  },
+  "host_libc": [
+    "glibc",
+    "2.31"
+  ],
+  "torch_cxx11_abi": false,
+  "torch_cuda": "12.4",
+  "cuda_available": true,
+  "gpu": "NVIDIA GeForce RTX 3080",
+  "cudnn": 90100,
+  "float_dtype": "float32",
+  "amp": false,
+  "torch_cpu_threads": 4,
+  "optional_causal_conv1d_installed": false,
+  "cuda_matmul_tf32": false,
+  "cudnn_tf32": true,
+  "mamba_import_version": "2.2.6.post3",
+  "input_shape": [
+    4,
+    15,
+    128
+  ],
+  "output_shape": [
+    4,
+    15,
+    128
+  ],
+  "output_finite": true,
+  "input_gradient_finite": true,
+  "parameter_gradients_finite": true,
+  "selective_scan_binary": "/home/lrj/anaconda3/envs/ped_intent/lib/python3.10/site-packages/selective_scan_cuda.cpython-310-x86_64-linux-gnu.so",
+  "selective_scan_binary_sha256": "251fa6e44fc82d8e055e0cf042a62ab5d8f02cf2709d15fe4f80d2117ef39622",
+  "installation": "official 2.2.6.post3 source compiled locally against unchanged torch 2.5.1+cu124",
+  "isolated_compiler_prefix": "/home/lrj/.local/cuda-toolchains/cuda-12.4",
+  "nvcc": "nvcc: NVIDIA (R) Cuda compiler driver\nCopyright (c) 2005-2024 NVIDIA Corporation\nBuilt on Thu_Mar_28_02:18:24_PDT_2024\nCuda compilation tools, release 12.4, V12.4.131\nBuild cuda_12.4.r12.4/compiler.34097967_0"
+}

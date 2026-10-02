@@ -1,0 +1,23 @@
+{
+  "train_path": "data/processed/jaad_sequences_scene_15x15/train.npz",
+  "validation_path": "data/processed/jaad_sequences_scene_15x15/val.npz",
+  "train_sha256": "6da2d1d40a918a218a7d054407d95f2791e2338a760b4836f2ca6d06c59ea19a",
+  "validation_sha256": "fb78bb5edcd18d74a15744cfd8ae728c8600b485d4028bed8ee2c9c2d4c5f66c",
+  "train_samples": 24556,
+  "validation_samples": 2636,
+  "target_shape": [
+    15,
+    8
+  ],
+  "future_shape": [
+    15,
+    2
+  ],
+  "data_splits_loaded": [
+    "train",
+    "val"
+  ],
+  "test_accessed": false,
+  "split": "existing JAAD default video split, arrays unchanged",
+  "scene_feat_consumed_by_model": false
+}

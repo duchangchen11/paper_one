@@ -1,0 +1,56 @@
+{
+  "base_commit": "cb53ed12693f760bfd08637ae4beabb02bad0055",
+  "baseline_code_commit": "d2b8ee68d18d9a13412a54137457ba81c7749225",
+  "branch": "feat/intent_guided_mamba",
+  "completed_run_count": 9,
+  "epochs_per_run": 20,
+  "total_completed_epochs": 180,
+  "training_seconds_total": 305.084051156995,
+  "all_selected_epochs_recomputed_and_matched": true,
+  "all_checkpoint_sha256_values_recomputed_and_matched": true,
+  "all_run_train_val_hashes_identical_and_matched_current_arrays": true,
+  "existing_m0_validation_reference_hashes_recomputed_and_matched": true,
+  "train_sha256": "6da2d1d40a918a218a7d054407d95f2791e2338a760b4836f2ca6d06c59ea19a",
+  "validation_sha256": "fb78bb5edcd18d74a15744cfd8ae728c8600b485d4028bed8ee2c9c2d4c5f66c",
+  "train_samples": 24556,
+  "validation_samples": 2636,
+  "test_accessed": false,
+  "scene_feat_consumed_by_models": false,
+  "intent_guided_stage_started": false,
+  "two_layer_sweep_run": false,
+  "trajectory_decision": "GO",
+  "intention_decision": "STOP",
+  "py_compile": {"passed": true, "new_python_files_checked": 13},
+  "pytest_after_environment_fix": {
+    "passed": 176, "failed": 0, "errors": 0, "skipped": 0,
+    "warnings": 60, "duration_seconds": 9.45
+  },
+  "pytest_after_experiments": {
+    "passed": 176, "failed": 0, "errors": 0, "skipped": 0,
+    "warnings": 60, "duration_seconds": 9.33
+  },
+  "pip_check": "No broken requirements found.",
+  "nan_or_inf_detected": false,
+  "intention_validation_variation_and_large_pre_clip_gradients_detected": true,
+  "intention_numerical_observations": {
+    "42": {
+      "selected_epoch": 4,
+      "validation_auc_min": 0.31363529134229773,
+      "validation_auc_max": 0.6060172155565431,
+      "maximum_gradient_norm_before_clip": 163.93763732910156
+    },
+    "123": {
+      "selected_epoch": 8,
+      "validation_auc_min": 0.31049035259522595,
+      "validation_auc_max": 0.5580078671472539,
+      "maximum_gradient_norm_before_clip": 223.13192749023438
+    },
+    "2024": {
+      "selected_epoch": 1,
+      "validation_auc_min": 0.33373793731518514,
+      "validation_auc_max": 0.7389783132265726,
+      "maximum_gradient_norm_before_clip": 202.1770782470703
+    }
+  },
+  "old_tracked_model_files_or_frozen_results_modified": false
+}
